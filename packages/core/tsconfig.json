@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compileOnSave": false,
+  "compilerOptions": {
+    "sourceRoot": "src",
+    "outDir": "dist/native-modules",
+    "declarationDir": "dist/typings"
+  },
+  "include": [
+    "../../typings/**/*.d.ts",
+    "./src/**/*.ts",
+    "./types/**/*.d.ts"
+  ]
+}

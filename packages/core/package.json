@@ -1,0 +1,41 @@
+{
+  "name": "@au-jsonschema-form/core",
+  "description": "Core au-jsonschema-form library",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": {
+    "name": "jbockle",
+    "url": "https://github.com/jbockle"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jbockle/au-jsonschema-form"
+  },
+  "main": "dist/commonjs/index.js",
+  "module": "dist/native-modules/index.js",
+  "types": "dist/typings/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf dist/*",
+    "copy": "cpx \"src/**/*.{html,css}\"",
+    "prebuild": "npm run clean",
+    "build": "tsc && npm run build:commonjs && npm run copy -- dist/commonjs && npm run copy -- dist/native-modules",
+    "prebuild:watch": "npm run clean",
+    "build:watch": "concurrently \"tsc -w\" \"tsc -w -m commonjs --outDir dist/commonjs\" \"npm run copy -- dist/native-modules -w\" \"npm run copy -- dist/commonjs -w\""
+  },
+  "dependencies": {
+    "aurelia-framework": "^1.3.1",
+    "ajv": "^6.10.0"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.3",
+    "typescript": "^3.4.5",
+    "cpx": "^1.5.0",
+    "concurrently": "^4.1.0"
+  },
+  "engines": {
+    "node": ">=8.9.0"
+  }
+}
