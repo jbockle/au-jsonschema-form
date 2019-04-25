@@ -1,4 +1,9 @@
 <template>
   <h1>${message}</h1>
-  <au-sf-string></au-sf-string>
+  <au-sf-string set-model.one-time="getModelState('test')"
+                schema.bind="{type:'string'}" form.bind="{}"
+                model.to-view="model.test">
+  </au-sf-string>
+  <br>
+  <pre textcontent.bind="modelJson"></pre>
 </template>

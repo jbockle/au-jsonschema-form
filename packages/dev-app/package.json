@@ -45,7 +45,7 @@
   },
   "scripts": {
     "build": "au build",
-    "start": "au run"
+    "build:watch": "au run"
   },
   "engines": {
     "node": ">=8.9.0"
