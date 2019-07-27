@@ -1,7 +1,7 @@
 import { bindable } from 'aurelia-framework';
 import { JsonSchemaStringDefinition } from '../json-schema-definition';
 import { PrimitiveStringDefinition } from '../form-definition';
-import { SchemaElement } from './schema-element';
+import { SchemaElement, ValidationResponse } from './schema-element';
 import { primitiveElement } from '../decorators/primitive-element';
 
 @primitiveElement('au-sf-string')
@@ -12,8 +12,17 @@ export class AuSfString implements SchemaElement<string> {
   @bindable public setModel: (value: string) => void;
 
   public bind() {
-    console.log('bound', this.model);
-    console.log(this.setModel.toString());
+    if (this.schema.const) {
+      this.model = this.schema.const;
+    }
+  }
+
+  public validate() {
+    const response: ValidationResponse = { valid: true, reasons: [] };
+    if (this.schema.const && this.model !== this.schema.const) {
+      response.valid = false;
+      response.reasons.push(``)
+    }
   }
 
   public proposeTemplate() {
@@ -26,8 +35,8 @@ export class AuSfString implements SchemaElement<string> {
     else if (this.schema.enum) {
       return 'select_enum';
     }
-    else if (['date-time', 'date', 'time'].indexOf(this.schema.format)) {
-      return this.schema.format;
-    }
+    // else if (['date-time', 'date', 'time'].indexOf(this.schema.format)) {
+    //   return this.schema.format;
+    // }
   }
 }

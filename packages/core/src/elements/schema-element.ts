@@ -11,3 +11,8 @@ export interface SchemaElement<T> {
   proposeTemplate: () => string | null;
   [key: string]: any;
 }
+
+export interface ValidationResponse {
+  valid: boolean;
+  reasons: string[];
+}
