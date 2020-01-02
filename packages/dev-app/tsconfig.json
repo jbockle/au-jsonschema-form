@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "baseUrl": "./src",
+    "outDir": "./dist/x"
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./test/**/*.ts",
+    "./types/**/*.d.ts"
+  ],
+  "exclude": [
+    "./test/**/*.ts"
+  ]
+}

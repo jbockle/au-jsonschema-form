@@ -1,0 +1,14 @@
+<template>
+  <h3>${title}</h3>
+  <key repeat.for="[key,def] of keys">
+    <sf-string if.to-view="def.type === 'string'"
+               definition.bind="def"
+               errors.bind="errors[key]"></sf-string>
+    <sf-object if.to-view="def.type === 'object'"
+               definition.bind="def"
+               errors.bind="errors[key]"></sf-object>
+  </key>
+  <error repeat.for="error of errors.__errors" style="color: red;">
+    ${error}
+  </error>
+</template>

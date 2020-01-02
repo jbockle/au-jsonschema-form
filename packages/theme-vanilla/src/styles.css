@@ -1,0 +1,11 @@
+
+sf-string,
+sf-object {
+  border: 1px solid;
+  padding: 4px;
+  margin: 4px;
+}
+
+.sf-element {
+  display: block;
+}

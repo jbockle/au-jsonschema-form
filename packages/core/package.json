@@ -1,0 +1,42 @@
+{
+  "name": "@au-jsonschema-form/core",
+  "author": "jbockle",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist/*",
+    "clean": "rimraf dist/*",
+    "build:tsc": "tsc",
+    "build:static": "cpx src/**/*.{html,css} dist",
+    "build": "npm-run-all build:*",
+    "prebuild-watch": "npm run clean",
+    "build-watch": "npm-run-all --parallel \"build:* -- --watch\"",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts"
+  },
+  "dependencies": {
+    "aurelia-framework": "1.*",
+    "aurelia-event-aggregator": "1.*",
+    "lodash": "4.*",
+    "jsonpointerx": "^1.0.27"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.149",
+    "@types/jest": "^24.0.25",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0",
+    "html-loader-jest": "^0.2.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.0",
+    "typescript": "^3.7.4",
+    "cpx": "^1.5.0",
+    "rimraf": "^3.0.0",
+    "eslint": "^6.8.0",
+    "npm-run-all": "^4.1.5"
+  }
+}

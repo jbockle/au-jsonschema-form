@@ -1,0 +1,9 @@
+<template>
+  <label>
+    <span>${title}<sup if.bind="definition.required">*</sup></span>
+    <input type.bind="inputType" value.bind="value" readonly.bind="isReadOnly">
+  </label>
+  <span repeat.for="error of errors.__errors" style="color: red;">
+    ${error}
+  </span>
+</template>

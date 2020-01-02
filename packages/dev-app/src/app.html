@@ -1,0 +1,9 @@
+<template>
+  <require from="@au-jsonschema-form/theme-vanilla/styles.css"></require>
+  <schema-form schema.bind="schema" ui-schema.bind="uiSchema" model.two-way="model" view-model.ref="vm">
+  </schema-form>
+
+  <pre>${JSON.stringify(vm.context)}</pre>
+  <pre>${modelString}</pre>
+  <h1>${message}</h1>
+</template>

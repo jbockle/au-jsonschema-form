@@ -1,0 +1,21 @@
+<template>
+
+  <form novalidate>
+    <sf-string if.to-view="definition.type === 'string'"
+               definition.bind="definition"
+               errors.bind="errors">
+    </sf-string>
+
+    <sf-object if.to-view="definition.type === 'object'"
+               definition.bind="definition"
+               errors.bind="errors">
+    </sf-object>
+
+    <sf-multi-schema if.to-view="definition.type === 'multi-schema'"
+                     definition.bind="definition"
+                     errors.bind="errors">
+    </sf-multi-schema>
+
+  </form>
+
+</template>

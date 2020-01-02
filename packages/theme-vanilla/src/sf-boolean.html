@@ -1,0 +1,6 @@
+<template>
+  <label>
+    <input type="checkbox" value.bind="value" readonly.bind="isReadOnly">
+    &nbsp;${title}<sup if.bind="definition.required">*</sup>
+  </label>
+</template>

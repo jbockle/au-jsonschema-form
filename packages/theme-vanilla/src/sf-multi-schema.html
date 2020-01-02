@@ -1,0 +1,20 @@
+<template>
+  <select value.bind="selectedSchema" matcher.bind="optionMatcher">
+    <option model.bind="null">Select an option..</option>
+    <option repeat.for="option of options" model.bind="option">${option.title}</option>
+  </select>
+
+  <div if.bind="selectedSchema">
+    <sf-string if.to-view="selectedSchema.definition.type === 'string'"
+               definition.bind="selectedSchema.definition"
+               errors.bind="errors"></sf-string>
+
+    <sf-object if.to-view="selectedSchema.definition.type === 'object'"
+               definition.bind="selectedSchema.definition"
+               errors.bind="errors"></sf-object>
+
+    <sf-multi-schema if.to-view="selectedSchema.definition.type === 'multi-schema'"
+                     definition.bind="selectedSchema.definition"
+                     errors.bind="errors"></sf-multi-schema>
+  </div>
+</template>
