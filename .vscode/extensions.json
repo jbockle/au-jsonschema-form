@@ -4,6 +4,7 @@
     "msjsdiag.debugger-for-chrome",
     "EditorConfig.EditorConfig",
     "christian-kohler.path-intellisense",
-    "behzad88.Aurelia"
+    "behzad88.Aurelia",
+    "dbaeumer.vscode-eslint"
   ]
 }
