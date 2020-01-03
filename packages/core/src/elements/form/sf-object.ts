@@ -1,4 +1,5 @@
-import { useView, PLATFORM, inject } from 'aurelia-framework';
+import { useView, PLATFORM, inject, observable } from 'aurelia-framework';
+
 import { SfBase } from './sf-base';
 import { FormElementViewSet, UISchema, JsonSchema, FormElementDefinition } from '../../domain';
 import { FormEvents } from '../../infrastructure/form-events';
@@ -20,6 +21,7 @@ export class SfObject extends SfBase {
     super(events, context, viewService, AppLogger.makeLogger(SfObject));
   }
 
+  @observable
   public value: Record<string, any> | null | undefined;
 
   public keys!: Map<string, FormElementDefinition>;
@@ -152,8 +154,13 @@ export class SfObject extends SfBase {
 
   public updateValue(): void {
     this._logger.debug('updating value');
-    this.value = this.jsonPointer.get(this.context.model) ?? this.getDefaultValue();
+    this.value = this.jsonPointer.get(this.context.model) ?? this.getDefaultValue() ?? {};
   }
 
-  public valueChanged = (): void => {/* */ }
+  public valueChanged = (): void => {
+    if (this.definition.pointer !== '/') {
+      this._logger.debug('object value changed', this.value);
+      this.defaultValueChanged.call(this);
+    }
+  }
 }

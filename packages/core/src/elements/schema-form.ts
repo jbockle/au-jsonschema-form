@@ -62,7 +62,7 @@ export class SchemaForm {
   public overrideContext: any;
 
   public createSubscriptions(events: FormEvents): void {
-    const formChangedSub = events.subscribe.onValueChanged(async (args) => {
+    const valueChanged = events.subscribe.onValueChanged(async (args) => {
       this.pointers.setValue(args.pointer, this.model, this.parseValue(args));
       await this.beginValidate();
       this.errors = errorSchema.commands.toErrorSchema(this.validate.errors || []);
@@ -71,7 +71,7 @@ export class SchemaForm {
     const validateSub = events.subscribe.onValidate(async () => {
       await this.beginValidate();
     });
-    this._subs.push(formChangedSub, validateSub);
+    this._subs.push(valueChanged, validateSub);
   }
 
   public bind(bindingContext: any, overrideContext: any): void {
@@ -124,14 +124,8 @@ export class SchemaForm {
     this._logger.debug('validation occurred', this.validate.errors);
   }
 
-  public parseValue(args: { pointer: string; value: any; schema: JsonSchema<any>; uiSchema: UISchema }): any {
-    let valueIsNullish: boolean = false;
-
-    if (typeof args.value === 'object' && Object.keys(args.value).length === 0) {
-      valueIsNullish = true;
-    } else {
-      valueIsNullish = typeof args.value === undefined || args.value === null || args.value === '';
-    }
+  public parseValue(args: FormElementDefinition & { value: any }): any {
+    const valueIsNullish: boolean = args.value === undefined || args.value === null || args.value === '';
 
     if (valueIsNullish) {
       const destroyAction: DestroyAction = args.schema.type?.includes('null')

@@ -83,7 +83,6 @@ export abstract class SfBase implements FormElementViewModel {
   protected overrideContext: any;
 
   public bind(bindingContext: any, overrideContext: any): void {
-    this._logger.debug(SfBase.name);
     this.bindingContext = bindingContext;
     this.overrideContext = overrideContext;
 
@@ -113,7 +112,7 @@ export abstract class SfBase implements FormElementViewModel {
 
   public defaultValueChanged(): void {
     this._logger.debug('value changed', this.definition.pointer, this.value);
-    this.events.emit.valueChanged(this.definition.pointer, this.value, this.definition.schema, this.definition.uiSchema);
+    this.events.emit.valueChanged(Object.assign({ value: this.value }, this.definition));
   }
 
   public abstract updateValue(): void;
