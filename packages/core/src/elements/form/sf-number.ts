@@ -26,13 +26,15 @@ export class SfNumber extends SfBase {
 
   public inputType = 'number';
 
-  public valueChanged = (): void => {
-    switch (typeof this.value) {
-      case 'number':
-        super.defaultValueChanged.call(this);
-        break;
+  public valueChanged = (newValue: number | string): void => {
+    this._logger.debug('number changed', newValue);
+    switch (typeof newValue) {
       case 'string':
-        this.value = parseFloat(this.value) || null;
+        this.value = parseFloat(newValue) || null;
+        break;
+      default:
+        this.defaultValueChanged.call(this);
+        break;
     }
   }
 
