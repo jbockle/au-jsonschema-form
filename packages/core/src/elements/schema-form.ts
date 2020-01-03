@@ -66,7 +66,7 @@ export class SchemaForm {
       this.pointers.setValue(args.pointer, this.model, this.parseValue(args));
       await this.beginValidate();
       this.errors = errorSchema.commands.toErrorSchema(this.validate.errors || []);
-      console.log('changed', args.pointer, args.value, this.errors);
+      this._logger.debug('changed', args.pointer, args.value, this.errors);
     });
     const validateSub = events.subscribe.onValidate(async () => {
       await this.beginValidate();
@@ -121,7 +121,7 @@ export class SchemaForm {
 
   public async beginValidate(): Promise<void> {
     await this.validate(this.model);
-    console.log('validation occurred', this.validate.errors);
+    this._logger.debug('validation occurred', this.validate.errors);
   }
 
   public parseValue(args: { pointer: string; value: any; schema: JsonSchema<any>; uiSchema: UISchema }): any {

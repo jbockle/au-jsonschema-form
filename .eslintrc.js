@@ -31,6 +31,7 @@ module.exports = {
       "private": "^_"
     }],
     "@typescript-eslint/explicit-member-accessibility": ["error"],
-    "@typescript-eslint/no-inferrable-types": "off"
+    "@typescript-eslint/no-inferrable-types": "off",
+    "no-console": "error"
   },
 };
