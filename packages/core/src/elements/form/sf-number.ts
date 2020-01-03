@@ -7,7 +7,7 @@ import { FormElementViewRegistry } from '../../infrastructure/form-element-view-
 import { AppLogger } from '../../infrastructure/app-logger';
 
 @useView(PLATFORM.moduleName('@au-jsonschema-form/core/elements/form/sf-view.html'))
-@inject(FormEvents, FormContext)
+@inject(FormEvents, FormContext, FormElementViewRegistry)
 export class SfNumber extends SfBase {
   public constructor(
     events: FormEvents,
@@ -23,6 +23,8 @@ export class SfNumber extends SfBase {
   public viewSet: FormElementViewSet = {
     default: SfNumber.name,
   };
+
+  public inputType = 'number';
 
   public valueChanged = (): void => {
     switch (typeof this.value) {
