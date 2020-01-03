@@ -1,14 +1,23 @@
 <template>
-  <h3>${title}</h3>
-  <key repeat.for="[key,def] of keys">
-    <sf-string if.to-view="def.type === 'string'"
-               definition.bind="def"
-               errors.bind="errors[key]"></sf-string>
-    <sf-object if.to-view="def.type === 'object'"
-               definition.bind="def"
-               errors.bind="errors[key]"></sf-object>
-  </key>
-  <error repeat.for="error of errors.__errors" style="color: red;">
-    ${error}
-  </error>
+  <section>
+    <label class="section">${title}<sup
+           if.bind="definition.required">*</sup></label>
+    <key repeat.for="[key,def] of keys">
+      <sf-string if.to-view="def.type === 'string'"
+                 definition.bind="def"
+                 errors.bind="errors[key]"></sf-string>
+      <sf-number if.to-view="def.type === 'number'"
+                 definition.bind="def"
+                 errors.bind="errors[key]"></sf-number>
+      <sf-boolean if.to-view="def.type === 'boolean'"
+                  definition.bind="def"
+                  errors.bind="errors[key]"></sf-boolean>
+      <sf-object if.to-view="def.type === 'object'"
+                 definition.bind="def"
+                 errors.bind="errors[key]"></sf-object>
+    </key>
+    <span repeat.for="error of errors.__errors" style="color: red;">
+      ${error}
+    </span>
+  </section>
 </template>

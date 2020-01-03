@@ -1,6 +1,7 @@
 import { FormElementViews } from '@au-jsonschema-form/core';
 import sfStringMarkup from './sf-string.html';
 import sfObjectMarkup from './sf-object.html';
+import sfBooleanMarkup from './sf-boolean.html';
 
 export const theme: FormElementViews = {
   SfString: {
@@ -10,9 +11,9 @@ export const theme: FormElementViews = {
     markup: sfObjectMarkup,
   },
   SfBoolean: {
-    markup: '',
+    markup: sfBooleanMarkup,
   },
   SfNumber: {
-    markup: '',
+    markup: sfStringMarkup,
   },
 };

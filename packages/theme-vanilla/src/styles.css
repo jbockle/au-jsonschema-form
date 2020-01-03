@@ -1,11 +1,48 @@
 
-sf-string,
-sf-object {
-  border: 1px solid;
-  padding: 4px;
-  margin: 4px;
+
+schema-form {
+  display: block;
+  font-size: 12px;
+  border: 1px solid rgba(0,0,0,.2);
+  padding: 2px 4px;
+  margin: 2px;
 }
 
 .sf-element {
   display: block;
+  padding: 2px;
+  margin-bottom: 4px;
+}
+
+sf-object {
+  border: 1px solid rgba(0,0,0,.2);
+  padding: 2px 4px !important;
+}
+
+form > sf-object {
+  border: none;
+}
+
+input {
+  border: 1px solid rgba(0,0,0,.6);
+  padding: 2px;
+}
+
+label {
+  font-weight: bolder;
+  display: block;
+}
+
+label.section {
+  font-size: 1rem;
+  padding: 2px 0;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+}
+
+span {
+  display: block;
+}
+
+input:read-only {
+  background-color: rgba(0,0,0,.2);
 }
