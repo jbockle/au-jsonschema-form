@@ -1,12 +1,19 @@
 import { bindable, ViewStrategy, InlineViewStrategy } from 'aurelia-framework';
+import { Subscription } from 'aurelia-event-aggregator';
 import { JsonPointer } from 'jsonpointerx';
 import startCase from 'lodash/startCase';
+import kebabCase from 'lodash/kebabCase';
 
-import { ErrorSchema, FormElementViewSet, FormElementView, FormElementDefinition, FormElementViewModel } from '../../domain';
+import {
+  ErrorSchema,
+  FormElementViewSet,
+  FormElementView,
+  FormElementDefinition,
+  FormElementViewModel,
+} from '../../domain';
 import { FormEvents } from '../../infrastructure/form-events';
 import views from '../../app/view';
 import { FormContext } from '../../infrastructure/form-context';
-import { Subscription } from 'aurelia-event-aggregator';
 import util from '../../util';
 import { FormElementViewRegistry } from '../../infrastructure/form-element-view-registry';
 import { AppLogger } from '../../infrastructure/app-logger';
@@ -48,6 +55,29 @@ export abstract class SfBase implements FormElementViewModel {
   public viewStrategy!: ViewStrategy;
 
   public abstract viewSet: FormElementViewSet;
+
+  public get hasErrors(): boolean {
+    return !!this.errors.__errors;
+  }
+
+  public get className(): string {
+    return kebabCase(this.viewSet.default) + '-compose';
+  }
+
+  public get isReadOnly(): boolean {
+    if (this.definition.parent?.isReadOnly) {
+      return true;
+    }
+
+    let readOnly = typeof this.definition.uiSchema.readOnly === 'boolean'
+      ? this.definition.uiSchema.readOnly
+      : this.definition.schema.readOnly;
+    if (this.definition.uiSchema.readOnly instanceof Function) {
+      readOnly = this.definition.uiSchema.readOnly(this);
+    }
+
+    return readOnly || this.definition.schema.const !== undefined;
+  }
 
   protected bindingContext: any;
   protected overrideContext: any;
@@ -92,21 +122,6 @@ export abstract class SfBase implements FormElementViewModel {
     this.title = (this.definition.uiSchema ?? {})['ui:title']
       || this.definition.schema?.title
       || this.getTitleFromPointer();
-  }
-
-  public get isReadOnly(): boolean {
-    if (this.definition.parent?.isReadOnly) {
-      return true;
-    }
-
-    let readOnly = typeof this.definition.uiSchema.readOnly === 'boolean'
-      ? this.definition.uiSchema.readOnly
-      : this.definition.schema.readOnly;
-    if (this.definition.uiSchema.readOnly instanceof Function) {
-      readOnly = this.definition.uiSchema.readOnly(this);
-    }
-
-    return readOnly || this.definition.schema.const !== undefined;
   }
 
   public getDefaultValue(): any {
