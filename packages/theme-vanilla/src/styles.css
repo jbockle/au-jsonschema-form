@@ -8,41 +8,41 @@ schema-form {
   margin: 2px;
 }
 
-.sf-element {
+schema-form .sf-element {
   display: block;
   padding: 2px;
   margin-bottom: 4px;
 }
 
-sf-object {
+schema-form sf-object {
   border: 1px solid rgba(0,0,0,.2);
   padding: 2px 4px !important;
 }
 
-form > sf-object {
+schema-form form > sf-object {
   border: none;
 }
 
-input {
+schema-form input {
   border: 1px solid rgba(0,0,0,.6);
   padding: 2px;
 }
 
-label {
+schema-form label {
   font-weight: bolder;
   display: block;
 }
 
-label.section {
+schema-form label.section {
   font-size: 1rem;
   padding: 2px 0;
   border-bottom: 1px solid rgba(0,0,0,.2);
 }
 
-span {
+schema-form span {
   display: block;
 }
 
-input:read-only {
+schema-form input:read-only {
   background-color: rgba(0,0,0,.2);
 }
