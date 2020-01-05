@@ -14,11 +14,19 @@ export class App {
       x: {
         title: 'x test',
         type: 'string',
-        format: 'regex',
-        pattern: '^a',
+        // format: 'regex',
+        // pattern: '^a',
+        const: 'test',
       },
       a: {
         type: 'string',
+      },
+      droot: {
+        type: 'number',
+        minimum: 5,
+      },
+      broot: {
+        type: 'boolean',
       },
       obj: {
         type: 'object',
@@ -30,7 +38,7 @@ export class App {
             pattern: '^a',
           },
           d: {
-            type: 'string',
+            type: 'number',
           },
         },
         required: [
@@ -51,7 +59,7 @@ export class App {
   }
 
   public model: any = {
-    x: 'a',
+    // x: 'a',
   };
 
   public get modelString(): string {

@@ -2,9 +2,7 @@
   <section>
     <label class="section">${title}<sup
            if.bind="definition.required">*</sup></label>
-    <span repeat.for="error of errors.__errors" style="color: red;">
-      ${error}
-    </span>
+    <sf-errors errors.bind="errors"></sf-errors>
     <key repeat.for="[key,def] of keys">
       <sf-string if.to-view="def.type === 'string'"
                  definition.bind="def"

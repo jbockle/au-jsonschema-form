@@ -1,6 +1,6 @@
 import { useView, PLATFORM, inject, observable } from 'aurelia-framework';
 
-import { SfBase } from './sf-base';
+import { SfFormElementBase } from './sf-form-element-base';
 import { FormElementViewSet, UISchema, JsonSchema, FormElementDefinition } from '../../domain';
 import { FormEvents } from '../../infrastructure/form-events';
 import { FormContext } from '../../infrastructure/form-context';
@@ -9,9 +9,9 @@ import { FormElementViewRegistry } from '../../infrastructure/form-element-view-
 import jsonSchema from '../../app/json-schema';
 import { AppLogger } from '../../infrastructure/app-logger';
 
-@useView(PLATFORM.moduleName('@au-jsonschema-form/core/elements/form/sf-view.html'))
+@useView(PLATFORM.moduleName('@au-jsonschema-form/core/elements/sf-view.html'))
 @inject(FormEvents, FormContext, FormElementViewRegistry, JsonPointerService)
-export class SfObject extends SfBase {
+export class SfObject extends SfFormElementBase {
   public constructor(
     events: FormEvents,
     context: FormContext,

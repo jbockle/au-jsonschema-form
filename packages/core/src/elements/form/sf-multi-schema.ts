@@ -5,7 +5,7 @@ import { FormEvents } from '../../infrastructure/form-events';
 import { FormContext } from '../../infrastructure/form-context';
 import { FormElementViewRegistry } from '../../infrastructure/form-element-view-registry';
 import { JsonPointerService } from '../../infrastructure/json-pointer-service';
-import { SfBase } from './sf-base';
+import { SfFormElementBase } from './sf-form-element-base';
 import { FormElementViewSet, FormElementDefinition, JsonSchema } from '../../domain';
 import jsonSchema from '../../app/json-schema';
 import { AppLogger } from '../../infrastructure/app-logger';
@@ -15,9 +15,9 @@ type SchemaDefinitionSet = {
   definition: FormElementDefinition;
 };
 
-@useView(PLATFORM.moduleName('@au-jsonschema-form/core/elements/form/sf-view.html'))
+@useView(PLATFORM.moduleName('@au-jsonschema-form/core/elements/sf-view.html'))
 @inject(FormEvents, FormContext, FormElementViewRegistry, JsonPointerService)
-export class SfMultiSchema extends SfBase {
+export class SfMultiSchema extends SfFormElementBase {
   public constructor(
     events: FormEvents,
     context: FormContext,

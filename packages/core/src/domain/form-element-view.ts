@@ -1,4 +1,5 @@
 import { JsonSchemaFormat } from './json-schema';
+import { ViewStrategy } from 'aurelia-framework';
 
 export interface FormElementView {
   markup: string;
@@ -12,4 +13,9 @@ export interface FormElementViewSet {
   enum?: string;
   patternProperties?: string;
   format?: Partial<Record<JsonSchemaFormat, string>>;
+}
+
+export interface ViewMeta {
+  viewStrategy: ViewStrategy;
+  view: FormElementView;
 }

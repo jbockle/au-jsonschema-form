@@ -7,6 +7,7 @@ export interface FormElementViews {
   SfBoolean: FormElementView;
   SfNumber: FormElementView;
   SfObject: FormElementView;
+  SfErrors: FormElementView;
   [key: string]: FormElementView;
 }
 

@@ -1,4 +1,4 @@
-import { bindable, ViewStrategy, InlineViewStrategy } from 'aurelia-framework';
+import { bindable, ViewStrategy } from 'aurelia-framework';
 import { Subscription } from 'aurelia-event-aggregator';
 import { JsonPointer } from 'jsonpointerx';
 import startCase from 'lodash/startCase';
@@ -18,11 +18,7 @@ import util from '../../util';
 import { FormElementViewRegistry } from '../../infrastructure/form-element-view-registry';
 import { AppLogger } from '../../infrastructure/app-logger';
 
-const UNKNOWN_VIEW = {
-  markup: `<template><code>unknown view '${name}'</code></template>`,
-};
-
-export abstract class SfBase implements FormElementViewModel {
+export abstract class SfFormElementBase implements FormElementViewModel {
   private _subs: Subscription[] = [];
 
   public constructor(
@@ -91,9 +87,9 @@ export abstract class SfBase implements FormElementViewModel {
     this.updateTitle();
 
     this.beforeGetViewInfo();
-    const viewInfo = this.getViewInfo(views.queries.getViewName(this));
-    this.viewStrategy = viewInfo.viewStrategy;
-    this.elementView = viewInfo.view;
+    const viewMeta = views.queries.getViewMeta(this);
+    this.viewStrategy = viewMeta.viewStrategy;
+    this.elementView = viewMeta.view;
   }
 
   public beforeGetViewInfo(): void {
@@ -145,17 +141,5 @@ export abstract class SfBase implements FormElementViewModel {
     }
 
     return startCase(segment);
-  }
-
-  public getViewInfo(name: string): { viewStrategy: ViewStrategy; view: FormElementView } {
-    const view: FormElementView = this.context.views![name]
-      ?? this.viewService.get(name)
-      ?? UNKNOWN_VIEW;
-
-    return { viewStrategy: this.createInlinveViewStrategy(view), view };
-  }
-
-  public createInlinveViewStrategy(view: FormElementView): InlineViewStrategy {
-    return new InlineViewStrategy(view.markup, view.dependencies);
   }
 }

@@ -9,6 +9,7 @@ import { SfBoolean } from './elements/form/sf-boolean';
 import { SfMultiSchema } from './elements/form/sf-multi-schema';
 import { SchemaForm } from './elements/schema-form';
 import { AppLogger } from './infrastructure/app-logger';
+import { SfErrors } from './elements/shared/sf-errors';
 
 export interface SchemaFormPluginOptions {
   views: FormElementViews;
@@ -33,11 +34,14 @@ export function configure(config: FrameworkConfiguration, callback?: (options: S
 
   config.globalResources([
     SchemaForm,
+    // form
     SfObject,
     SfString,
     SfNumber,
     SfBoolean,
     SfMultiSchema,
+    // shared
+    SfErrors,
   ]);
 
   logger.debug('configured');

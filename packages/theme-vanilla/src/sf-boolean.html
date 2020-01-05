@@ -3,7 +3,5 @@
     <input type="checkbox" checked.bind="value" readonly.bind="isReadOnly">
     ${title}<sup if.bind="definition.required">*</sup>
   </label>
-  <span repeat.for="error of errors.__errors" style="color: red;">
-    ${error}
-  </span>
+  <sf-errors errors.bind="errors"></sf-errors>
 </template>
