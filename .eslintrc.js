@@ -21,7 +21,8 @@ module.exports = {
     "@typescript-eslint/no-parameter-properties": "off",
     "@typescript-eslint/interface-name-prefix": "error",
     "@typescript-eslint/no-unused-vars": ["error", {
-      "varsIgnorePattern": "^_.+"
+      "varsIgnorePattern": "^_",
+      "argsIgnorePattern": "^_"
     }],
     "@typescript-eslint/camelcase": ["error", {
       "properties": "always", "allow": ["^assert_", "^__.+__$"]
