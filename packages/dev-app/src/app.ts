@@ -1,11 +1,4 @@
-import { Loader } from 'aurelia-loader';
-import { inject, PLATFORM } from 'aurelia-framework';
-
-@inject(Loader)
 export class App {
-  public constructor(loader: Loader) {
-    loader.loadText(PLATFORM.moduleName('app.html')).then(app => console.log(app));
-  }
   public message: string = 'Hello World!';
 
   public schema = {
