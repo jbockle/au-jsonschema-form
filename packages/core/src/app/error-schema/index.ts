@@ -1,3 +1,5 @@
 import * as commands from './commands';
 
-export { commands };
+const errorSchemas = { commands };
+
+export default errorSchemas;

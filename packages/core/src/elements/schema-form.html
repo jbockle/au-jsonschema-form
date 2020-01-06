@@ -2,16 +2,31 @@
 
   <form novalidate>
     <sf-string if.to-view="definition.type === 'string'"
+               value.two-way="value"
                definition.bind="definition"
                errors.bind="errors">
     </sf-string>
 
+    <sf-boolean if.to-view="definition.type === 'boolean'"
+                value.two-way="value"
+                definition.bind="definition"
+                errors.bind="errors">
+    </sf-boolean>
+
+    <sf-number if.to-view="definition.type === 'number'"
+               value.two-way="value"
+               definition.bind="definition"
+               errors.bind="errors">
+    </sf-number>
+
     <sf-object if.to-view="definition.type === 'object'"
+               value.two-way="value"
                definition.bind="definition"
                errors.bind="errors">
     </sf-object>
 
     <sf-multi-schema if.to-view="definition.type === 'multi-schema'"
+                     value.two-way="value"
                      definition.bind="definition"
                      errors.bind="errors">
     </sf-multi-schema>

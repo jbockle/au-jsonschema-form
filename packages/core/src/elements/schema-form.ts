@@ -4,12 +4,11 @@ import Ajv from 'ajv';
 import { FormContext } from '../infrastructure/form-context';
 import { JsonSchema, UISchema, ErrorSchema, SchemaFormOptions, DestroyAction, FormElementDefinition } from '../domain';
 import { FormEvents } from '../infrastructure/form-events';
-import * as errorSchema from '../app/error-schema';
-import { JsonPointerService } from '../infrastructure/json-pointer-service';
 import { Subscription } from 'aurelia-event-aggregator';
 import jsonSchema from '../app/json-schema';
-import { FormElementViewRegistry } from '../infrastructure/form-element-view-registry';
 import { AppLogger } from '../infrastructure/app-logger';
+import errorSchemas from '../app/error-schema';
+import { debounce } from '../decorators/debounce';
 
 const DEFAULT_OPTIONS: SchemaFormOptions = {
   destroyAction: 'delete',
@@ -18,8 +17,6 @@ const DEFAULT_OPTIONS: SchemaFormOptions = {
 @inject(
   NewInstance.of(FormContext),
   NewInstance.of(FormEvents),
-  NewInstance.of(JsonPointerService),
-  FormElementViewRegistry,
 )
 @customElement('schema-form')
 export class SchemaForm {
@@ -29,7 +26,6 @@ export class SchemaForm {
   public constructor(
     public context: FormContext,
     public events: FormEvents,
-    public pointers: JsonPointerService,
   ) {
     this.createSubscriptions(events);
     this._logger.debug(SchemaForm.name);
@@ -42,9 +38,9 @@ export class SchemaForm {
   public uiSchema!: UISchema;
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
-  public model: any;
+  public value: any;
 
-  @bindable({ defaultBindingMode: bindingMode.toView })
+  @bindable({ defaultBindingMode: bindingMode.twoWay })
   public errors!: ErrorSchema;
 
   @bindable
@@ -56,22 +52,23 @@ export class SchemaForm {
 
   public viewStrategy!: ViewStrategy;
 
-  public validate!: Ajv.ValidateFunction;
+  public validator!: Ajv.ValidateFunction;
 
   public bindingContext: any;
   public overrideContext: any;
 
   public createSubscriptions(events: FormEvents): void {
-    const valueChanged = events.subscribe.onValueChanged(async (args) => {
-      this.pointers.setValue(args.pointer, this.model, this.parseValue(args));
-      await this.beginValidate();
-      this.errors = errorSchema.commands.toErrorSchema(this.validate.errors || []);
-      this._logger.debug('changed', args.pointer, args.value, this.errors);
-    });
-    const validateSub = events.subscribe.onValidate(async () => {
-      await this.beginValidate();
-    });
+    const valueChanged = events.subscribe.onValueChanged(this.validate.bind(this));
+    const validateSub = events.subscribe.onValidate(this.validate.bind(this));
     this._subs.push(valueChanged, validateSub);
+  }
+
+  @debounce(50)
+  public async validate(): Promise<void> {
+    this._logger.debug('validating against json schema', JSON.stringify(this.value, null, 2));
+    await this.validator(this.value);
+    this._logger.debug('validation occurred', this.validator.errors);
+    this.errors = errorSchemas.commands.toErrorSchema(this.validator.errors || []);
   }
 
   public bind(bindingContext: any, overrideContext: any): void {
@@ -85,16 +82,16 @@ export class SchemaForm {
   }
 
   public modelChanged(): void {
-    this._logger.debug(`${SchemaForm.name}:model changed`, this.model);
-    if (this.context.model !== this.model) {
-      this.context.model = this.model;
+    this._logger.debug(`${SchemaForm.name}:model changed`, this.value);
+    if (this.context.model !== this.value) {
+      this.context.model = this.value;
       this.events.emit.modelChanged();
     }
   }
 
   public schemaChanged(): void {
     this.context.schema = this.schema;
-    this.validate = new Ajv({ allErrors: true }).compile(this.schema);
+    this.validator = new Ajv({ allErrors: true }).compile(this.schema);
     this.setDefinition();
   }
 
@@ -117,11 +114,6 @@ export class SchemaForm {
         type: jsonSchema.queries.resolveSchemaType(this.schema, this.schema),
       };
     }
-  }
-
-  public async beginValidate(): Promise<void> {
-    await this.validate(this.model);
-    this._logger.debug('validation occurred', this.validate.errors);
   }
 
   public parseValue(args: FormElementDefinition & { value: any }): any {

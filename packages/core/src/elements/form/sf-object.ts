@@ -1,4 +1,4 @@
-import { useView, PLATFORM, inject, observable } from 'aurelia-framework';
+import { useView, PLATFORM, inject, bindable, bindingMode } from 'aurelia-framework';
 
 import { SfFormElementBase } from './sf-form-element-base';
 import { FormElementViewSet, UISchema, JsonSchema, FormElementDefinition } from '../../domain';
@@ -21,7 +21,7 @@ export class SfObject extends SfFormElementBase {
     super(events, context, viewService, AppLogger.makeLogger(SfObject));
   }
 
-  @observable
+  @bindable({ defaultBindingMode: bindingMode.twoWay })
   public value: Record<string, any> | null | undefined;
 
   public keys!: Map<string, FormElementDefinition>;
@@ -152,15 +152,8 @@ export class SfObject extends SfFormElementBase {
     return false;
   }
 
-  public updateValue(): void {
-    this._logger.debug('updating value');
-    this.value = this.jsonPointer.get(this.context.model) ?? this.getDefaultValue() ?? {};
-  }
-
-  public valueChanged = (): void => {
-    if (this.definition.pointer !== '/') {
-      this._logger.debug('object value changed', this.value);
-      this.defaultValueChanged.call(this);
-    }
+  public resolveValue(): void {
+    this._logger.debug('resolving value');
+    this.value = this.value ?? this.getDefaultValue() ?? {};
   }
 }

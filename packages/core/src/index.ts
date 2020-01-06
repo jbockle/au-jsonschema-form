@@ -10,6 +10,7 @@ import { SfMultiSchema } from './elements/form/sf-multi-schema';
 import { SchemaForm } from './elements/schema-form';
 import { AppLogger } from './infrastructure/app-logger';
 import { SfErrors } from './elements/shared/sf-errors';
+import { TypeCustomAttribute } from './attributes/type-custom-attribute';
 
 export interface SchemaFormPluginOptions {
   views: FormElementViews;
@@ -42,6 +43,8 @@ export function configure(config: FrameworkConfiguration, callback?: (options: S
     SfMultiSchema,
     // shared
     SfErrors,
+    // attributes
+    TypeCustomAttribute,
   ]);
 
   logger.debug('configured');

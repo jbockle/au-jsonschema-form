@@ -1,4 +1,4 @@
-import { useView, PLATFORM, inject, observable } from 'aurelia-framework';
+import { useView, PLATFORM, inject, observable, bindable, bindingMode } from 'aurelia-framework';
 import Ajv from 'ajv';
 
 import { FormEvents } from '../../infrastructure/form-events';
@@ -27,6 +27,7 @@ export class SfMultiSchema extends SfFormElementBase {
     super(events, context, viewService, AppLogger.makeLogger(SfMultiSchema));
   }
 
+  @bindable({ defaultBindindMode: bindingMode.twoWay })
   public value: any;
 
   public viewSet: FormElementViewSet = {
@@ -72,10 +73,8 @@ export class SfMultiSchema extends SfFormElementBase {
     return a.title === b.title;
   }
 
-  public updateValue(): void {
-    this._logger.debug('updating value');
+  public resolveValue(): void {
+    this._logger.debug('resolving value');
     this.value = this.jsonPointer.get(this.context.model) ?? this.getDefaultValue();
   }
-
-  public valueChanged = super.defaultValueChanged.bind(this);
 }

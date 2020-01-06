@@ -5,15 +5,22 @@
     <sf-errors errors.bind="errors"></sf-errors>
     <key repeat.for="[key,def] of keys">
       <sf-string if.to-view="def.type === 'string'"
+                 value.two-way="value[key]"
                  definition.bind="def"
                  errors.bind="errors[key]"></sf-string>
-      <sf-number if.to-view="def.type === 'number'"
-                 definition.bind="def"
-                 errors.bind="errors[key]"></sf-number>
+
       <sf-boolean if.to-view="def.type === 'boolean'"
+                  value.two-way="value[key]"
                   definition.bind="def"
                   errors.bind="errors[key]"></sf-boolean>
+
+      <sf-number if.to-view="def.type === 'number'"
+                 value.two-way="value[key]"
+                 definition.bind="def"
+                 errors.bind="errors[key]"></sf-number>
+
       <sf-object if.to-view="def.type === 'object'"
+                 value.two-way="value[key]"
                  definition.bind="def"
                  errors.bind="errors[key]"></sf-object>
     </key>

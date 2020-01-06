@@ -1,4 +1,5 @@
-import { inject, useView, PLATFORM, observable } from 'aurelia-framework';
+import { inject, useView, PLATFORM, bindable, bindingMode } from 'aurelia-framework';
+
 import { SfFormElementBase } from './sf-form-element-base';
 import { FormElementViewSet } from '../../domain';
 import { FormEvents } from '../../infrastructure/form-events';
@@ -17,21 +18,15 @@ export class SfBoolean extends SfFormElementBase {
     super(events, context, viewService, AppLogger.makeLogger(SfBoolean));
   }
 
-  @observable
+  @bindable({ defaultBindingMode: bindingMode.twoWay })
   public value: boolean | null | undefined;
 
   public viewSet: FormElementViewSet = {
     default: SfBoolean.name,
   };
 
-  public getDefaultValue(): boolean {
-    return super.getDefaultValue() ?? false;
+  public resolveValue(): void {
+    this._logger.debug('resolving value');
+    this.value = this.value ?? this.getDefaultValue() ?? false;
   }
-
-  public updateValue(): void {
-    this._logger.debug('updating value');
-    this.value = this.jsonPointer.get(this.context.model) ?? this.getDefaultValue();
-  }
-
-  public valueChanged = super.defaultValueChanged.bind(this);
 }

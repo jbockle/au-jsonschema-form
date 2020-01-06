@@ -1,4 +1,4 @@
-import { bindable, ViewStrategy } from 'aurelia-framework';
+import { bindable, ViewStrategy, bindingMode } from 'aurelia-framework';
 import { Subscription } from 'aurelia-event-aggregator';
 import { JsonPointer } from 'jsonpointerx';
 import startCase from 'lodash/startCase';
@@ -26,22 +26,15 @@ export abstract class SfFormElementBase implements FormElementViewModel {
     public context: FormContext,
     public viewService: FormElementViewRegistry,
     protected _logger: AppLogger,
-  ) {
-    // const sub = this.events.subscribe.onModelChanged(() => {
-    //   this._logger.debug('reacting to model changed');
-    //   this.state = ViewModelState.initializing;
-    //   this.updateValue();
-    // });
-    // this._subs.push(sub);
-  }
+  ) { }
 
   public abstract value: any;
 
-  @bindable
+  @bindable({ defaultBindindMode: bindingMode.toView })
   public definition!: FormElementDefinition;
 
   @bindable
-  public errors: ErrorSchema = {};
+  public errors!: ErrorSchema;
 
   public jsonPointer!: JsonPointer;
 
@@ -83,7 +76,7 @@ export abstract class SfFormElementBase implements FormElementViewModel {
     this.overrideContext = overrideContext;
 
     this.jsonPointer = JsonPointer.compile(this.definition.pointer);
-    this.updateValue();
+    this.resolveValue();
     this.updateTitle();
 
     this.beforeGetViewInfo();
@@ -104,14 +97,12 @@ export abstract class SfFormElementBase implements FormElementViewModel {
     this._subs.forEach(sub => sub.dispose());
   }
 
-  public abstract valueChanged(newValue: any, oldValue: any): void;
-
-  public defaultValueChanged(): void {
+  public valueChanged(_newValue: any, _oldValue: any): void {
     this._logger.debug('value changed', this.definition.pointer, this.value);
     this.events.emit.valueChanged(Object.assign({ value: this.value }, this.definition));
   }
 
-  public abstract updateValue(): void;
+  public abstract resolveValue(): void;
 
   public updateTitle(): void {
     this.title = (this.definition.uiSchema ?? {})['ui:title']

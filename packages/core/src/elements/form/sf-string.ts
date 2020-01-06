@@ -1,4 +1,5 @@
-import { inject, useView, PLATFORM, observable } from 'aurelia-framework';
+import { inject, useView, PLATFORM, bindable, bindingMode } from 'aurelia-framework';
+
 import { SfFormElementBase } from './sf-form-element-base';
 import { FormElementViewSet } from '../../domain';
 import { FormEvents } from '../../infrastructure/form-events';
@@ -17,7 +18,7 @@ export class SfString extends SfFormElementBase {
     super(events, context, viewService, AppLogger.makeLogger(SfString));
   }
 
-  @observable
+  @bindable({ defaultBindingMode: bindingMode.twoWay })
   public value: string | null | undefined;
 
   public viewSet: FormElementViewSet = {
@@ -47,10 +48,8 @@ export class SfString extends SfFormElementBase {
     }
   }
 
-  public updateValue(): void {
-    this._logger.debug('updating value');
-    this.value = this.jsonPointer.get(this.context.model) ?? this.getDefaultValue();
+  public resolveValue(): void {
+    this._logger.debug('resolving value');
+    this.value = this.value ?? this.getDefaultValue() ?? '';
   }
-
-  public valueChanged = super.defaultValueChanged.bind(this);
 }

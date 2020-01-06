@@ -49,6 +49,9 @@ export class App {
 
   public uiSchema = {
     'ui:title': 'Test',
+    a: {
+      'ui:textarea': true,
+    },
   }
 
   public model: any = {
