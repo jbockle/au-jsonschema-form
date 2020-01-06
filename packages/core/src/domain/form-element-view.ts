@@ -1,9 +1,11 @@
 import { JsonSchemaFormat } from './json-schema';
 import { ViewStrategy } from 'aurelia-framework';
 
+export type ResourceDependencies = Array<string | Function | Record<string, any>>;
+
 export interface FormElementView {
   markup: string;
-  dependencies?: Array<string | Function | Record<string, any>>;
+  dependencies?: ResourceDependencies;
 }
 
 export interface FormElementViewSet {
@@ -13,6 +15,7 @@ export interface FormElementViewSet {
   enum?: string;
   patternProperties?: string;
   format?: Partial<Record<JsonSchemaFormat, string>>;
+  dependencies?: ResourceDependencies;
 }
 
 export interface ViewMeta {

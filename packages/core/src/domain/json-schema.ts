@@ -83,7 +83,7 @@ export interface JsonSchema<TSchemaTypeName extends JsonSchemaTypeName | JsonSch
   properties?: {
     [key: string]: JsonSchema<any>;
   };
-  patternProperties?: { [key: string]: JsonSchema<any> } | boolean;
+  patternProperties?: { [key: string]: JsonSchema<any> } | false;
   additionalProperties?: JsonSchema<any> | boolean;
   dependencies?: {
     [key: string]: JsonSchema<any> | string[];

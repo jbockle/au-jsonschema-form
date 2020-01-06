@@ -43,7 +43,7 @@ export class SfObject extends SfFormElementBase {
   public addSchemaProperties(): void {
     if (this.definition.schema.properties) {
       for (const key in this.definition.schema.properties) {
-        const schema = jsonSchema.queries.resolveSchema(this.definition.schema.properties[key], this.context.schema);
+        const schema = jsonSchema.queries.getPropertySchema(key, this.definition.schema, this.context.schema);
         const required = (this.definition.schema.required ?? []).includes(key);
         const uiSchema = this.getUISchema(key);
         const pointer = this.getPointer(key);
@@ -53,14 +53,11 @@ export class SfObject extends SfFormElementBase {
   }
 
   public addResolvedProperties(): void {
-    if ((this.supportsAdditionalProperties() || this.supportsPatternProperties()) && typeof this.value === 'object' && this.value) {
+    if (this.canResolveProperties(this.value)) {
       Object.keys(this.value)
         .filter(key => !this.keys.hasOwnProperty(key))
         .forEach(key => {
-          const patternPropertySchema = this.getPatternProperty(key);
-          const schema = jsonSchema.queries.resolveSchema(
-            patternPropertySchema ?? this.definition.schema.additionalProperties as JsonSchema<any>,
-            this.context.schema);
+          const schema = jsonSchema.queries.getPropertySchema(key, this.definition.schema, this.context.schema);
           const required = (this.definition.schema.required ?? []).includes(key);
           const uiSchema = this.getUISchema(key);
           const pointer = this.getPointer(key);
@@ -69,23 +66,30 @@ export class SfObject extends SfFormElementBase {
     }
   }
 
-  public addProperty(key: string): void {
-    if (!this.keys.hasOwnProperty(key)) {
-      const patternPropertySchema = this.getPatternProperty(key);
+  public canResolveProperties(value: any): value is Record<string, any> {
+    return typeof value === 'object'
+      && (jsonSchema.queries.supportsAdditionalProperties(this.definition.schema)
+        || jsonSchema.queries.supportsPatternProperties(this.definition.schema));
+  }
 
-      if (patternPropertySchema || this.supportsAdditionalProperties()) {
-        const schema = jsonSchema.queries.resolveSchema(
-          patternPropertySchema ?? this.definition.schema.additionalProperties as JsonSchema<any>,
-          this.context.schema);
-        const required = (this.definition.schema.required ?? []).includes(key);
-        const uiSchema = this.getUISchema(key);
-        const pointer = this.getPointer(key);
-        this.setFormKeyDefinition(key, schema, required, uiSchema, pointer);
-        return;
-      }
+  public addProperty(prop: string): void {
+    if (this.canAddProperty(prop)) {
+      const schema = jsonSchema.queries.getPropertySchema(prop, this.definition.schema, this.context.schema);
+      const required = (this.definition.schema.required ?? []).includes(prop);
+      const uiSchema = this.getUISchema(prop);
+      const pointer = this.getPointer(prop);
+      this.setFormKeyDefinition(prop, schema, required, uiSchema, pointer);
+      return;
     }
 
-    throw new Error(`unable to add property, the schema does not support additional properties`);
+    throw new Error(`unable to add property '${prop}', the schema does not support pattern/additional properties or the property already exists`);
+  }
+
+  public canAddProperty(prop: string): boolean {
+    return !this.keys.hasOwnProperty(prop)
+      && (
+        jsonSchema.queries.supportsAdditionalProperties(this.definition.schema)
+        || jsonSchema.queries.supportsPatternProperties(this.definition.schema));
   }
 
   public setFormKeyDefinition(
@@ -111,45 +115,6 @@ export class SfObject extends SfFormElementBase {
 
   public getPointer(key: string): string {
     return this.pointers.getPointerFromSegments([...this.jsonPointer.segments, key]).toString();
-  }
-
-  public supportsAdditionalProperties(): boolean {
-    if (this.definition.schema.additionalProperties === true) {
-      throw new Error(`additionalProperties is true, unable to determine property schema`);
-    }
-
-    if (this.definition.schema.additionalProperties === false) {
-      return false;
-    }
-
-    return typeof this.definition.schema.additionalProperties === 'object';
-  }
-
-  public supportsPatternProperties(): boolean {
-    return this.isPatternProperty(this.definition.schema.patternProperties);
-  }
-
-  public getPatternProperty(key: string): undefined | JsonSchema<any> {
-    const patternPropertiesSchema = this.definition.schema.patternProperties;
-    if (this.isPatternProperty(patternPropertiesSchema)) {
-      return Object.keys(patternPropertiesSchema)
-        .map(pattern => ({
-          pattern,
-          expression: new RegExp(pattern),
-          schema: patternPropertiesSchema[pattern],
-        }))
-        .find(pair => pair.expression.test(key))?.schema;
-    }
-
-    return undefined;
-  }
-
-  public isPatternProperty(schema?: JsonSchema<any> | boolean): schema is { [key: string]: JsonSchema<any> } {
-    if (schema ?? false) {
-      return typeof schema == 'object';
-    }
-
-    return false;
   }
 
   public resolveValue(): void {

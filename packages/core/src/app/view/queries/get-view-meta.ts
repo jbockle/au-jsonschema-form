@@ -9,7 +9,7 @@ export function getViewMeta(viewModel: FormElementViewModel): ViewMeta {
   const view: FormElementView = getElementView(name, viewModel.context, viewModel.viewService)
     ?? getUnknownView(name);
 
-  return { viewStrategy: createInlineViewStrategy(view), view };
+  return { viewStrategy: createInlineViewStrategy(view, viewModel.viewSet.dependencies), view };
 }
 
 const getUnknownView = (name: string): FormElementView => ({

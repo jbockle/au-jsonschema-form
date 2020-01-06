@@ -7,6 +7,7 @@ import { FormContext } from '../../infrastructure/form-context';
 import { FormElementViewRegistry } from '../../infrastructure/form-element-view-registry';
 import { AppLogger } from '../../infrastructure/app-logger';
 import { AureliaView } from '../../domain/aurelia-typings';
+import { TypeCustomAttribute } from '../../attributes/type-custom-attribute';
 
 @useView(PLATFORM.moduleName('@au-jsonschema-form/core/elements/sf-view.html'))
 @inject(FormEvents, FormContext, FormElementViewRegistry)
@@ -28,6 +29,7 @@ export class SfNumber extends SfFormElementBase {
 
   public viewSet: FormElementViewSet = {
     default: SfNumber.name,
+    dependencies: [TypeCustomAttribute],
   };
 
   public inputType = 'number';

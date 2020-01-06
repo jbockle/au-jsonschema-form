@@ -35,10 +35,10 @@ export class SchemaForm {
   public schema!: JsonSchema<any>;
 
   @bindable
-  public uiSchema!: UISchema;
+  public uiSchema: UISchema = {};
 
-  @bindable({ defaultBindingMode: bindingMode.twoWay })
-  public value: any;
+  @bindable({ defaultBindingMode: bindingMode.toView })
+  public model: any;
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   public errors!: ErrorSchema;
@@ -65,8 +65,8 @@ export class SchemaForm {
 
   @debounce(50)
   public async validate(): Promise<void> {
-    this._logger.debug('validating against json schema', JSON.stringify(this.value, null, 2));
-    await this.validator(this.value);
+    this._logger.debug('validating against json schema', JSON.stringify(this.model, null, 2));
+    await this.validator(this.model);
     this._logger.debug('validation occurred', this.validator.errors);
     this.errors = errorSchemas.commands.toErrorSchema(this.validator.errors || []);
   }
@@ -81,10 +81,20 @@ export class SchemaForm {
     this.overrideContext = overrideContext;
   }
 
+  public valueChanged(newValue: any): void {
+
+    if (Array.isArray(newValue)) {
+      this.model = Object.assign([], newValue);
+    } else if (typeof newValue === 'object') {
+      this.model = Object.assign({}, newValue);
+    } else {
+      this.model = newValue;
+    }
+  }
+
   public modelChanged(): void {
-    this._logger.debug(`${SchemaForm.name}:model changed`, this.value);
-    if (this.context.model !== this.value) {
-      this.context.model = this.value;
+    if (this.context.model !== this.model) {
+      this.context.model = this.model;
       this.events.emit.modelChanged();
     }
   }
