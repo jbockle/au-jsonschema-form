@@ -101,7 +101,7 @@ export class SchemaForm {
 
   public schemaChanged(): void {
     this.context.schema = this.schema;
-    this.validator = new Ajv({ allErrors: true }).compile(this.schema);
+    this.validator = jsonSchema.commands.buildValidator(this.schema, this.options);
     this.setDefinition();
   }
 
