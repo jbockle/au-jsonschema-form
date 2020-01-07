@@ -40,7 +40,7 @@ export class SfMultiSchema extends SfFormElementBase {
   @observable
   public selectedSchema?: SchemaDefinitionSet;
 
-  public beforeGetViewInfo(): void {
+  public beforeResolveViewStrategy(): void {
     this.multiSchemaType = this.definition.schema.oneOf ? 'oneOf' : 'anyOf';
     this.options = this.getSchemas(this.definition.schema.oneOf! || this.definition.schema.anyOf!);
     this.value && this.options.some(set => {

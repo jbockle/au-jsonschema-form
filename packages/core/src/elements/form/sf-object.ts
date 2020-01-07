@@ -30,7 +30,7 @@ export class SfObject extends SfFormElementBase {
     default: SfObject.name,
   };
 
-  public beforeGetViewInfo(): void {
+  public beforeResolveViewStrategy(): void {
     this.setKeys();
   }
 

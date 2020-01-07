@@ -79,13 +79,17 @@ export abstract class SfFormElementBase implements FormElementViewModel {
     this.resolveValue();
     this.updateTitle();
 
-    this.beforeGetViewInfo();
+    this.resolveViewStrategy();
+  }
+
+  public resolveViewStrategy(): void {
+    this.beforeResolveViewStrategy();
     const viewMeta = views.queries.getViewMeta(this);
     this.viewStrategy = viewMeta.viewStrategy;
     this.elementView = viewMeta.view;
   }
 
-  public beforeGetViewInfo(): void {
+  public beforeResolveViewStrategy(): void {
     // optionally override in implementing class
   }
 
