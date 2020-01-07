@@ -22,13 +22,15 @@ export class SfString extends SfFormElementBase {
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   public value: string | null | undefined;
 
-  public viewSet: FormElementViewSet = {
-    enum: 'SfStringSelect',
-    default: SfString.name,
-    format: {
-      // date: 'SfStringDate',
-    },
-    dependencies: [TypeCustomAttribute],
+  public getViewSet(): FormElementViewSet {
+    return {
+      enum: 'SfStringSelect',
+      default: SfString.name,
+      format: {
+        // date: 'SfStringDate',
+      },
+      dependencies: [TypeCustomAttribute],
+    };
   };
 
   public get inputType(): string {

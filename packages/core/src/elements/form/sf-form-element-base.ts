@@ -43,14 +43,13 @@ export abstract class SfFormElementBase implements FormElementViewModel {
   public elementView!: FormElementView;
   public viewStrategy!: ViewStrategy;
 
-  public abstract viewSet: FormElementViewSet;
 
   public get hasErrors(): boolean {
     return !!this.errors.__errors;
   }
 
   public get className(): string {
-    return kebabCase(this.viewSet.default) + '-compose';
+    return kebabCase(this.getViewSet().default) + '-compose';
   }
 
   public get isReadOnly(): boolean {
@@ -106,6 +105,7 @@ export abstract class SfFormElementBase implements FormElementViewModel {
     this.events.emit.valueChanged(Object.assign({ value: this.value }, this.definition));
   }
 
+  public abstract getViewSet(): FormElementViewSet;
   public abstract resolveValue(): void;
 
   public updateTitle(): void {

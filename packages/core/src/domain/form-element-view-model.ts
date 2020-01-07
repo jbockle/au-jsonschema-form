@@ -6,7 +6,7 @@ import { FormElementViewRegistry } from '../infrastructure/form-element-view-reg
 
 export interface DynamicElementViewModel {
   context: FormContext;
-  viewSet: FormElementViewSet;
+  getViewSet(): FormElementViewSet;
   viewService: FormElementViewRegistry;
 }
 

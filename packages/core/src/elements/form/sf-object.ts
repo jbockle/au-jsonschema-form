@@ -26,8 +26,10 @@ export class SfObject extends SfFormElementBase {
 
   public keys!: Map<string, FormElementDefinition>;
 
-  public viewSet: FormElementViewSet = {
-    default: SfObject.name,
+  public getViewSet(): FormElementViewSet {
+    return {
+      default: SfObject.name,
+    };
   };
 
   public beforeResolveViewStrategy(): void {

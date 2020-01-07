@@ -21,8 +21,10 @@ export class SfBoolean extends SfFormElementBase {
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   public value: boolean | null | undefined;
 
-  public viewSet: FormElementViewSet = {
-    default: SfBoolean.name,
+  public getViewSet(): FormElementViewSet {
+    return {
+      default: SfBoolean.name,
+    };
   };
 
   public resolveValue(): void {

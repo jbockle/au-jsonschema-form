@@ -27,9 +27,11 @@ export class SfNumber extends SfFormElementBase {
   @bindable({ defaultBindindMode: bindingMode.twoWay })
   public value: number | null | undefined;
 
-  public viewSet: FormElementViewSet = {
-    default: SfNumber.name,
-    dependencies: [TypeCustomAttribute],
+  public getViewSet(): FormElementViewSet {
+    return {
+      default: SfNumber.name,
+      dependencies: [TypeCustomAttribute],
+    };
   };
 
   public inputType = 'number';

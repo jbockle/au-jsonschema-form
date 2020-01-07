@@ -27,12 +27,18 @@ export type JsonSchemaArrayType = Array<JsonSchemaType>;
  */
 export type JsonSchemaVersion = string;
 
-export type JsonSchemaFormat = 'regex' | DateTimeFormat | EmailFormat | HostnameFormat | IPFormat | URIFormat;
+export type JsonSchemaFormat = StandardFormats | CustomFormats;
+// standard schema formats
+export type StandardFormats = RegExFormat | DateTimeFormat | EmailFormat | HostnameFormat | IPFormat | URIFormat;
+export type RegExFormat = 'regex';
 export type DateTimeFormat = 'date' | 'time' | 'date-time' | 'regex' | 'duration';
 export type EmailFormat = 'email' | 'idn-email';
 export type HostnameFormat = 'hostname' | 'idn-hostname';
 export type IPFormat = 'ipv4' | 'ipv6';
 export type URIFormat = 'uri' | 'uri-reference' | 'iri' | 'iri-reference' | 'uri-template' | 'json-pointer';
+// custom schema formats
+export type CustomFormats = DataUrlFormat | string;
+export type DataUrlFormat = 'data-url';
 
 
 export interface JsonSchema<TSchemaTypeName extends JsonSchemaTypeName | JsonSchemaTypeName[]> {

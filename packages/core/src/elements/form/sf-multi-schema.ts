@@ -30,8 +30,10 @@ export class SfMultiSchema extends SfFormElementBase {
   @bindable({ defaultBindindMode: bindingMode.twoWay })
   public value: any;
 
-  public viewSet: FormElementViewSet = {
-    default: SfMultiSchema.name,
+  public getViewSet(): FormElementViewSet {
+    return {
+      default: SfMultiSchema.name,
+    };
   };
 
   public multiSchemaType!: 'oneOf' | 'anyOf';
