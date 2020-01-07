@@ -26,12 +26,12 @@ function reduceErrorSchema(errorSchema: ErrorSchema, error: Ajv.ErrorObject): Er
     parent = parent[segment] as ErrorSchema;
   }
 
-  addError(parent, message);
-
   if ('missingProperty' in params) {
     const segment = params['missingProperty'];
     defineSegment(segment, parent);
     addError(parent[segment] as ErrorSchema, 'Required');
+  } else {
+    addError(parent, message);
   }
 
   return errorSchema;
