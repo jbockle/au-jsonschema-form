@@ -7,7 +7,7 @@
 
     <sf-errors errors.bind="errors"></sf-errors>
 
-    <key repeat.for="[key,def] of keys">
+    <object-key repeat.for="[key,def] of keys">
       <sf-string if.to-view="def.type === 'string'"
                  value.two-way="value[key]"
                  definition.bind="def"
@@ -32,6 +32,6 @@
                 value.two-way="value[key]"
                 definition.bind="def"
                 errors.bind="errors[key]"></sf-array>
-    </key>
+    </object-key>
     </section>
 </template>

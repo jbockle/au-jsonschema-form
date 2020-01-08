@@ -24,8 +24,8 @@ export class SfString extends SfFormElementBase {
 
   public getViewSet(): FormElementViewSet {
     return {
-      enum: 'SfStringSelect',
       default: SfString.name,
+      enum: 'SfStringSelect',
       format: {
         // date: 'SfStringDate',
       },

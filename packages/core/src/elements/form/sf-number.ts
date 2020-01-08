@@ -6,7 +6,6 @@ import { FormEvents } from '../../infrastructure/form-events';
 import { FormContext } from '../../infrastructure/form-context';
 import { FormElementViewRegistry } from '../../infrastructure/form-element-view-registry';
 import { AppLogger } from '../../infrastructure/app-logger';
-import { AureliaView } from '../../domain/aurelia-typings';
 import { TypeCustomAttribute } from '../../attributes/type-custom-attribute';
 
 @useView(PLATFORM.moduleName('@au-jsonschema-form/core/elements/sf-view.html'))
@@ -18,10 +17,6 @@ export class SfNumber extends SfFormElementBase {
     viewService: FormElementViewRegistry,
   ) {
     super(events, context, viewService, AppLogger.makeLogger(SfNumber));
-  }
-
-  public created(owningView: AureliaView, myView: AureliaView): void {
-    this._logger.warn('sf-number-created', { owningView, myView });
   }
 
   @bindable({ defaultBindindMode: bindingMode.twoWay })

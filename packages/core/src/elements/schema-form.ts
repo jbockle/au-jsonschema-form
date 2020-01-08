@@ -46,8 +46,6 @@ export class SchemaForm {
   @bindable
   public options: SchemaFormOptions = Object.assign({}, DEFAULT_OPTIONS);
 
-  public state: 'initializing' | 'validating' | 'waiting' = 'initializing';
-
   public definition!: FormElementDefinition;
 
   public viewStrategy!: ViewStrategy;

@@ -1,13 +1,14 @@
 <template>
   <fieldset>
     <legend>${title}</legend>
-    <button type="button" click.delegate="add()">Add</button>
+    <button type="button" class="add-item" click.delegate="add()">Add</button>
     <sf-errors errors.bind="errors"></sf-errors>
 
     <array-key repeat.for="item of value">
-      <remove-button>
-        <button type="button" click.delegate="remove($index)">Remove</button>
-      </remove-button>
+      <array-key-button-toolbar>
+        <button type="button" class="remove-item"
+                click.delegate="remove($index)">Remove</button>
+      </array-key-button-toolbar>
 
       <sf-string if.to-view="definitions[$index].type === 'string'"
                  value.two-way="value[$index]"

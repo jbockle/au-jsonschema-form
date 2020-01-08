@@ -2,8 +2,8 @@ import { FormElementView } from './form-element-view';
 
 export interface FormElementViews {
   SfString: FormElementView;
-  // SfStringSelect: View;
-  // SfStringRadio: View;
+  SfStringSelect: FormElementView;
+  // SfStringRadio: FormElementView;
   SfBoolean: FormElementView;
   SfNumber: FormElementView;
   SfObject: FormElementView;

@@ -22,6 +22,7 @@ export const schema: JsonSchema<any> = {
     favorite: {
       title: 'Favorite',
       type: 'string',
+      default: 'NaN',
       enum: [
         'undefined',
         'null',
