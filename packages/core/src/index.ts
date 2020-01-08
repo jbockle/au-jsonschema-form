@@ -10,6 +10,7 @@ import { SfMultiSchema } from './elements/form/sf-multi-schema';
 import { SchemaForm } from './elements/schema-form';
 import { AppLogger } from './infrastructure/app-logger';
 import { SfErrors } from './elements/shared/sf-errors';
+import { SfArray } from './elements/form/sf-array';
 
 export interface SchemaFormPluginOptions {
   views: FormElementViews;
@@ -36,6 +37,7 @@ export function configure(config: FrameworkConfiguration, callback?: (options: S
     SchemaForm,
     // form
     SfObject,
+    SfArray,
     SfString,
     SfNumber,
     SfBoolean,

@@ -1,0 +1,39 @@
+<template>
+  <fieldset>
+    <legend>${title}</legend>
+    <button type="button" click.delegate="add()">Add</button>
+    <sf-errors errors.bind="errors"></sf-errors>
+
+    <array-key repeat.for="item of value">
+      <remove-button>
+        <button type="button" click.delegate="remove($index)">Remove</button>
+      </remove-button>
+
+      <sf-string if.to-view="definitions[$index].type === 'string'"
+                 value.two-way="value[$index]"
+                 definition.bind="definitions[$index]"
+                 errors.bind="errors[$index]"></sf-string>
+
+      <sf-boolean if.to-view="definitions[$index].type === 'boolean'"
+                  value.two-way="value[$index]"
+                  definition.bind="definitions[$index]"
+                  errors.bind="errors[$index]"></sf-boolean>
+
+      <sf-number if.to-view="definitions[$index].type === 'number'"
+                 value.two-way="value[$index]"
+                 definition.bind="definitions[$index]"
+                 errors.bind="errors[$index]"></sf-number>
+
+      <sf-object if.to-view="definitions[$index].type === 'object'"
+                 value.two-way="value[$index]"
+                 definition.bind="definitions[$index]"
+                 errors.bind="errors[$index]"></sf-object>
+
+      <sf-array if.to-view="definitions[$index].type === 'array'"
+                value.two-way="value[$index]"
+                definition.bind="definitions[$index]"
+                errors.bind="errors[$index]"></sf-array>
+
+    </array-key>
+  </fieldset>
+</template>

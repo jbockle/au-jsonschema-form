@@ -70,6 +70,17 @@ export const schema: JsonSchema<any> = {
         },
       },
     },
+    phoneNumbers: {
+      type: 'array',
+      items: [{
+        type: 'number',
+      }],
+      additionalItems: {
+        type: 'string',
+        format: 'regex',
+        pattern: '^\\d{3}-\\d{3}-\\d{4}',
+      },
+    },
     things: {
       type: 'array',
       title: 'I like...',
@@ -81,6 +92,7 @@ export const schema: JsonSchema<any> = {
           'sleeping',
         ],
       },
+      minItems: 1,
     },
     dislike: {
       type: 'array',
@@ -88,6 +100,7 @@ export const schema: JsonSchema<any> = {
       items: {
         type: 'string',
         title: 'I hate',
+        minLength: 1,
       },
     },
     soul: {

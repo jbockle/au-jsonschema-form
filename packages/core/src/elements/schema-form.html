@@ -25,6 +25,12 @@
                errors.bind="errors">
     </sf-object>
 
+    <sf-array if.to-view="definition.type === 'array'"
+              value.two-way="model"
+              definition.bind="definition"
+              errors.bind="errors">
+    </sf-array>
+
     <sf-multi-schema if.to-view="definition.type === 'multi-schema'"
                      value.two-way="model"
                      definition.bind="definition"

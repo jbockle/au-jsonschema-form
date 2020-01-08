@@ -8,5 +8,6 @@ export interface UISchema {
   'ui:view'?: string;
   'ui:readOnly'?: boolean | SfViewModelExpression;
   'ui:destroyAction'?: DestroyAction;
+  'ui:items'?: UISchema | UISchema[];
   [key: string]: UISchema | UISchema[] | string | boolean | SfViewModelExpression | undefined;
 }

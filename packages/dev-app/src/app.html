@@ -1,13 +1,36 @@
 <template>
   <require from="@au-jsonschema-form/theme-vanilla/styles.css"></require>
 
-  <schema-form schema.bind="schema"
-               ui-schema.bind="uiSchema"
-               model.two-way="model"
-               view-model.ref="schemaForm">
-  </schema-form>
+  <style>
+    body,
+    html,
+    sbs {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+    }
 
-  <pre>${JSON.stringify(vm.context)}</pre>
-  <pre>${modelString}</pre>
-  <h1>${message}</h1>
+    side-by-side {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 100%;
+    }
+
+    side-by-side>* {
+      flex-grow: 1;
+      max-height: 100%;
+      overflow: auto;
+    }
+  </style>
+
+  <side-by-side>
+    <schema-form schema.bind="schema"
+                 ui-schema.bind="uiSchema"
+                 model.two-way="model"
+                 view-model.ref="schemaForm">
+    </schema-form>
+    <pre>${modelString}</pre>
+  </side-by-side>
+
 </template>

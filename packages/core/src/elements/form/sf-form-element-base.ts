@@ -137,4 +137,8 @@ export abstract class SfFormElementBase implements FormElementViewModel {
 
     return startCase(segment);
   }
+
+  public definitionChanged(): void {
+    this.updateTitle();
+  }
 }

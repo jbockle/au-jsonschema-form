@@ -3,9 +3,18 @@
 schema-form {
   display: block;
   font-size: 12px;
-  border: 1px solid rgba(0,0,0,.2);
   padding: 2px 4px;
   margin: 2px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+schema-form fieldset {
+  border-color: rgba(0,0,0,.2);
+}
+
+schema-form fieldset > legend {
+  font-weight: bolder;
+  font-size: 1.1rem;
 }
 
 schema-form .sf-element {
@@ -14,8 +23,19 @@ schema-form .sf-element {
   margin-bottom: 4px;
 }
 
+schema-form array-key {
+  display: flex;
+  flex-direction: row;
+}
+
+schema-form array-key > remove-button {
+  display: flex;
+  flex-shrink: 1;
+  justify-content: center;
+  align-items: center;
+}
+
 schema-form sf-object {
-  border: 1px solid rgba(0,0,0,.2);
   padding: 2px 4px !important;
 }
 

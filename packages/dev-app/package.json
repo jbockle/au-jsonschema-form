@@ -24,7 +24,8 @@
     "aurelia-animator-css": "^1.0.4",
     "@au-jsonschema-form/core": "0.1.0",
     "@au-jsonschema-form/theme-vanilla": "0.1.0",
-    "jsonpointerx": "^1.0.27"
+    "jsonpointerx": "^1.0.27",
+    "core-js": "^3.6.2"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

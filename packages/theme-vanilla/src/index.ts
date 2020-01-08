@@ -4,6 +4,7 @@ import sfStringMarkup from './sf-string.html';
 import sfObjectMarkup from './sf-object.html';
 import sfBooleanMarkup from './sf-boolean.html';
 import sfErrorsMarkup from './sf-errors.html';
+import sfArraysMarkup from './sf-array.html';
 
 export const theme: FormElementViews = {
   SfString: {
@@ -20,5 +21,8 @@ export const theme: FormElementViews = {
   },
   SfErrors: {
     markup: sfErrorsMarkup,
+  },
+  SfArray: {
+    markup: sfArraysMarkup,
   },
 };
