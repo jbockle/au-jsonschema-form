@@ -1,4 +1,4 @@
-import { bindable, ViewStrategy, bindingMode } from 'aurelia-framework';
+import { bindable, ViewStrategy, bindingMode, Disposable } from 'aurelia-framework';
 import { Subscription } from 'aurelia-event-aggregator';
 import { JsonPointer } from 'jsonpointerx';
 import startCase from 'lodash/startCase';
@@ -42,6 +42,8 @@ export abstract class SfFormElementBase implements FormElementViewModel {
 
   public elementView!: FormElementView;
   public viewStrategy!: ViewStrategy;
+
+  public definitionChangedSub?: Disposable;
 
 
   public get hasErrors(): boolean {
@@ -139,6 +141,7 @@ export abstract class SfFormElementBase implements FormElementViewModel {
   }
 
   public definitionChanged(): void {
+    this.jsonPointer = JsonPointer.compile(this.definition.pointer);
     this.updateTitle();
   }
 }
