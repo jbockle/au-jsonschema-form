@@ -36,17 +36,15 @@
                   errors.bind="errors[$index]"></sf-array>
       </key-content>
       <key-toolbar>
-        <button slot="label" type="button" class="move-item-up"
+        <button type="button" class="move-item-up"
                 click.delegate="reorder($index, 'up')"
                 title="move up"
-                if.bind="value.length > 1 && !$first">&upharpoonleft;</button>
-        <span else>&nbsp;</span>
-        <button slot="label" type="button" class="move-item-down"
+                disabled.bind="value.length === 1 || $first">&upharpoonleft;</button>
+        <button type="button" class="move-item-down"
                 click.delegate="reorder($index, 'down')"
                 title="move down"
-                if.bind="value.length > 1 && !$last">&downharpoonright;</button>
-        <span else>&nbsp;</span>
-        <button slot="label" type="button" class="remove-item"
+                disabled.bind="value.length === 1 || $last">&downharpoonright;</button>
+        <button type="button" class="remove-item"
                 title="remove"
                 click.delegate="remove($index)">&Cross;</button>
       </key-toolbar>

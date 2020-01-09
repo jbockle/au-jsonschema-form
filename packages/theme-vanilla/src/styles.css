@@ -71,6 +71,10 @@ schema-form key-toolbar > * {
   font-size: 16px;
 }
 
+schema-form key-toolbar > button:disabled, schema-form key-toolbar > button:disabled:hover {
+  opacity: .2;
+}
+
 schema-form button.remove-item {
   color: #ff0000;
   border:none;
