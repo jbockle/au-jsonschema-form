@@ -1,28 +1,6 @@
 <template>
   <require from="@au-jsonschema-form/theme-vanilla/styles.css"></require>
-
-  <style>
-    body,
-    html,
-    sbs {
-      height: 100%;
-      width: 100%;
-      margin: 0;
-    }
-
-    side-by-side {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      height: 100%;
-    }
-
-    side-by-side>* {
-      flex-grow: 1;
-      max-height: 100%;
-      overflow: auto;
-    }
-  </style>
+  <require from="./app.css"></require>
 
   <side-by-side>
     <schema-form schema.bind="schema"

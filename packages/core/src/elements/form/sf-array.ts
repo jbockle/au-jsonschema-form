@@ -107,6 +107,16 @@ export class SfArray extends SfFormElementBase {
     this.events.emit.validate();
   }
 
+  public reorder(index: number, direction: 'up' | 'down'): void {
+    const newIndex = direction === 'up' ? index - 1 : index + 1;
+
+    const value = this.value!.splice(index, 1);
+    this.value!.splice(newIndex, 0, value);
+
+    this.updateDefinitions();
+    this.events.emit.validate();
+  }
+
   public getItemDefaultValue(definition: FormElementDefinition): any {
     let value: any = null;
 

@@ -85,6 +85,7 @@ export const schema: JsonSchema<any> = {
     things: {
       type: 'array',
       title: 'I like...',
+      default: [null, null],
       items: {
         type: 'string',
         enum: [

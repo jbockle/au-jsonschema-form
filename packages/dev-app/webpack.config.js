@@ -23,7 +23,7 @@ const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 const baseUrl = '/';
 
 const cssRules = [
-  { loader: 'css-loader' },
+  { loader: 'css-loader?sourceMap' },
 ];
 
 module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, host } = {}) => ({

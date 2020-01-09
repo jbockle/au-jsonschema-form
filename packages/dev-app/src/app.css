@@ -1,0 +1,24 @@
+
+    body,
+    html,
+    side-by-side {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+    }
+
+    side-by-side {
+      display: block;
+    }
+
+    side-by-side>* {
+      box-sizing: border-box;
+      vertical-align: top;
+      display: inline-block;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    pre {
+      margin: unset;
+    }

@@ -1,40 +1,55 @@
 <template>
   <fieldset>
     <legend>${title}</legend>
-    <button type="button" class="add-item" click.delegate="add()">Add</button>
+
+    <button type="button" class="add-item clearfix"
+            click.delegate="add()">Add</button>
+
     <sf-errors errors.bind="errors"></sf-errors>
 
     <array-key repeat.for="item of value">
-      <array-key-button-toolbar>
-        <button type="button" class="remove-item"
-                click.delegate="remove($index)">Remove</button>
-      </array-key-button-toolbar>
+      <key-content>
+        <sf-string if.to-view="definitions[$index].type === 'string'"
+                   value.two-way="value[$index]"
+                   definition.bind="definitions[$index]"
+                   errors.bind="errors[$index]">
+        </sf-string>
 
-      <sf-string if.to-view="definitions[$index].type === 'string'"
-                 value.two-way="value[$index]"
-                 definition.bind="definitions[$index]"
-                 errors.bind="errors[$index]"></sf-string>
+        <sf-boolean if.to-view="definitions[$index].type === 'boolean'"
+                    value.two-way="value[$index]"
+                    definition.bind="definitions[$index]"
+                    errors.bind="errors[$index]"></sf-boolean>
 
-      <sf-boolean if.to-view="definitions[$index].type === 'boolean'"
+        <sf-number if.to-view="definitions[$index].type === 'number'"
+                   value.two-way="value[$index]"
+                   definition.bind="definitions[$index]"
+                   errors.bind="errors[$index]"></sf-number>
+
+        <sf-object if.to-view="definitions[$index].type === 'object'"
+                   value.two-way="value[$index]"
+                   definition.bind="definitions[$index]"
+                   errors.bind="errors[$index]"></sf-object>
+
+        <sf-array if.to-view="definitions[$index].type === 'array'"
                   value.two-way="value[$index]"
                   definition.bind="definitions[$index]"
-                  errors.bind="errors[$index]"></sf-boolean>
-
-      <sf-number if.to-view="definitions[$index].type === 'number'"
-                 value.two-way="value[$index]"
-                 definition.bind="definitions[$index]"
-                 errors.bind="errors[$index]"></sf-number>
-
-      <sf-object if.to-view="definitions[$index].type === 'object'"
-                 value.two-way="value[$index]"
-                 definition.bind="definitions[$index]"
-                 errors.bind="errors[$index]"></sf-object>
-
-      <sf-array if.to-view="definitions[$index].type === 'array'"
-                value.two-way="value[$index]"
-                definition.bind="definitions[$index]"
-                errors.bind="errors[$index]"></sf-array>
-
+                  errors.bind="errors[$index]"></sf-array>
+      </key-content>
+      <key-toolbar>
+        <button slot="label" type="button" class="move-item-up"
+                click.delegate="reorder($index, 'up')"
+                title="move up"
+                if.bind="value.length > 1 && !$first">&upharpoonleft;</button>
+        <span else>&nbsp;</span>
+        <button slot="label" type="button" class="move-item-down"
+                click.delegate="reorder($index, 'down')"
+                title="move down"
+                if.bind="value.length > 1 && !$last">&downharpoonright;</button>
+        <span else>&nbsp;</span>
+        <button slot="label" type="button" class="remove-item"
+                title="remove"
+                click.delegate="remove($index)">&Cross;</button>
+      </key-toolbar>
     </array-key>
   </fieldset>
 </template>
