@@ -3,6 +3,7 @@
     <legend>${title}</legend>
 
     <button type="button" class="add-item clearfix"
+            disabled.bind="!canAdd"
             click.delegate="add()">Add</button>
 
     <sf-errors errors.bind="errors"></sf-errors>

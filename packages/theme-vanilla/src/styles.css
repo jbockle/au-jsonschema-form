@@ -76,7 +76,7 @@ schema-form sf-array-item-toolbar > * {
   font-size: 16px;
 }
 
-schema-form sf-array-item-toolbar > button:disabled, schema-form sf-array-item-toolbar > button:disabled:hover {
+schema-form button:disabled, schema-form button:disabled:hover {
   cursor: not-allowed;
   opacity: .2;
 }

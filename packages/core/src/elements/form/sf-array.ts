@@ -101,6 +101,12 @@ export class SfArray extends SfFormElementBase {
     this.value = this.value ?? this.getDefaultValue() ?? [];
   }
 
+  public get canAdd(): boolean {
+    return this.definition.schema.maxItems
+      ? this.value!.length < this.definition.schema.maxItems
+      : true;
+  }
+
   public add(): void {
     const index = this.definitions.length;
     const definition = this.getItemDefinition(index);

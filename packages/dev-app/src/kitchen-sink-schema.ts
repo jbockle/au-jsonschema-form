@@ -99,6 +99,7 @@ export const schema: JsonSchema<any> = {
     dislike: {
       type: 'array',
       title: 'I dislike...',
+      maxItems: 3,
       items: {
         type: 'string',
         title: 'I hate',
