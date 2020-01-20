@@ -40,6 +40,9 @@ export class SfArray extends SfFormElementBase {
 
   public updateDefinitions(): void {
     this.definitions = (this.value ?? []).map((_val, index) => this.getItemDefinition(index));
+    if (!this.value?.length && Array.isArray(this.definition.schema.items)) {
+      this.definition.schema.items.forEach(() => this.add());
+    }
     this.updateReorder();
   }
 
@@ -85,7 +88,7 @@ export class SfArray extends SfFormElementBase {
       schema,
       type: jsonSchema.queries.resolveSchemaType(schema, this.context.schema),
       uiSchema: uiSchema.queries.getItemUiSchema(index, this.definition.uiSchema),
-      fixed: Array.isArray(schema.items) && index in schema.items,
+      fixed: Array.isArray(this.definition.schema.items) && index in this.definition.schema.items,
     };
   }
 

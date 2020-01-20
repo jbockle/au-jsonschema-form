@@ -41,7 +41,7 @@
                              move-down.call="reorder($index, 'down')"
                              remove.call="remove($index)"
                              definition.bind="definitions[$index]"
-                             if.bind="!definitions.fixed">
+                             if.bind="!definitions[$index].fixed">
       </sf-array-item-toolbar>
     </array-key>
   </fieldset>
