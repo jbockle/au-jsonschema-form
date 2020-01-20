@@ -61,7 +61,7 @@ export class SchemaForm {
     this._subs.push(valueChanged, validateSub);
   }
 
-  @debounce(50)
+  @debounce(10)
   public async validate(): Promise<void> {
     this._logger.debug('validating against json schema', JSON.stringify(this.model, null, 2));
     await this.validator(this.model);

@@ -5,6 +5,7 @@ import sfObjectMarkup from './sf-object.html';
 import sfBooleanMarkup from './sf-boolean.html';
 import sfErrorsMarkup from './sf-errors.html';
 import sfArraysMarkup from './sf-array.html';
+import sfArrayItemToolbar from './sf-array-item-toolbar.html';
 import sfStringSelectMarkup from './sf-string-select.html';
 
 export const theme: FormElementViews = {
@@ -28,5 +29,8 @@ export const theme: FormElementViews = {
   },
   SfStringSelect: {
     markup: sfStringSelectMarkup,
+  },
+  SfArrayItemToolbar: {
+    markup: sfArrayItemToolbar,
   },
 };

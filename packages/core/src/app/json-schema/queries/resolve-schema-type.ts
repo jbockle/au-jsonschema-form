@@ -1,6 +1,6 @@
 import { JsonSchema, JsonSchemaTypeName } from '../../../domain';
 import { findSchemaDefinition } from './find-schema-definition';
-import merge from 'lodash/merge';
+import lodash from 'lodash';
 
 export function resolveSchemaType(schema: JsonSchema<any>, baseSchema: JsonSchema<any>): JsonSchemaTypeName | 'multi-schema' {
   if (schema.$ref) {
@@ -12,7 +12,7 @@ export function resolveSchemaType(schema: JsonSchema<any>, baseSchema: JsonSchem
       if (cur.$ref) {
         cur = findSchemaDefinition(cur.$ref, baseSchema);
       }
-      merge(reduced, cur);
+      lodash.merge(reduced, cur);
       return reduced;
     }, {});
   }

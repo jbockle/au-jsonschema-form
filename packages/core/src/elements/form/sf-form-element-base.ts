@@ -1,8 +1,7 @@
 import { bindable, ViewStrategy, bindingMode, Disposable } from 'aurelia-framework';
 import { Subscription } from 'aurelia-event-aggregator';
 import { JsonPointer } from 'jsonpointerx';
-import startCase from 'lodash/startCase';
-import kebabCase from 'lodash/kebabCase';
+import lodash from 'lodash';
 
 import {
   ErrorSchema,
@@ -51,7 +50,7 @@ export abstract class SfFormElementBase implements FormElementViewModel {
   }
 
   public get className(): string {
-    return kebabCase(this.getViewSet().default) + '-compose';
+    return lodash.kebabCase(this.getViewSet().default) + '-compose';
   }
 
   public get isReadOnly(): boolean {
@@ -118,11 +117,11 @@ export abstract class SfFormElementBase implements FormElementViewModel {
 
   public getDefaultValue(): any {
     if (this.definition.schema.default) {
-      return this.definition.schema.default;
+      return lodash.cloneDeep(this.definition.schema.default);
     }
 
     if (this.definition.schema.const) {
-      return this.definition.schema.const;
+      return lodash.cloneDeep(this.definition.schema.const);
     }
   }
 
@@ -137,7 +136,7 @@ export abstract class SfFormElementBase implements FormElementViewModel {
       return `Item ${segmentNumber + 1}`;
     }
 
-    return startCase(segment);
+    return lodash.startCase(segment);
   }
 
   public definitionChanged(): void {

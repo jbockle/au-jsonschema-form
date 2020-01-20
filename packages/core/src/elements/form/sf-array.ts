@@ -40,6 +40,14 @@ export class SfArray extends SfFormElementBase {
 
   public updateDefinitions(): void {
     this.definitions = (this.value ?? []).map((_val, index) => this.getItemDefinition(index));
+    this.updateReorder();
+  }
+
+  public updateReorder(): void {
+    this.definitions.forEach((def, index) => {
+      def.canMoveUp = this.canReorder(index, 'up');
+      def.canMoveDown = this.canReorder(index, 'down');
+    });
   }
 
   public getDefaultView(): string {
@@ -77,6 +85,7 @@ export class SfArray extends SfFormElementBase {
       schema,
       type: jsonSchema.queries.resolveSchemaType(schema, this.context.schema),
       uiSchema: uiSchema.queries.getItemUiSchema(index, this.definition.uiSchema),
+      fixed: Array.isArray(schema.items) && index in schema.items,
     };
   }
 
@@ -97,6 +106,7 @@ export class SfArray extends SfFormElementBase {
     const value = this.getItemDefaultValue(definition);
 
     this.value!.push(value);
+    this.updateReorder();
     this.events.emit.validate();
   }
 
@@ -108,13 +118,33 @@ export class SfArray extends SfFormElementBase {
   }
 
   public reorder(index: number, direction: 'up' | 'down'): void {
+    if (this.canReorder(index, direction)) {
+      const newIndex = direction === 'up' ? index - 1 : index + 1;
+      const items = [...this.value!];
+
+      const value = items.splice(index, 1);
+      items.splice(newIndex, 0, value);
+
+      this.value = items;
+
+      this.updateDefinitions();
+      this.events.emit.validate();
+    }
+  }
+
+  public canReorder(index: number, direction: 'up' | 'down'): boolean {
     const newIndex = direction === 'up' ? index - 1 : index + 1;
+    const firstOrLast = direction === 'up' ? index === 0 : index === this.value!.length - 1;
 
-    const value = this.value!.splice(index, 1);
-    this.value!.splice(newIndex, 0, value);
+    if (this.definition.uiSchema['ui:canReorder'] === false || firstOrLast) {
+      return false;
+    }
 
-    this.updateDefinitions();
-    this.events.emit.validate();
+    if (this.definitions[newIndex].fixed || this.definitions[index].fixed) {
+      return false;
+    }
+
+    return true;
   }
 
   public getItemDefaultValue(definition: FormElementDefinition): any {

@@ -45,13 +45,9 @@ const OVERRIDES: OverrideDictionary = {
 
 @inject(DOM.Element)
 export class TypeCustomAttribute {
-  public constructor(element: Element) {
-    this.element = element;
-  }
+  public constructor(public element: Element) { }
 
   public value: any;
-
-  public element: Element;
 
   public owningView!: AureliaView;
 

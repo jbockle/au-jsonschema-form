@@ -1,0 +1,13 @@
+<template>
+  <button type="button" class="move-item-up"
+          disabled.bind="!definition.canMoveUp"
+          click.delegate="moveUp()"
+          title="move up">&upharpoonleft;</button>
+  <button type="button" class="move-item-down"
+          disabled.bind="!definition.canMoveDown"
+          click.delegate="moveDown()"
+          title="move down">&downharpoonright;</button>
+  <button type="button" class="remove-item"
+          title="remove"
+          click.delegate="remove()">&Cross;</button>
+</template>

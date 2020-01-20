@@ -1,5 +1,5 @@
 import Ajv from 'ajv';
-import toPath from 'lodash/toPath';
+import lodash from 'lodash';
 import { ErrorSchema } from '../../../domain';
 
 export function toErrorSchema(errors: Ajv.ErrorObject[]): ErrorSchema {
@@ -12,7 +12,7 @@ export function toErrorSchema(errors: Ajv.ErrorObject[]): ErrorSchema {
 
 function reduceErrorSchema(errorSchema: ErrorSchema, error: Ajv.ErrorObject): ErrorSchema {
   const { dataPath, message, params } = error;
-  const path = toPath(dataPath);
+  const path = lodash.toPath(dataPath);
   let parent: ErrorSchema = errorSchema;
 
   // If the property is at the root (.level1) then toPath creates

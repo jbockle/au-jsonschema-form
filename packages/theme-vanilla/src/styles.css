@@ -47,31 +47,37 @@ schema-form button.add-item {
 
 schema-form array-key {
   display: flex;
+  padding: 2px;
 }
 
-schema-form array-key > key-toolbar {
+schema-form array-key:hover {
+  background-color: rgba(0,0,0,.05);
+}
+
+schema-form array-key > sf-array-item-toolbar {
   margin-left: 5px;
   vertical-align: middle;
 }
 
-schema-form array-key > key-content {
+schema-form array-key > sf-array-item-toolbar {
   flex: 1 1 auto;
   vertical-align: middle;
 }
 
-schema-form key-toolbar {
-  display: flex;
+schema-form sf-array-item-toolbar {
+  display: flex !important;
   align-items: center;
   justify-content: center;
 }
 
-schema-form key-toolbar > * {
+schema-form sf-array-item-toolbar > * {
   margin: 0 1px;
   padding: 1px;
   font-size: 16px;
 }
 
-schema-form key-toolbar > button:disabled, schema-form key-toolbar > button:disabled:hover {
+schema-form sf-array-item-toolbar > button:disabled, schema-form sf-array-item-toolbar > button:disabled:hover {
+  cursor: not-allowed;
   opacity: .2;
 }
 

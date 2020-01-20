@@ -9,6 +9,7 @@ export interface FormElementViews {
   SfObject: FormElementView;
   SfErrors: FormElementView;
   SfArray: FormElementView;
+  SfArrayItemToolbar: FormElementView;
   [key: string]: FormElementView;
 }
 

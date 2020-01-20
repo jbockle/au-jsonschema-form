@@ -6,48 +6,43 @@
             click.delegate="add()">Add</button>
 
     <sf-errors errors.bind="errors"></sf-errors>
-
     <array-key repeat.for="item of value">
       <key-content>
         <sf-string if.to-view="definitions[$index].type === 'string'"
-                   value.two-way="value[$index]"
+                   value.bind="value[$index]"
                    definition.bind="definitions[$index]"
                    errors.bind="errors[$index]">
         </sf-string>
 
         <sf-boolean if.to-view="definitions[$index].type === 'boolean'"
-                    value.two-way="value[$index]"
+                    value.bind="value[$index]"
                     definition.bind="definitions[$index]"
                     errors.bind="errors[$index]"></sf-boolean>
 
         <sf-number if.to-view="definitions[$index].type === 'number'"
-                   value.two-way="value[$index]"
+                   value.bind="value[$index]"
                    definition.bind="definitions[$index]"
                    errors.bind="errors[$index]"></sf-number>
 
         <sf-object if.to-view="definitions[$index].type === 'object'"
-                   value.two-way="value[$index]"
+                   value.bind="value[$index]"
                    definition.bind="definitions[$index]"
                    errors.bind="errors[$index]"></sf-object>
 
         <sf-array if.to-view="definitions[$index].type === 'array'"
-                  value.two-way="value[$index]"
+                  value.bind="value[$index]"
                   definition.bind="definitions[$index]"
                   errors.bind="errors[$index]"></sf-array>
       </key-content>
-      <key-toolbar>
-        <button type="button" class="move-item-up"
-                click.delegate="reorder($index, 'up')"
-                title="move up"
-                disabled.bind="value.length === 1 || $first">&upharpoonleft;</button>
-        <button type="button" class="move-item-down"
-                click.delegate="reorder($index, 'down')"
-                title="move down"
-                disabled.bind="value.length === 1 || $last">&downharpoonright;</button>
-        <button type="button" class="remove-item"
-                title="remove"
-                click.delegate="remove($index)">&Cross;</button>
-      </key-toolbar>
+      <sf-array-item-toolbar index.bind="$index"
+                             first.bind="$first"
+                             last.bind="$last"
+                             move-up.call="reorder($index, 'up')"
+                             move-down.call="reorder($index, 'down')"
+                             remove.call="remove($index)"
+                             definition.bind="definitions[$index]"
+                             if.bind="!definitions.fixed">
+      </sf-array-item-toolbar>
     </array-key>
   </fieldset>
 </template>

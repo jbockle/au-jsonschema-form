@@ -8,6 +8,9 @@ export interface FormElementDefinition {
   pointer: string;
   required: boolean;
   parent?: FormElementViewModel;
+  fixed?: boolean;
+  canMoveUp?: boolean;
+  canMoveDown?: boolean;
   type: JsonSchemaTypeName | 'multi-schema';
   [key: string]: any;
 }
