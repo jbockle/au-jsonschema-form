@@ -120,10 +120,12 @@ export class SfArray extends SfFormElementBase {
   public reorder(index: number, direction: 'up' | 'down'): void {
     if (this.canReorder(index, direction)) {
       const newIndex = direction === 'up' ? index - 1 : index + 1;
+
       const items = [...this.value!];
 
       const value = items.splice(index, 1);
-      items.splice(newIndex, 0, value);
+
+      items.splice(newIndex, 0, ...value);
 
       this.value = items;
 
@@ -141,6 +143,12 @@ export class SfArray extends SfFormElementBase {
     }
 
     if (this.definitions[newIndex].fixed || this.definitions[index].fixed) {
+      return false;
+    }
+
+    const definition = this.definitions[index];
+    const targetDefinition = this.definitions[newIndex];
+    if (definition.schema.type !== targetDefinition.schema.type) {
       return false;
     }
 
