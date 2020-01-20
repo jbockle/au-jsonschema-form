@@ -126,6 +126,12 @@ schema-form input, schema-form select {
   margin-right: 2px;
 }
 
+schema-form sf-boolean input {
+  display: inline-block;
+  vertical-align: middle;
+  width: unset;
+  padding: unset;
+}
 
 schema-form input:read-only {
   background-color: rgba(0,0,0,.2);
