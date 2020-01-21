@@ -6,3 +6,4 @@ export * from './form-element-definition';
 export * from './form-element-view-model';
 export * from './schema-form-options';
 export * from './form-element-views';
+export * from './schema-form-plugin-options';

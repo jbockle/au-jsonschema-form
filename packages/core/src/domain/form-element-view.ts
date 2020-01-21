@@ -8,6 +8,8 @@ export interface FormElementView {
   dependencies?: ResourceDependencies;
 }
 
+export type ViewSlot = FormElementView;
+
 export interface FormElementViewSet {
   default: string;
   anyOf?: string;

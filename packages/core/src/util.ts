@@ -6,6 +6,8 @@ const util = {
     }
     return;
   },
+  compileTemplate: (template: string, args: Record<string, any>): string =>
+    template.replace(/\${(.*?)}/g, (_, g) => args[g]),
 };
 
 export default util;

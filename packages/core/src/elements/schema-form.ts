@@ -80,7 +80,6 @@ export class SchemaForm {
   }
 
   public valueChanged(newValue: any): void {
-
     if (Array.isArray(newValue)) {
       this.model = Object.assign([], newValue);
     } else if (typeof newValue === 'object') {

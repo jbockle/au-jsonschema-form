@@ -1,21 +1,21 @@
 import { FrameworkConfiguration } from 'aurelia-framework';
-import { FormElementViews } from './domain/form-element-views';
 
+import { AppLogger } from './infrastructure/app-logger';
 import { FormElementViewRegistry } from './infrastructure/form-element-view-registry';
+import { FieldViewRegistry } from './infrastructure/view-slot-registry';
+import { SchemaFormPluginOptions } from './domain/schema-form-plugin-options';
+
 import { SfString } from './elements/form/sf-string';
 import { SfObject } from './elements/form/sf-object';
 import { SfNumber } from './elements/form/sf-number';
 import { SfBoolean } from './elements/form/sf-boolean';
 import { SfMultiSchema } from './elements/form/sf-multi-schema';
 import { SchemaForm } from './elements/schema-form';
-import { AppLogger } from './infrastructure/app-logger';
 import { SfErrors } from './elements/shared/sf-errors';
 import { SfArray } from './elements/form/sf-array';
 import { SfArrayItemToolbar } from './elements/shared/sf-array-item-toolbar';
+import { SfViewSlot } from './elements/sf-view-slot';
 
-export interface SchemaFormPluginOptions {
-  views: FormElementViews;
-}
 
 const DEFAULT_OPTIONS: Partial<SchemaFormPluginOptions> = {};
 const logger = AppLogger.makeLogger('configure');
@@ -33,9 +33,11 @@ export function configure(config: FrameworkConfiguration, callback?: (options: S
   validateOptions(options);
 
   config.container.registerInstance(FormElementViewRegistry, new FormElementViewRegistry(options.views));
+  config.container.registerInstance(FieldViewRegistry, new FieldViewRegistry(options.fields));
 
   config.globalResources([
     SchemaForm,
+    SfViewSlot,
     // form
     SfObject,
     SfArray,

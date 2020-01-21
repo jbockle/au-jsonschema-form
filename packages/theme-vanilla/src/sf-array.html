@@ -9,31 +9,10 @@
     <sf-errors errors.bind="errors"></sf-errors>
     <array-key repeat.for="item of value">
       <key-content>
-        <sf-string if.to-view="definitions[$index].type === 'string'"
-                   value.bind="value[$index]"
-                   definition.bind="definitions[$index]"
-                   errors.bind="errors[$index]">
-        </sf-string>
-
-        <sf-boolean if.to-view="definitions[$index].type === 'boolean'"
-                    value.bind="value[$index]"
-                    definition.bind="definitions[$index]"
-                    errors.bind="errors[$index]"></sf-boolean>
-
-        <sf-number if.to-view="definitions[$index].type === 'number'"
-                   value.bind="value[$index]"
-                   definition.bind="definitions[$index]"
-                   errors.bind="errors[$index]"></sf-number>
-
-        <sf-object if.to-view="definitions[$index].type === 'object'"
-                   value.bind="value[$index]"
-                   definition.bind="definitions[$index]"
-                   errors.bind="errors[$index]"></sf-object>
-
-        <sf-array if.to-view="definitions[$index].type === 'array'"
-                  value.bind="value[$index]"
-                  definition.bind="definitions[$index]"
-                  errors.bind="errors[$index]"></sf-array>
+        <sf-view-slot value.bind="value[$index]"
+                      definition.bind="definitions[$index]"
+                      errors.bind="errors[$index]">
+        </sf-view-slot>
       </key-content>
       <sf-array-item-toolbar index.bind="$index"
                              first.bind="$first"
