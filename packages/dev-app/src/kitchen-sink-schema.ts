@@ -27,6 +27,9 @@ export const schema: JsonSchema<any> = {
         'undefined',
         'null',
         'NaN',
+        'string',
+        'number',
+        'object',
       ],
     },
     shoesizeLeft: {

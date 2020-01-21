@@ -126,7 +126,7 @@ schema-form input, schema-form select {
   margin-right: 2px;
 }
 
-schema-form sf-boolean input {
+schema-form input[type="checkbox"],schema-form input[type="radio"] {
   display: inline-block;
   vertical-align: middle;
   width: unset;

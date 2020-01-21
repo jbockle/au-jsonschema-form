@@ -25,7 +25,7 @@ export class SfString extends SfFormElementBase {
   public getViewSet(): FormElementViewSet {
     return {
       default: SfString.name,
-      enum: 'SfStringSelect',
+      enum: (this.definition.schema.enum ?? []).length > 5 ? 'SfStringSelect' : 'SfStringRadio',
       format: {
         // date: 'SfStringDate',
       },
