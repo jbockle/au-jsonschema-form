@@ -1,5 +1,4 @@
 <template class="sf-element">
-  <compose containerless
-           view.bind="viewStrategy"
-           class.one-time="className"></compose>
+  <compose view.bind="viewStrategy"
+           show.bind="!definition.uiSchema['ui:hidden']"></compose>
 </template>

@@ -14,7 +14,7 @@ export class App {
   public uiSchema = {
     'ui:title': 'Test',
     foo: {
-      'ui:viewSlot': 'foo',
+      'ui:hidden': true,
     },
   }
 

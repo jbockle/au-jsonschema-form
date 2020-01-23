@@ -49,10 +49,6 @@ export abstract class SfFormElementBase implements FormElementViewModel {
     return !!this.errors.__errors;
   }
 
-  public get className(): string {
-    return lodash.kebabCase(this.getViewSet().default) + '-compose';
-  }
-
   public get isReadOnly(): boolean {
     if (this.definition.parent?.isReadOnly) {
       return true;

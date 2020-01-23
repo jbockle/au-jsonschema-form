@@ -1,5 +1,4 @@
 import { ViewStrategy } from 'aurelia-framework';
-import lodash from 'lodash';
 
 import views from '../../app/view';
 import { FormContext } from '../../infrastructure/form-context';
@@ -18,10 +17,6 @@ export abstract class SfSharedElementBase {
   public viewStrategy!: ViewStrategy;
 
   public dependencies?: ResourceDependencies;
-
-  public get className(): string {
-    return lodash.kebabCase(this.name) + '-compose';
-  }
 
   public bind(_bindingContext: any, _overrideContext: any): void {
     const view = views.queries.getElementView(this.name, this.context, this.viewService);
