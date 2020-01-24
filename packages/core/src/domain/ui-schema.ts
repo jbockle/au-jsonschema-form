@@ -11,6 +11,6 @@ export interface UISchema {
   'ui:destroyAction'?: DestroyAction;
   'ui:items'?: UISchema | UISchema[];
   'ui:canReorder'?: boolean;
-  'ui:hidden'?: boolean;
+  'ui:hidden'?: boolean | SfViewModelExpression;
   [key: string]: UISchema | UISchema[] | string | boolean | SfViewModelExpression | undefined;
 }

@@ -1,9 +1,10 @@
 import { schema } from 'kitchen-sink-schema';
+import { FormElementViewModel, UISchema, JsonSchema } from '@au-jsonschema-form/core';
 
 export class App {
   public message: string = 'Hello World!';
 
-  public schema = {
+  public schema: JsonSchema<'object'> = {
     type: 'object',
     properties: {
       foo: schema,
@@ -11,10 +12,14 @@ export class App {
     },
   };
 
-  public uiSchema = {
+  public uiSchema: UISchema = {
     'ui:title': 'Test',
     foo: {
-      'ui:hidden': true,
+      'ui:hidden': (viewModel: FormElementViewModel): boolean => {
+        // eslint-disable-next-line no-console
+        console.log('should hide?', viewModel);
+        return viewModel.context.model.bar.name === 'foo';
+      },
     },
   }
 

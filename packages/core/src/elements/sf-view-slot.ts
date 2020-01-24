@@ -4,6 +4,7 @@ import { FormElementDefinition, ErrorSchema, ViewSlot } from '../domain';
 import { FormContext } from '../infrastructure/form-context';
 import { FieldViewRegistry } from '../infrastructure/view-slot-registry';
 import util from '../util';
+import { IsVisible } from '../converters/is-visible';
 
 @useView(PLATFORM.moduleName('@au-jsonschema-form/core/elements/sf-view.html'))
 @inject(FormContext, FieldViewRegistry)
@@ -39,7 +40,7 @@ export class SfViewSlot {
     const args = this.getSlotArgs();
     const compiledMarkup = util.compileTemplate(viewSlot.markup, args);
 
-    return { markup: compiledMarkup, dependencies: viewSlot.dependencies };
+    return { markup: compiledMarkup, dependencies: [...(viewSlot.dependencies ?? []), IsVisible] };
   }
 
   // eslint-disable-next-line @typescript-eslint/member-naming
@@ -47,6 +48,7 @@ export class SfViewSlot {
     return {
       slot: [
         `<sf-${this.definition.type}`,
+        'show.bind="$this | isVisible"',
         'value.bind="value"',
         'definition.bind="definition"',
         `errors.bind="errors"></sf-${this.definition.type}>`,

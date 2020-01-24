@@ -1,4 +1,5 @@
 import { inject, NewInstance, bindable, ViewStrategy, bindingMode, customElement } from 'aurelia-framework';
+import { signalBindings } from 'aurelia-binding';
 import Ajv from 'ajv';
 
 import { FormContext } from '../infrastructure/form-context';
@@ -67,6 +68,7 @@ export class SchemaForm {
     await this.validator(this.model);
     this._logger.debug('validation occurred', this.validator.errors);
     this.errors = errorSchemas.commands.toErrorSchema(this.validator.errors || []);
+    signalBindings('@au-jsonschema-form/model-changed');
   }
 
   public bind(bindingContext: any, overrideContext: any): void {
