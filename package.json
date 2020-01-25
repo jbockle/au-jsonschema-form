@@ -12,10 +12,10 @@
   },
   "dependencies": {
     "lerna": "^3.20.2",
-    "typescript": "^3.7.4",
-    "@typescript-eslint/eslint-plugin": "^2.14.0",
-    "@typescript-eslint/parser": "^2.14.0",
+    "typescript": "^3.7.5",
+    "@typescript-eslint/eslint-plugin": "^2.17.0",
+    "@typescript-eslint/parser": "^2.17.0",
     "eslint": "^6.8.0",
-    "husky": "^3.1.0"
+    "husky": "^4.2.1"
   }
 }
