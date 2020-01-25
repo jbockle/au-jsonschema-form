@@ -18,6 +18,8 @@ type SchemaDefinitionSet = {
 @useView(PLATFORM.moduleName('@au-jsonschema-form/core/elements/sf-view.html'))
 @inject(FormEvents, FormContext, FormElementViewRegistry, JsonPointerService)
 export class SfMultiSchema extends SfFormElementBase {
+  private _state: 'loading' | 'ready' = 'loading';
+
   public constructor(
     events: FormEvents,
     context: FormContext,
@@ -42,6 +44,12 @@ export class SfMultiSchema extends SfFormElementBase {
   @observable
   public selectedSchema?: SchemaDefinitionSet;
 
+  public selectedSchemaChanged(): void {
+    if (this._state === 'ready') {
+      this.value = undefined;
+    }
+  }
+
   public beforeResolveViewStrategy(): void {
     this.multiSchemaType = this.definition.schema.oneOf ? 'oneOf' : 'anyOf';
     this.options = this.getSchemas(this.definition.schema.oneOf! || this.definition.schema.anyOf!);
@@ -54,6 +62,8 @@ export class SfMultiSchema extends SfFormElementBase {
       }
       return false;
     });
+
+    this._state = 'ready';
   }
 
   public getSchemas(schemas: JsonSchema<any>[]): SchemaDefinitionSet[] {
@@ -72,7 +82,7 @@ export class SfMultiSchema extends SfFormElementBase {
   }
 
   public optionMatcher(a: SchemaDefinitionSet, b: SchemaDefinitionSet): boolean {
-    return a.title === b.title;
+    return a?.title === b?.title;
   }
 
   public resolveValue(): void {
