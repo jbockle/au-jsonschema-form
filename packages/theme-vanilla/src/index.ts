@@ -8,6 +8,7 @@ import sfArraysMarkup from './sf-array.html';
 import sfArrayItemToolbar from './sf-array-item-toolbar.html';
 import sfStringSelectMarkup from './sf-string-select.html';
 import sfStringRadioMarkup from './sf-string-radio.html';
+import sfMultiSchemaMarkup from './sf-multi-schema.html';
 
 export const vanillaTheme: SfThemeFunc = (options) => {
   options.views = {
@@ -37,6 +38,9 @@ export const vanillaTheme: SfThemeFunc = (options) => {
     },
     SfArrayItemToolbar: {
       markup: sfArrayItemToolbar,
+    },
+    SfMultiSchema: {
+      markup: sfMultiSchemaMarkup,
     },
   };
 

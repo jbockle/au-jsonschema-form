@@ -10,6 +10,7 @@ export interface FormElementViews {
   SfErrors: FormElementView;
   SfArray: FormElementView;
   SfArrayItemToolbar: FormElementView;
+  SfMultiSchema: FormElementView;
   [key: string]: FormElementView;
 }
 
