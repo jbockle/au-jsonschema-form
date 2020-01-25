@@ -6,7 +6,7 @@ import { FormEvents } from '../../infrastructure/form-events';
 import { FormContext } from '../../infrastructure/form-context';
 import { FormElementViewRegistry } from '../../infrastructure/form-element-view-registry';
 import { AppLogger } from '../../infrastructure/app-logger';
-import { TypeCustomAttribute } from '../../attributes/type-custom-attribute';
+import { ProcessType } from '../../converters/process-type';
 
 @useView(PLATFORM.moduleName('@au-jsonschema-form/core/elements/sf-view.html'))
 @inject(FormEvents, FormContext, FormElementViewRegistry)
@@ -25,7 +25,7 @@ export class SfNumber extends SfFormElementBase {
   public getViewSet(): FormElementViewSet {
     return {
       default: SfNumber.name,
-      dependencies: [TypeCustomAttribute],
+      dependencies: [ProcessType],
     };
   };
 
