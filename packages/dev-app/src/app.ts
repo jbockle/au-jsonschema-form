@@ -1,16 +1,10 @@
-import { schema } from 'kitchen-sink-schema';
 import { FormElementViewModel, UISchema, JsonSchema } from '@au-jsonschema-form/core';
+import samples from './samples';
 
 export class App {
   public message: string = 'Hello World!';
 
-  public schema: JsonSchema<'object'> = {
-    type: 'object',
-    properties: {
-      foo: schema,
-      bar: schema,
-    },
-  };
+  public schema: JsonSchema<any> = samples.settings;
 
   public uiSchema: UISchema = {
     'ui:title': 'Test',

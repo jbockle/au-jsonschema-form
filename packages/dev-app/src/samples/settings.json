@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "age": {
+      "type": "number"
+    },
+    "global": {
+      "title": "Global settings",
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "object",
+          "properties": {
+            "userName": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "age": {
+              "type": "number"
+            }
+          }
+        },
+        "editor": {
+          "type": "object",
+          "properties": {
+            "preferredLanguage": {
+              "type": "string",
+              "enum": [
+                "typescript",
+                "javascript"
+              ],
+              "default": "typescript"
+            },
+            "rememberTabs": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        }
+      }
+    },
+    "project": {
+      "title": "Project settings",
+      "type": "object",
+      "properties": {
+        "exclusionMethod": {
+          "oneOf": [
+            {
+              "title": "By exclusion file",
+              "type": "string",
+              "enum": [
+                ".gitignore",
+                ".npmignore"
+              ]
+            },
+            {
+              "title": "By glob patterns",
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            }
+          ]
+        },
+        "timeoutInterval": {
+          "type": "number",
+          "default": 120000,
+          "minimum": 0
+        }
+      }
+    }
+  }
+}
