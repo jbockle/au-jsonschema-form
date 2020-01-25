@@ -44,9 +44,8 @@ export abstract class SfFormElementBase implements FormElementViewModel {
 
   public definitionChangedSub?: Disposable;
 
-
   public get hasErrors(): boolean {
-    return !!this.errors.__errors;
+    return (this.errors?.__errors ?? []).length > 0;
   }
 
   public get isReadOnly(): boolean {
