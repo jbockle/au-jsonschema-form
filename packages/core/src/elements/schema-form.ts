@@ -38,7 +38,7 @@ export class SchemaForm {
   @bindable
   public uiSchema: UISchema = {};
 
-  @bindable({ defaultBindingMode: bindingMode.toView })
+  @bindable({ defaultBindingMode: bindingMode.twoWay })
   public model: any;
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })

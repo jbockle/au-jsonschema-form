@@ -9,7 +9,7 @@
     <sf-errors errors.bind="errors"></sf-errors>
     <array-key repeat.for="item of value">
       <key-content>
-        <sf-view-slot value.bind="value[$index]"
+        <sf-view-slot value.two-way="value[$index]"
                       definition.bind="definitions[$index]"
                       errors.bind="errors[$index]">
         </sf-view-slot>

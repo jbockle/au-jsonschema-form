@@ -49,7 +49,7 @@ export class SfViewSlot {
       slot: [
         `<sf-${this.definition.type}`,
         'show.bind="$this | isVisible"',
-        'value.bind="value"',
+        'value.two-way="value"',
         'definition.bind="definition"',
         `errors.bind="errors"></sf-${this.definition.type}>`,
       ].join(' '),

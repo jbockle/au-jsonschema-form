@@ -4,7 +4,7 @@
       ${title}<sup if.bind="definition.required">*</sup>
     </span>
 
-    <select value.bind="value">
+    <select value.two-way="value | processType">
       <option model.bind="null">Choose...</option>
       <option repeat.for="choice of definition.schema.enum"
               model.bind="choice">

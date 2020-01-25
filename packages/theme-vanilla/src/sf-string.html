@@ -3,7 +3,8 @@
     <span>
       ${title}<sup if.bind="definition.required">*</sup>
     </span>
-    <input type.bind="inputType" value.bind="value" readonly.bind="isReadOnly">
+    <input type.bind="inputType" value.two-way="value | processType:inputType"
+           readonly.bind="isReadOnly">
   </label>
   <sf-errors errors.bind="errors"></sf-errors>
 </template>
