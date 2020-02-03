@@ -7,7 +7,7 @@
     <label repeat.for="choice of definition.schema.enum">
       <input type="radio"
              name.bind="definition.pointer || 'root'"
-             value.two-way="choice" checked.bind="value">
+             value.bind="choice" checked.two-way="value">
       ${choice}
     </label>
     <sf-errors errors.bind="errors"></sf-errors>
