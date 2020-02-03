@@ -16,7 +16,7 @@
     "build": "npm-run-all build:*",
     "prebuild-watch": "npm run clean",
     "build-watch": "npm-run-all --parallel \"build:* -- --watch\"",
-    "test": "jest",
+    "test": "nyc mocha",
     "lint": "eslint src/**/*.ts"
   },
   "dependencies": {
@@ -24,45 +24,33 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.149",
-    "jest": "^25.1.0",
-    "ts-jest": "^25.0.0",
-    "html-loader-jest": "^0.2.1",
     "typescript": "^3.7.5",
     "cpx": "^1.5.0",
     "rimraf": "^3.0.0",
     "eslint": "^6.8.0",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "mocha": "^7.0.1",
+    "chai": "^4.2.0",
+    "nyc": "^15.0.0",
+    "ts-node": "^8.6.2"
   },
-  "jest": {
-    "moduleNameMapper": {
-      "^aurelia-binding$": "<rootDir>/node_modules/aurelia-binding"
-    },
-    "modulePaths": [
-      "<rootDir>/src",
-      "<rootDir>/node_modules"
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
     ],
-    "moduleFileExtensions": [
-      "ts",
-      "js",
-      "json",
+    "exclude": [
+      "**/*.d.ts",
+      "test/**/*.ts"
+    ],
+    "reporter": [
+      "text",
       "html"
     ],
-    "transform": {
-      "^.+\\.ts$": "ts-jest",
-      "^.+\\.html?$": "html-loader-jest"
-    },
-    "testRegex": "\\.(spec|test)\\.(ts|js)$",
-    "testEnvironment": "node",
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.{js,ts}",
-      "!**/*.spec.{js,ts}",
-      "!**/node_modules/**",
-      "!**/test/**"
-    ],
-    "coverageDirectory": "<rootDir>/test/coverage-jest",
-    "coverageReporters": [
-      "html"
-    ]
+    "all": true,
+    "branches": 80,
+    "lines": 80,
+    "functions": 80,
+    "statements": 80
   }
 }

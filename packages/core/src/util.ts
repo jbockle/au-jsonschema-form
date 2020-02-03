@@ -1,13 +1,16 @@
 
-const util = {
-  last<T>(array: T[] | undefined): T | undefined {
-    if (Array.isArray(array) && array.length > 0) {
-      return array[array.length - 1];
+class Util {
+  public static last<T>(array: T[]): T | undefined {
+    if (Array.isArray(array)) {
+      return array.length > 0 ? array[array.length - 1] : undefined;
     }
-    return;
-  },
-  compileTemplate: (template: string, args: Record<string, any>): string =>
-    template.replace(/\${(.*?)}/g, (_, g) => args[g]),
-};
 
-export default util;
+    return undefined;
+  }
+
+  public static compileTemplate(template: string, args: Record<string, any>): string {
+    return template.replace(/\${(.*?)}/g, (_, g) => args[g]);
+  }
+}
+
+export default Util;

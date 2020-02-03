@@ -2,7 +2,10 @@
   "name": "au-jsonschema-form",
   "private": true,
   "scripts": {
+    "build": "lerna run build",
+    "clean": "lerna clean -y",
     "lint": "lerna run lint --parallel",
+    "start": "lerna exec --scope dev-app -- npm start",
     "bootstrap": "lerna bootstrap"
   },
   "husky": {
@@ -11,7 +14,6 @@
     }
   },
   "dependencies": {
-    "@types/jest": "^24.9.1",
     "lerna": "^3.20.2",
     "typescript": "^3.7.5",
     "@typescript-eslint/eslint-plugin": "^2.17.0",

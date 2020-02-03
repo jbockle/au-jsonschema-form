@@ -39,3 +39,6 @@ Thumbs.db
 **/*.log
 
 .chrome
+
+.nyc_output
+coverage

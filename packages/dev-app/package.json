@@ -14,9 +14,7 @@
     "build:dev": "webpack --extractCss",
     "build-watch": "npm start",
     "analyze": "webpack --env.production --analyze",
-    "test": "au test",
-    "e2e": "au cypress",
-    "e2e:headless": "au cypress --start --run"
+    "test": "nyc mocha"
   },
   "dependencies": {
     "aurelia-bootstrapper": "^2.3.3",
@@ -28,20 +26,14 @@
     "core-js": "^3.6.4"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "aurelia-cli": "^1.2.3",
-    "aurelia-testing": "^1.0.0",
-    "aurelia-tools": "^2.0.0",
-    "gulp": "^4.0.2",
-    "minimatch": "^3.0.4",
-    "through2": "^3.0.1",
-    "vinyl-fs": "^3.0.3",
-    "promise-polyfill": "^8.1.3",
-    "ts-loader": "^6.2.1",
-    "ts-node": "^8.6.2",
     "@types/node": "^13.5.0",
     "@types/lodash": "^4.14.149",
     "@types/webpack": "^4.41.3",
+    "eslint": "^6.8.0",
+    "aurelia-testing": "^1.0.0",
+    "promise-polyfill": "^8.1.3",
+    "ts-loader": "^6.2.1",
+    "ts-node": "^8.6.2",
     "typescript": "^3.7.5",
     "html-webpack-plugin": "^3.2.0",
     "copy-webpack-plugin": "^5.1.1",
@@ -60,56 +52,35 @@
     "app-settings-loader": "^1.0.3",
     "json-loader": "^0.5.7",
     "html-loader": "^0.5.5",
-    "istanbul-instrumenter-loader": "^3.0.1",
     "webpack-bundle-analyzer": "^3.6.0",
-    "tree-kill": "^1.2.2",
-    "jest": "^25.1.0",
-    "jest-cli": "^25.1.0",
-    "jest-transform-stub": "^2.0.0",
     "aurelia-loader-nodejs": "^1.0.1",
     "aurelia-pal-nodejs": "^1.2.0",
-    "ts-jest": "^25.0.0",
-    "@cypress/webpack-preprocessor": "^4.1.1",
-    "cypress": "^3.8.3"
+    "@types/mocha": "^7.0.1",
+    "@types/chai": "^4.2.8",
+    "mocha": "^7.0.1",
+    "chai": "^4.2.0",
+    "nyc": "^15.0.0"
   },
   "engines": {
     "node": ">=8.9.0"
   },
-  "jest": {
-    "moduleNameMapper": {
-      "^aurelia-binding$": "<rootDir>/node_modules/aurelia-binding"
-    },
-    "modulePaths": [
-      "<rootDir>/src",
-      "<rootDir>/node_modules"
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
     ],
-    "moduleFileExtensions": [
-      "ts",
-      "js",
-      "json"
+    "exclude": [
+      "**/*.d.ts",
+      "test/**/*.ts"
     ],
-    "transform": {
-      "^.+\\.(css|less|sass|scss|styl|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "jest-transform-stub",
-      "^.+\\.ts$": "ts-jest"
-    },
-    "testRegex": "\\.spec\\.(ts|js)$",
-    "setupFiles": [
-      "<rootDir>/test/jest-pretest.ts"
-    ],
-    "testEnvironment": "node",
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.{js,ts}",
-      "!**/*.spec.{js,ts}",
-      "!**/node_modules/**",
-      "!**/test/**"
-    ],
-    "coverageDirectory": "<rootDir>/test/coverage-jest",
-    "coverageReporters": [
-      "json",
-      "lcov",
+    "reporter": [
       "text",
       "html"
-    ]
+    ],
+    "all": true,
+    "branches": 80,
+    "lines": 80,
+    "functions": 80,
+    "statements": 80
   }
 }

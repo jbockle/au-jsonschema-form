@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
-const project = require('./aurelia_project/aurelia.json');
 const { AureliaPlugin, ModuleDependenciesPlugin } = require('aurelia-webpack-plugin');
 const { ProvidePlugin } = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -17,7 +16,7 @@ const when = (condition, config, negativeConfig) =>
 
 // primary config:
 const title = 'Aurelia Navigation Skeleton';
-const outDir = path.resolve(__dirname, project.platform.output);
+const outDir = path.resolve(__dirname, 'dist');
 const srcDir = path.resolve(__dirname, 'src');
 const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 const baseUrl = '/';
@@ -110,8 +109,8 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
     contentBase: outDir,
     // serve index.html for all 404 (required for push-state)
     historyApiFallback: true,
-    hot: hmr || project.platform.hmr,
-    port: port || project.platform.port,
+    hot: hmr || true,
+    port: port || 8081,
     host: host,
   },
   devtool: production ? 'nosources-source-map' : 'cheap-module-eval-source-map',
@@ -135,7 +134,7 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
         use: cssRules,
       },
       { test: /\.html$/i, loader: 'html-loader' },
-      { test: /\.ts$/, loader: 'ts-loader' },
+      { test: /\.ts$/, loader: 'ts-loader', options: { configFile: 'tsconfig.build.json' } },
       // embed small images and fonts as Data Urls and larger ones as files:
       { test: /\.(png|gif|jpg|cur)$/i, loader: 'url-loader', options: { limit: 8192 } },
       { test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff2' } },

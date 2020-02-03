@@ -1,6 +1,5 @@
 import 'core-js';
 import { Aurelia } from 'aurelia-framework';
-import * as environment from '../config/environment.json';
 import { PLATFORM } from 'aurelia-pal';
 import { vanillaTheme } from '@au-jsonschema-form/theme-vanilla';
 
@@ -9,11 +8,7 @@ export function configure(aurelia: Aurelia): void {
     .standardConfiguration()
     .plugin(PLATFORM.moduleName('@au-jsonschema-form/core'), vanillaTheme);
 
-  aurelia.use.developmentLogging(environment.debug ? 'debug' : 'warn');
-
-  if (environment.testing) {
-    aurelia.use.plugin(PLATFORM.moduleName('aurelia-testing'));
-  }
+  aurelia.use.developmentLogging('debug');
 
   aurelia.start().then(() => aurelia.setRoot(PLATFORM.moduleName('app')));
 }
