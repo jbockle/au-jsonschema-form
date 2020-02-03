@@ -32,7 +32,9 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
     // Enforce single aurelia-binding, to avoid v1/v2 duplication due to
     // out-of-date dependencies on 3rd party aurelia plugins
     alias: {
-      'aurelia-binding': path.resolve(__dirname, 'node_modules/aurelia-binding')
+      'aurelia-binding': path.resolve(__dirname, 'node_modules/aurelia-binding'),
+      "@au-jsonschema-form/core": path.resolve(__dirname, "../core/src/"),
+      "@au-jsonschema-form/theme-vanilla": path.resolve(__dirname, "../theme-vanilla/src/")
     },
     symlinks: false,
   },

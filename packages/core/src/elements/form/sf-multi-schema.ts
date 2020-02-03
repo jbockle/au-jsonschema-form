@@ -1,4 +1,4 @@
-import { useView, PLATFORM, inject, observable, bindable, bindingMode } from 'aurelia-framework';
+import { inlineView, inject, observable, bindable, bindingMode } from 'aurelia-framework';
 import Ajv from 'ajv';
 
 import { FormEvents } from '../../infrastructure/form-events';
@@ -9,13 +9,14 @@ import { SfFormElementBase } from './sf-form-element-base';
 import { FormElementViewSet, FormElementDefinition, JsonSchema } from '../../domain';
 import jsonSchema from '../../app/json-schema';
 import { AppLogger } from '../../infrastructure/app-logger';
+import SF_VIEW from '../sf-view';
 
 type SchemaDefinitionSet = {
   title: string;
   definition: FormElementDefinition;
 };
 
-@useView(PLATFORM.moduleName('@au-jsonschema-form/core/elements/sf-view.html'))
+@inlineView(SF_VIEW)
 @inject(FormEvents, FormContext, FormElementViewRegistry, JsonPointerService)
 export class SfMultiSchema extends SfFormElementBase {
   private _state: 'loading' | 'ready' = 'loading';

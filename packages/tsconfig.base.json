@@ -28,6 +28,12 @@
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "allowJs": true
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "@au-jsonschema-form/*": [
+        "*/src"
+      ]
+    }
   }
 }

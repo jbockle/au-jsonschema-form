@@ -1,4 +1,4 @@
-import { useView, PLATFORM, bindable, inject } from 'aurelia-framework';
+import { inlineView, bindable, inject } from 'aurelia-framework';
 
 import { FormElementViewRegistry } from '../../infrastructure/form-element-view-registry';
 import { FormContext } from '../../infrastructure/form-context';
@@ -7,8 +7,9 @@ import { FormElementDefinition } from '../../domain';
 import { AppLogger } from '../../infrastructure/app-logger';
 import { SfArray } from '../form/sf-array';
 import { AureliaRepeaterOverrideContext } from '../../domain/aurelia-typings';
+import SF_VIEW from '../sf-view';
 
-@useView(PLATFORM.moduleName('@au-jsonschema-form/core/elements/sf-view.html'))
+@inlineView(SF_VIEW)
 @inject(FormContext, FormElementViewRegistry)
 export class SfArrayItemToolbar extends SfSharedElementBase {
   public constructor(

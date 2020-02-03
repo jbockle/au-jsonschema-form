@@ -1,4 +1,4 @@
-import { inject, NewInstance, bindable, ViewStrategy, bindingMode, customElement } from 'aurelia-framework';
+import { inject, NewInstance, bindable, ViewStrategy, bindingMode, customElement, inlineView } from 'aurelia-framework';
 import { signalBindings } from 'aurelia-binding';
 import Ajv from 'ajv';
 
@@ -20,6 +20,15 @@ const DEFAULT_OPTIONS: SchemaFormOptions = {
   NewInstance.of(FormEvents),
 )
 @customElement('schema-form')
+@inlineView(`
+<template>
+  <form novalidate>
+    <sf-view-slot value.two-way="model"
+                  definition.bind="definition"
+                  errors.bind="errors"></sf-view-slot>
+  </form>
+</template>
+`.trim())
 export class SchemaForm {
   private _subs: Subscription[] = [];
   private _logger = AppLogger.makeLogger(SchemaForm);

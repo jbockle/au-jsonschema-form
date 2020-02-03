@@ -1,4 +1,4 @@
-import { useView, PLATFORM, inject, bindable, bindingMode } from 'aurelia-framework';
+import { inlineView, inject, bindable, bindingMode } from 'aurelia-framework';
 
 import { SfFormElementBase } from './sf-form-element-base';
 import { FormElementViewSet, UISchema, JsonSchema, FormElementDefinition } from '../../domain';
@@ -8,8 +8,9 @@ import { JsonPointerService } from '../../infrastructure/json-pointer-service';
 import { FormElementViewRegistry } from '../../infrastructure/form-element-view-registry';
 import jsonSchema from '../../app/json-schema';
 import { AppLogger } from '../../infrastructure/app-logger';
+import SF_VIEW from '../sf-view';
 
-@useView(PLATFORM.moduleName('@au-jsonschema-form/core/elements/sf-view.html'))
+@inlineView(SF_VIEW)
 @inject(FormEvents, FormContext, FormElementViewRegistry, JsonPointerService)
 export class SfObject extends SfFormElementBase {
   public constructor(

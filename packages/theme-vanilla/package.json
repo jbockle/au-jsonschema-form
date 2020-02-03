@@ -11,7 +11,7 @@
   "scripts": {
     "prebuild": "rimraf dist/*",
     "clean": "rimraf dist/*",
-    "build:tsc": "tsc",
+    "build:tsc": "tsc -b tsconfig.build.json",
     "build:static": "cpx src/**/*.{html,css} dist",
     "build": "npm-run-all build:*",
     "prebuild-watch": "npm run clean",

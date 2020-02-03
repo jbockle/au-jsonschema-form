@@ -1,12 +1,13 @@
-import { bindable, useView, PLATFORM, ViewStrategy, inject, InlineViewStrategy, bindingMode } from 'aurelia-framework';
+import { bindable, inlineView, ViewStrategy, inject, InlineViewStrategy, bindingMode } from 'aurelia-framework';
 
 import { FormElementDefinition, ErrorSchema, ViewSlot } from '../domain';
 import { FormContext } from '../infrastructure/form-context';
 import { FieldViewRegistry } from '../infrastructure/view-slot-registry';
 import util from '../util';
 import { IsVisible } from '../converters/is-visible';
+import SF_VIEW from './sf-view';
 
-@useView(PLATFORM.moduleName('@au-jsonschema-form/core/elements/sf-view.html'))
+@inlineView(SF_VIEW)
 @inject(FormContext, FieldViewRegistry)
 export class SfViewSlot {
   public constructor(
