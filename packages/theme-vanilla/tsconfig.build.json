@@ -9,9 +9,9 @@
   "include": [
     "src",
     "types",
-    "tests"
+    "__tests__"
   ],
   "exclude": [
-    "tests"
+    "__tests__"
   ]
 }

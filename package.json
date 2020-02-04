@@ -4,6 +4,7 @@
   "scripts": {
     "build": "lerna run build",
     "clean": "lerna clean -y",
+    "test": "lerna run test",
     "lint": "lerna run lint --parallel",
     "start": "lerna exec --scope dev-app -- npm start",
     "bootstrap": "lerna bootstrap"

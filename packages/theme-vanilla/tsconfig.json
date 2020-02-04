@@ -7,9 +7,9 @@
   "include": [
     "src",
     "types",
-    "test"
+    "__tests__"
   ],
   "exclude": [
-    "test"
+    "__tests__"
   ]
 }

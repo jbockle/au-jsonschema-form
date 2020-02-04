@@ -10,13 +10,14 @@
   ],
   "scripts": {
     "prebuild": "rimraf dist/*",
-    "clean": "rimraf dist/*",
+    "clean": "rimraf dist/* coverage/*",
     "build:tsc": "tsc -b tsconfig.build.json",
     "build:static": "cpx src/**/*.{html,css} dist",
     "build": "npm-run-all build:*",
     "prebuild-watch": "npm run clean",
     "build-watch": "npm-run-all --parallel \"build:* -- --watch\"",
-    "test": "nyc mocha",
+    "pretest": "npm run clean",
+    "test": "jest",
     "lint": "eslint src/**/*.ts"
   },
   "dependencies": {
@@ -27,35 +28,14 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.149",
-    "@types/mocha": "^7.0.1",
-    "@types/chai": "^4.2.8",
-    "mocha": "^7.0.1",
-    "chai": "^4.2.0",
-    "nyc": "^15.0.0",
-    "ts-node": "^8.6.2",
+    "@types/jest": "^25.1.1",
+    "ts-jest": "^25.2.0",
+    "html-loader-jest": "^0.2.1",
+    "jest": "^25.1.0",
     "typescript": "^3.7.5",
     "cpx": "^1.5.0",
     "rimraf": "^3.0.0",
     "eslint": "^6.8.0",
     "npm-run-all": "^4.1.5"
-  },
-  "nyc": {
-    "extension": [
-      ".ts",
-      ".tsx"
-    ],
-    "exclude": [
-      "**/*.d.ts",
-      "test/**/*.ts"
-    ],
-    "reporter": [
-      "text",
-      "html"
-    ],
-    "all": true,
-    "branches": 80,
-    "lines": 80,
-    "functions": 80,
-    "statements": 80
   }
 }

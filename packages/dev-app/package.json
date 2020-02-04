@@ -10,11 +10,13 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --extractCss",
+    "clean": "rimraf dist/* coverage/*",
     "build": "webpack --env.production --extractCss",
     "build:dev": "webpack --extractCss",
     "build-watch": "npm start",
     "analyze": "webpack --env.production --analyze",
-    "test": "nyc mocha"
+    "pretest": "npm run clean",
+    "test": "jest"
   },
   "dependencies": {
     "aurelia-bootstrapper": "^2.3.3",
@@ -26,61 +28,41 @@
     "core-js": "^3.6.4"
   },
   "devDependencies": {
-    "@types/node": "^13.5.0",
+    "@types/jest": "^25.1.1",
     "@types/lodash": "^4.14.149",
+    "@types/node": "^13.5.0",
     "@types/webpack": "^4.41.3",
-    "eslint": "^6.8.0",
-    "aurelia-testing": "^1.0.0",
-    "promise-polyfill": "^8.1.3",
-    "ts-loader": "^6.2.1",
-    "ts-node": "^8.6.2",
-    "typescript": "^3.7.5",
-    "html-webpack-plugin": "^3.2.0",
-    "copy-webpack-plugin": "^5.1.1",
-    "mini-css-extract-plugin": "^0.9.0",
-    "aurelia-webpack-plugin": "^4.0.0",
-    "duplicate-package-checker-webpack-plugin": "^3.0.0",
-    "clean-webpack-plugin": "^3.0.0",
-    "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.1",
-    "expose-loader": "^0.7.5",
-    "style-loader": "^1.1.3",
-    "url-loader": "^3.0.0",
-    "css-loader": "^3.4.2",
-    "file-loader": "^5.0.2",
     "app-settings-loader": "^1.0.3",
-    "json-loader": "^0.5.7",
-    "html-loader": "^0.5.5",
-    "webpack-bundle-analyzer": "^3.6.0",
     "aurelia-loader-nodejs": "^1.0.1",
     "aurelia-pal-nodejs": "^1.2.0",
-    "@types/mocha": "^7.0.1",
-    "@types/chai": "^4.2.8",
-    "mocha": "^7.0.1",
-    "chai": "^4.2.0",
-    "nyc": "^15.0.0"
+    "aurelia-testing": "^1.0.0",
+    "aurelia-webpack-plugin": "^4.0.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "css-loader": "^3.4.2",
+    "duplicate-package-checker-webpack-plugin": "^3.0.0",
+    "eslint": "^6.8.0",
+    "expose-loader": "^0.7.5",
+    "file-loader": "^5.0.2",
+    "html-loader": "^0.5.5",
+    "html-loader-jest": "^0.2.1",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^25.1.0",
+    "json-loader": "^0.5.7",
+    "mini-css-extract-plugin": "^0.9.0",
+    "promise-polyfill": "^8.1.3",
+    "style-loader": "^1.1.3",
+    "ts-jest": "^25.2.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.5",
+    "url-loader": "^3.0.0",
+    "webpack": "^4.41.5",
+    "webpack-bundle-analyzer": "^3.6.0",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1",
+    "rimraf": "^3.0.1"
   },
   "engines": {
     "node": ">=8.9.0"
-  },
-  "nyc": {
-    "extension": [
-      ".ts",
-      ".tsx"
-    ],
-    "exclude": [
-      "**/*.d.ts",
-      "test/**/*.ts"
-    ],
-    "reporter": [
-      "text",
-      "html"
-    ],
-    "all": true,
-    "branches": 80,
-    "lines": 80,
-    "functions": 80,
-    "statements": 80
   }
 }
