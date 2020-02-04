@@ -1,7 +1,9 @@
 module.exports = {
   preset: 'ts-jest',
+  setupFiles: ['<rootDir>/__tests__/pretest.ts'],
   moduleNameMapper: {
     '^@au-jsonschema-form/(.*)$': '<rootDir>/../$1/src',
+    '^src/(.*)$': '<rootDir>/src/$1',
   },
   transform: {
     '^.+\\.html?$': 'html-loader-jest',

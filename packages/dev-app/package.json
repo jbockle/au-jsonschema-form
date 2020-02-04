@@ -35,6 +35,7 @@
     "app-settings-loader": "^1.0.3",
     "aurelia-loader-nodejs": "^1.0.1",
     "aurelia-pal-nodejs": "^1.2.0",
+    "aurelia-polyfills": "^1.3.4",
     "aurelia-testing": "^1.0.0",
     "aurelia-webpack-plugin": "^4.0.0",
     "clean-webpack-plugin": "^3.0.0",

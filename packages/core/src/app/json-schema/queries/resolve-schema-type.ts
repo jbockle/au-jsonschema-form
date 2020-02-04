@@ -37,15 +37,9 @@ export function resolveSchemaType(schema: JsonSchema<any>, baseSchema: JsonSchem
 }
 
 function assertTypeArraySupported(schema: JsonSchema<any[]>): void {
-  if (!schema.type) {
-    throw new Error('schema type is not defined');
-  } else if (typeof schema.type === 'string') {
-    return;
-  } else if (schema.type!.length > 0 && schema.type!.length <= 2) {
-    if (schema.type!.length === 2 && !schema.type!.includes('null')) {
-      throw new Error(`supported schema array type must include 'null'`);
-    }
-  } else if (schema.type.length > 2) {
+  if (schema.type!.length === 2 && !schema.type!.includes('null')) {
+    throw new Error(`supported schema array type must include 'null'`);
+  } else if (schema.type!.length > 2) {
     throw new Error(`supported schema type can only be between 1-2 types, actual length ${schema.type!.length}`);
   }
 }

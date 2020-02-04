@@ -15,12 +15,6 @@ function reduceErrorSchema(errorSchema: ErrorSchema, error: Ajv.ErrorObject): Er
   const path = lodash.toPath(dataPath);
   let parent: ErrorSchema = errorSchema;
 
-  // If the property is at the root (.level1) then toPath creates
-  // an empty array element at the first index. Remove it.
-  if (path.length > 0 && path[0] === '') {
-    path.splice(0, 1);
-  }
-
   for (const segment of path.slice(0)) {
     defineSegment(segment, parent);
     parent = parent[segment] as ErrorSchema;
