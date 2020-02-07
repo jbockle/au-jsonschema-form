@@ -12,8 +12,8 @@ export class ProcessType {
       val = undefined;
     }
 
-    if (type === 'number' && val) {
-      val = parseFloat(val) || undefined;
+    if (type === 'number' && val !== undefined) {
+      val = parseFloat(val) ?? undefined;
     }
 
     this._logger.debug('from view', { val });
