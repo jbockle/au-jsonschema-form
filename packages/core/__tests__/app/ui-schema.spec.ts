@@ -20,6 +20,15 @@ describe('ui-schema', () => {
 
         expect(result).toEqual({});
       });
+      it('should get ui schema from wildcard', () => {
+        const uiSchema: UISchema = {
+          '*': { 'ui:title': 'Age' },
+        };
+
+        const result = uiSchemas.queries.getKeyUiSchema('age', uiSchema);
+
+        expect(result).toBe(uiSchema['*']);
+      });
     });
     describe('getItemUiSchema', () => {
       it('gets standard uiSchema', () => {
