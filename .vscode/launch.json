@@ -5,11 +5,12 @@
       "name": "Chrome",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:8080",
+      "url": "http://localhost:8081",
       "webRoot": "${workspaceRoot}/packages/dev-app/src",
       "userDataDir": "${workspaceRoot}/.chrome",
       "sourceMapPathOverrides": {
-        "webpack:///./src/*": "${webRoot}/*"
+        "webpack:///./src/*": "${webRoot}/*",
+        "webpack:///../core/src/*": "${workspaceRoot}/packages/core/src/*"
       }
     }
   ]
