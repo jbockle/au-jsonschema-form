@@ -88,6 +88,6 @@ export class SfMultiSchema extends SfFormElementBase {
 
   public resolveValue(): void {
     this._logger.debug('resolving value');
-    this.value = this.jsonPointer.get(this.context.model) ?? this.getDefaultValue();
+    this.value = this.jsonPointer.get(this.context.model) ?? this.getDefaultValueFromSchema();
   }
 }

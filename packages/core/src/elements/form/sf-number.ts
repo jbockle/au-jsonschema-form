@@ -34,6 +34,6 @@ export class SfNumber extends SfFormElementBase {
 
   public resolveValue(): void {
     this._logger.debug('resolving value');
-    this.value = this.value ?? this.getDefaultValue();
+    this.value = this.value ?? this.getDefaultValueFromSchema();
   }
 }

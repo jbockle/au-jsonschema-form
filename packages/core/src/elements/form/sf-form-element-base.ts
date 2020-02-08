@@ -110,7 +110,7 @@ export abstract class SfFormElementBase implements FormElementViewModel {
       || this.getTitleFromPointer();
   }
 
-  public getDefaultValue(): any {
+  public getDefaultValueFromSchema(): any {
     if (this.definition.schema.default) {
       return lodash.cloneDeep(this.definition.schema.default);
     }
