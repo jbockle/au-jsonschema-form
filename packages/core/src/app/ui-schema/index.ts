@@ -1,5 +1,5 @@
 import * as queries from './queries';
 
-const uiSchema = { queries };
+const uiSchemas = { queries };
 
-export default uiSchema;
+export default uiSchemas;

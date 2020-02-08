@@ -20,15 +20,13 @@ const DEFAULT_OPTIONS: SchemaFormOptions = {
   NewInstance.of(FormEvents),
 )
 @customElement('schema-form')
-@inlineView(`
-<template>
+@inlineView(`<template>
   <form novalidate>
     <sf-view-slot value.two-way="model"
                   definition.bind="definition"
                   errors.bind="errors"></sf-view-slot>
   </form>
-</template>
-`.trim())
+</template>`)
 export class SchemaForm {
   private _subs: Subscription[] = [];
   private _logger = AppLogger.makeLogger(SchemaForm);

@@ -9,6 +9,7 @@ import { FormElementViewRegistry } from '../../infrastructure/form-element-view-
 import jsonSchema from '../../app/json-schema';
 import { AppLogger } from '../../infrastructure/app-logger';
 import SF_VIEW from '../sf-view';
+import uiSchemas from 'src/app/ui-schema';
 
 @inlineView(SF_VIEW)
 @inject(FormEvents, FormContext, FormElementViewRegistry, JsonPointerService)
@@ -48,7 +49,7 @@ export class SfObject extends SfFormElementBase {
       for (const key in this.definition.schema.properties) {
         const schema = jsonSchema.queries.getPropertySchema(key, this.definition.schema, this.context.schema);
         const required = (this.definition.schema.required ?? []).includes(key);
-        const uiSchema = this.getUISchema(key);
+        const uiSchema = uiSchemas.queries.getKeyUiSchema(key, this.definition.uiSchema);
         const pointer = this.getPointer(key);
         this.setFormKeyDefinition(key, schema, required, uiSchema, pointer);
       }
@@ -62,7 +63,7 @@ export class SfObject extends SfFormElementBase {
         .forEach(key => {
           const schema = jsonSchema.queries.getPropertySchema(key, this.definition.schema, this.context.schema);
           const required = (this.definition.schema.required ?? []).includes(key);
-          const uiSchema = this.getUISchema(key);
+          const uiSchema = uiSchemas.queries.getKeyUiSchema(key, this.definition.uiSchema);
           const pointer = this.getPointer(key);
           this.setFormKeyDefinition(key, schema, required, uiSchema, pointer);
         });
@@ -75,17 +76,18 @@ export class SfObject extends SfFormElementBase {
         || jsonSchema.queries.supportsPatternProperties(this.definition.schema));
   }
 
-  public addProperty(prop: string): void {
-    if (this.canAddProperty(prop)) {
-      const schema = jsonSchema.queries.getPropertySchema(prop, this.definition.schema, this.context.schema);
-      const required = (this.definition.schema.required ?? []).includes(prop);
-      const uiSchema = this.getUISchema(prop);
-      const pointer = this.getPointer(prop);
-      this.setFormKeyDefinition(prop, schema, required, uiSchema, pointer);
+  public addProperty(key: string): void {
+    if (this.canAddProperty(key)) {
+      const schema = jsonSchema.queries.getPropertySchema(key, this.definition.schema, this.context.schema);
+      const required = (this.definition.schema.required ?? []).includes(key);
+      const uiSchema = uiSchemas.queries.getKeyUiSchema(key, this.definition.uiSchema);
+      const pointer = this.getPointer(key);
+      this.setFormKeyDefinition(key, schema, required, uiSchema, pointer);
       return;
     }
 
-    throw new Error(`unable to add property '${prop}', the schema does not support pattern/additional properties or the property already exists`);
+    throw new Error(`unable to add property '${key}',` +
+      `the schema does not support pattern/additional properties or the property already exists`);
   }
 
   public canAddProperty(prop: string): boolean {
@@ -110,10 +112,6 @@ export class SfObject extends SfFormElementBase {
       parent: this,
       type: jsonSchema.queries.resolveSchemaType(schema, this.context.schema),
     });
-  }
-
-  public getUISchema(key: string): UISchema {
-    return key in this.definition.uiSchema ? this.definition.uiSchema[key] as UISchema : {};
   }
 
   public getPointer(key: string): string {
