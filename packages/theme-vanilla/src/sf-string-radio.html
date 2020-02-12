@@ -3,13 +3,14 @@
     <legend>
       ${title}<sup if.bind="definition.required">*</sup>
     </legend>
-
-    <label repeat.for="choice of definition.schema.enum">
-      <input type="radio"
+    <sf-errors errors.bind="errors"></sf-errors>
+    <radio-key repeat.for="choice of definition.schema.enum">
+      <input id.bind="`${id}_${$index}`" type="radio"
              name.bind="definition.pointer || 'root'"
              value.bind="choice" checked.two-way="value">
-      ${choice}
-    </label>
-    <sf-errors errors.bind="errors"></sf-errors>
+      <label for.bind="`${id}_${$index}`">
+        ${choice}
+      </label>
+    </radio-key>
   </fieldset>
 </template>

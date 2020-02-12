@@ -1,16 +1,15 @@
 <template>
-  <label>
+  <label for.bind="id">
     <span>
       ${title}<sup if.bind="definition.required">*</sup>
     </span>
-
-    <select value.two-way="value | processType">
-      <option model.bind="null">Choose...</option>
-      <option repeat.for="choice of definition.schema.enum"
-              model.bind="choice">
-        ${choice}
-      </option>
-    </select>
   </label>
+  <select id.bind="id" value.two-way="value | processType">
+    <option model.bind="null">Choose...</option>
+    <option repeat.for="choice of definition.schema.enum"
+            model.bind="choice">
+      ${choice}
+    </option>
+  </select>
   <sf-errors errors.bind="errors"></sf-errors>
 </template>

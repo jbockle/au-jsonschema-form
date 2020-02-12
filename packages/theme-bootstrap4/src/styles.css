@@ -1,30 +1,36 @@
 
 
 schema-form {
-  display: block;
+  display: flex;
   font-size: 12px;
   padding: 2px 4px;
   font-family: 'Courier New', Courier, monospace;
+  box-sizing: border-box;
+}
+
+schema-form * {
+  box-sizing: border-box;
 }
 
 schema-form .sf-element {
-  display: block;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
   margin-bottom: 2px;
+  align-items: flex-start;
+  justify-content: left;
 }
 
 schema-form label {
   font-weight: bolder;
-  display: block;
+  user-select: none;
+  width: 100%;
 }
 
 schema-form label.section {
   font-size: 1rem;
   padding: 2px 0;
   border-bottom: 1px solid rgba(0,0,0,.2);
-}
-
-schema-form span {
-  display: block;
 }
 
 schema-form button {
@@ -45,6 +51,28 @@ schema-form button.add-item {
   color: white;
 }
 
+schema-form fieldset {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+schema-form sf-boolean {
+  margin-top: 5px;
+  flex-direction: row !important;
+}
+
+schema-form sf-boolean > label {
+  margin-left: 3px;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+schema-form object-key {
+  display: flex;
+  width: 100%;
+}
+
 schema-form array-key {
   display: flex;
   padding: 2px;
@@ -56,24 +84,10 @@ schema-form array-key:hover {
 
 schema-form array-key > sf-array-item-toolbar {
   margin-left: 5px;
-  vertical-align: middle;
-}
-
-schema-form array-key > sf-array-item-toolbar {
-  flex: 1 1 auto;
-  vertical-align: middle;
-}
-
-schema-form sf-array-item-toolbar {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-}
-
-schema-form sf-array-item-toolbar > * {
-  margin: 0 1px;
-  padding: 1px;
-  font-size: 16px;
+  width: unset !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 schema-form button:disabled, schema-form button:disabled:hover {
@@ -117,8 +131,6 @@ schema-form sf-object {
 }
 
 schema-form input, schema-form select {
-  display: block;
-  box-sizing: border-box;
   width: 100%;
   border: 1px solid rgba(0,0,0,.6);
   padding: 2px;
@@ -127,8 +139,6 @@ schema-form input, schema-form select {
 }
 
 schema-form input[type="checkbox"],schema-form input[type="radio"] {
-  display: inline-block;
-  vertical-align: middle;
   width: unset;
   padding: unset;
 }
