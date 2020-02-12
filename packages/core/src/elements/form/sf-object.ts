@@ -9,7 +9,7 @@ import { FormElementViewRegistry } from '../../infrastructure/form-element-view-
 import jsonSchema from '../../app/json-schema';
 import { AppLogger } from '../../infrastructure/app-logger';
 import SF_VIEW from '../sf-view';
-import uiSchemas from 'src/app/ui-schema';
+import uiSchemas from '../../app/ui-schema';
 
 @inlineView(SF_VIEW)
 @inject(FormEvents, FormContext, FormElementViewRegistry, JsonPointerService)
