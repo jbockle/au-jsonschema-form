@@ -1,0 +1,10 @@
+<template>
+  <require from="bootstrap/dist/css/bootstrap.css" as="scoped"></require>
+  <require from="@au-jsonschema-form/theme-bootstrap4/styles.css" as="scoped">
+  </require>
+  <schema-form schema.bind="schema"
+               ui-schema.bind="uiSchema"
+               model.two-way="model"
+               view-model.ref="schemaForm">
+  </schema-form>
+</template>

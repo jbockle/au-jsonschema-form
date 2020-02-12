@@ -1,13 +1,39 @@
 <template>
-  <require from="@au-jsonschema-form/theme-vanilla/styles.css"></require>
   <require from="./app.css"></require>
 
+  <require from="./theme/vanilla-theme"></require>
+  <require from="./theme/bootstrap4-theme"></require>
+
+  <label>
+    Theme
+    <select value.bind="theme">
+      <option repeat.for="sftheme of themes" model.bind="sftheme">${sftheme}
+      </option>
+    </select>
+  </label>
+
+  <label>
+    Sample
+    <select value.bind="sample">
+      <option repeat.for="sfSample of samples" model.bind="sfSample">${sfSample}
+      </option>
+    </select>
+  </label>
+
   <side-by-side>
-    <schema-form schema.bind="schema"
-                 ui-schema.bind="uiSchema"
-                 model.two-way="model"
-                 view-model.ref="schemaForm">
-    </schema-form>
+    <vanilla-theme if.bind="model !== undefined && theme === 'vanilla'"
+                   schema.bind="schema"
+                   ui-schema.bind="uiSchema"
+                   model.two-way="model"
+                   view-model.ref="schemaForm">
+    </vanilla-theme>
+    <bootstrap4-theme if.bind="model !== undefined && theme === 'bootstrap4'"
+                      schema.bind="schema"
+                      ui-schema.bind="uiSchema"
+                      model.two-way="model"
+                      view-model.ref="schemaForm">
+    </bootstrap4-theme>
+
     <pre>${modelString}</pre>
   </side-by-side>
 

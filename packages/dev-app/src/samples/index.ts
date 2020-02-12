@@ -1,3 +1,4 @@
 import settings from './settings.json';
+import simple from './simple.json';
 
-export default { settings };
+export default { settings, simple };

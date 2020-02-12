@@ -24,10 +24,16 @@
     "aurelia-animator-css": "^1.0.4",
     "@au-jsonschema-form/core": "0.1.0",
     "@au-jsonschema-form/theme-vanilla": "0.1.0",
+    "@au-jsonschema-form/theme-bootstrap4": "0.1.0",
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.1",
     "jsonpointerx": "^1.0.27",
     "core-js": "^3.6.4"
   },
   "devDependencies": {
+    "@types/bootstrap": "^4.3.1",
+    "@types/jquery": "^3.3.32",
     "@types/jest": "^25.1.1",
     "@types/lodash": "^4.14.149",
     "@types/node": "^13.5.0",

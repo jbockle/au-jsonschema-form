@@ -160,6 +160,8 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
     new AureliaPlugin(),
     new ProvidePlugin({
       'Promise': ['promise-polyfill', 'default'],
+      $: 'jquery',
+      jQuery: 'jquery'
     }),
     new ModuleDependenciesPlugin({
       'aurelia-testing': ['./compile-spy', './view-spy'],

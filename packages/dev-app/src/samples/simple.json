@@ -1,0 +1,9 @@
+{
+  "model": "",
+  "uiSchema": {
+    "ui:title": "Name"
+  },
+  "schema": {
+    "type": "string"
+  }
+}

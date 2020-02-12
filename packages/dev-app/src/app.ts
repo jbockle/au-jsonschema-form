@@ -1,25 +1,34 @@
-import { FormElementViewModel, UISchema, JsonSchema } from '@au-jsonschema-form/core';
+import lodash from 'lodash';
+
 import samples from './samples';
+import { computedFrom, observable } from 'aurelia-framework';
 
 export class App {
-  public message: string = 'Hello World!';
+  public themes = ['vanilla', 'bootstrap4'];
+  public theme = 'vanilla';
 
-  public schema: JsonSchema<any> = samples.settings;
+  public samples: string[] = Object.keys(samples);
+  @observable
+  public sample = this.samples[0];
 
-  public uiSchema: UISchema = {
-    'ui:title': 'Test',
-    foo: {
-      'ui:hidden': (viewModel: FormElementViewModel): boolean => {
-        // eslint-disable-next-line no-console
-        console.log('should hide?', viewModel);
-        return viewModel.context.model.bar.name === 'foo';
-      },
-    },
+  @computedFrom('sample')
+  public get schema(): any {
+    return (samples as any)[this.sample].schema;
   }
 
-  public model: any = {
-    // x: 'a',
-  };
+  @computedFrom('sample')
+  public get uiSchema(): any {
+    return (samples as any)[this.sample].uiSchema;
+  }
+
+  public sampleChanged(): void {
+    this.model = undefined;
+    setTimeout(() => {
+      this.model = lodash.cloneDeep((samples as any)[this.sample].model);
+    });
+  }
+
+  public model: any = {};
 
   public get modelString(): string {
     return JSON.stringify(this.model, null, 2);
