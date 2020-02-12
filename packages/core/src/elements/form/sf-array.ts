@@ -170,10 +170,8 @@ export class SfArray extends SfFormElementBase {
 
     switch (definition.type) {
       case 'string':
-        value = definition.schema.const ?? definition.schema.default ?? '';
-        break;
       case 'number':
-        value = definition.schema.const ?? definition.schema.default ?? 0;
+        value = definition.schema.const ?? definition.schema.default ?? '';
         break;
       case 'boolean':
         value = definition.schema.const ?? definition.schema.default ?? false;

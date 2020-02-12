@@ -1,4 +1,4 @@
-import { bindable, ViewStrategy, bindingMode, Disposable } from 'aurelia-framework';
+import { bindable, ViewStrategy, bindingMode, Disposable, computedFrom } from 'aurelia-framework';
 import { Subscription } from 'aurelia-event-aggregator';
 import { JsonPointer } from 'jsonpointerx';
 import lodash from 'lodash';
@@ -43,6 +43,11 @@ export abstract class SfFormElementBase implements FormElementViewModel {
   public viewStrategy!: ViewStrategy;
 
   public definitionChangedSub?: Disposable;
+
+  @computedFrom('definition.pointer')
+  public get id(): string {
+    return this.definition.pointer.replace(/\//g, '_');
+  }
 
   public get hasErrors(): boolean {
     return (this.errors?.__errors ?? []).length > 0;
