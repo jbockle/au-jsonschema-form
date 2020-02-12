@@ -1,0 +1,15 @@
+<template>
+  <fieldset>
+    <legend>
+      ${title}<sup if.bind="definition.required">*</sup>
+    </legend>
+
+    <label repeat.for="choice of definition.schema.enum">
+      <input type="radio"
+             name.bind="definition.pointer || 'root'"
+             value.bind="choice" checked.two-way="value">
+      ${choice}
+    </label>
+    <sf-errors errors.bind="errors"></sf-errors>
+  </fieldset>
+</template>

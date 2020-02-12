@@ -1,0 +1,28 @@
+<template>
+  <fieldset>
+    <legend>${title}</legend>
+
+    <button type="button" class="add-item clearfix"
+            disabled.bind="!canAdd"
+            click.delegate="add()">Add</button>
+
+    <sf-errors errors.bind="errors"></sf-errors>
+    <array-key repeat.for="item of value">
+      <key-content>
+        <sf-view-slot value.two-way="value[$index]"
+                      definition.bind="definitions[$index]"
+                      errors.bind="errors[$index]">
+        </sf-view-slot>
+      </key-content>
+      <sf-array-item-toolbar index.bind="$index"
+                             first.bind="$first"
+                             last.bind="$last"
+                             move-up.call="reorder($index, 'up')"
+                             move-down.call="reorder($index, 'down')"
+                             remove.call="remove($index)"
+                             definition.bind="definitions[$index]"
+                             if.bind="!definitions[$index].fixed">
+      </sf-array-item-toolbar>
+    </array-key>
+  </fieldset>
+</template>

@@ -1,0 +1,138 @@
+
+
+schema-form {
+  display: block;
+  font-size: 12px;
+  padding: 2px 4px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+schema-form .sf-element {
+  display: block;
+  margin-bottom: 2px;
+}
+
+schema-form label {
+  font-weight: bolder;
+  display: block;
+}
+
+schema-form label.section {
+  font-size: 1rem;
+  padding: 2px 0;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+}
+
+schema-form span {
+  display: block;
+}
+
+schema-form button {
+  cursor: pointer;
+  font-family: 'Courier New', Courier, monospace;
+  border: 1px solid #000;
+  background-color: rgba(0,0,0,.7);
+  color: white;
+  opacity: .5;
+}
+
+schema-form button:hover {
+  opacity: 1;
+}
+
+schema-form button.add-item {
+  background-color: rgb(23, 80, 5);
+  color: white;
+}
+
+schema-form array-key {
+  display: flex;
+  padding: 2px;
+}
+
+schema-form array-key:hover {
+  background-color: rgba(0,0,0,.05);
+}
+
+schema-form array-key > sf-array-item-toolbar {
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+schema-form array-key > sf-array-item-toolbar {
+  flex: 1 1 auto;
+  vertical-align: middle;
+}
+
+schema-form sf-array-item-toolbar {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+schema-form sf-array-item-toolbar > * {
+  margin: 0 1px;
+  padding: 1px;
+  font-size: 16px;
+}
+
+schema-form button:disabled, schema-form button:disabled:hover {
+  cursor: not-allowed;
+  opacity: .2;
+}
+
+schema-form button.remove-item {
+  color: #ff0000;
+  border:none;
+  background-color: unset;
+}
+
+schema-form button.move-item-up {
+  color: #000;
+  border:none;
+  background-color: unset;
+}
+
+schema-form button.move-item-down {
+  color: #000;
+  border:none;
+  background-color: unset;
+}
+
+schema-form sf-errors {
+  color: #ff0000;
+}
+
+schema-form fieldset {
+  border-style: dotted;
+}
+
+schema-form fieldset > legend {
+  font-weight: bolder;
+  font-size: 14px;
+}
+
+schema-form sf-object {
+  padding: 2px 4px !important;
+}
+
+schema-form input, schema-form select {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid rgba(0,0,0,.6);
+  padding: 2px;
+  margin: 0;
+  margin-right: 2px;
+}
+
+schema-form input[type="checkbox"],schema-form input[type="radio"] {
+  display: inline-block;
+  vertical-align: middle;
+  width: unset;
+  padding: unset;
+}
+
+schema-form input:read-only {
+  background-color: rgba(0,0,0,.2);
+}

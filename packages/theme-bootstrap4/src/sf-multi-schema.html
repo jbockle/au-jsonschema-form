@@ -1,0 +1,17 @@
+<template>
+  <label>
+    <span>
+      ${title}<sup if.bind="definition.required">*</sup>
+    </span>
+    <select value.two-way="selectedSchema" matcher.bind="optionMatcher">
+      <option model.bind="null">Select an option..</option>
+      <option repeat.for="option of options" model.bind="option">${option.title}
+      </option>
+    </select>
+  </label>
+
+  <sf-view-slot if.to-view="selectedSchema"
+                value.two-way="value"
+                definition.bind="selectedSchema.definition"
+                errors.bind="errors"></sf-view-slot>
+</template>
