@@ -16,7 +16,8 @@
     "build-watch": "npm start",
     "analyze": "webpack --env.production --analyze",
     "pretest": "npm run clean",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "npm run test -- --watch"
   },
   "dependencies": {
     "aurelia-bootstrapper": "^2.3.3",
