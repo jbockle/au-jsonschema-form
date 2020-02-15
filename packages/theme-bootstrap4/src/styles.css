@@ -1,10 +1,7 @@
 
-
 schema-form {
   display: flex;
-  font-size: 12px;
   padding: 2px 4px;
-  font-family: 'Courier New', Courier, monospace;
   box-sizing: border-box;
 }
 
@@ -22,14 +19,11 @@ schema-form .sf-element {
 }
 
 schema-form label {
-  font-weight: bolder;
   user-select: none;
   width: 100%;
 }
 
 schema-form label.section {
-  font-size: 1rem;
-  padding: 2px 0;
   border-bottom: 1px solid rgba(0,0,0,.2);
 }
 

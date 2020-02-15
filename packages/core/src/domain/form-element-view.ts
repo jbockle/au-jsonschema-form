@@ -3,12 +3,14 @@ import { ViewStrategy } from 'aurelia-framework';
 
 export type ResourceDependencies = Array<string | Function | Record<string, any>>;
 
-export interface FormElementView {
+interface ViewStrategyArgs {
   markup: string;
   dependencies?: ResourceDependencies;
 }
 
-export type ViewSlot = FormElementView;
+export type FormElementView = ViewStrategyArgs
+
+export type ViewSlot = ViewStrategyArgs;
 
 export interface FormElementViewSet {
   default: string;

@@ -38,14 +38,17 @@ export class SfViewSlot {
   // eslint-disable-next-line @typescript-eslint/member-naming
   private getViewSlot(): ViewSlot {
     const viewSlot = this.fieldViewRegistry.get(this.definition.uiSchema['ui:viewSlot']);
-    const args = this.getSlotArgs();
-    const compiledMarkup = util.compileTemplate(viewSlot.markup, args);
+    const slot = this.getSlot();
+    const markup = util.compileTemplateString(viewSlot.markup, slot);
 
-    return { markup: compiledMarkup, dependencies: [...(viewSlot.dependencies ?? []), IsVisible] };
+    return {
+      markup,
+      dependencies: [...(viewSlot.dependencies ?? []), IsVisible],
+    };
   }
 
   // eslint-disable-next-line @typescript-eslint/member-naming
-  private getSlotArgs(): { slot: string } {
+  private getSlot(): { slot: string } {
     return {
       slot: [
         `<sf-${this.definition.type}`,

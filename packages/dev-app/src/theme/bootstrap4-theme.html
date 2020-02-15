@@ -1,10 +1,31 @@
 <template>
-  <require from="bootstrap/dist/css/bootstrap.css" as="scoped"></require>
   <require from="@au-jsonschema-form/theme-bootstrap4/styles.css" as="scoped">
   </require>
-  <schema-form schema.bind="schema"
-               ui-schema.bind="uiSchema"
-               model.two-way="model"
-               view-model.ref="schemaForm">
-  </schema-form>
+
+  <style>
+    xhtml,
+    xbody {
+      margin: 10px;
+      display: block;
+    }
+  </style>
+  <style textcontent.bind="style"></style>
+
+  <label class="mt-1">
+    Bootstrap Theme
+    <select value.bind="theme">
+      <option repeat.for="bsTheme of themes" model.bind="bsTheme">${bsTheme}
+      </option>
+    </select>
+  </label>
+
+  <xhtml>
+    <xbody class="container-fluid border border-light p-2">
+      <schema-form schema.bind="schema"
+                   ui-schema.bind="uiSchema"
+                   model.two-way="model"
+                   view-model.ref="schemaForm">
+      </schema-form>
+    </xbody>
+  </xhtml>
 </template>

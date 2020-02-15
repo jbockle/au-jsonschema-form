@@ -10,40 +10,47 @@ import sfStringSelectMarkup from './sf-string-select.html';
 import sfStringRadioMarkup from './sf-string-radio.html';
 import sfMultiSchemaMarkup from './sf-multi-schema.html';
 
-export const vanillaTheme: SfThemeFunc = (options) => {
-  options.views = {
-    SfString: {
-      markup: sfStringMarkup,
-    },
-    SfObject: {
-      markup: sfObjectMarkup,
-    },
-    SfBoolean: {
-      markup: sfBooleanMarkup,
-    },
-    SfNumber: {
-      markup: sfStringMarkup,
-    },
-    SfErrors: {
-      markup: sfErrorsMarkup,
-    },
-    SfArray: {
-      markup: sfArraysMarkup,
-    },
-    SfStringSelect: {
-      markup: sfStringSelectMarkup,
-    },
-    SfStringRadio: {
-      markup: sfStringRadioMarkup,
-    },
-    SfArrayItemToolbar: {
-      markup: sfArrayItemToolbar,
-    },
-    SfMultiSchema: {
-      markup: sfMultiSchemaMarkup,
+export const bootstrap4Views = {
+  SfString: {
+    markup: sfStringMarkup,
+  },
+  SfObject: {
+    markup: sfObjectMarkup,
+  },
+  SfBoolean: {
+    markup: sfBooleanMarkup,
+  },
+  SfNumber: {
+    markup: sfStringMarkup,
+  },
+  SfErrors: {
+    markup: sfErrorsMarkup,
+  },
+  SfArray: {
+    markup: sfArraysMarkup,
+  },
+  SfStringSelect: {
+    markup: sfStringSelectMarkup,
+  },
+  SfStringRadio: {
+    markup: sfStringRadioMarkup,
+  },
+  SfArrayItemToolbar: {
+    markup: sfArrayItemToolbar,
+  },
+  SfMultiSchema: {
+    markup: sfMultiSchemaMarkup,
+  },
+};
+
+export const bootstrap4Theme: SfThemeFunc = (options) => {
+  options.views = bootstrap4Views;
+
+  options.fields = {
+    formGroup: {
+      markup: `<div class="form-group">\${slot}</div>`,
+
     },
   };
-
-  options.fields = {};
 };
 

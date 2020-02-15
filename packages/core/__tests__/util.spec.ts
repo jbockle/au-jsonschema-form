@@ -27,7 +27,7 @@ describe('utils', () => {
     it('complies templated literal', () => {
       const args = { foo: 'hello', bar: 'world' };
       const template = '${foo} ${bar}.';
-      const result = util.compileTemplate(template, args);
+      const result = util.compileTemplateString(template, args);
 
       expect(result).toEqual('hello world.');
     });

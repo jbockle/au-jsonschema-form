@@ -4,7 +4,7 @@
 
     <button type="button" class="add-item clearfix"
             disabled.bind="!canAdd"
-            click.delegate="add()">Add</button>
+            click.trigger="add()">Add</button>
 
     <sf-errors errors.bind="errors"></sf-errors>
     <array-key repeat.for="item of value">

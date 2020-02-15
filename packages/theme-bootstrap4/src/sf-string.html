@@ -1,11 +1,14 @@
 <template>
-  <label for.bind="id">
-    <span>
-      ${title}<sup if.bind="definition.required">*</sup>
-    </span>
-  </label>
-  <input id.bind="id" type.bind="inputType"
-         value.two-way="value | processType:inputType"
-         readonly.bind="isReadOnly">
-  <sf-errors errors.bind="errors"></sf-errors>
+  <div class="form-group">
+    <label for.bind="id">
+      <span>
+        ${title}<sup if.bind="definition.required">*</sup>
+      </span>
+    </label>
+    <input id.bind="id" type.bind="inputType"
+           class="form-control"
+           value.two-way="value | processType:inputType"
+           readonly.bind="isReadOnly">
+    <sf-errors errors.bind="errors"></sf-errors>
+  </div>
 </template>

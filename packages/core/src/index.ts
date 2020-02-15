@@ -68,3 +68,4 @@ function validateOptions(options: Partial<SchemaFormPluginOptions>): void {
 }
 
 export * from './domain';
+export * from './infrastructure/form-element-view-registry';

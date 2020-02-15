@@ -5,7 +5,7 @@ import { computedFrom, observable } from 'aurelia-framework';
 
 export class App {
   public themes = ['vanilla', 'bootstrap4'];
-  public theme = 'vanilla';
+  public theme = 'bootstrap4';
 
   public samples: string[] = Object.keys(samples);
   @observable

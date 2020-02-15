@@ -34,7 +34,8 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
     alias: {
       'aurelia-binding': path.resolve(__dirname, 'node_modules/aurelia-binding'),
       "@au-jsonschema-form/core": path.resolve(__dirname, "../core/src/"),
-      "@au-jsonschema-form/theme-vanilla": path.resolve(__dirname, "../theme-vanilla/src/")
+      "@au-jsonschema-form/theme-vanilla": path.resolve(__dirname, "../theme-vanilla/src/"),
+      "@au-jsonschema-form/theme-bootstrap4": path.resolve(__dirname, "../theme-bootstrap4/src/")
     },
     symlinks: false,
   },

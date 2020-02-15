@@ -2,9 +2,9 @@
   <fieldset>
     <legend>${title}</legend>
 
-    <button type="button" class="add-item clearfix"
+    <button type="button" class="add-item clearfix btn btn-sm btn-success"
             disabled.bind="!canAdd"
-            click.delegate="add()">Add</button>
+            click.trigger="add()">Add</button>
 
     <sf-errors errors.bind="errors"></sf-errors>
     <array-key repeat.for="item of value">

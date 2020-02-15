@@ -8,7 +8,7 @@ class Util {
     return undefined;
   }
 
-  public static compileTemplate(template: string, args: Record<string, any>): string {
+  public static compileTemplateString(template: string, args: Record<string, any>): string {
     return template.replace(/\${(.*?)}/g, (_, g) => args[g]);
   }
 }

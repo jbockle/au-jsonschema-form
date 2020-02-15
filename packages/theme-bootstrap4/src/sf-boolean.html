@@ -1,8 +1,14 @@
 <template>
-  <input id.bind="id" type="checkbox" checked.bind="value"
-         readonly.bind="isReadOnly">
-  <label for.bind="id">
-    ${title}<sup if.bind="definition.required">*</sup>
-  </label>
-  <sf-errors errors.bind="errors"></sf-errors>
+  <div class="form-group">
+    <div class="form-check">
+      <input id.bind="id"
+             class="form-check-input"
+             type="checkbox" checked.bind="value"
+             readonly.bind="isReadOnly">
+      <label for.bind="id" class="form-check-label">
+        ${title}<sup if.bind="definition.required">*</sup>
+      </label>
+      <sf-errors errors.bind="errors"></sf-errors>
+    </div>
+  </div>
 </template>

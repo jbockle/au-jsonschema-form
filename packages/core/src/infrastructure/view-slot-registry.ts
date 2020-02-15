@@ -1,5 +1,7 @@
 import { ViewSlot } from '../domain/form-element-view';
 import { FieldViews } from '../domain/form-element-views';
+import { inject } from 'aurelia-framework';
+import { FormElementViewRegistry } from './form-element-view-registry';
 
 const DEFAULT_FIELD_VIEW: ViewSlot = {
   markup: '<template>${slot}</template>',
@@ -7,6 +9,7 @@ const DEFAULT_FIELD_VIEW: ViewSlot = {
 
 const SEARCH_STRING = '${slot}';
 
+@inject(FormElementViewRegistry)
 export class FieldViewRegistry {
   private _views: FieldViews;
 
