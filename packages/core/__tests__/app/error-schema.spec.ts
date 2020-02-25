@@ -7,7 +7,7 @@ describe('error-schema', () => {
     describe('to-error-schema', () => {
       it('converts to error schema', () => {
         const expected: ErrorSchema = {
-          __errors: ['object has an error'],
+          _errors_: ['object has an error'],
         };
 
         const errors: any[] = [{
@@ -33,7 +33,7 @@ describe('error-schema', () => {
 
       it('contains multiple errors', () => {
         const expected: ErrorSchema = {
-          __errors: ['object has an error', 'another one'],
+          _errors_: ['object has an error', 'another one'],
         };
 
         const errors: any[] = [{
@@ -55,7 +55,7 @@ describe('error-schema', () => {
         const expected: ErrorSchema = {
           prop: {
             0: {
-              __errors: ['object has an error', 'another one'],
+              _errors_: ['object has an error', 'another one'],
             },
           },
         };
@@ -78,7 +78,7 @@ describe('error-schema', () => {
       it('moves missingProperty to segment', () => {
         const expected: ErrorSchema = {
           'prop': {
-            __errors: [
+            _errors_: [
               'Required',
             ],
           },

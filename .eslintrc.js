@@ -27,10 +27,23 @@ module.exports = {
     "@typescript-eslint/camelcase": ["error", {
       "properties": "always", "allow": ["^assert_", "^__.+__$"]
     }],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "property",
+        "modifiers": ["private", "protected"],
+        "format": ["camelCase"],
+        "leadingUnderscore": "require"
+      },
+      {
+        "selector": "property",
+        "modifiers": ["public"],
+        "format": ["camelCase"],
+        "leadingUnderscore": "allow",
+        "trailingUnderscore": "allow"
+      }
+    ],
     "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/member-naming": ["error", {
-      "private": "^_"
-    }],
     "@typescript-eslint/explicit-member-accessibility": ["error"],
     "@typescript-eslint/no-inferrable-types": "off",
     "no-console": "error"

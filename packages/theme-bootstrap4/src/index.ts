@@ -1,56 +1,54 @@
-import { SfThemeFunc } from '@au-jsonschema-form/core';
+import { SfThemeFunc, ComponentViews, ComponentSlotViews } from '@au-jsonschema-form/core';
 
-import sfStringMarkup from './sf-string.html';
-import sfObjectMarkup from './sf-object.html';
-import sfBooleanMarkup from './sf-boolean.html';
-import sfErrorsMarkup from './sf-errors.html';
-import sfArraysMarkup from './sf-array.html';
+import sfInput from './sf-input.html';
+import sfObject from './sf-object.html';
+import sfCheckbox from './sf-boolean.html';
+import sfErrors from './sf-errors.html';
+import sfArrays from './sf-array.html';
 import sfArrayItemToolbar from './sf-array-item-toolbar.html';
-import sfStringSelectMarkup from './sf-string-select.html';
-import sfStringRadioMarkup from './sf-string-radio.html';
-import sfMultiSchemaMarkup from './sf-multi-schema.html';
+import sfSelect from './sf-select.html';
+import sfRadio from './sf-radio.html';
+import sfMultiSchema from './sf-multi-schema.html';
 
-export const bootstrap4Views = {
-  SfString: {
-    markup: sfStringMarkup,
+export const bootstrap4Views: ComponentViews = {
+  'sf-input': {
+    markup: sfInput,
   },
-  SfObject: {
-    markup: sfObjectMarkup,
+  'sf-object': {
+    markup: sfObject,
   },
-  SfBoolean: {
-    markup: sfBooleanMarkup,
+  'sf-checkbox': {
+    markup: sfCheckbox,
   },
-  SfNumber: {
-    markup: sfStringMarkup,
+  'sf-errors': {
+    markup: sfErrors,
   },
-  SfErrors: {
-    markup: sfErrorsMarkup,
+  'sf-array': {
+    markup: sfArrays,
   },
-  SfArray: {
-    markup: sfArraysMarkup,
+  'sf-select': {
+    markup: sfSelect,
   },
-  SfStringSelect: {
-    markup: sfStringSelectMarkup,
+  'sf-radio': {
+    markup: sfRadio,
   },
-  SfStringRadio: {
-    markup: sfStringRadioMarkup,
-  },
-  SfArrayItemToolbar: {
+  'sf-array-item-toolbar': {
     markup: sfArrayItemToolbar,
   },
-  SfMultiSchema: {
-    markup: sfMultiSchemaMarkup,
+  'sf-multi-schema': {
+    markup: sfMultiSchema,
+  },
+};
+
+export const bootstrap4SlotViews: ComponentSlotViews = {
+  'sf-field': {
+    markup: `<template><div class="form-group">\${slot}</div></template>`,
   },
 };
 
 export const bootstrap4Theme: SfThemeFunc = (options) => {
   options.views = bootstrap4Views;
 
-  options.fields = {
-    formGroup: {
-      markup: `<div class="form-group">\${slot}</div>`,
-
-    },
-  };
+  options.slotViews = bootstrap4SlotViews;
 };
 

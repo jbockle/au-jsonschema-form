@@ -1,12 +1,12 @@
-import { FormElementViewModel } from './form-element-view-model';
+import { FormComponentViewModel } from './form-component-view-model';
 import { DestroyAction } from './schema-form-options';
 
-export type SfViewModelExpression = (viewModel: FormElementViewModel) => boolean;
+export type SfViewModelExpression = (viewModel: FormComponentViewModel) => boolean;
 
 export interface UISchema {
   'ui:title'?: string;
   'ui:view'?: string;
-  'ui:viewSlot'?: string;
+  'ui:slotView'?: string;
   'ui:readOnly'?: boolean | SfViewModelExpression;
   'ui:destroyAction'?: DestroyAction;
   'ui:items'?: UISchema | UISchema[];

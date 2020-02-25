@@ -1,4 +1,4 @@
-import { JsonSchema, UISchema, FormElementViews } from '../domain';
+import { JsonSchema, UISchema, ComponentViews } from '../domain';
 
 export class FormContext {
   public schema!: JsonSchema<'object' | 'array'>;
@@ -7,5 +7,5 @@ export class FormContext {
 
   public model!: any;
 
-  public views?: Partial<FormElementViews>;
+  public views?: Partial<ComponentViews>;
 }

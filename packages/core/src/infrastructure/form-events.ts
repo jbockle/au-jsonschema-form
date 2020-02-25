@@ -1,9 +1,9 @@
 import { EventAggregator, Subscription } from 'aurelia-event-aggregator';
-import { FormElementDefinition } from '../domain';
+import { FormComponentDefinition } from '../domain';
 import { inject } from 'aurelia-framework';
 import { Constants } from '../constants';
 
-export type FormChangedCallback = (definition: FormElementDefinition & { value: any }) => void | PromiseLike<void>;
+export type FormChangedCallback = (definition: FormComponentDefinition & { value: any }) => void | PromiseLike<void>;
 export type Callback = () => void | PromiseLike<void>;
 
 export const EVENT_NAMES = Object.freeze({
@@ -23,7 +23,7 @@ export class FormEvents {
     validate: (): void => {
       this._scopedEvents.publish(EVENT_NAMES.validate);
     },
-    valueChanged: (definition: FormElementDefinition & { value: any }): void => {
+    valueChanged: (definition: FormComponentDefinition & { value: any }): void => {
       this._scopedEvents.publish(EVENT_NAMES.valueChanged, definition);
     },
     modelChanged: (): void => {

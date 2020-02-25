@@ -8,9 +8,9 @@
     <sf-errors errors.bind="errors"></sf-errors>
 
     <object-key repeat.for="[key,def] of keys">
-      <sf-view-slot value.two-way="value[key]"
-                    definition.bind="def"
-                    errors.bind="errors[key]"></sf-view-slot>
+      <sf-slot value.two-way="value[key]"
+               definition.bind="def"
+               errors.bind="errors[key]"></sf-slot>
     </object-key>
     </section>
 </template>

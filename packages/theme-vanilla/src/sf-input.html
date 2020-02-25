@@ -1,0 +1,11 @@
+<template>
+  <label for.bind="id">
+    <span>
+      ${title}<sup if.bind="definition.required">*</sup>
+    </span>
+  </label>
+  <input id.bind="id" type.bind="inputType"
+         value.two-way="value | processType:definition.type"
+         readonly.bind="isReadOnly">
+  <sf-errors errors.bind="errors"></sf-errors>
+</template>

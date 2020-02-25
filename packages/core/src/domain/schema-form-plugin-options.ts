@@ -1,8 +1,8 @@
-import { FormElementViews, FieldViews } from './form-element-views';
+import { ComponentViews, ComponentSlotViews } from './views';
 
 export interface SchemaFormPluginOptions {
-  views: FormElementViews;
-  fields: FieldViews;
+  views: ComponentViews;
+  slotViews: ComponentSlotViews;
 }
 
 export type SfThemeFunc = (options: SchemaFormPluginOptions) => void;

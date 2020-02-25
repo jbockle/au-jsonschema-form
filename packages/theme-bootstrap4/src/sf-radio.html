@@ -1,0 +1,20 @@
+<template>
+  <fieldset>
+    <legend>
+      ${title}<sup if.bind="definition.required">*</sup>
+    </legend>
+    <sf-errors errors.bind="errors"></sf-errors>
+    <div class="custom-control custom-radio"
+         repeat.for="choice of definition.schema.enum">
+      <div class="form-check">
+        <input id.bind="`${id}_${$index}`" type="radio"
+               class="custom-control-input"
+               name.bind="definition.pointer || 'root'"
+               value.bind="choice" checked.two-way="value">
+        <label for.bind="`${id}_${$index}`" class="custom-control-label">
+          ${choice}
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</template>

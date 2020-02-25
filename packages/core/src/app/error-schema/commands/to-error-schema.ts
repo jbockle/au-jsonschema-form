@@ -44,15 +44,11 @@ function defineSegment(segment: string, parent: ErrorSchema): void {
 }
 
 function addError(parent: ErrorSchema, message: string | undefined): void {
-  if (Array.isArray(parent.__errors)) {
-    if (message) {
-      parent.__errors = parent.__errors.concat(message);
+  if (message) {
+    if (!Array.isArray(parent._errors_)) {
+      parent._errors_ = [];
     }
-  }
-  else {
-    if (message) {
-      parent.__errors = [message];
-    }
+    parent._errors_.push(message);
   }
 }
 

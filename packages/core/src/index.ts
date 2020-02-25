@@ -1,20 +1,21 @@
 import { FrameworkConfiguration } from 'aurelia-framework';
 
 import { AppLogger } from './infrastructure/app-logger';
-import { FormElementViewRegistry } from './infrastructure/form-element-view-registry';
-import { FieldViewRegistry } from './infrastructure/view-slot-registry';
+import { ComponentViewRegistry } from './infrastructure/component-view-registry';
+import { ComponentSlotViewRegistry } from './infrastructure/component-slot-view-registry';
 import { SchemaFormPluginOptions } from './domain/schema-form-plugin-options';
 
-import { SfString } from './elements/form/sf-string';
-import { SfObject } from './elements/form/sf-object';
-import { SfNumber } from './elements/form/sf-number';
-import { SfBoolean } from './elements/form/sf-boolean';
-import { SfMultiSchema } from './elements/form/sf-multi-schema';
-import { SchemaForm } from './elements/schema-form';
-import { SfErrors } from './elements/shared/sf-errors';
-import { SfArray } from './elements/form/sf-array';
-import { SfArrayItemToolbar } from './elements/shared/sf-array-item-toolbar';
-import { SfViewSlot } from './elements/sf-view-slot';
+import { SfString } from './components/form/sf-string';
+import { SfObject } from './components/form/sf-object';
+import { SfNumber } from './components/form/sf-number';
+import { SfBoolean } from './components/form/sf-boolean';
+import { SfMultiSchema } from './components/form/sf-multi-schema';
+import { SchemaForm } from './components/schema-form';
+import { SfErrors } from './components/shared/sf-errors';
+import { SfArray } from './components/form/sf-array';
+import { SfArrayItemToolbar } from './components/shared/sf-array-item-toolbar';
+import { SfSlot } from './components/sf-slot';
+import { registerDefaultFinders } from './infrastructure/finders';
 
 
 const DEFAULT_OPTIONS: Partial<SchemaFormPluginOptions> = {};
@@ -32,12 +33,13 @@ export function configure(config: FrameworkConfiguration, callback?: (options: S
   callback(options);
   validateOptions(options);
 
-  config.container.registerInstance(FormElementViewRegistry, new FormElementViewRegistry(options.views));
-  config.container.registerInstance(FieldViewRegistry, new FieldViewRegistry(options.fields));
+  registerDefaultFinders(config.container);
+  config.container.registerInstance(ComponentViewRegistry, new ComponentViewRegistry(options.views));
+  config.container.registerInstance(ComponentSlotViewRegistry, new ComponentSlotViewRegistry(options.slotViews));
 
   config.globalResources([
     SchemaForm,
-    SfViewSlot,
+    SfSlot,
     // form
     SfObject,
     SfArray,
@@ -68,4 +70,5 @@ function validateOptions(options: Partial<SchemaFormPluginOptions>): void {
 }
 
 export * from './domain';
-export * from './infrastructure/form-element-view-registry';
+export * from './infrastructure/component-view-registry';
+export * from './infrastructure/component-slot-view-registry';

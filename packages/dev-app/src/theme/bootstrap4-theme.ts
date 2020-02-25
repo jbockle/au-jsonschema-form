@@ -1,15 +1,22 @@
-import { JsonSchema, UISchema, FormElementViewRegistry } from '@au-jsonschema-form/core';
-import { bootstrap4Views } from '@au-jsonschema-form/theme-bootstrap4';
 import { bindable, useShadowDOM, observable, inject } from 'aurelia-framework';
 import { HttpClient } from 'aurelia-fetch-client';
 import 'bootstrap';
 
+import {
+  JsonSchema,
+  UISchema,
+  ComponentViewRegistry,
+  ComponentSlotViewRegistry,
+} from '@au-jsonschema-form/core';
+import { bootstrap4Views, bootstrap4SlotViews } from '@au-jsonschema-form/theme-bootstrap4';
+
 @useShadowDOM({ mode: 'closed' })
-@inject(HttpClient, FormElementViewRegistry)
+@inject(HttpClient, ComponentViewRegistry, ComponentSlotViewRegistry)
 export class Bootstrap4Theme {
   public constructor(
     private _client: HttpClient,
-    private _viewRegistry: FormElementViewRegistry,
+    private _viewRegistry: ComponentViewRegistry,
+    private _slotViewRegistry: ComponentSlotViewRegistry,
   ) { }
 
   @bindable
@@ -49,6 +56,7 @@ export class Bootstrap4Theme {
 
   public bind(): void {
     this._viewRegistry.set(bootstrap4Views);
+    this._slotViewRegistry.set(bootstrap4SlotViews);
   }
 
   public themes = Object.keys(this.themeMap);

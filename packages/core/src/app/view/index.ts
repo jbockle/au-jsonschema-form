@@ -1,6 +1,5 @@
-import * as queries from './queries';
 import * as commands from './commands';
 
-const views = { queries, commands };
+const views = { commands };
 
 export default views;

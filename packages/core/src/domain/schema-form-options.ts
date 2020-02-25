@@ -1,4 +1,4 @@
-import { FormElementViews } from './form-element-views';
+import { ComponentViews } from './views';
 import { FormatValidator, FormatDefinition } from 'ajv';
 
 export type DestroyAction = 'none' | 'null' | 'delete';
@@ -10,6 +10,6 @@ export interface AjvOptions {
 
 export interface SchemaFormOptions {
   destroyAction?: DestroyAction;
-  views?: Partial<FormElementViews>;
+  views?: Partial<ComponentViews>;
   ajv?: AjvOptions;
 }

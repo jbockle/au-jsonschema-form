@@ -3,15 +3,17 @@
     <span>
       ${title}<sup if.bind="definition.required">*</sup>
     </span>
-    <select value.two-way="selectedSchema" matcher.bind="optionMatcher">
-      <option model.bind="null">Select an option..</option>
-      <option repeat.for="option of options" model.bind="option">${option.title}
-      </option>
-    </select>
   </label>
+  <select value.two-way="selectedSchema" matcher.bind="optionMatcher"
+          class="custom-select">
+    <option model.bind="null">Select an option..</option>
+    <option repeat.for="option of options" model.bind="option">${option.title}
+    </option>
+  </select>
 
-  <sf-view-slot if.to-view="selectedSchema"
-                value.two-way="value"
-                definition.bind="selectedSchema.definition"
-                errors.bind="errors"></sf-view-slot>
+  <sf-slot class="d-block border border-light m-1 p-2"
+           if.to-view="selectedSchema"
+           value.two-way="value"
+           definition.bind="selectedSchema.definition"
+           errors.bind="errors"></sf-slot>
 </template>

@@ -1,0 +1,12 @@
+<template>
+  <label for.bind="id">
+    <span>
+      ${title}<sup if.bind="definition.required">*</sup>
+    </span>
+  </label>
+  <input id.bind="id" type.bind="inputType"
+         class="form-control ${errors._errors_ ? 'is-invalid' : 'is-valid'}"
+         value.two-way="value | processType:definition.type"
+         readonly.bind="isReadOnly">
+  <sf-errors errors.bind="errors" class="invalid-feedback"></sf-errors>
+</template>

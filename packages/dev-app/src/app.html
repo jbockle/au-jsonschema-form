@@ -4,6 +4,7 @@
   <require from="./theme/vanilla-theme"></require>
   <require from="./theme/bootstrap4-theme"></require>
 
+
   <label>
     Theme
     <select value.bind="theme">
@@ -27,6 +28,7 @@
                    model.two-way="model"
                    view-model.ref="schemaForm">
     </vanilla-theme>
+
     <bootstrap4-theme if.bind="model !== undefined && theme === 'bootstrap4'"
                       schema.bind="schema"
                       ui-schema.bind="uiSchema"

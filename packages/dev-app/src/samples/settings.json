@@ -29,6 +29,15 @@
               },
               "age": {
                 "type": "number"
+              },
+              "phoneNumbers": {
+                "type": "array",
+                "default": [
+                  null
+                ],
+                "items": {
+                  "type": "string"
+                }
               }
             },
             "required": [

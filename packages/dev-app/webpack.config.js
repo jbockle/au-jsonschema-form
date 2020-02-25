@@ -33,9 +33,10 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
     // out-of-date dependencies on 3rd party aurelia plugins
     alias: {
       'aurelia-binding': path.resolve(__dirname, 'node_modules/aurelia-binding'),
-      "@au-jsonschema-form/core": path.resolve(__dirname, "../core/src/"),
-      "@au-jsonschema-form/theme-vanilla": path.resolve(__dirname, "../theme-vanilla/src/"),
-      "@au-jsonschema-form/theme-bootstrap4": path.resolve(__dirname, "../theme-bootstrap4/src/")
+      'aurelia-framework': path.resolve(__dirname, 'node_modules/aurelia-framework'),
+      "@au-jsonschema-form/core": path.resolve(__dirname, "../core/src"),
+      "@au-jsonschema-form/theme-vanilla": path.resolve(__dirname, "../theme-vanilla/src"),
+      "@au-jsonschema-form/theme-bootstrap4": path.resolve(__dirname, "../theme-bootstrap4/src")
     },
     symlinks: false,
   },
@@ -54,7 +55,8 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
     runtimeChunk: true,  // separates the runtime chunk, required for long term cacheability
     // moduleIds is the replacement for HashedModuleIdsPlugin and NamedModulesPlugin deprecated in https://github.com/webpack/webpack/releases/tag/v4.16.0
     // changes module id's to use hashes be based on the relative path of the module, required for long term cacheability
-    moduleIds: 'hashed',
+    moduleIds: 'named',
+    chunkIds: 'named',
     // Use splitChunks to breakdown the App/Aurelia bundle down into smaller chunks
     // https://webpack.js.org/plugins/split-chunks-plugin/
     splitChunks: {

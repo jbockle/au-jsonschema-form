@@ -1,5 +1,5 @@
 import { IsVisible } from 'src/converters/is-visible';
-import { FormElementViewModel } from 'src';
+import { FormComponentViewModel } from 'src';
 
 describe('isVisible', () => {
   let sut: IsVisible;
@@ -12,7 +12,7 @@ describe('isVisible', () => {
         'ui:hidden': false,
       },
     } as any;
-    const viewModel: Partial<FormElementViewModel> = {
+    const viewModel: Partial<FormComponentViewModel> = {
       definition,
     };
 
@@ -26,7 +26,7 @@ describe('isVisible', () => {
         'ui:hidden': true,
       },
     } as any;
-    const viewModel: Partial<FormElementViewModel> = {
+    const viewModel: Partial<FormComponentViewModel> = {
       definition,
     };
 
@@ -37,12 +37,12 @@ describe('isVisible', () => {
   it('should evaluate visible', () => {
     const definition = {
       uiSchema: {
-        'ui:hidden': (_vm: FormElementViewModel): boolean => {
+        'ui:hidden': (_vm: FormComponentViewModel): boolean => {
           return false;
         },
       },
     } as any;
-    const viewModel: Partial<FormElementViewModel> = {
+    const viewModel: Partial<FormComponentViewModel> = {
       definition,
     };
 
@@ -53,12 +53,12 @@ describe('isVisible', () => {
   it('should evaluate hidden', () => {
     const definition = {
       uiSchema: {
-        'ui:hidden': (_vm: FormElementViewModel): boolean => {
+        'ui:hidden': (_vm: FormComponentViewModel): boolean => {
           return true;
         },
       },
     } as any;
-    const viewModel: Partial<FormElementViewModel> = {
+    const viewModel: Partial<FormComponentViewModel> = {
       definition,
     };
 
