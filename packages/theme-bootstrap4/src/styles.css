@@ -7,6 +7,19 @@ schema-form array-key {
 }
 
 schema-form sf-array-item-toolbar {
-  display: flex;
+  display: none;
   align-items: start;
+}
+
+schema-form sf-array-item {
+  display: flex;
+  width: 100%;
+}
+
+schema-form sf-array-item:hover > sf-array-item-toolbar {
+  display: flex;
+}
+
+schema-form sf-array-item > sf-slot {
+  flex-grow: 1 !important;
 }

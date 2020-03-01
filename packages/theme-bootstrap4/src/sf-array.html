@@ -8,27 +8,11 @@
 
     <sf-errors errors.bind="errors" class="invalid-feedback d-flex"></sf-errors>
 
-    <array-key repeat.for="item of value"
-               if.bind="definitions.length">
-      <key-content class="flex-grow-1">
-        <sf-slot value.two-way="value[$index]"
-                 definition.bind="definitions[$index]"
-                 errors.bind="errors[$index]">
-        </sf-slot>
-      </key-content>
-      <sf-array-item-toolbar index.bind="$index"
-                             first.bind="$first"
-                             last.bind="$last"
-                             move-up.call="reorder($index, 'up')"
-                             move-down.call="reorder($index, 'down')"
-                             remove.call="remove($index)"
-                             definition.bind="definitions[$index]"
-                             if.bind="!definitions[$index].fixed">
-      </sf-array-item-toolbar>
-    </array-key>
-    <div if.bind="arrayState !== 'ready'" class="spinner-border text-primary"
-         role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
+    <template repeat.for="item of value">
+      <sf-array-item parent.bind="$$this"
+                     value.two-way="item"
+                     index.bind="$index"
+                     errors.bind="errors[$index.toString()]"></sf-array-item>
+    </template>
   </fieldset>
 </template>

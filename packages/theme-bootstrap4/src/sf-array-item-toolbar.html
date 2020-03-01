@@ -1,11 +1,13 @@
 <template>
   <button type="button" class="btn btn-link btn-sm move-item-up"
-          disabled.bind="!definition.canMoveUp"
-          click.trigger="moveUp()"
+          if.bind="reordable"
+          disabled.bind="!canMoveUp"
+          click.trigger="move('up')"
           title="move up">&upharpoonleft;</button>
   <button type="button" class="btn btn-link btn-sm move-item-down"
-          disabled.bind="!definition.canMoveDown"
-          click.trigger="moveDown()"
+          if.bind="reordable"
+          disabled.bind="!canMoveDown"
+          click.trigger="move('down')"
           title="move down">&downharpoonright;</button>
   <button type="button" class="btn btn-link btn-sm remove-item"
           title="remove"

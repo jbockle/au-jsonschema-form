@@ -5,6 +5,7 @@ import sfObject from './sf-object.html';
 import sfCheckbox from './sf-boolean.html';
 import sfErrors from './sf-errors.html';
 import sfArrays from './sf-array.html';
+import sfArrayItem from './sf-array-item.html';
 import sfArrayItemToolbar from './sf-array-item-toolbar.html';
 import sfSelect from './sf-select.html';
 import sfRadio from './sf-radio.html';
@@ -25,6 +26,9 @@ export const bootstrap4Views: ComponentViews = {
   },
   'sf-array': {
     markup: sfArrays,
+  },
+  'sf-array-item': {
+    markup: sfArrayItem,
   },
   'sf-select': {
     markup: sfSelect,

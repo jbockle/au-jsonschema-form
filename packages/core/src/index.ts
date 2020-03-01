@@ -16,6 +16,7 @@ import { SfArray } from './components/form/sf-array';
 import { SfArrayItemToolbar } from './components/shared/sf-array-item-toolbar';
 import { SfSlot } from './components/sf-slot';
 import { registerDefaultFinders } from './infrastructure/finders';
+import { SfArrayItem } from './components/form/sf-array-item';
 
 
 const DEFAULT_OPTIONS: Partial<SchemaFormPluginOptions> = {};
@@ -43,6 +44,7 @@ export function configure(config: FrameworkConfiguration, callback?: (options: S
     // form
     SfObject,
     SfArray,
+    SfArrayItem,
     SfArrayItemToolbar,
     SfString,
     SfNumber,

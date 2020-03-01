@@ -1,4 +1,4 @@
-import { bindable, ViewStrategy, bindingMode, Disposable, computedFrom } from 'aurelia-framework';
+import { bindable, ViewStrategy, bindingMode, computedFrom } from 'aurelia-framework';
 import { Subscription } from 'aurelia-event-aggregator';
 import { JsonPointer } from 'jsonpointerx';
 import lodash from 'lodash';
@@ -15,7 +15,7 @@ import util from '../../util';
 import { AppLogger } from '../../infrastructure/app-logger';
 
 export abstract class SfFormComponentBase implements FormComponentViewModel {
-  private _subs: Subscription[] = [];
+  protected _subs: Subscription[] = [];
 
   public constructor(
     protected events: FormEvents,
@@ -37,8 +37,6 @@ export abstract class SfFormComponentBase implements FormComponentViewModel {
   public jsonPointer!: JsonPointer;
 
   public title: string = '';
-
-  public definitionChangedSub?: Disposable;
 
   public state: ComponentState = 'waiting';
 
@@ -73,6 +71,12 @@ export abstract class SfFormComponentBase implements FormComponentViewModel {
     this.bindingContext = bindingContext;
     this.overrideContext = overrideContext;
 
+    if (this.definition) {
+      this.prepare();
+    }
+  }
+
+  public prepare(): void {
     this.jsonPointer = JsonPointer.compile(this.definition.pointer);
     this.resolveValue();
     this.updateTitle();
@@ -90,7 +94,7 @@ export abstract class SfFormComponentBase implements FormComponentViewModel {
   }
 
   public errorsChanged(): void {
-    this._logger.debug(`errors changed`, this.definition.pointer, this.errors);
+    this._logger.debug(`errors changed`, this.definition?.pointer, this.errors);
   }
 
   public unbind(): void {
@@ -135,7 +139,6 @@ export abstract class SfFormComponentBase implements FormComponentViewModel {
   }
 
   public definitionChanged(): void {
-    this.jsonPointer = JsonPointer.compile(this.definition.pointer);
-    this.updateTitle();
+    this.prepare();
   }
 }

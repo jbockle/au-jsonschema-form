@@ -11,7 +11,6 @@ export interface FormComponentDefinition {
   pointer: string;
   required: boolean;
   parent?: FormComponentViewModel;
-  fixed?: boolean;
   canMoveUp?: boolean;
   canMoveDown?: boolean;
   type: DefinitionType;
