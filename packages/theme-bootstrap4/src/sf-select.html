@@ -6,11 +6,11 @@
   </label>
   <select id.bind="id" value.two-way="value | processType:definition.type"
           class="custom-select ${errors._errors_ ? 'is-invalid' : 'is-valid'}">
-    <option model.bind="null">Choose...</option>
+    <option model.bind="undefined">Choose...</option>
     <option repeat.for="choice of definition.schema.enum"
             model.bind="choice">
       ${choice}
     </option>
   </select>
-  <sf-errors errors.bind="errors"></sf-errors>
+  <sf-errors errors.bind="errors" class="invalid-feedback"></sf-errors>
 </template>

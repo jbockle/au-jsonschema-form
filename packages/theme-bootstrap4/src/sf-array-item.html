@@ -1,8 +1,11 @@
 <template>
   <sf-slot if.bind="definition"
-           class="border border-light"
            value.two-way="value"
            definition.bind="definition"
            errors.bind="errors">
   </sf-slot>
+  <sf-array-item-toolbar index.bind="index"
+                         parent.bind="parent"
+                         definition.bind="definition">
+  </sf-array-item-toolbar>
 </template>

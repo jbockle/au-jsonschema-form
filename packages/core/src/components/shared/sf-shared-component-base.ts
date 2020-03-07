@@ -29,7 +29,7 @@ export abstract class SfSharedComponentBase {
   }
 
   public unbind(): void {
-    this._subs.forEach(sub => sub.dispose());
+    this._subs?.forEach(sub => sub?.dispose());
   }
 
   protected beforeInitialize(): void {

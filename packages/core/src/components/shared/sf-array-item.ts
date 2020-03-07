@@ -6,28 +6,20 @@ import { FormComponentDefinition, ErrorSchema } from '../../domain';
 import { JsonPointerService } from '../../infrastructure/json-pointer-service';
 import { FormContext } from '../../infrastructure/form-context';
 import { AppLogger } from '../../infrastructure/app-logger';
-import { SfArray } from './sf-array';
+import { SfArray } from '../form/sf-array';
+import COMPOSE_VIEW from '../sf-compose-view';
+import { ViewFinderService } from '../../infrastructure/view-finder-service';
+import { SfSharedComponentBase } from './sf-shared-component-base';
 
-@inlineView(`<template>
-  <sf-slot if.bind="definition"
-           value.two-way="value"
-           definition.bind="definition"
-           errors.bind="errors">
-  </sf-slot>
-  <sf-array-item-toolbar index.bind="index"
-                         parent.bind="parent"
-                         definition.bind="definition">
-  </sf-array-item-toolbar>
-</template>`)
-@inject(FormContext, JsonPointerService)
-export class SfArrayItem {
-  private _logger: AppLogger;
-
+@inlineView(COMPOSE_VIEW)
+@inject(FormContext, JsonPointerService, ViewFinderService)
+export class SfArrayItem extends SfSharedComponentBase {
   public constructor(
     private context: FormContext,
     private pointers: JsonPointerService,
+    viewFinder: ViewFinderService,
   ) {
-    this._logger = AppLogger.makeLogger(SfArrayItem);
+    super('sf-array-item', viewFinder, AppLogger.makeLogger(SfArrayItem));
   }
 
   @bindable
@@ -57,8 +49,9 @@ export class SfArrayItem {
     this.definition = this.getItemDefinition(this.index);
   }
 
-  public bind(): void {
+  public bind(ctx: any, octx: any): void {
     this.indexChanged();
+    super.bind(ctx, octx);
   }
 
   public getItemDefinition(index: number): FormComponentDefinition {
