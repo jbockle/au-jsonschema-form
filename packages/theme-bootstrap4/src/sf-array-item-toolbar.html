@@ -1,15 +1,15 @@
 <template>
-  <button type="button" class="btn btn-link btn-sm move-item-up"
-          if.bind="reordable"
-          disabled.bind="!canMoveUp"
-          click.trigger="move('up')"
-          title="move up">&upharpoonleft;</button>
-  <button type="button" class="btn btn-link btn-sm move-item-down"
-          if.bind="reordable"
-          disabled.bind="!canMoveDown"
-          click.trigger="move('down')"
-          title="move down">&downharpoonright;</button>
-  <button type="button" class="btn btn-link btn-sm remove-item"
-          title="remove"
-          click.trigger="remove()">&Cross;</button>
+  <div class="btn-group btn-group-sm" role="group">
+    <button type="button" class="btn btn-outline-dark move-item-up"
+            if.bind="reordable && canMoveUp"
+            click.trigger="move('up')"
+            title="move up">&upharpoonleft;</button>
+    <button type="button" class="btn btn-outline-dark move-item-down"
+            if.bind="reordable && canMoveDown"
+            click.trigger="move('down')"
+            title="move down">&downharpoonright;</button>
+    <button type="button" class="btn btn-outline-danger remove-item"
+            title="remove"
+            click.trigger="remove()">&times;</button>
+  </div>
 </template>
