@@ -1,10 +1,12 @@
 <template>
   <fieldset>
-    <legend>${title}</legend>
-
-    <button type="button" class="btn btn-link text-success"
-            disabled.bind="!canAdd"
-            click.trigger="add()">&plus; Add</button>
+    <legend>
+      ${title}
+      <button type="button"
+              class="btn btn-outline-success btn-sm add-item"
+              if.bind="canAdd"
+              click.trigger="add()">&plus;</button>
+    </legend>
 
     <sf-errors errors.bind="errors" class="invalid-feedback d-flex"></sf-errors>
 
