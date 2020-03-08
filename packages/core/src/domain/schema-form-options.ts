@@ -10,6 +10,7 @@ export interface AjvOptions {
 
 export interface SchemaFormOptions {
   destroyAction?: DestroyAction;
+  autocomplete?: 'on' | 'off';
   views?: Partial<ComponentViews>;
   ajv?: AjvOptions;
 }

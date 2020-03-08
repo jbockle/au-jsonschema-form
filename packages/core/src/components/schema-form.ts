@@ -14,11 +14,12 @@ import { IsVisible } from '../converters/is-visible';
 
 const DEFAULT_OPTIONS: SchemaFormOptions = {
   destroyAction: 'delete',
+  autocomplete: 'off',
 };
 
 
 @inlineView(`<template>
-  <form novalidate>
+  <form autocomplete.bind="formOptions.autocomplete" novalidate>
     <sf-slot show.bind="$this | isVisible"
              definition.bind="definition" 
              errors.bind="errors" 
@@ -55,7 +56,9 @@ export class SchemaForm {
   public errors!: ErrorSchema;
 
   @bindable
-  public options: SchemaFormOptions = Object.assign({}, DEFAULT_OPTIONS);
+  public options!: SchemaFormOptions;
+
+  public formOptions!: SchemaFormOptions;
 
   public definition!: FormComponentDefinition;
 
@@ -83,10 +86,11 @@ export class SchemaForm {
 
   public bind(bindingContext: any, overrideContext: any): void {
     this._logger.debug('bound');
+    this.optionsChanged();
     this.modelChanged();
     this.schemaChanged();
     this.uiSchemaChanged();
-    this.context.views = this.options.views || {};
+    this.context.views = this.formOptions.views || {};
 
     this.bindingContext = bindingContext;
     this.overrideContext = overrideContext;
@@ -108,7 +112,7 @@ export class SchemaForm {
   private schemaChanged(): void {
     this._logger.debug('schemaChanged');
     this.context.schema = this.schema;
-    this.validator = jsonSchema.commands.buildValidator(this.schema, this.options);
+    this.validator = jsonSchema.commands.buildValidator(this.schema, this.formOptions);
     this.setDefinition();
   }
 
@@ -116,6 +120,11 @@ export class SchemaForm {
     this._logger.debug('uiSchemaChanged');
     this.context.uiSchema = this.uiSchema;
     this.setDefinition();
+  }
+
+  private optionsChanged(): void {
+    this._logger.debug('optionsChanged');
+    this.formOptions = Object.assign({}, DEFAULT_OPTIONS, this.formOptions);
   }
 
   private setDefinition(): void {
