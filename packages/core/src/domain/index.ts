@@ -7,3 +7,4 @@ export * from './form-component-view-model';
 export * from './schema-form-options';
 export * from './views';
 export * from './schema-form-plugin-options';
+export * from './error-messages';

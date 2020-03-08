@@ -1,5 +1,6 @@
 import { FormComponentViewModel } from './form-component-view-model';
 import { DestroyAction } from './schema-form-options';
+import { ErrorMessages } from './error-messages';
 
 export type SfViewModelExpression = (viewModel: FormComponentViewModel) => boolean;
 
@@ -14,6 +15,7 @@ export interface UISchema {
   'ui:hidden'?: boolean | SfViewModelExpression;
   'ui:inputType'?: string;
   'ui:step'?: number;
+  'ui:errorMessages'?: ErrorMessages;
   // 'ui:defaultValue'?: any; // TODO: add optional default value
-  [key: string]: UISchema | UISchema[] | string | number | boolean | SfViewModelExpression | undefined;
+  [key: string]: UISchema | UISchema[] | string | number | boolean | SfViewModelExpression | ErrorMessages | undefined;
 }

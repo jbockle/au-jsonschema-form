@@ -9,6 +9,8 @@ export function buildValidator(schema: JsonSchema<any>, options: SchemaFormOptio
     schemaId: 'auto',
     unknownFormats: 'ignore',
     formats: options.ajv?.customFormats,
+    jsonPointers: true,
+    verbose: true,
   });
 
   ajv.addFormat(

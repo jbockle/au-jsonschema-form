@@ -1,7 +1,7 @@
 
-export type ErrorMessages = string[];
+export type Errors = string[];
 
 export interface ErrorSchema {
-  [key: string]: ErrorSchema | ErrorMessages | undefined;
-  _errors_?: ErrorMessages;
+  [key: string]: ErrorSchema | Errors | undefined;
+  _errors_?: Errors;
 }

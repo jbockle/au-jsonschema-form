@@ -8,9 +8,9 @@ import { FormEvents } from '../infrastructure/form-events';
 import { Subscription } from 'aurelia-event-aggregator';
 import jsonSchema from '../app/json-schema';
 import { AppLogger } from '../infrastructure/app-logger';
-import errorSchemas from '../app/error-schema';
 import { debounce } from '../decorators/debounce';
 import { IsVisible } from '../converters/is-visible';
+import { ErrorSchemaService } from '../infrastructure/error-schema-service';
 
 const DEFAULT_OPTIONS: SchemaFormOptions = {
   destroyAction: 'delete',
@@ -29,6 +29,7 @@ const DEFAULT_OPTIONS: SchemaFormOptions = {
 @inject(
   NewInstance.of(FormContext),
   NewInstance.of(FormEvents),
+  ErrorSchemaService,
 )
 @customElement('schema-form')
 export class SchemaForm {
@@ -38,6 +39,7 @@ export class SchemaForm {
   public constructor(
     public context: FormContext,
     public events: FormEvents,
+    public errorSchemaService: ErrorSchemaService,
   ) {
     this._logger.debug(SchemaForm.name);
     this.createSubscriptions(events);
@@ -72,7 +74,7 @@ export class SchemaForm {
     this._logger.debug('validating against json schema', JSON.stringify(this.model, null, 2));
     await this.validator(this.model);
     this._logger.debug('validation occurred', this.validator.errors);
-    this.errors = errorSchemas.commands.toErrorSchema(this.validator.errors || []);
+    this.errors = this.errorSchemaService.toErrorSchema(this.validator.errors || [], this.uiSchema, this.formOptions.errorMessages);
     signalBindings('@au-jsonschema-form/model-changed');
   }
 
