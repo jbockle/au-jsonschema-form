@@ -28,7 +28,7 @@ export class PrimitiveViewFinder extends ViewFinder {
     switch (definition.type) {
       case 'number':
         if (this.isRange(definition)) {
-          view = 'sf-number-range';
+          view = 'sf-range';
         }
         break;
       case 'boolean':

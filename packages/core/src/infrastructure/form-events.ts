@@ -1,7 +1,7 @@
 import { EventAggregator, Subscription } from 'aurelia-event-aggregator';
 import { FormComponentDefinition } from '../domain';
 import { inject } from 'aurelia-framework';
-import { Constants } from '../constants';
+import Constants from '../constants';
 
 export type FormChangedCallback = (definition: FormComponentDefinition & { value: any }) => void | PromiseLike<void>;
 export type Callback = () => void | PromiseLike<void>;

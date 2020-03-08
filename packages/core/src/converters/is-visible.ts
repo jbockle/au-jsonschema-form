@@ -1,6 +1,6 @@
 import { valueConverter } from 'aurelia-framework';
 import { FormComponentViewModel } from '../domain';
-import { Constants } from '../constants';
+import Constants from '../constants';
 
 @valueConverter('isVisible')
 export class IsVisible {

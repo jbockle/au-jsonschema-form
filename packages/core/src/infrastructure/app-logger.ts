@@ -1,5 +1,5 @@
 import { getLogger, Logger } from 'aurelia-logging';
-import { Constants } from '../constants';
+import Constants from '../constants';
 
 export class AppLogger {
   private constructor(private _logger: Logger) { }

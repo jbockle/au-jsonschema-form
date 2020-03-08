@@ -2,7 +2,7 @@ import { ComponentSlotView } from '../domain/view';
 import { ComponentSlotViews } from '../domain/views';
 import { inject } from 'aurelia-framework';
 import { ComponentViewRegistry } from './component-view-registry';
-import { Constants } from '../constants';
+import Constants from '../constants';
 
 const SEARCH_STRING = '${slot}';
 

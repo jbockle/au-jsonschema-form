@@ -1,6 +1,7 @@
 import { SfThemeFunc, ComponentViews, ComponentSlotViews } from '@au-jsonschema-form/core';
 
 import sfInput from './sf-input.html';
+import sfRange from './sf-range.html';
 import sfObject from './sf-object.html';
 import sfCheckbox from './sf-boolean.html';
 import sfErrors from './sf-errors.html';
@@ -14,6 +15,9 @@ import sfMultiSchema from './sf-multi-schema.html';
 export const bootstrap4Views: ComponentViews = {
   'sf-input': {
     markup: sfInput,
+  },
+  'sf-range': {
+    markup: sfRange,
   },
   'sf-object': {
     markup: sfObject,

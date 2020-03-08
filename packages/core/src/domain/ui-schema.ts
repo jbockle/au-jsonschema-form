@@ -12,5 +12,8 @@ export interface UISchema {
   'ui:items'?: UISchema | UISchema[];
   'ui:canReorder'?: boolean;
   'ui:hidden'?: boolean | SfViewModelExpression;
-  [key: string]: UISchema | UISchema[] | string | boolean | SfViewModelExpression | undefined;
+  'ui:inputType'?: string;
+  'ui:step'?: number;
+  // 'ui:defaultValue'?: any; // TODO: add optional default value
+  [key: string]: UISchema | UISchema[] | string | number | boolean | SfViewModelExpression | undefined;
 }

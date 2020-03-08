@@ -12,7 +12,7 @@
 
     <template repeat.for="item of value">
       <sf-array-item parent.bind="$$this"
-                     class="border border-light p-1"
+                     class="border border-light py-1 px-2 m-1"
                      value.two-way="item"
                      index.bind="$index"
                      errors.bind="errors[$index.toString()]"></sf-array-item>

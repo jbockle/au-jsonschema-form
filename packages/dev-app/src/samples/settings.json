@@ -35,7 +35,9 @@
                 "format": "email"
               },
               "age": {
-                "type": "number"
+                "type": "number",
+                "minimum": 18,
+                "maximum": 25
               },
               "phoneNumbers": {
                 "type": "array",

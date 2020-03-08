@@ -1,5 +1,5 @@
 import { EventAggregator, Subscription } from 'aurelia-event-aggregator';
-import { Constants } from '../constants';
+import Constants from '../constants';
 
 export type ArrayEventCallback = (args?: any) => void;
 

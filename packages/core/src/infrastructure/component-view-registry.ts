@@ -1,7 +1,5 @@
 import { ComponentView } from '../domain/view';
 import { ComponentViews } from '../domain/views';
-import { Constants } from '../constants';
-import Util from '../util';
 import { AppLogger } from './app-logger';
 
 export class ComponentViewRegistry {
@@ -11,7 +9,6 @@ export class ComponentViewRegistry {
 
   public constructor(views: ComponentViews) {
     this._views = views;
-    views['DEFAULT'] = views['DEFAULT'] ?? Constants.defaultComponentView;
   }
 
   public set(views: ComponentViews): void;
@@ -38,8 +35,9 @@ export class ComponentViewRegistry {
   }
 
   private getDefault(name: string): ComponentView {
-    const view = Object.assign({}, this._views['DEFAULT']);
-    view.markup = Util.compileTemplateString(view.markup, { name });
+    const view = {
+      markup: `<template><code>unknown view '${name}'</code></template>`,
+    };
 
     return view;
   }

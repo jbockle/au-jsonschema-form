@@ -1,4 +1,4 @@
-import { inject, bindable, bindingMode, inlineView } from 'aurelia-framework';
+import { inject, bindable, bindingMode, inlineView, computedFrom } from 'aurelia-framework';
 
 import { SfFormComponentBase } from './sf-form-component-base';
 import { FormEvents } from '../../infrastructure/form-events';
@@ -19,7 +19,12 @@ export class SfString extends SfFormComponentBase {
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   public value: string | null | undefined;
 
+  @computedFrom('definition')
   public get inputType(): string {
+    if (this.definition.uiSchema['ui:inputType']) {
+      return this.definition.uiSchema['ui:inputType'];
+    }
+
     switch (this.definition.schema.format) {
       case 'date':
         return 'date';
