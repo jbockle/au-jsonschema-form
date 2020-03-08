@@ -8,7 +8,8 @@
               click.trigger="add()">&plus;</button>
     </legend>
 
-    <sf-errors errors.bind="errors" class="invalid-feedback d-flex"></sf-errors>
+    <sf-errors errors.bind="errors" class="invalid-feedback d-flex flex-column">
+    </sf-errors>
 
     <template repeat.for="item of value">
       <sf-array-item parent.bind="$$this"
