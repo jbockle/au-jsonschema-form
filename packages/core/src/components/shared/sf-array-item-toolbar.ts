@@ -15,7 +15,7 @@ export class SfArrayItemToolbar extends SfSharedComponentBase {
     viewFinder: ViewFinderService,
     public arrayEvents: ArrayEvents,
   ) {
-    super('sf-array-item-toolbar', viewFinder, AppLogger.makeLogger(SfArrayItemToolbar));
+    super('sf-array-item-toolbar', viewFinder, AppLogger.makeLogger('SfArrayItemToolbar'));
 
     this._subs = Object.keys(this.callbacks).map(eventName => {
       const eventId = eventName as keyof ArrayEventMap;

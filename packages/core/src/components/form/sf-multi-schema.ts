@@ -25,7 +25,7 @@ export class SfMultiSchema extends SfFormComponentBase {
     context: FormContext,
     public pointers: JsonPointerService,
   ) {
-    super(events, context, AppLogger.makeLogger(SfMultiSchema));
+    super(events, context, AppLogger.makeLogger('SfMultiSchema'));
   }
 
   @bindable({ defaultBindindMode: bindingMode.twoWay })

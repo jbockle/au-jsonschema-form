@@ -13,7 +13,7 @@ export class SfBoolean extends SfFormComponentBase {
     events: FormEvents,
     context: FormContext,
   ) {
-    super(events, context, AppLogger.makeLogger(SfBoolean));
+    super(events, context, AppLogger.makeLogger('SfBoolean'));
   }
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })

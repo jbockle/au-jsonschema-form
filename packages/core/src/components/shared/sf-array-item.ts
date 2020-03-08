@@ -19,7 +19,7 @@ export class SfArrayItem extends SfSharedComponentBase {
     private pointers: JsonPointerService,
     viewFinder: ViewFinderService,
   ) {
-    super('sf-array-item', viewFinder, AppLogger.makeLogger(SfArrayItem));
+    super('sf-array-item', viewFinder, AppLogger.makeLogger('SfArrayItem'));
   }
 
   @bindable

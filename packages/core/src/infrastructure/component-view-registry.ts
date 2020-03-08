@@ -5,7 +5,7 @@ import { AppLogger } from './app-logger';
 export class ComponentViewRegistry {
   private _views: ComponentViews;
 
-  private _logger = AppLogger.makeLogger(ComponentViewRegistry);
+  private _logger = AppLogger.makeLogger('ComponentViewRegistry');
 
   public constructor(views: ComponentViews) {
     this._views = views;

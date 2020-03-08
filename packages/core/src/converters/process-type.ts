@@ -4,7 +4,7 @@ import { DefinitionType } from '../domain';
 
 @valueConverter('processType')
 export class ProcessType {
-  private _logger = AppLogger.makeLogger(ProcessType);
+  private _logger = AppLogger.makeLogger('ProcessType');
 
   public fromView(val: any, type: DefinitionType): any {
     this._logger.debug('input value', { val });

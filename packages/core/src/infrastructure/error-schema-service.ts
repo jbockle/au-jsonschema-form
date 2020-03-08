@@ -14,7 +14,7 @@ const DEFAULT_ERROR_MESSAGES: ErrorMessages = {
 
 @inject(JsonPointerService)
 export class ErrorSchemaService {
-  private _logger = AppLogger.makeLogger(ErrorSchemaService);
+  private _logger = AppLogger.makeLogger('ErrorSchemaService');
 
   public constructor(private _pointers: JsonPointerService) { }
 

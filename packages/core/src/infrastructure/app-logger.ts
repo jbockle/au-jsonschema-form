@@ -4,16 +4,7 @@ import Constants from '../constants';
 export class AppLogger {
   private constructor(private _logger: Logger) { }
 
-  public static makeLogger(name: string): AppLogger;
-  public static makeLogger(_class: { new(...args: any[]): {} }): AppLogger
-  public static makeLogger(nameOrClass: string | { new(...args: any[]): {} }): AppLogger {
-    let name = '';
-    if (typeof nameOrClass === 'string') {
-      name = nameOrClass;
-    } else {
-      name = nameOrClass.name;
-    }
-
+  public static makeLogger(name: string): AppLogger {
     return new AppLogger(getLogger(`${Constants.pluginName}::${name}`));
   }
 

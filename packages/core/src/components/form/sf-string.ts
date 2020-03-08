@@ -13,7 +13,7 @@ export class SfString extends SfFormComponentBase {
     events: FormEvents,
     context: FormContext,
   ) {
-    super(events, context, AppLogger.makeLogger(SfString));
+    super(events, context, AppLogger.makeLogger('SfString'));
   }
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })

@@ -2,7 +2,7 @@ import { JsonPointer } from 'jsonpointerx';
 import { AppLogger } from './app-logger';
 
 export class JsonPointerService {
-  private _logger = AppLogger.makeLogger(JsonPointerService);
+  private _logger = AppLogger.makeLogger('JsonPointerService');
 
   public cache = new Map<string, JsonPointer>();
 

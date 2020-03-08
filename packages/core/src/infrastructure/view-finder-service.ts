@@ -14,7 +14,7 @@ import { AppLogger } from './app-logger';
   All.of(ViewFinder),
 )
 export class ViewFinderService {
-  private _logger = AppLogger.makeLogger(ViewFinderService);
+  private _logger = AppLogger.makeLogger('ViewFinderService');
 
   public constructor(
     public componentViewRegistry: ComponentViewRegistry,

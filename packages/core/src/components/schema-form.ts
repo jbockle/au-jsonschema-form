@@ -34,7 +34,7 @@ const DEFAULT_OPTIONS: SchemaFormOptions = {
 @customElement('schema-form')
 export class SchemaForm {
   private _subs: Subscription[] = [];
-  private _logger = AppLogger.makeLogger(SchemaForm);
+  private _logger = AppLogger.makeLogger('SchemaForm');
 
   public constructor(
     public context: FormContext,

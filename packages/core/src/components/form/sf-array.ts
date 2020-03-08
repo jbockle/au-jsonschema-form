@@ -17,7 +17,7 @@ export class SfArray extends SfFormComponentBase {
     public pointers: JsonPointerService,
     public arrayEvents: ArrayEvents,
   ) {
-    super(events, context, AppLogger.makeLogger(SfArray));
+    super(events, context, AppLogger.makeLogger('SfArray'));
 
     this._subs = Object.keys(this.callbacks).map(eventName => {
       const eventId = eventName as keyof ArrayEventMap;

@@ -18,7 +18,7 @@ export class SfObject extends SfFormComponentBase {
     context: FormContext,
     public pointers: JsonPointerService,
   ) {
-    super(events, context, AppLogger.makeLogger(SfObject));
+    super(events, context, AppLogger.makeLogger('SfObject'));
   }
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })

@@ -12,7 +12,7 @@ export class SfErrors extends SfSharedComponentBase {
   public constructor(
     viewFinder: ViewFinderService,
   ) {
-    super('sf-errors', viewFinder, AppLogger.makeLogger(SfErrors));
+    super('sf-errors', viewFinder, AppLogger.makeLogger('SfErrors'));
   }
 
   @bindable
