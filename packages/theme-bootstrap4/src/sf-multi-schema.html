@@ -1,4 +1,4 @@
-<template>
+<template class="mb-2">
   <label>
     <span>
       ${title}<sup if.bind="definition.required">*</sup>
@@ -10,6 +10,9 @@
     <option repeat.for="option of options" model.bind="option">${option.title}
     </option>
   </select>
+
+  <sf-errors errors.bind="errors"
+             class="invalid-feedback d-flex flex-column"></sf-errors>
 
   <sf-slot class="d-block border border-light m-1 p-2"
            if.to-view="selectedSchema"
