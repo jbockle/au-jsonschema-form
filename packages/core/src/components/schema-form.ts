@@ -1,5 +1,5 @@
 import { inject, NewInstance, bindable, bindingMode, customElement, inlineView, View } from 'aurelia-framework';
-import { signalBindings } from 'aurelia-binding';
+import { signalBindings, computedFrom } from 'aurelia-binding';
 import Ajv from 'ajv';
 
 import { FormContext } from '../infrastructure/form-context';
@@ -8,22 +8,32 @@ import { FormEvents } from '../infrastructure/form-events';
 import { Subscription } from 'aurelia-event-aggregator';
 import jsonSchema from '../app/json-schema';
 import { AppLogger } from '../infrastructure/app-logger';
-import { debounce } from '../decorators/debounce';
 import { IsVisible } from '../converters/is-visible';
 import { ErrorSchemaService } from '../infrastructure/error-schema-service';
 
 const DEFAULT_OPTIONS: SchemaFormOptions = {
+  showState: false,
   destroyAction: 'delete',
   autocomplete: 'off',
 };
 
 
+type SubmitArgs = {
+  errorSchema: ErrorSchema;
+  model: any;
+  errors: Ajv.ErrorObject[];
+};
+
 @inlineView(`<template>
-  <form autocomplete.bind="formOptions.autocomplete" novalidate>
+  <form submit.trigger="onSubmit()" autocomplete.bind="formOptions.autocomplete" novalidate>
     <sf-slot show.bind="$this | isVisible"
              definition.bind="definition" 
-             errors.bind="errors" 
+             errors.bind="errorSchema" 
              value.two-way="model"></sf-slot>
+    <slot>
+      <button type="submit">Submit</button>
+    </slot>
+    <small if.bind="options.showState"><em>\${state}</em></small>
   </form>
 </template>`, [IsVisible])
 @inject(
@@ -35,6 +45,7 @@ const DEFAULT_OPTIONS: SchemaFormOptions = {
 export class SchemaForm {
   private _subs: Subscription[] = [];
   private _logger = AppLogger.makeLogger('SchemaForm');
+  private _validatorHandle: any = 0;
 
   public constructor(
     public context: FormContext,
@@ -55,10 +66,15 @@ export class SchemaForm {
   public model: any;
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
-  public errors!: ErrorSchema;
+  public errorSchema!: ErrorSchema;
 
   @bindable
   public options!: SchemaFormOptions;
+
+  @bindable
+  public submit: (args: SubmitArgs) => Promise<void> = async (_args: SubmitArgs) => {
+    alert(`submit triggered!\n - check console log for submit details\n - add \`submit.call="model, errors"\` to handle submit\n`);
+  }
 
   public formOptions!: SchemaFormOptions;
 
@@ -69,13 +85,49 @@ export class SchemaForm {
   public bindingContext: any;
   public overrideContext: any;
 
-  @debounce(10)
+  @bindable({ defaultBindingMode: bindingMode.twoWay })
+  public state: 'ready' | 'initializing' | 'validating' | 'error' | 'hasValidationErrors' | 'submitting' = 'initializing';
+
+  @computedFrom('validator.errors')
+  public get hasErrors(): boolean {
+    return (this.validator.errors ?? []).length !== 0;
+  }
+
+  private async beginValidate(): Promise<void> {
+    this.state = 'validating';
+    clearTimeout(this._validatorHandle);
+    this._validatorHandle = setTimeout(this.validate.bind(this), 10);
+  }
+
   public async validate(): Promise<void> {
-    this._logger.debug('validating against json schema', JSON.stringify(this.model, null, 2));
-    await this.validator(this.model);
-    this._logger.debug('validation occurred', this.validator.errors);
-    this.errors = this.errorSchemaService.toErrorSchema(this.validator.errors || [], this.uiSchema, this.formOptions.errorMessages);
-    signalBindings('@au-jsonschema-form/model-changed');
+    try {
+      this._logger.debug('validating against json schema', JSON.stringify(this.model, null, 2));
+      await this.validator(this.model);
+      this._logger.debug('validation occurred', this.validator.errors);
+      this.errorSchema = this.errorSchemaService.toErrorSchema(this.validator.errors || [], this.uiSchema, this.formOptions.errorMessages);
+      signalBindings('@au-jsonschema-form/model-changed');
+      this.state = (this.validator.errors ?? []).length > 0 ? 'hasValidationErrors' : 'ready';
+    } catch (error) {
+      this._logger.error('error validating', error);
+    }
+  }
+
+  public async onSubmit(): Promise<void> {
+    if (this.submit instanceof Function && this.state !== 'submitting') {
+      this.state = 'submitting';
+      try {
+        const args: SubmitArgs = {
+          errors: this.validator.errors ?? [],
+          errorSchema: this.errorSchema,
+          model: this.model,
+        };
+        this._logger.info('submitting args', args);
+        await this.submit(args);
+      } catch (error) {
+        this._logger.error('error submitting', error);
+      }
+      this.state = 'ready';
+    }
   }
 
   public created(owningView: View, myView: View): void {
@@ -87,15 +139,21 @@ export class SchemaForm {
   }
 
   public bind(bindingContext: any, overrideContext: any): void {
-    this._logger.debug('bound');
-    this.optionsChanged();
-    this.modelChanged();
-    this.schemaChanged();
-    this.uiSchemaChanged();
-    this.context.views = this.formOptions.views || {};
+    try {
+      this._logger.debug('bound');
+      this.optionsChanged();
+      this.modelChanged();
+      this.schemaChanged();
+      this.uiSchemaChanged();
+      this.context.views = this.formOptions.views || {};
 
-    this.bindingContext = bindingContext;
-    this.overrideContext = overrideContext;
+      this.bindingContext = bindingContext;
+      this.overrideContext = overrideContext;
+
+      this.state = 'ready';
+    } catch (error) {
+      this._logger.error('error initialzing', error);
+    }
   }
 
   public unbind(): void {
@@ -142,8 +200,8 @@ export class SchemaForm {
   }
 
   private createSubscriptions(events: FormEvents): void {
-    const valueChanged = events.subscribe.onValueChanged(this.validate.bind(this));
-    const validateSub = events.subscribe.onValidate(this.validate.bind(this));
+    const valueChanged = events.subscribe.onValueChanged(this.beginValidate.bind(this));
+    const validateSub = events.subscribe.onValidate(this.beginValidate.bind(this));
     this._subs.push(valueChanged, validateSub);
   }
 }

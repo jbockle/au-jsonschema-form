@@ -24,7 +24,10 @@
       <schema-form schema.bind="schema"
                    ui-schema.bind="uiSchema"
                    model.two-way="model"
+                   options.bind="{showState: true}"
                    view-model.ref="schemaForm">
+        <button type="submit" class="btn btn-primary"
+                disabled.bind="schemaForm.state !== 'ready'">Submit</button>
       </schema-form>
     </xbody>
   </xhtml>
