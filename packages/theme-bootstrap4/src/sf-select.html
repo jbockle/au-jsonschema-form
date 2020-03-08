@@ -5,7 +5,7 @@
     </span>
   </label>
   <select id.bind="id" value.two-way="value | processType:definition.type"
-          class="custom-select ${errors._errors_ ? 'is-invalid' : 'is-valid'}">
+          class="custom-select ${errors._errors_ ? 'is-invalid' : (value ? 'is-valid' : '')}">
     <option model.bind="undefined">Choose...</option>
     <option repeat.for="choice of definition.schema.enum"
             model.bind="choice">

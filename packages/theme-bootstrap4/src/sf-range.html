@@ -9,7 +9,7 @@
     </div>
   </label>
   <input id.bind="id" type="range"
-         class="custom-range ${errors._errors_ ? 'is-invalid' : 'is-valid'}"
+         class="custom-range ${errors._errors_ ? 'is-invalid' : (value ? 'is-valid' : '')}"
          min.bind="minimum"
          max.bind="maximum"
          step.bind="step"
