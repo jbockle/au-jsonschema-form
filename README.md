@@ -1,4 +1,4 @@
-# au-jsonschema-form
+# aujsf
 
 > This project is still very much in alpha! use at your own risk!
 
@@ -8,29 +8,36 @@ Theming is a first class citizen!
 
 ## Installation
 
-1. Install core dependency: `npm install @au-jsonschema-form/core`
-1. Install a theme (*or create your own*): `npm install @au-jsonschemaform/theme-vanilla`
+1. Install core dependency: `npm install @aujsf/core`
+1. Install a theme (*or create your own*): `npm install @aujsf/bootstrap-theme`
 1. Register the plugin:  
 
     ```typescript
     // main.ts
-    import {Aurelia} from 'aurelia-framework';
-    import {SchemaFormPluginOptions} from '@au-jsonschema-form/core';
-    import {theme} from '@au-jsonschema-form/theme-vanilla';
+    import 'core-js';
+    import { Aurelia, PLATFORM } from 'aurelia-framework';
 
-    export function configure(aurelia: Aurelia) {
-      // ...
-      aurelia.use.plugin(PLATFORM.moduleName('@au-jsonschema-form/core'),(options: SchemaFormPluginOptions) => {
-        options.theme = theme; // todo: change to theme
-      });
-      // ...
+    import { THEME } from '@aujsf/bootstrap-theme';
+    import { IPluginOptions } from '@aujsf/core';
+
+    export function configure(aurelia: Aurelia): void {
+      aurelia.use
+        .standardConfiguration()
+        .plugin(PLATFORM.moduleName('@aujsf/core'), (options: IPluginOptions) => options.defaultTheme = THEME);
+
+      aurelia.use.developmentLogging('debug');
+
+      aurelia.start().then(() => aurelia.setRoot(PLATFORM.moduleName('app')));
     }
     ```
 
 ## Use
 
 ```html
-<schema-form schema.bind="jsonSchema" ui-schema.bind="uiSchema" model.bind="model"></schema-form>
+<json-schema-form schema.bind="jsonSchema" 
+                  ui-schema.bind="uiSchema"
+                  value.bind="model"
+                  submit.call="submit()"></schema-form>
 ```
 
 ```typescript
@@ -56,6 +63,10 @@ export class MyComponent {
   };
 
   model: any = {};
+
+  submit(): void {
+    alert('submitted!' + JSON.stringify(this.model));
+  }
 }
 ```
 
