@@ -1,0 +1,44 @@
+<template>
+  <fieldset class="d-flex flex-column mt-1">
+
+    <!-- wrap to prevent inset -->
+    <xlegend>
+      <legend class="d-flex align-items-start">
+
+        <span>${itemTitle}</span>
+
+        <div class="btn-group btn-group-sm ml-auto" if.bind="!readonly">
+          <button type="button" class="btn btn-outline-primary text-monospace"
+                  click.delegate="moveup()"
+                  if.bind="!parentUiSchema['ui:no-reorder'] && !uiSchema['ui:no-reorder'] && !first"
+                  title="Move item up">
+            <strong>&uarr;</strong>
+          </button>
+
+          <button type="button" class="btn btn-outline-primary text-monospace"
+                  click.delegate="movedown()"
+                  if.bind="!parentUiSchema['ui:no-reorder'] && !uiSchema['ui:no-reorder'] && !last"
+                  title="Move item down">
+            <strong>&darr;</strong>
+          </button>
+
+          <button type="button" class="btn btn-outline-danger text-monospace"
+                  click.delegate="delete()"
+                  if.bind="!parentUiSchema['ui:no-remove'] && !uiSchema['ui:no-remove']"
+                  title="Remove item">
+            <strong>&minus;</strong>
+          </button>
+        </div>
+
+      </legend>
+    </xlegend>
+
+    <sf-slot schema.bind="schema"
+             ui-schema.bind="uiSchema"
+             pointer.bind="pointer"
+             value.bind="value"
+             parent-readonly.bind="readonly"
+             errors.bind="errors"></sf-slot>
+
+  </fieldset>
+</template>

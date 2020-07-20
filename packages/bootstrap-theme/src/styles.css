@@ -1,0 +1,25 @@
+json-schema-form {
+  display: block;
+  margin: .25rem;
+}
+
+json-schema-form label, json-schema-form legend {
+  user-select: none;
+}
+
+json-schema-form label:hover, json-schema-form legend:hover {
+  font-weight: bolder;
+}
+
+json-schema-form fieldset {
+  margin: 4px 0;
+}
+
+json-schema-form fieldset:hover {
+  border-color: var(--light) !important;
+}
+
+json-schema-form fieldset fieldset {
+  border-left: 1px solid var(--secondary);
+  padding-left: 4px;
+}

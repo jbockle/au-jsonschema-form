@@ -1,0 +1,46 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "es6",
+    "moduleResolution": "node",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "resolveJsonModule": true,
+    "removeComments": true,
+    "importHelpers": true,
+    "declaration": true,
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": false,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "baseUrl": ".",
+    "stripInternal": true,
+    "paths": {
+      "@aujsf/core": [
+        "/core/src"
+      ],
+      "@aujsf/core/*": [
+        "/core/src/*"
+      ],
+      "@aujsf/bootstrap-theme/*": [
+        "/core/src/*"
+      ],
+    }
+  }
+}

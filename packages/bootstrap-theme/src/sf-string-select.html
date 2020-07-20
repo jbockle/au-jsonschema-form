@@ -1,0 +1,29 @@
+<template>
+  <require from="@aujsf/bootstrap-theme/sf-bs-label.html"></require>
+
+  <div class="form-group">
+
+    <sf-bs-label id.bind="id" title.bind="title" required.bind="required"></sf-bs-label>
+
+    <select id.bind="id" value.bind="value"
+            disabled.bind="readonly"
+            class="custom-select ${hasErrors ? 'is-invalid' : value !== undefined ? 'is-valid' : ''}">
+
+      <option if.bind="uiSchema['ui:select-default']" model.bind="uiSchema['ui:select-default'][1]" selected>
+        ${uiSchema['ui:select-default'][0]}
+      </option>
+
+      <option repeat.for="option of schema.enum" model.bind="option">
+        ${option}
+      </option>
+
+    </select>
+
+    <small class="form-text text-muted" if.bind="description">${description}</small>
+
+    <div class="invalid-feedback" repeat.for="error of errorMessages">
+      ${error}
+    </div>
+
+  </div>
+</template>

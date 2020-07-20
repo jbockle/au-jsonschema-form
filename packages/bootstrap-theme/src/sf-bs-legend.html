@@ -1,0 +1,12 @@
+<template bindable="title, description, required">
+  <legend>
+
+    <span if.bind="title || description">
+      ${title} <sup if.bind="required">*</sup>
+      <h6 class="text-muted" if.bind="description">${description}</h6>
+    </span>
+
+    <slot></slot>
+
+  </legend>
+</template>

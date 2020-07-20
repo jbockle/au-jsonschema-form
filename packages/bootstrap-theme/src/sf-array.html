@@ -1,0 +1,37 @@
+<template>
+  <require from="@aujsf/bootstrap-theme/sf-bs-legend.html"></require>
+
+  <fieldset>
+
+    <sf-bs-legend title.bind="title"
+                  description.bind="description"
+                  required.bind="required">
+
+      <button type="button" class="d-block btn btn-sm btn-outline-success text-monospace"
+              if.bind="!readonly"
+              click.delegate="add()"
+              title="Add new item"><strong class="mr-1">&plus;</strong>Add</button>
+
+    </sf-bs-legend>
+
+    <span class="d-block invalid-feedback" if.bind="hasErrors" repeat.for="error of errorMessages">
+      ${error}
+    </span>
+
+    <template repeat.for="definition of value.length | sfGetItemDefinition:schema:uiSchema:pointer">
+      <sf-array-item parent-ui-schema.bind="uiSchema"
+                     item-title.bind="uiSchema | sfItemTitle:definition:{value:value[$index]}"
+                     parent-readonly.bind="readonly"
+                     schema.bind="definition.schema"
+                     ui-schema.bind="definition.uiSchema"
+                     pointer.bind="definition.pointer"
+                     errors.bind="errors[$index]"
+                     value.bind="value[$index]"
+                     first.bind="$first"
+                     last.bind="$last"
+                     index.bind="$index"
+                     even.bind="$even"></sf-array-item>
+    </template>
+
+  </fieldset>
+</template>

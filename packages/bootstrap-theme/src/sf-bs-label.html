@@ -1,0 +1,5 @@
+<template bindable="id, title, required, class">
+  <label for.bind="id" if.bind="title" class.bind="class">
+    ${title} <sup if.bind="required" title="Required">*</sup>
+  </label>
+</template>

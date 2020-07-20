@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:8081",
+      "webRoot": "${workspaceRoot}/packages/examples/src",
+      "userDataDir": "${workspaceRoot}/.chrome",
+      "sourceMapPathOverrides": {
+        "webpack:///./src/*": "${webRoot}/*",
+        "webpack:///../core/src/*": "${workspaceRoot}/packages/core/src/*"
+      }
+    }
+  ]
+}

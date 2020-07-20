@@ -1,0 +1,33 @@
+<template>
+  <require from="@aujsf/bootstrap-theme/sf-bs-label.html"></require>
+
+  <div class="form-group">
+
+    <sf-bs-label id.bind="id"
+                 title.bind="title"
+                 required.bind="required"
+                 class="${!description ? 'mb-1' : 'mb-0'}"></sf-bs-label>
+
+    <small class="form-text text-muted mt-0 mb-1" if.bind="description">${description}</small>
+
+    <template repeat.for="error of errorMessages">
+      <span class="badge badge-danger mr-1" if.bind="hasErrors">
+        ${error}
+      </span>
+      <br if.bind="$last">
+    </template>
+
+    <div class="form-check" repeat.for="option of schema.enum">
+      <input id.bind="id + '__' + option" class="form-check-input"
+             type="radio"
+             disabled.bind="readonly"
+             name.bind="id"
+             model.bind="option"
+             checked.bind="value">
+      <label for.bind="id + '__' + option" class="form-check-label small">
+        ${option}
+      </label>
+    </div>
+
+  </div>
+</template>

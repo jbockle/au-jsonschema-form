@@ -1,0 +1,13 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.formatOnPaste": true,
+  // "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "html.format.wrapAttributes": "preserve-aligned",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "[html]": {
+    "editor.formatOnSave": true
+  }
+}

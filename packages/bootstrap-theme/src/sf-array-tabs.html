@@ -1,0 +1,50 @@
+<template>
+  <require from="@aujsf/bootstrap-theme/sf-bs-legend.html"></require>
+
+  <fieldset add-array-item.trigger="$event.stopPropagation() || (currentTab = $event.detail.oldValue)"
+            delete-array-item.trigger="currentTab >= $event.detail && (currentTab = currentTab - 1)">
+
+    <sf-bs-legend title.bind="title"
+                  description.bind="description"
+                  required.bind="required">
+
+      <button type="button" class="d-block btn btn-sm btn-outline-success text-monospace"
+              if.bind="!readonly"
+              click.delegate="add($event)"
+              title="Add new item"><strong class="mr-1">&plus;</strong>Add</button>
+
+    </sf-bs-legend>
+
+    <span class="d-block invalid-feedback" if.bind="hasErrors" repeat.for="error of errorMessages">
+      ${error}
+    </span>
+
+    <let definitions.bind="value.length | sfGetItemDefinition:schema:uiSchema:pointer"></let>
+
+    <ul class="nav nav-tabs" if.bind="definitions.length > 0">
+      <li class="nav-item" repeat.for="definition of definitions">
+        <a class="nav-link ${currentTab === definition.key ? 'active' : ''}"
+           style="cursor: pointer;user-select: none;"
+           click.delegate="currentTab = definition.key"
+           mouseenter.trigger="hoverTab = definition.key"
+           mouseleave.trigger="hoverTab = -1">
+          ${uiSchema | sfItemTitle:definition:{value:value[$index]}}
+          <span class="close ml-2" click.trigger="delete($index, $event) || $event.stopPropagation()">&times;</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content" repeat.for="definition of definitions">
+      <div class="tab-pane ${currentTab === definition.key ? 'active' : ''}">
+
+        <sf-slot schema.bind="definition.schema"
+                 ui-schema.bind="definition.uiSchema"
+                 pointer.bind="definition.pointer"
+                 value.bind="value[$index]"
+                 parent-readonly.bind="readonly"
+                 errors.bind="errors[$index]"></sf-slot>
+      </div>
+    </div>
+
+  </fieldset>
+</template>

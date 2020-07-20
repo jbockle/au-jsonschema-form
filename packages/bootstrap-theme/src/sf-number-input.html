@@ -1,0 +1,20 @@
+<template>
+  <require from="@aujsf/bootstrap-theme/sf-bs-label.html"></require>
+
+  <div class="form-group">
+
+    <sf-bs-label id.bind="id" title.bind="title" required.bind="required"></sf-bs-label>
+
+    <input id.bind="id" type="number"
+           disabled.bind="readonly"
+           class="form-control ${hasErrors ? 'is-invalid' : value !== undefined ? 'is-valid' : ''}"
+           value.bind="value | sfValue:true">
+
+    <small class="form-text text-muted" if.bind="description">${description}</small>
+
+    <div class="invalid-feedback" repeat.for="error of errorMessages">
+      ${error}
+    </div>
+
+  </div>
+</template>

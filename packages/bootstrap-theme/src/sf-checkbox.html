@@ -1,0 +1,23 @@
+<template>
+  <require from="@aujsf/bootstrap-theme/sf-bs-label.html"></require>
+
+  <div class="form-group form-check">
+
+    <input type="checkbox" class="form-check-input ${hasErrors ? 'is-invalid' : value !== undefined ? 'is-valid' : ''}"
+           disabled.bind="readonly"
+           checked.bind="value"
+           id.bind="id">
+
+    <sf-bs-label class="form-check-label"
+                 id.bind="id"
+                 title.bind="title"
+                 required.bind="required"></sf-bs-label>
+
+    <small class="form-text text-muted" if.bind="description">${description}</small>
+
+    <div class="invalid-feedback" repeat.for="error of errorMessages">
+      ${error}
+    </div>
+
+  </div>
+</template>
