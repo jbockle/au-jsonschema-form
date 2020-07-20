@@ -23,6 +23,9 @@
     "url": "git+https://github.com/jbockle/au-jsonschema-form.git",
     "directory": "packages/core"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "prebuild": "rimraf dist/*",
     "clean": "rimraf dist/* coverage/*",
