@@ -1,6 +1,6 @@
 {
   "name": "@aujsf/bootstrap-theme",
-  "description": "Bootstrap 4 Theme for ajsf",
+  "description": "Bootstrap 4 Theme for @aujsf/core",
   "author": "jbockle",
   "version": "0.0.1",
   "license": "MIT",
