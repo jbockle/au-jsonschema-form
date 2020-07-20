@@ -9,6 +9,20 @@
   "files": [
     "dist"
   ],
+  "keywords": [
+    "aurelia",
+    "json schema",
+    "form",
+    "forms",
+    "form builder",
+    "aujsf",
+    "ajsf"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbockle/au-jsonschema-form.git",
+    "directory": "packages/core"
+  },
   "scripts": {
     "prebuild": "rimraf dist/*",
     "clean": "rimraf dist/* coverage/*",
