@@ -6,7 +6,6 @@ import { UISchema } from '../models/ui-schema';
 import { FormTemplateRegistry, FormContext } from '../services';
 import { ValueChangedEventDict, ValidationResult, FormTheme } from '../models';
 import utils from '../utils';
-import { debounce } from '../decorators/debounce';
 
 type FormState = 'initializing' | 'ready' | 'error';
 
@@ -96,8 +95,11 @@ export class JsonSchemaForm {
     this._formContext.value = newValue;
   }
 
-  @debounce(0)
+  private _validateHandle: any = -1;
   public validate(): void {
+    clearTimeout(this._validateHandle);
+    this._validateHandle = setTimeout(() => {
     this.validationResult = this._formContext.validator.validate(this.value);
+    }, 0);
   }
 }

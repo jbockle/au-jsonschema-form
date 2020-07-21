@@ -2,7 +2,6 @@ import { Logger } from 'aurelia-logging';
 import { bindable, ViewStrategy, InlineViewStrategy, bindingMode, inject, useView, PLATFORM, computedFrom } from 'aurelia-framework';
 import { JsonPointer } from 'jsonpointerx';
 
-import { debounce } from '../decorators/debounce';
 import { FormTemplateRegistry, FormContext } from '../services';
 import { JsonSchema, UISchema, ValueChangedEventDict, ErrorSchema } from '../models';
 import utils from '../utils';
@@ -134,10 +133,13 @@ export abstract class SfBase<TSchema extends JsonSchema, TValue = any> {
     //
   }
 
-  @debounce(100)
+  private _bindHandle: any = -1;
   protected rebind(): void {
-    this._logger.debug('rebinding');
-    this.bind(this._bctx, this._obctx);
+    clearTimeout(this._bindHandle);
+    this._bindHandle = setTimeout(() => {
+      this._logger.debug('rebinding');
+      this.bind(this._bctx, this._obctx);
+    }, 100);
   }
 
   protected dispatchEvent(name: string, detail: any, element: Element = this._element): void {
