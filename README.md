@@ -1,5 +1,10 @@
 # aujsf
 
+<p align="center">
+  <a href="https://bundlephobia.com/result?p=@aujsf/core@0.0.7"><img alt="Bundlephobia" src="https://badgen.net/bundlephobia/minzip/@aujsf/core"></a>
+</p>
+![]()
+
 > This project is still very much in alpha! use at your own risk!
 
 Create forms based on [json-schema]() specification!
