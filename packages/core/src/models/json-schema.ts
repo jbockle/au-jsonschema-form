@@ -33,6 +33,7 @@ interface JsonSchemaBase extends JsonSchemaAnnotations {
   type: SchemaType;
   const?: any;
   enum?: any[];
+  format?: string;
   [key: string]: any;
 }
 
@@ -41,8 +42,11 @@ export interface JsonSchemaObject extends JsonSchemaBase {
   properties?: { [prop: string]: JsonSchema };
   patternProperties?: { [regex: string]: JsonSchema };
   additionalProperties?: boolean | JsonSchema;
+  maxProperties?: number;
+  minProperties?: number;
   required?: string[];
   enum?: Record<string, any>[];
+  dependentRequired?: Record<string, string[]>;
 }
 
 export interface JsonSchemaArray extends JsonSchemaBase {
@@ -63,6 +67,7 @@ export interface JsonSchemaNumber extends JsonSchemaBase {
   maximum?: number;
   exclusiveMinimum?: number;
   exclusiveMaximum?: number;
+  multipleOf?: number;
 }
 
 export interface JsonSchemaBoolean extends JsonSchemaBase {
@@ -77,6 +82,10 @@ export interface JsonSchemaString extends JsonSchemaBase {
   enum?: string[];
   const?: string;
   default?: string;
+  pattern?: string;
+  maxLength?: number;
+  minLength?: number;
+  format?: 'date-time' | 'date' | 'time' | 'duration' | 'email' | 'hostname' | 'ipv4' | 'ipv6' | 'uri' | 'iri' | 'uuid' | string
 }
 
 export interface JsonSchemaNull extends JsonSchemaBase {
