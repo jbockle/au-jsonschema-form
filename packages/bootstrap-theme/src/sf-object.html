@@ -1,11 +1,17 @@
 <template>
-  <require from="@aujsf/bootstrap-theme/sf-bs-legend.html"></require>
 
   <fieldset>
+    <div>
+      <legend>
 
-    <sf-bs-legend title.bind="title"
-                  description.bind="description"
-                  required.bind="required"></sf-bs-legend>
+        <span if.bind="title">
+          ${title} <sup if.bind="required">*</sup>
+        </span>
+
+        <span class="form-text text-muted" if.bind="description">${description}</span>
+
+      </legend>
+    </div>
 
     <span class="d-block invalid-feedback" if.bind="hasErrors" repeat.for="error of errorMessages">
       ${error}

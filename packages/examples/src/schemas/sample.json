@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "text": {
+      "type": "string"
+    },
+    "textEnum": {
+      "type": "string",
+      "enum": [
+        "alpha",
+        "bravo",
+        "charlie"
+      ]
+    },
+    "textEnumLarge": {
+      "type": "string",
+      "enum": [
+        "alpha",
+        "bravo",
+        "charlie",
+        "delta",
+        "echo",
+        "foxtrot"
+      ]
+    }
+  }
+}

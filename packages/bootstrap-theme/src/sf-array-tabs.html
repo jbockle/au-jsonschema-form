@@ -1,19 +1,22 @@
 <template>
-  <require from="@aujsf/bootstrap-theme/sf-bs-legend.html"></require>
-
   <fieldset add-array-item.trigger="$event.stopPropagation() || (currentTab = $event.detail.oldValue)"
             delete-array-item.trigger="currentTab >= $event.detail && (currentTab = currentTab - 1)">
+    <div>
+      <legend>
 
-    <sf-bs-legend title.bind="title"
-                  description.bind="description"
-                  required.bind="required">
+        <span if.bind="title">
+          ${title} <sup if.bind="required">*</sup>
+        </span>
 
-      <button type="button" class="d-block btn btn-sm btn-outline-success text-monospace"
-              if.bind="!readonly"
-              click.delegate="add($event)"
-              title="Add new item"><strong class="mr-1">&plus;</strong>Add</button>
+        <span class="form-text text-muted" if.bind="description">${description}</span>
 
-    </sf-bs-legend>
+        <button type="button" class="d-block btn btn-sm btn-outline-success text-monospace"
+                if.bind="!readonly"
+                click.delegate="add($event)"
+                title="Add new item"><strong class="mr-1">&plus;</strong>Add</button>
+
+      </legend>
+    </div>
 
     <span class="d-block invalid-feedback" if.bind="hasErrors" repeat.for="error of errorMessages">
       ${error}

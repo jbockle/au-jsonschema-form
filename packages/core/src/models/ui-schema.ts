@@ -16,11 +16,6 @@ export interface UISchema {
   'ui:title'?: false | string;
 
   /**
-   * used to prevent showing a title on this element
-   */
-  'ui:no-title'?: boolean;
-
-  /**
    * override the view template to be used
    * @default determined from schema.type
    */

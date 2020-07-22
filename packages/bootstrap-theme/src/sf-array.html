@@ -1,24 +1,28 @@
 <template>
-  <require from="@aujsf/bootstrap-theme/sf-bs-legend.html"></require>
 
   <fieldset>
+    <div>
+      <legend>
 
-    <sf-bs-legend title.bind="title"
-                  description.bind="description"
-                  required.bind="required">
+        <span if.bind="title">
+          ${title} <sup if.bind="required">*</sup>
+        </span>
 
-      <button type="button" class="d-block btn btn-sm btn-outline-success text-monospace"
-              if.bind="!readonly"
-              click.delegate="add()"
-              title="Add new item"><strong class="mr-1">&plus;</strong>Add</button>
+        <span class="form-text text-muted" if.bind="description">${description}</span>
 
-    </sf-bs-legend>
+        <button type="button" class="d-block btn btn-sm btn-outline-success text-monospace"
+                if.bind="!readonly"
+                click.delegate="add()"
+                title="Add new item"><strong class="mr-1">&plus;</strong>Add</button>
+
+      </legend>
+    </div>
 
     <span class="d-block invalid-feedback" if.bind="hasErrors" repeat.for="error of errorMessages">
       ${error}
     </span>
 
-    <template repeat.for="definition of value.length | sfGetItemDefinition:schema:uiSchema:pointer">
+    <template repeat.for="definition of value.length | sfGetItemDefinition:schema:uiSchema:pointer & throttle">
       <sf-array-item parent-ui-schema.bind="uiSchema"
                      item-title.bind="uiSchema | sfItemTitle:definition:{value:value[$index]}"
                      parent-readonly.bind="readonly"
@@ -32,6 +36,5 @@
                      index.bind="$index"
                      even.bind="$even"></sf-array-item>
     </template>
-
   </fieldset>
 </template>
