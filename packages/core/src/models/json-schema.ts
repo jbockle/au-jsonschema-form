@@ -109,3 +109,7 @@ export interface JsonSchemaAnyOf extends JsonSchemaAnnotations {
 export interface JsonSchemaOneOf extends JsonSchemaAnnotations {
   oneOf: JsonSchema[];
 }
+
+export interface JsonSchemaNot extends JsonSchemaAnnotations {
+  not: JsonSchema;
+}

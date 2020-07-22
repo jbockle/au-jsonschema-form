@@ -35,7 +35,7 @@ export class SfArray extends SfBase<JsonSchemaArray, any[]> {
 
     const detail: ValueChangedEventDict = {
       newValue: newLength, oldValue: length,
-      pointer : new JsonPointer([...this.pointer.segments, 'length']),
+      pointer: new JsonPointer([...this.pointer.segments, 'length']),
     };
 
     this.dispatchEvent('value-changed', detail);
@@ -57,7 +57,7 @@ export class SfArray extends SfBase<JsonSchemaArray, any[]> {
 
       const detail: ValueChangedEventDict = {
         newValue: this.value.length, oldValue: length,
-        pointer : new JsonPointer([...this.pointer.segments, 'length']),
+        pointer: new JsonPointer([...this.pointer.segments, 'length']),
       };
 
       this.dispatchEvent('value-changed', detail);
@@ -72,7 +72,7 @@ export class SfArray extends SfBase<JsonSchemaArray, any[]> {
 
       const detail: ValueChangedEventDict = {
         newValue: this.value, oldValue: array,
-        pointer : this.pointer,
+        pointer: this.pointer,
       };
 
       this.dispatchEvent('value-changed', detail);
@@ -89,7 +89,7 @@ export class SfArray extends SfBase<JsonSchemaArray, any[]> {
 
       const detail: ValueChangedEventDict = {
         newValue: this.value, oldValue: array,
-        pointer : this.pointer,
+        pointer: this.pointer,
       };
 
       this.dispatchEvent('value-changed', detail);

@@ -11,12 +11,12 @@ export class Validator {
 
   public constructor() {
     this._ajv = new Ajv({
-      allErrors          : true,
+      allErrors: true,
       multipleOfPrecision: 8,
-      schemaId           : 'auto',
-      unknownFormats     : 'ignore',
-      jsonPointers       : true,
-      verbose            : true,
+      schemaId: 'auto',
+      unknownFormats: 'ignore',
+      jsonPointers: true,
+      verbose: true,
     });
   }
 
@@ -31,14 +31,14 @@ export class Validator {
   public validate(data: any): ValidationResult {
     if (this._validator) {
       this._validator(data);
-      
+
       const result: ValidationResult = {
-        valid      : !this._validator.errors,
-        errors     : this._validator.errors ?? [],
+        valid: !this._validator.errors,
+        errors: this._validator.errors ?? [],
         errorSchema: this.createErrorSchema(this._validator.errors ?? []),
       };
 
-      this._logger.info('validation completed', {...result});
+      this._logger.info('validation completed', { ...result });
 
       return result;
     } else {
@@ -55,7 +55,7 @@ export class Validator {
       if (error.dataPath === '' && error.keyword !== 'required') {
         errorSchema._errors_?.push(error.message!);
       }
-      
+
       let pointer = JsonPointer.compile(error.dataPath);
 
       if (error.keyword === 'required' && 'missingProperty' in error.params) {

@@ -3,15 +3,15 @@ import { FormTheme } from '../models';
 
 export class FormUtils {
   private static readonly nulltheme: FormTheme = {
-    'array-tabs'   : null!,
-    'array-item'   : null!,
-    'number-input' : null!,
-    'string-input' : null!,
-    'string-radio' : null!,
+    'array-tabs': null!,
+    'array-item': null!,
+    'number-input': null!,
+    'string-input': null!,
+    'string-radio': null!,
     'string-select': null!,
-    array          : null!,
-    checkbox       : null!,
-    object         : null!,
+    array: null!,
+    checkbox: null!,
+    object: null!,
   }
 
   public static async useThemes(formTemplateRegistry: FormTemplateRegistry, ...themes: Partial<FormTheme>[]): Promise<void> {

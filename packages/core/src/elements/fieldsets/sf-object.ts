@@ -21,8 +21,8 @@ export class SfObject extends SfBase<JsonSchemaObject> {
           return {
             key,
             uiSchema: propertyUiSchema,
-            schema  : utils.common.clone(this.getPropertySchema(key, propertyUiSchema)),
-            pointer : new JsonPointer([...this.pointer.segments, key]),
+            schema: utils.common.clone(this.getPropertySchema(key, propertyUiSchema)),
+            pointer: new JsonPointer([...this.pointer.segments, key]),
             required: (this.schema.required ?? []).indexOf(key) !== -1,
           } as ObjectKeyDefinition;
         } catch (error) {

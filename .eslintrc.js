@@ -9,8 +9,9 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
-    'key-spacing': ['error', { 'align': 'colon' }],
+    'key-spacing': ['error', {
+      'mode': 'minimum'
+    }],
     '@typescript-eslint/explicit-function-return-type': 'error',
     '@typescript-eslint/indent': ['error', 2],
     'quotes': ['error', 'single', { 'allowTemplateLiterals': true }],

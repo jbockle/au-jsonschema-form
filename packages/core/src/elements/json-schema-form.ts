@@ -59,7 +59,7 @@ export class JsonSchemaForm {
       await utils.form.useThemes(this._templateRegistry,
         this._formContext.options.defaultTheme ?? {},
         ...this.themes);
-      
+
       utils.form.themeIsValid(this._templateRegistry);
 
       this._formContext.schema = utils.common.clone(this.schema);
@@ -99,7 +99,7 @@ export class JsonSchemaForm {
   public validate(): void {
     clearTimeout(this._validateHandle);
     this._validateHandle = setTimeout(() => {
-    this.validationResult = this._formContext.validator.validate(this.value);
+      this.validationResult = this._formContext.validator.validate(this.value);
     }, 0);
   }
 }

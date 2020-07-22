@@ -23,10 +23,10 @@ export class SfGetItemDefinition {
 
     for (let index = 0; index < (length ?? 0); index++) {
       const definition: ArrayKeyDefinition = {
-        key     : index,
-        schema  : this.getItemJsonSchema(index, schema),
+        key: index,
+        schema: this.getItemJsonSchema(index, schema),
         uiSchema: this.getItemUiSchema(index, uiSchema),
-        pointer : new JsonPointer([...pointer.segments, index.toString()]),
+        pointer: new JsonPointer([...pointer.segments, index.toString()]),
       };
 
       this._logger.debug('created definition', definition);
