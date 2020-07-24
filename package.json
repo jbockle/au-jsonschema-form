@@ -6,7 +6,7 @@
     "clean": "lerna clean -y",
     "postclean": "rimraf packages/**/package-lock.json",
     "test": "lerna exec -- npm test",
-    "lint": "lerna run lint --parallel",
+    "lint": "lerna run lint --parallel --stream",
     "start": "lerna exec --scope examples -- npm start",
     "bootstrap": "lerna bootstrap"
   },
