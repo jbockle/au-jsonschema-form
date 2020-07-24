@@ -98,7 +98,8 @@ export class SfSlot {
     } else if ('oneOf' in schema) {
       return 'one-of';
     } else if ('$ref' in schema) {
-      this.resolveSlotType(JsonSchemaUtils.resolveSchemaReference(schema.$ref, this._formContext.schema));
+      this.schema = this._formContext.validator.ajv.getSchema(schema.$ref)!.schema as JsonSchema;
+      return this.resolveSlotType(this.schema);
     }
 
     return 'unknown';

@@ -81,7 +81,8 @@ export class SfGetItemDefinition {
     if (Array.isArray(schemaOrSchemas)) {
       return schemaOrSchemas.map(schema => this.getReferencedSchema(schema) as JsonSchema);
     } else if ('$ref' in schemaOrSchemas) {
-      return this.getReferencedSchema(utils.jsonSchema.resolveSchemaReference(schemaOrSchemas.$ref, this._context.schema));
+      const schema = this._context.validator.ajv.getSchema(schemaOrSchemas.$ref)!.schema as JsonSchema;
+      return this.getReferencedSchema(schema);
     } else {
       return schemaOrSchemas;
     }
