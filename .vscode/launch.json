@@ -5,7 +5,7 @@
       "name": "Chrome",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:8081",
+      "url": "http://localhost:9000",
       "webRoot": "${workspaceRoot}/packages/examples/src",
       "userDataDir": "${workspaceRoot}/.chrome",
       "sourceMapPathOverrides": {

@@ -114,7 +114,7 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
     // serve index.html for all 404 (required for push-state)
     historyApiFallback: true,
     hot: hmr || true,
-    port: port || 8081,
+    port: port || 9000,
     host: host,
   },
   devtool: production ? 'nosources-source-map' : 'cheap-module-eval-source-map',
