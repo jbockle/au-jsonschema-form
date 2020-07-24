@@ -2,40 +2,56 @@ import Ajv from 'ajv';
 import { getLogger } from 'aurelia-logging';
 import { JsonPointer } from 'jsonpointerx';
 
-import { JsonSchema, ErrorSchema, ValidationResult } from '../models';
+import v4 from 'ajv/lib/refs/json-schema-draft-04.json';
+import v6 from 'ajv/lib/refs/json-schema-draft-06.json';
+
+import { JsonSchema, ErrorSchema, ValidationResult, FormOptions } from '../models';
 
 export class Validator {
   private _logger = getLogger('aujsf:validator');
-  private _ajv: Ajv.Ajv;
-  private _validator?: Ajv.ValidateFunction;
+  public ajv!: Ajv.Ajv;
+  public validator?: Ajv.ValidateFunction;
 
-  public constructor() {
-    this._ajv = new Ajv({
+  /**
+   * @internal
+   */
+  public setSchema(schema: JsonSchema, options: FormOptions): void {
+    this._logger.debug('received schema', schema);
+    this.ajv = this.createAjv(options);
+    this.validator = this.ajv.compile(schema);
+  }
+
+  /**
+   * @internal
+   */
+  public createAjv(options: FormOptions): Ajv.Ajv {
+    const ajv = new Ajv(Object.assign({
       allErrors: true,
       multipleOfPrecision: 8,
       schemaId: 'auto',
       unknownFormats: 'ignore',
       jsonPointers: true,
       verbose: true,
-    });
-  }
+    }, options.ajv?.options ?? {}));
 
-  /**
-   * @internal
-   */
-  public setSchema(schema: JsonSchema): void {
-    this._logger.debug('received schema', schema);
-    this._validator = this._ajv.compile(schema);
+    if (options.ajv?.transform instanceof Function) {
+      options.ajv.transform(ajv);
+    } else {
+      ajv.addMetaSchema(v4);
+      ajv.addMetaSchema(v6);
+    }
+
+    return ajv;
   }
 
   public validate(data: any): ValidationResult {
-    if (this._validator) {
-      this._validator(data);
+    if (this.validator) {
+      this.validator(data);
 
       const result: ValidationResult = {
-        valid: !this._validator.errors,
-        errors: this._validator.errors ?? [],
-        errorSchema: this.createErrorSchema(this._validator.errors ?? []),
+        valid: !this.validator.errors,
+        errors: this.validator.errors ?? [],
+        errorSchema: this.createErrorSchema(this.validator.errors ?? []),
       };
 
       this._logger.info('validation completed', { ...result });

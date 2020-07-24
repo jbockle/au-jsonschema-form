@@ -4,7 +4,7 @@ import { getLogger } from 'aurelia-logging';
 import { JsonSchema } from '../models/json-schema';
 import { UISchema } from '../models/ui-schema';
 import { FormTemplateRegistry, FormContext } from '../services';
-import { ValueChangedEventDict, ValidationResult, FormTheme } from '../models';
+import { ValueChangedEventDict, ValidationResult, FormTheme, FormOptions } from '../models';
 import utils from '../utils';
 
 type FormState = 'initializing' | 'ready' | 'error';
@@ -41,6 +41,9 @@ export class JsonSchemaForm {
   @bindable
   public themes: Partial<FormTheme>[] = [];
 
+  @bindable
+  public options: FormOptions = {};
+
   public state: FormState = 'initializing';
 
   public error?: any;
@@ -62,7 +65,7 @@ export class JsonSchemaForm {
 
       utils.form.themeIsValid(this._templateRegistry);
 
-      this._formContext.schema = utils.common.clone(this.schema);
+      this._formContext.setSchema(utils.common.clone(this.schema), this.options);
       this._formContext.uiSchema = utils.common.clone(this.uiSchema);
       this._formContext.value = this.value;
 
@@ -83,8 +86,12 @@ export class JsonSchemaForm {
     }
   }
 
+  public optionsChanged(newValue: FormOptions, _oldValue: FormOptions): void {
+    this._formContext.setSchema(utils.common.clone(this.schema), newValue);
+  }
+
   public schemaChanged(newValue: JsonSchema, _oldValue: JsonSchema): void {
-    this._formContext.schema = utils.common.clone(newValue);
+    this._formContext.setSchema(utils.common.clone(newValue), this.options);
   }
 
   public uiSchemaChanged(newValue: UISchema, _oldValue: UISchema): void {
