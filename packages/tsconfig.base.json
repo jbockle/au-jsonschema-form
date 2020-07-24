@@ -32,15 +32,9 @@
     "baseUrl": ".",
     "stripInternal": true,
     "paths": {
-      "@aujsf/core": [
-        "/core/src"
-      ],
-      "@aujsf/core/*": [
-        "/core/src/*"
-      ],
-      "@aujsf/bootstrap-theme/*": [
-        "/core/src/*"
-      ],
+      "@aujsf/*": [
+        "*/src"
+      ]
     }
   }
 }
