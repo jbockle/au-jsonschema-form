@@ -16,12 +16,13 @@
     }
   },
   "dependencies": {
-    "lerna": "^3.22.1",
-    "typescript": "^3.9.7",
-    "@typescript-eslint/eslint-plugin": "^3.6.1",
-    "@typescript-eslint/parser": "^3.6.1",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
     "eslint": "^7.5.0",
     "husky": "^4.2.5",
-    "rimraf": "^3.0.2"
+    "lerna": "^3.22.1",
+    "lerna-audit": "^1.2.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.9.7"
   }
 }
