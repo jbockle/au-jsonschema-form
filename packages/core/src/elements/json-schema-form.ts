@@ -69,7 +69,7 @@ export class JsonSchemaForm {
       this._formContext.uiSchema = utils.common.clone(this.uiSchema);
       this._formContext.value = this.value;
 
-      this.validate();
+      this.validate(100);
 
       this._element.addEventListener('value-changed', (event: CustomEvent<ValueChangedEventDict>) => {
         signalBindings('value-changed');
@@ -103,10 +103,10 @@ export class JsonSchemaForm {
   }
 
   private _validateHandle: any = -1;
-  public validate(): void {
+  public validate(wait?: number): void {
     clearTimeout(this._validateHandle);
     this._validateHandle = setTimeout(() => {
       this.validationResult = this._formContext.validator.validate(this.value);
-    }, 0);
+    }, wait ?? 50);
   }
 }
