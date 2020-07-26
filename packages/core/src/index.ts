@@ -17,6 +17,7 @@ import { SfJson } from './converters/sf-json';
 import { SfItemTitle } from './converters/sf-item-title';
 import { IPluginOptions, PluginOptions } from './plugin-options';
 import { SfAllOf } from './elements/combined/sf-all-of';
+import { SfSortDefinitions } from './converters/sf-sort-definitions';
 
 export function configure(framework: FrameworkConfiguration, configure?: (options: IPluginOptions) => void): void {
   const options = framework.container.get(PluginOptions);
@@ -38,6 +39,7 @@ export function configure(framework: FrameworkConfiguration, configure?: (option
     SfAllOf,
     // converters
     SfGetItemDefinition,
+    SfSortDefinitions,
     SfItemTitle,
     SfValue,
     SfJson,

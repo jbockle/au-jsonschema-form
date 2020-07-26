@@ -108,5 +108,12 @@ export class App {
 
   public uiSchema: UISchema = {
     'ui:title': false,
+    combined: {
+      allOfExample: {
+        firstName: {
+          'ui:order': 0,
+        },
+      },
+    },
   }
 }

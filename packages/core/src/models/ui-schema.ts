@@ -22,6 +22,11 @@ export interface UISchema {
   'ui:view'?: string;
 
   /**
+   * specify the property or item order
+   */
+  'ui:order'?: number;
+
+  /**
    * override the schema type used (may be useful in array schema types)
    */
   'ui:type'?: SchemaType;

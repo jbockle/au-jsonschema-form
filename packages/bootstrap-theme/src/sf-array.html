@@ -22,7 +22,7 @@
       ${error}
     </span>
 
-    <template repeat.for="definition of value.length | sfGetItemDefinition:schema:uiSchema:pointer & throttle">
+    <template repeat.for="definition of value.length | sfGetItemDefinition:schema:uiSchema:pointer | sfSortDefinitions">
       <sf-array-item parent-ui-schema.bind="uiSchema"
                      item-title.bind="uiSchema | sfItemTitle:definition:{value:value[$index]}"
                      parent-readonly.bind="readonly"

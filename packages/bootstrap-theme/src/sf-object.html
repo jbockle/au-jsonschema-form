@@ -17,7 +17,7 @@
       ${error}
     </span>
 
-    <template repeat.for="definition of definitions">
+    <template repeat.for="definition of definitions | sfSortDefinitions">
       <sf-slot schema.bind="definition.schema"
                ui-schema.bind="definition.uiSchema"
                value.bind="value[definition.key]"
