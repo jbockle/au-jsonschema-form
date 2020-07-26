@@ -7,7 +7,7 @@ import { JsonSchemaUtils } from '../utils/json-schema-utils';
 import { FormTemplateRegistry } from '../services/form-template-registry';
 import { FormContext } from '../services/form-context';
 
-type SlotType = SchemaType | 'any-of' | 'one-of' | 'unknown';
+type SlotType = SchemaType | 'all-of' | 'any-of' | 'one-of' | 'unknown';
 
 const ATTRIBUTES = [
   ['schema.bind', 'schema'],
@@ -93,6 +93,8 @@ export class SfSlot {
       if (Array.isArray(schema.type) && JsonSchemaUtils.isNullable(schema.type)) {
         return schema.type.find(type => type !== 'null')!;
       }
+    } else if ('allOf' in schema) {
+      return 'all-of';
     } else if ('anyOf' in schema) {
       return 'any-of';
     } else if ('oneOf' in schema) {

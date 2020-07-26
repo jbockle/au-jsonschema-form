@@ -1,3 +1,4 @@
+import { merge, mergeAll } from './merge';
 
 export class CommonUtils {
   public static clone<T>(item: T): T {
@@ -20,4 +21,8 @@ export class CommonUtils {
   public static notNullOrUndefined<T>(item: T | undefined): item is T {
     return item !== null && item !== undefined;
   }
+
+  public static merge = merge;
+
+  public static mergeAll = mergeAll;
 }

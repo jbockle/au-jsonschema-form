@@ -21,7 +21,7 @@ export class SfObject extends SfBase<JsonSchemaObject> {
           return {
             key,
             uiSchema: propertyUiSchema,
-            schema: utils.common.clone(this.getPropertySchema(key, propertyUiSchema)),
+            schema: utils.common.clone(this.getPropertySchema(key)),
             pointer: new JsonPointer([...this.pointer.segments, key]),
             required: (this.schema.required ?? []).indexOf(key) !== -1,
           } as ObjectKeyDefinition;
@@ -43,11 +43,7 @@ export class SfObject extends SfBase<JsonSchemaObject> {
       this.value ?? {}));
   }
 
-  public getPropertySchema(property: string, propUiSchema: UISchema): JsonSchema {
-    if (propUiSchema['ui:type']) {
-      return { type: propUiSchema['ui:type'] };
-    }
-
+  public getPropertySchema(property: string): JsonSchema {
     if (this.schema.properties) {
       if (property in this.schema.properties) {
         return this.schema.properties[property];

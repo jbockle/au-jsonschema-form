@@ -12,6 +12,7 @@ const theme: FormTheme = {
   'string-radio': PLATFORM.moduleName('@aujsf/bootstrap-theme/sf-string-radio.html'),
   'number-input': PLATFORM.moduleName('@aujsf/bootstrap-theme/sf-number-input.html'),
   'checkbox': PLATFORM.moduleName('@aujsf/bootstrap-theme/sf-checkbox.html'),
+  'all-of': PLATFORM.moduleName('@aujsf/bootstrap-theme/sf-all-of.html'),
 };
 
 export const THEME = Object.freeze(theme);

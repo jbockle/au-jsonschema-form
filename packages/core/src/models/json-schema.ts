@@ -18,10 +18,12 @@ export type JsonSchema =
   JsonSchemaNull |
   JsonSchemaMulti |
   JsonSchemaRef |
+  JsonSchemaAllOf |
   JsonSchemaAnyOf |
   JsonSchemaOneOf;
 
 interface JsonSchemaAnnotations {
+  type?: SchemaType;
   title?: string;
   description?: string;
   readOnly?: boolean;
@@ -30,7 +32,7 @@ interface JsonSchemaAnnotations {
 }
 
 interface JsonSchemaBase extends JsonSchemaAnnotations {
-  type: SchemaType;
+  type?: SchemaType;
   const?: any;
   enum?: any[];
   format?: string;
@@ -100,6 +102,10 @@ export interface JsonSchemaMulti extends JsonSchemaBase {
 
 export interface JsonSchemaRef extends JsonSchemaAnnotations {
   $ref: string;
+}
+
+export interface JsonSchemaAllOf extends JsonSchemaAnnotations {
+  allOf: JsonSchema[];
 }
 
 export interface JsonSchemaAnyOf extends JsonSchemaAnnotations {

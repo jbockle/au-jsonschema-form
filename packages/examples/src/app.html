@@ -6,7 +6,10 @@
   <json-schema-form schema.bind="schemas[0]"
                     ui-schema.bind="uiSchema"
                     value.bind="model"
-                    options.bind="options">
+                    options.bind="options"
+                    value-changed.trigger="signalJson()">
     <button type="submit" class="btn btn-primary">Submit</button>
   </json-schema-form>
+
+  <pre>${model | sfJson}</pre>
 </template>

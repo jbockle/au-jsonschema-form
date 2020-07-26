@@ -111,7 +111,7 @@ export abstract class SfBase<TSchema extends JsonSchema, TValue = any> {
     this.uiSchema['ui:view'] = this.uiSchema['ui:view'] ?? this.getTemplate();
   }
 
-  protected getTemplate(): string {
+  protected getTemplate(): string | undefined {
     return 'unknown';
   }
 

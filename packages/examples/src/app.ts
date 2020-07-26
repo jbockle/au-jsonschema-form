@@ -1,7 +1,8 @@
 import { THEME } from '@aujsf/bootstrap-theme';
 import 'jquery';
 import 'bootstrap';
-import { JsonSchema, UISchema, FormOptions } from '@aujsf/core';
+import { UISchema, FormOptions, JsonSchemaObject } from '@aujsf/core';
+import { signalBindings } from 'aurelia-framework';
 
 // import v4 from 'ajv/lib/refs/json-schema-draft-04.json';
 // import v6 from 'ajv/lib/refs/json-schema-draft-06.json';
@@ -13,6 +14,10 @@ export class App {
 
   public model: any = {};
 
+  public signalJson(): void {
+    signalBindings('sfJson');
+  }
+
   public options: FormOptions = {
     ajv: {
       // transform: (ajv): void => {
@@ -22,13 +27,12 @@ export class App {
     },
   }
 
-  public schemas: JsonSchema[] = [
+  public schemas: JsonSchemaObject[] = [
     {
-      '$schema': 'http://json-schema.org/draft-06/schema#',
-      'definitions': {
-        'textEnumLarge': {
-          'type': 'string',
-          'enum': [
+      definitions: {
+        textEnumLarge: {
+          type: 'string',
+          enum: [
             'alpha',
             'bravo',
             'charlie',
@@ -38,49 +42,61 @@ export class App {
           ],
         },
       },
-      'type': 'object',
-      'properties': {
-        'text': {
-          'type': 'object',
-          'properties': {
-            'text': {
-              'type': 'string',
+      type: 'object',
+      properties: {
+        combined: {
+          type: 'object',
+          properties: {
+            allOfExample: {
+              allOf: [
+                { type: 'object' },
+                { properties: { firstName: { type: 'string' } }, required: ['firstName'] },
+                { properties: { lastName: { type: 'string' } }, required: ['lastName'] },
+              ],
             },
-            'textRequired': {
-              'type': 'string',
+          },
+        } as JsonSchemaObject,
+        text: {
+          type: 'object',
+          properties: {
+            text: {
+              type: 'string',
             },
-            'textEnum': {
-              'type': 'string',
-              'enum': [
+            textRequired: {
+              type: 'string',
+            },
+            textEnum: {
+              type: 'string',
+              enum: [
                 'alpha',
                 'bravo',
                 'charlie',
               ],
             },
-            'textEnumLarge': {
-              '$ref': '#/definitions/textEnumLarge',
+            textEnumLarge: {
+              $ref: '#/definitions/textEnumLarge',
             },
           },
-          'required': [
+          required: [
             'textRequired',
           ],
         },
-        'arrays': {
-          'type': 'object',
-          'properties': {
-            'simple': {
-              'type': 'array',
-              'items': {
-                'type': 'string',
+        arrays: {
+          type: 'object',
+          properties: {
+            simple: {
+              type: 'array',
+              items: {
+                type: 'string',
               },
             },
-            'nestedObject': {
-              'type': 'array',
-              'items': {
-                'type': 'object',
-                'properties': {
-                  'firtName': { 'type': 'string' },
-                  'lastName': { 'type': 'string' },
+            nestedObject: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  firtName: { type: 'string' },
+                  lastName: { type: 'string' },
                 },
               },
             },

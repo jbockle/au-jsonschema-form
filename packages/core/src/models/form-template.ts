@@ -21,6 +21,7 @@ export interface FormTheme {
   'string-radio': FormModule,
   'number-input': FormModule,
   'checkbox': FormModule,
+  'all-of': FormModule,
   [name: string]: FormModule;
 }
 

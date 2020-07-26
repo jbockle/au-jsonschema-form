@@ -9,6 +9,7 @@ export class FormUtils {
     'string-input': null!,
     'string-radio': null!,
     'string-select': null!,
+    'all-of': null!,
     array: null!,
     checkbox: null!,
     object: null!,
