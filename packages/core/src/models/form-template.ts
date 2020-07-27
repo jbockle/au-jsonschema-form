@@ -22,6 +22,7 @@ export interface FormTheme {
   'number-input': FormModule,
   'checkbox': FormModule,
   'all-of': FormModule,
+  'one-of': FormModule,
   [name: string]: FormModule;
 }
 

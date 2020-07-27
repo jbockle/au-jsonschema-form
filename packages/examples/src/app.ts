@@ -54,6 +54,12 @@ export class App {
                 { properties: { lastName: { type: 'string' } }, required: ['lastName'] },
               ],
             },
+            oneOfSimple: {
+              oneOf: [
+                { type: 'string', title: 'Enter name' },
+                { type: 'number', title: 'Enter age' },
+              ],
+            },
           },
         } as JsonSchemaObject,
         text: {

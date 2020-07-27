@@ -13,6 +13,7 @@ const theme: FormTheme = {
   'number-input': PLATFORM.moduleName('@aujsf/bootstrap-theme/sf-number-input.html'),
   'checkbox': PLATFORM.moduleName('@aujsf/bootstrap-theme/sf-checkbox.html'),
   'all-of': PLATFORM.moduleName('@aujsf/bootstrap-theme/sf-all-of.html'),
+  'one-of': PLATFORM.moduleName('@aujsf/bootstrap-theme/sf-one-of.html'),
 };
 
 export const THEME = Object.freeze(theme);

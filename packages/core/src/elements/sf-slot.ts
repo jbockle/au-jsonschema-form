@@ -54,22 +54,35 @@ export class SfSlot {
   @observable
   public type!: SlotType;
 
-  public viewStrategy!: ViewStrategy;
+  public viewStrategy!: InlineViewStrategy;
+
+  private _schemaChangedHandle: any = -1;
+  public schemaChanged(): void {
+    clearTimeout(this._schemaChangedHandle);
+
+    if (this.viewStrategy) {
+      this.viewStrategy = undefined!;
+    }
+
+    this._schemaChangedHandle = setTimeout(() => {
+      try {
+        this.errors = this.errors ?? {};
+        this.resolveUISchemaDefaults();
+        this.type = this.resolveSlotType(this.schema);
+        this.pointer = this.pointer ?? new JsonPointer([]);
+
+        this.viewStrategy = this.createViewStrategy(this.type);
+
+        this._logger.debug('bound', this.pointer.toString());
+      } catch (error) {
+        this._logger.error('an error occurred while building the sf-slot', { error, viewModel: this });
+        this.viewStrategy = new InlineViewStrategy(`<template style="color: red;">ERROR</template>`);
+      }
+    }, 50);
+  }
 
   protected bind(_ctx: any, _octx: any): void {
-    try {
-      this.errors = this.errors ?? {};
-      this.resolveUISchemaDefaults();
-      this.type = this.resolveSlotType(this.schema);
-      this.pointer = this.pointer ?? new JsonPointer([]);
-
-      this.viewStrategy = this.createViewStrategy(this.type);
-
-      this._logger.debug('bound', this.pointer.toString());
-    } catch (error) {
-      this._logger.error('an error occurred while building the sf-slot', { error, viewModel: this });
-      this.viewStrategy = new InlineViewStrategy(`<template style="color: red;">ERROR</template>`);
-    }
+    this.schemaChanged();
   }
 
   private createViewStrategy(type: SlotType): ViewStrategy {
