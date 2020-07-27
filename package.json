@@ -8,6 +8,7 @@
     "test": "lerna exec -- npm test",
     "lint": "lerna run lint --parallel --stream",
     "start": "lerna exec --scope examples -- npm start",
+    "publish:patch": "lerna publish patch -y",
     "bootstrap": "lerna bootstrap"
   },
   "husky": {
