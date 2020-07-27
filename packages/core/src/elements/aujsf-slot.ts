@@ -56,15 +56,12 @@ export class AujsfSlot {
 
   public viewStrategy!: InlineViewStrategy;
 
-  private _schemaChangedHandle: any = -1;
   public schemaChanged(): void {
-    clearTimeout(this._schemaChangedHandle);
-
     if (this.viewStrategy) {
       this.viewStrategy = undefined!;
     }
 
-    this._schemaChangedHandle = setTimeout(() => {
+    setTimeout(() => {
       try {
         this.errors = this.errors ?? {};
         this.resolveUISchemaDefaults();
@@ -78,7 +75,7 @@ export class AujsfSlot {
         this._logger.error('an error occurred while building the sf-slot', { error, viewModel: this });
         this.viewStrategy = new InlineViewStrategy(`<template style="color: red;">ERROR</template>`);
       }
-    }, 50);
+    }, 0);
   }
 
   protected bind(_ctx: any, _octx: any): void {
