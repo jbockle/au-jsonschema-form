@@ -4,6 +4,7 @@ import { getLogger } from 'aurelia-logging';
 import { AujsfBase } from '../aujsf-base';
 import { JsonSchemaOneOf, JsonSchema, UISchema } from '../../models';
 import { Validator } from '../../utils/validator';
+import utils from '../../utils';
 
 interface OneOfOption {
   index: number;
@@ -38,7 +39,7 @@ export class AujsfOneOf extends AujsfBase<JsonSchemaOneOf, any> {
     this.options = this.schema.oneOf.map((schema, index) => ({
       index,
       title: this.getOptionTitle(schema, index),
-      schema,
+      schema: utils.jsonSchema.resolveSchema(schema, this._formContext.schema),
       uiSchema: { ...this.uiSchema },
     }));
 
