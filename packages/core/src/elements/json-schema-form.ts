@@ -64,6 +64,9 @@ export class JsonSchemaForm {
       utils.form.themeIsValid(this._templateRegistry);
 
       this._formContext.setSchema(utils.common.clone(this.schema), this.options);
+
+      this.value = utils.jsonSchema.fillDefaults(this.value, this.schema);
+
       this._formContext.uiSchema = utils.common.clone(this.uiSchema);
       this._formContext.value = this.value;
 
@@ -90,6 +93,7 @@ export class JsonSchemaForm {
 
   public schemaChanged(newValue: JsonSchema, _oldValue: JsonSchema): void {
     this._formContext.setSchema(utils.common.clone(newValue), this.options);
+    this.value = utils.jsonSchema.fillDefaults(this.value, newValue);
   }
 
   public uiSchemaChanged(newValue: UISchema, _oldValue: UISchema): void {

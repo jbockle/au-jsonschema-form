@@ -25,7 +25,7 @@ export class AujsfGetItemDefinition {
       const definition: ArrayKeyDefinition = {
         key: index,
         schema: this.getItemJsonSchema(index, schema),
-        uiSchema: this.getItemUiSchema(index, uiSchema),
+        uiSchema: utils.form.getItemUiSchema(index, uiSchema),
         pointer: new JsonPointer([...pointer.segments, index.toString()]),
       };
 
@@ -40,51 +40,12 @@ export class AujsfGetItemDefinition {
   }
 
   public getItemJsonSchema(index: number, schema: JsonSchemaArray): JsonSchema {
-    if (schema.items) {
-      schema.items = this.getReferencedSchema(schema.items);
+    const itemSchema = utils.jsonSchema.getItemJsonSchema(index, schema, this._context.schema);
 
-      if (Array.isArray(schema.items)) {
-        if (index in schema.items) {
-          return schema.items[index];
-        }
-      } else if (schema.items) {
-        return schema.items;
-      }
+    if (!itemSchema) {
+      throw new Error('unable to determine item schema');
     }
 
-    if (schema.additionalItems) {
-      schema.additionalItems = this.getReferencedSchema(schema.additionalItems) as JsonSchema;
-
-      return schema.additionalItems;
-    }
-
-    throw new Error('unable to determine item schema');
-  }
-
-  public getItemUiSchema(index: number, uiSchema: UISchema): UISchema {
-    if ('ui:items' in uiSchema) {
-      if (Array.isArray(uiSchema['ui:items'])) {
-        if (index in uiSchema['ui:items']) {
-          return utils.common.clone(uiSchema['ui:items'][index]);
-        }
-
-        return utils.array.last(uiSchema['ui:items'])!;
-      } else {
-        return utils.common.clone(uiSchema['ui:items']!);
-      }
-    }
-
-    return {};
-  }
-
-  public getReferencedSchema(schemaOrSchemas: JsonSchema | JsonSchema[]): JsonSchema | JsonSchema[] {
-    if (Array.isArray(schemaOrSchemas)) {
-      return schemaOrSchemas.map(schema => this.getReferencedSchema(schema) as JsonSchema);
-    } else if ('$ref' in schemaOrSchemas) {
-      const schema = this._context.validator.ajv.getSchema(schemaOrSchemas.$ref)!.schema as JsonSchema;
-      return this.getReferencedSchema(schema);
-    } else {
-      return schemaOrSchemas;
-    }
+    return itemSchema;
   }
 }

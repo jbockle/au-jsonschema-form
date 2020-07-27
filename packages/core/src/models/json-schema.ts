@@ -1,5 +1,5 @@
 
-export type SchemaPrimitiveType =
+export type JsonSchemaType =
   'object' |
   'array' |
   'number' |
@@ -7,7 +7,7 @@ export type SchemaPrimitiveType =
   'boolean' |
   'null';
 
-export type SchemaType = SchemaPrimitiveType | Array<SchemaPrimitiveType>
+export type SchemaType = JsonSchemaType | Array<JsonSchemaType>
 
 export type JsonSchema =
   JsonSchemaObject |
@@ -29,6 +29,7 @@ interface JsonSchemaAnnotations {
   readOnly?: boolean;
   writeOnly?: boolean;
   default?: any;
+  const?: any;
 }
 
 interface JsonSchemaBase extends JsonSchemaAnnotations {
@@ -97,7 +98,7 @@ export interface JsonSchemaNull extends JsonSchemaBase {
 }
 
 export interface JsonSchemaMulti extends JsonSchemaBase {
-  type: Array<SchemaPrimitiveType>;
+  type: Array<JsonSchemaType>;
 }
 
 export interface JsonSchemaRef extends JsonSchemaAnnotations {

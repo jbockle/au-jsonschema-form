@@ -16,6 +16,9 @@ export class App {
     combined: {
       oneOfSimple: {},
     },
+    text: {
+      text: 'foo',
+    },
   };
 
   public submit(value: any, validationResult: ValidationResult): void {
@@ -95,6 +98,46 @@ export class App {
             'textRequired',
           ],
         },
+        boolean: {
+          type: 'object',
+          properties: {
+            standard: {
+              type: 'boolean',
+            },
+            agree: {
+              type: 'boolean',
+              enum: [true],
+            },
+            disagree: {
+              type: 'boolean',
+              enum: [false],
+            },
+          },
+        },
+        number: {
+          type: 'object',
+          properties: {
+            standard: {
+              type: 'number',
+            },
+            min: {
+              type: 'number',
+              minimum: 2,
+            },
+            exMin: {
+              type: 'number',
+              exclusiveMinimum: 2,
+            },
+            max: {
+              type: 'number',
+              maximum: 2,
+            },
+            exMax: {
+              type: 'number',
+              exclusiveMaximum: 2,
+            },
+          },
+        },
         arrays: {
           type: 'object',
           properties: {
@@ -102,14 +145,16 @@ export class App {
               type: 'array',
               items: {
                 type: 'string',
+                default: '',
               },
+              minItems: 1,
             },
             nestedObject: {
               type: 'array',
               items: {
                 type: 'object',
                 properties: {
-                  firtName: { type: 'string' },
+                  firstName: { type: 'string' },
                   lastName: { type: 'string' },
                 },
               },
@@ -132,6 +177,12 @@ export class App {
     arrays: {
       simple: {
         'ui:item-title': 'Item ${key+1} ${value || \'\'}',
+      } as UISchema,
+      nestedObject: {
+        'ui:item-title': '${key}: ${value && value.lastName || \'\'}, ${value && value.firstName || \'\'}',
+        'ui:items': {
+          'ui:title': false,
+        },
       } as UISchema,
     },
   }

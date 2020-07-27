@@ -1,5 +1,7 @@
 import { FormTemplateRegistry } from '../services';
-import { FormTheme } from '../models';
+import { FormTheme, UISchema } from '../models';
+import { CommonUtils } from './common-utils';
+import { ArrayUtils } from './array-utils';
 
 export class FormUtils {
   private static readonly nulltheme: FormTheme = {
@@ -33,5 +35,21 @@ export class FormUtils {
       const missingViews = views.filter(o => !o.isValid).map(o => o.view).join(', ');
       throw new Error(`One or more required theme views are missing:${missingViews}`);
     }
+  }
+
+  public static getItemUiSchema(index: number, uiSchema: UISchema): UISchema {
+    if ('ui:items' in uiSchema) {
+      if (Array.isArray(uiSchema['ui:items'])) {
+        if (index in uiSchema['ui:items']) {
+          return CommonUtils.clone(uiSchema['ui:items'][index]);
+        }
+
+        return ArrayUtils.last(uiSchema['ui:items'])!;
+      } else {
+        return CommonUtils.clone(uiSchema['ui:items']!);
+      }
+    }
+
+    return {};
   }
 }
