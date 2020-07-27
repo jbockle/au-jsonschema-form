@@ -45,9 +45,8 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
   @computedFrom('parentReadonly', 'schema')
   public get readonly(): boolean {
     return this.parentReadonly
-      || this.schema.readOnly
-      || ('const' in this.schema
-        && utils.common.notNullOrUndefined((this.schema as any).const));
+      || (this.uiSchema['ui:read-only'] ?? this.schema.readOnly)
+      || ('const' in this.schema && utils.common.notNullOrUndefined((this.schema as any).const));
   }
 
   @computedFrom('uiSchema', 'schema', 'pointer')

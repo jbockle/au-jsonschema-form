@@ -63,4 +63,9 @@ export interface UISchema {
    * template-like literal string to format, @see SfItemTitle converter
    */
   'ui:item-title'?: string;
+
+  /**
+   * override schema's readOnly
+   */
+  'ui:read-only'?: boolean;
 }

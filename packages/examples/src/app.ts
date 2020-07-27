@@ -82,6 +82,14 @@ export class App {
             textRequired: {
               type: 'string',
             },
+            textReadonly: {
+              type: 'string',
+              readOnly: true,
+            },
+            textReadonlyOverride: {
+              type: 'string',
+              readOnly: true,
+            },
             textEnum: {
               type: 'string',
               enum: [
@@ -184,6 +192,11 @@ export class App {
           'ui:title': false,
         },
       } as UISchema,
+    },
+    text: {
+      textReadonlyOverride: {
+        'ui:read-only': false,
+      },
     },
   }
 }
