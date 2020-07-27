@@ -1,7 +1,7 @@
 import { valueConverter } from 'aurelia-framework';
 
-@valueConverter('sfValue')
-export class SfValue {
+@valueConverter('aujsf_value')
+export class AujsfValue {
   public fromView(value: string, toNumber: boolean = false): number | string | undefined {
     if (typeof value === 'string') {
 
@@ -10,7 +10,7 @@ export class SfValue {
       } else if (value !== '') {
         return value;
       }
-      
+
     }
 
     return undefined;

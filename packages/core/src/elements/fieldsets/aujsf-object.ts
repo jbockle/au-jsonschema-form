@@ -1,13 +1,13 @@
 import { customElement } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 
-import { SfBase } from '../sf-base';
+import { AujsfBase } from '../aujsf-base';
 import { JsonSchemaObject, JsonSchema, UISchema, ObjectKeyDefinition } from '../../models';
 import { JsonPointer } from 'jsonpointerx';
 import utils from '../../utils';
 
-@customElement('sf-object')
-export class SfObject extends SfBase<JsonSchemaObject> {
+@customElement('aujsf-object')
+export class AujsfObject extends AujsfBase<JsonSchemaObject> {
   protected _logger = getLogger('aujsf:sf-object');
 
   public definitions: ObjectKeyDefinition[] = [];

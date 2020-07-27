@@ -1,8 +1,8 @@
 import { KeyDefinition } from '../models';
 import { valueConverter } from 'aurelia-framework';
 
-@valueConverter('sfSortDefinitions')
-export class SfSortDefinitions {
+@valueConverter('aujsf_sortDefinitions')
+export class AujsfSortDefinitions {
   public toView(definitions: KeyDefinition[]): KeyDefinition[] {
     return definitions.sort((a, b) => {
       const aOrder = a.uiSchema['ui:order'] ?? definitions.length;

@@ -1,11 +1,11 @@
 import { customElement, bindable, ViewStrategy, InlineViewStrategy } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 
-import { SfBase } from '../sf-base';
+import { AujsfBase } from '../aujsf-base';
 import { JsonSchema, UISchema } from '../../models';
 
-@customElement('sf-array-item')
-export class SfArrayItem extends SfBase<JsonSchema> {
+@customElement('aujsf-array-item')
+export class AujsfArrayItem extends AujsfBase<JsonSchema> {
   protected _logger = getLogger('aujsf:sf-array-item');
 
   @bindable
@@ -25,7 +25,7 @@ export class SfArrayItem extends SfBase<JsonSchema> {
 
   @bindable
   public parentUiSchema!: UISchema;
-  
+
   @bindable
   public parentReadonly?: boolean;
 

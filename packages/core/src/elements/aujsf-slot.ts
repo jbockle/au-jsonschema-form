@@ -20,8 +20,8 @@ const ATTRIBUTES = [
 ].map(attr => `${attr[0]}="${attr[1]}"`).join(' ');
 
 @containerless
-@useView(PLATFORM.moduleName('@aujsf/core/elements/sf-view.html'))
-export class SfSlot {
+@useView(PLATFORM.moduleName('@aujsf/core/elements/aujsf-view.html'))
+export class AujsfSlot {
   protected _logger = getLogger('aujsf:sf-slot');
 
   protected constructor(
@@ -86,7 +86,7 @@ export class SfSlot {
   }
 
   private createViewStrategy(type: SlotType): ViewStrategy {
-    return new InlineViewStrategy(`<template><sf-${type} ${ATTRIBUTES}></sf-${type}></template>`);
+    return new InlineViewStrategy(`<template><aujsf-${type} ${ATTRIBUTES}></aujsf-${type}></template>`);
   }
 
   private resolveUISchemaDefaults(): void {

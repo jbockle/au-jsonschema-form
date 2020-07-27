@@ -1,7 +1,7 @@
 import { customElement, ViewStrategy, InlineViewStrategy, observable } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 
-import { SfBase } from '../sf-base';
+import { AujsfBase } from '../aujsf-base';
 import { JsonSchemaOneOf, JsonSchema, UISchema } from '../../models';
 import { Validator } from '../../utils/validator';
 
@@ -12,8 +12,8 @@ interface OneOfOption {
   uiSchema: UISchema;
 }
 
-@customElement('sf-one-of')
-export class SfOneOf extends SfBase<JsonSchemaOneOf, any> {
+@customElement('aujsf-one-of')
+export class AujsfOneOf extends AujsfBase<JsonSchemaOneOf, any> {
   private _validator = new Validator();
 
   protected _logger = getLogger('aujsf:sf-one-of');
@@ -41,6 +41,18 @@ export class SfOneOf extends SfBase<JsonSchemaOneOf, any> {
       schema,
       uiSchema: { ...this.uiSchema },
     }));
+
+    if (this.value) {
+      this.options.some(option => {
+        this._validator.setSchema(option.schema, {});
+        if (this._validator.validate(this.value).valid) {
+          this.selectedOption = option;
+          return true;
+        }
+
+        return false;
+      });
+    }
   }
 
   protected getTemplate(): string {
@@ -63,7 +75,11 @@ export class SfOneOf extends SfBase<JsonSchemaOneOf, any> {
     return `Option ${index + 1}`;
   }
 
-  public optionMatcher(a: OneOfOption, b: OneOfOption): boolean {
+  public optionMatcher(a?: OneOfOption, b?: OneOfOption): boolean {
+    if (!a || !b) {
+      return false;
+    }
+
     return a.index === b.index;
   }
 }

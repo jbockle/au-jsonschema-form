@@ -6,15 +6,15 @@ import { JsonSchema, UISchema, JsonSchemaArray, ArrayKeyDefinition } from '../mo
 import { FormContext } from '../services/form-context';
 import utils from '../utils';
 
-@valueConverter('sfGetItemDefinition')
+@valueConverter('aujsf_getItemDefinition')
 @inject(FormContext)
-export class SfGetItemDefinition {
+export class AujsfGetItemDefinition {
   private _logger = getLogger('aujsf:to-definition');
 
   public constructor(
     private _context: FormContext) { }
 
-  public signals = ['sfGetItemDefinition'];
+  public signals = ['aujsf:GetItemDefinition'];
 
   public toView(
     length: number | undefined, schema: JsonSchemaArray, uiSchema: UISchema, pointer: JsonPointer,

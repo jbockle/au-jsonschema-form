@@ -1,14 +1,15 @@
 <template>
-  <require from="@aujsf/bootstrap-theme/sf-bs-label.html"></require>
+  <require from="@aujsf/bootstrap-theme/aujsf-bs-label.html"></require>
 
   <div class="form-group">
 
-    <sf-bs-label id.bind="id" title.bind="title" required.bind="required"></sf-bs-label>
+    <aujsf-bs-label id.bind="id" title.bind="title" required.bind="required">
+    </aujsf-bs-label>
 
     <input id.bind="id" type="string"
            class="form-control ${hasErrors ? 'is-invalid' : value !== undefined ? 'is-valid' : ''}"
            disabled.bind="readonly"
-           value.bind="value | sfValue">
+           value.bind="value | aujsf_value">
 
     <small class="form-text text-muted" if.bind="description">${description}</small>
 

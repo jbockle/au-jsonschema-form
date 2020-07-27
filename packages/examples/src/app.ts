@@ -12,14 +12,18 @@ export class App {
 
   public theme = THEME;
 
-  public model: any = {};
+  public model: any = {
+    combined: {
+      oneOfSimple: {},
+    },
+  };
 
   public submit(value: any, validationResult: ValidationResult): void {
     alert('xsubmit triggered:\n' + JSON.stringify({ value, validationResult }, null, 2));
   }
 
   public signalJson(): void {
-    signalBindings('sfJson');
+    signalBindings('aujsf:UpdateJson');
   }
 
   public options: FormOptions = {
@@ -124,6 +128,11 @@ export class App {
           'ui:order': 0,
         },
       },
+    },
+    arrays: {
+      simple: {
+        'ui:item-title': 'Item ${key+1} ${value || \'\'}',
+      } as UISchema,
     },
   }
 }

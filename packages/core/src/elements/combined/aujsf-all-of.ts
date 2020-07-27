@@ -1,11 +1,11 @@
-import { SfBase } from '../sf-base';
+import { AujsfBase } from '../aujsf-base';
 import { JsonSchemaAllOf, JsonSchema } from '../../models/json-schema';
 import { getLogger } from 'aurelia-logging';
 import { customElement, ViewStrategy, InlineViewStrategy } from 'aurelia-framework';
 import utils from '../../utils';
 
-@customElement('sf-all-of')
-export class SfAllOf extends SfBase<JsonSchemaAllOf, any> {
+@customElement('aujsf-all-of')
+export class AujsfAllOf extends AujsfBase<JsonSchemaAllOf, any> {
   protected _logger = getLogger('aujsf:sf-all-of');
 
   public combinedSchema?: JsonSchema;

@@ -2,23 +2,23 @@ import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
 
 // import { JsonSchemaForm } from './elements/json-schema-form';
 
-import { SfObject } from './elements/fieldsets/sf-object';
-import { SfSlot } from './elements/sf-slot';
-import { SfArray } from './elements/fieldsets/sf-array';
-import { SfArrayItem } from './elements/fieldsets/sf-array-item';
+import { AujsfObject } from './elements/fieldsets/aujsf-object';
+import { AujsfSlot } from './elements/aujsf-slot';
+import { AujsfArray } from './elements/fieldsets/aujsf-array';
+import { AujsfArrayItem } from './elements/fieldsets/aujsf-array-item';
 
-import { SfString } from './elements/form-elements/sf-string';
-import { SfNumber } from './elements/form-elements/sf-number';
-import { SfBoolean } from './elements/form-elements/sf-boolean';
+import { AujsfString } from './elements/form-elements/aujsf-string';
+import { AujsfNumber } from './elements/form-elements/aujsf-number';
+import { AujsfBoolean } from './elements/form-elements/aujsf-boolean';
 
-import { SfGetItemDefinition } from './converters/sf-get-item-definition';
-import { SfValue } from './converters/sf-value';
-import { SfJson } from './converters/sf-json';
-import { SfItemTitle } from './converters/sf-item-title';
+import { AujsfGetItemDefinition } from './converters/aujsf-get-item-definition';
+import { AujsfValue } from './converters/aujsf-value';
+import { AujsfJson } from './converters/aujsf-json';
+import { AujsfItemTitle } from './converters/aujsf-item-title';
 import { IPluginOptions, PluginOptions } from './plugin-options';
-import { SfAllOf } from './elements/combined/sf-all-of';
-import { SfSortDefinitions } from './converters/sf-sort-definitions';
-import { SfOneOf } from './elements/combined/sf-one-of';
+import { AujsfAllOf } from './elements/combined/aujsf-all-of';
+import { AujsfSortDefinitions } from './converters/aujsf-sort-definitions';
+import { AujsfOneOf } from './elements/combined/aujsf-one-of';
 
 export function configure(framework: FrameworkConfiguration, configure?: (options: IPluginOptions) => void): void {
   const options = framework.container.get(PluginOptions);
@@ -28,23 +28,23 @@ export function configure(framework: FrameworkConfiguration, configure?: (option
   framework.globalResources([
     PLATFORM.moduleName('@aujsf/core/elements/json-schema-form'),
     // fieldset
-    SfSlot,
-    SfObject,
-    SfArray,
-    SfArrayItem,
+    AujsfSlot,
+    AujsfObject,
+    AujsfArray,
+    AujsfArrayItem,
     // form elements
-    SfString,
-    SfNumber,
-    SfBoolean,
+    AujsfString,
+    AujsfNumber,
+    AujsfBoolean,
     // combined schemas
-    SfAllOf,
-    SfOneOf,
+    AujsfAllOf,
+    AujsfOneOf,
     // converters
-    SfGetItemDefinition,
-    SfSortDefinitions,
-    SfItemTitle,
-    SfValue,
-    SfJson,
+    AujsfGetItemDefinition,
+    AujsfSortDefinitions,
+    AujsfItemTitle,
+    AujsfValue,
+    AujsfJson,
   ]);
 }
 

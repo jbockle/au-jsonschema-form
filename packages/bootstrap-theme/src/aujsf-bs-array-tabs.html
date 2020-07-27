@@ -22,7 +22,7 @@
       ${error}
     </span>
 
-    <let definitions.bind="value.length | sfGetItemDefinition:schema:uiSchema:pointer"></let>
+    <let definitions.bind="value.length | aujsf_getItemDefinition:schema:uiSchema:pointer"></let>
 
     <ul class="nav nav-tabs" if.bind="definitions.length > 0">
       <li class="nav-item" repeat.for="definition of definitions">
@@ -31,7 +31,7 @@
            click.delegate="currentTab = definition.key"
            mouseenter.trigger="hoverTab = definition.key"
            mouseleave.trigger="hoverTab = -1">
-          ${uiSchema | sfItemTitle:definition:{value:value[$index]}}
+          ${uiSchema | aujsf_ItemTitle:definition:{value:value[$index]}}
           <span class="close ml-2" click.trigger="delete($index, $event) || $event.stopPropagation()">&times;</span>
         </a>
       </li>
@@ -40,12 +40,13 @@
     <div class="tab-content" repeat.for="definition of definitions">
       <div class="tab-pane ${currentTab === definition.key ? 'active' : ''}">
 
-        <sf-slot schema.bind="definition.schema"
-                 ui-schema.bind="definition.uiSchema"
-                 pointer.bind="definition.pointer"
-                 value.bind="value[$index]"
-                 parent-readonly.bind="readonly"
-                 errors.bind="errors[$index]"></sf-slot>
+        <aujsf-slot schema.bind="definition.schema"
+                    ui-schema.bind="definition.uiSchema"
+                    pointer.bind="definition.pointer"
+                    value.bind="value[$index]"
+                    parent-readonly.bind="readonly"
+                    errors.bind="errors[$index]">
+        </aujsf-slot>
       </div>
     </div>
 

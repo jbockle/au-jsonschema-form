@@ -1,12 +1,13 @@
 <template>
-  <require from="@aujsf/bootstrap-theme/sf-bs-label.html"></require>
+  <require from="@aujsf/bootstrap-theme/aujsf-bs-label.html"></require>
 
   <div class="form-group">
 
-    <sf-bs-label id.bind="id"
-                 title.bind="title"
-                 required.bind="required"
-                 class="${!description ? 'mb-1' : 'mb-0'}"></sf-bs-label>
+    <aujsf-bs-label id.bind="id"
+                    title.bind="title"
+                    required.bind="required"
+                    class="${!description ? 'mb-1' : 'mb-0'}">
+    </aujsf-bs-label>
 
     <small class="form-text text-muted mt-0 mb-1" if.bind="description">${description}</small>
 

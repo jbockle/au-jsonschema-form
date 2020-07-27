@@ -1,11 +1,12 @@
 <template>
   <form submit.trigger="onsubmit()" novalidate show.bind="state === 'ready'">
 
-    <sf-slot schema.bind="schema"
-             ui-schema.bind="uiSchema"
-             value.bind="value"
-             errors.bind="validationResult.errorSchema"
-             if.bind="state === 'ready'"></sf-slot>
+    <aujsf-slot schema.bind="schema"
+                ui-schema.bind="uiSchema"
+                value.bind="value"
+                errors.bind="validationResult.errorSchema"
+                if.bind="state === 'ready'">
+    </aujsf-slot>
 
     <slot>
       <button type="submit">Submit</button>

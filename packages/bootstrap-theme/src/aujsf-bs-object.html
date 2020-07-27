@@ -1,0 +1,32 @@
+<template>
+
+  <fieldset>
+    <div>
+      <legend>
+
+        <span if.bind="title">
+          ${title} <sup if.bind="required">*</sup>
+        </span>
+
+        <span class="form-text text-muted" if.bind="description">${description}</span>
+
+      </legend>
+    </div>
+
+    <span class="d-block invalid-feedback" if.bind="hasErrors" repeat.for="error of errorMessages">
+      ${error}
+    </span>
+
+    <template repeat.for="definition of definitions | aujsf_sortDefinitions">
+      <aujsf-slot schema.bind="definition.schema"
+                  ui-schema.bind="definition.uiSchema"
+                  value.bind="value[definition.key]"
+                  pointer.bind="definition.pointer"
+                  required.bind="definition.required"
+                  parent-readonly.bind="readonly"
+                  errors.bind="errors[definition.key]">
+      </aujsf-slot>
+    </template>
+
+  </fieldset>
+</template>

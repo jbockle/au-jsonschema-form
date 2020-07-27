@@ -7,8 +7,8 @@ import { JsonSchema, UISchema, ValueChangedEventDict, ErrorSchema } from '../mod
 import utils from '../utils';
 
 @inject(Element, FormTemplateRegistry, FormContext)
-@useView(PLATFORM.moduleName('@aujsf/core/elements/sf-view.html'))
-export abstract class SfBase<TSchema extends JsonSchema, TValue = any> {
+@useView(PLATFORM.moduleName('@aujsf/core/elements/aujsf-view.html'))
+export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
   protected abstract _logger: Logger;
   protected _bctx: any;
   protected _obctx: any;

@@ -1,0 +1,25 @@
+<template>
+  <require from="@aujsf/bootstrap-theme/aujsf-bs-label.html"></require>
+
+  <div class="form-group">
+    <aujsf-bs-label id.bind="id + '_oneof'" title.bind="title" required.bind="required">
+    </aujsf-bs-label>
+
+    <select id.bind="id + '_oneof'" class="custom-select" value.bind="selectedOption" matcher.bind="optionMatcher">
+      <option model.bind="null">Choose...</option>
+      <option repeat.for="option of options" model.bind="option">
+        ${option.title}
+      </option>
+    </select>
+  </div>
+
+  <aujsf-slot if.bind="selectedOption.schema"
+              schema.bind="selectedOption.schema"
+              ui-schema.bind="selectedOption.uiSchema"
+              value.bind="value"
+              pointer.bind="pointer"
+              required.bind="required"
+              parent-readonly.bind="parentReadonly"
+              errors.bind="errors">
+  </aujsf-slot>
+</template>

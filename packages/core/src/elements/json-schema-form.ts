@@ -70,7 +70,7 @@ export class JsonSchemaForm {
       this.validate(100);
 
       this._element.addEventListener('value-changed', (event: CustomEvent<ValueChangedEventDict>) => {
-        signalBindings('value-changed');
+        signalBindings('aujsf:ValueChanged');
         this._logger.debug('value-changed', event);
         this.validate();
       });

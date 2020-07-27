@@ -1,8 +1,8 @@
 import { valueConverter } from 'aurelia-framework';
 
-@valueConverter('sfJson')
-export class SfJson {
-  public signals = ['sfJson'];
+@valueConverter('aujsf_json')
+export class AujsfJson {
+  public signals = ['aujsf:UpdateJson'];
 
   public toView(item: any): string {
     return JSON.stringify(item ?? null, null, 2);

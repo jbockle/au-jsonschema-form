@@ -1,11 +1,11 @@
 import { customElement } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 
-import { SfBase } from '../sf-base';
+import { AujsfBase } from '../aujsf-base';
 import { JsonSchemaString } from '../../models/json-schema';
 
-@customElement('sf-string')
-export class SfString extends SfBase<JsonSchemaString, string> {
+@customElement('aujsf-string')
+export class AujsfString extends AujsfBase<JsonSchemaString, string> {
   protected _logger = getLogger('aujsf:sf-string');
 
   protected getTemplate(): string {

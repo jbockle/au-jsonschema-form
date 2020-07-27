@@ -1,0 +1,42 @@
+<template>
+
+  <fieldset>
+    <div>
+      <legend>
+
+        <span if.bind="title">
+          ${title} <sup if.bind="required">*</sup>
+        </span>
+
+        <span class="form-text text-muted" if.bind="description">${description}</span>
+
+        <button type="button" class="d-block btn btn-sm btn-outline-success text-monospace"
+                if.bind="!readonly"
+                click.delegate="add()"
+                title="Add new item"><strong class="mr-1">&plus;</strong>Add</button>
+
+      </legend>
+    </div>
+
+    <span class="d-block invalid-feedback" if.bind="hasErrors" repeat.for="error of errorMessages">
+      ${error}
+    </span>
+
+    <template
+              repeat.for="definition of value.length | aujsf_getItemDefinition:schema:uiSchema:pointer | aujsf_sortDefinitions">
+      <aujsf-array-item parent-ui-schema.bind="uiSchema"
+                        item-title.bind="uiSchema | aujsf_itemTitle:definition:{value:value[$index]}"
+                        parent-readonly.bind="readonly"
+                        schema.bind="definition.schema"
+                        ui-schema.bind="definition.uiSchema"
+                        pointer.bind="definition.pointer"
+                        errors.bind="errors[$index]"
+                        value.bind="value[$index]"
+                        first.bind="$first"
+                        last.bind="$last"
+                        index.bind="$index"
+                        even.bind="$even">
+      </aujsf-array-item>
+    </template>
+  </fieldset>
+</template>

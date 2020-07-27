@@ -1,13 +1,13 @@
 import { customElement, signalBindings } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 
-import { SfBase } from '../sf-base';
+import { AujsfBase } from '../aujsf-base';
 import { JsonSchemaArray, ValueChangedEventDict } from '../../models';
 import utils from '../../utils';
 import { JsonPointer } from 'jsonpointerx';
 
-@customElement('sf-array')
-export class SfArray extends SfBase<JsonSchemaArray, any[]> {
+@customElement('aujsf-array')
+export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
   protected _logger = getLogger('aujsf:sf-array');
 
   public async bound(): Promise<void> {
@@ -29,7 +29,7 @@ export class SfArray extends SfBase<JsonSchemaArray, any[]> {
     return 'array';
   }
 
-  public add(event: (MouseEvent & {target: Element}) | undefined = undefined): void {
+  public add(event: (MouseEvent & { target: Element }) | undefined = undefined): void {
     const length = this.value.length;
     const newLength = this.value.push(null);
 
@@ -39,7 +39,7 @@ export class SfArray extends SfBase<JsonSchemaArray, any[]> {
     };
 
     this.dispatchEvent('value-changed', detail);
-    
+
     if (event && event.target !== this._element) {
       this.dispatchEvent('add-array-item', detail, event.target);
     }
@@ -77,7 +77,7 @@ export class SfArray extends SfBase<JsonSchemaArray, any[]> {
 
       this.dispatchEvent('value-changed', detail);
 
-      signalBindings('sfGetItemDefinition');
+      signalBindings('aujsf:GetItemDefinition');
     }
   }
 
@@ -94,7 +94,7 @@ export class SfArray extends SfBase<JsonSchemaArray, any[]> {
 
       this.dispatchEvent('value-changed', detail);
 
-      signalBindings('sfGetItemDefinition');
+      signalBindings('aujsf:GetItemDefinition');
     }
   }
 }
