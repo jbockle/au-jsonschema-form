@@ -7,7 +7,7 @@ import { JsonSchemaUtils } from '../utils/json-schema-utils';
 import { FormTemplateRegistry } from '../services/form-template-registry';
 import { FormContext } from '../services/form-context';
 
-type SlotType = SchemaType | 'all-of' | 'any-of' | 'one-of' | 'unknown';
+type SlotType = SchemaType | 'all-of' | 'any-of' | 'one-of' | 'hidden' | 'unknown';
 
 const ATTRIBUTES = [
   ['schema.bind', 'schema'],
@@ -65,7 +65,7 @@ export class AujsfSlot {
       try {
         this.errors = this.errors ?? {};
         this.resolveUISchemaDefaults();
-        this.type = this.resolveSlotType(this.schema);
+        this.type = this.uiSchema['ui:view'] === false ? 'hidden' : this.resolveSlotType(this.schema);
         this.pointer = this.pointer ?? new JsonPointer([]);
 
         this.viewStrategy = this.createViewStrategy(this.type);

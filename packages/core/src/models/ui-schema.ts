@@ -16,10 +16,10 @@ export interface UISchema {
   'ui:title'?: false | string;
 
   /**
-   * override the view template to be used
+   * override the view template to be used or set to false to prevent the schema element from showing
    * @default determined from schema.type
    */
-  'ui:view'?: string;
+  'ui:view'?: string | false;
 
   /**
    * specify the property or item order

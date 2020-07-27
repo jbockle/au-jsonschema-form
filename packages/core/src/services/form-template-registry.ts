@@ -3,6 +3,12 @@ import { getLogger } from 'aurelia-logging';
 
 import { FormTemplate, FormModule } from '../models/form-template';
 
+const HIDDEN_VIEW: FormTemplate = {
+  name: 'hidden',
+  entry: null!,
+  url: null!,
+};
+
 @inject(Loader)
 export class FormTemplateRegistry {
   private _logger = getLogger('aujsf:form-template-registry');
@@ -29,6 +35,10 @@ export class FormTemplateRegistry {
   public get(name?: string): FormTemplate {
     if (!name) {
       throw new Error('Form template name cannot be empty/undefined');
+    }
+
+    if (name === 'hidden') {
+      return HIDDEN_VIEW;
     }
 
     if (this._templates.has(name)) {

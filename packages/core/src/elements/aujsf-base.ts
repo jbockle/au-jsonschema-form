@@ -122,7 +122,7 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
       return new InlineViewStrategy(`<template>unknown</template>`);
     }
 
-    const template = this._templateRegistry.get(this.uiSchema['ui:view']);
+    const template = this._templateRegistry.get(this.uiSchema['ui:view'] || 'hidden');
 
     return new InlineViewStrategy(
       template.entry.template.outerHTML,
