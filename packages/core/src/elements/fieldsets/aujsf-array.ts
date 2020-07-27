@@ -1,4 +1,4 @@
-import { customElement, signalBindings } from 'aurelia-framework';
+import { customElement } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 
 import { AujsfBase } from '../aujsf-base';
@@ -76,8 +76,6 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
       };
 
       this.dispatchEvent('value-changed', detail);
-
-      signalBindings('aujsf:GetItemDefinition');
     }
   }
 
@@ -93,8 +91,6 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
       };
 
       this.dispatchEvent('value-changed', detail);
-
-      signalBindings('aujsf:GetItemDefinition');
     }
   }
 }
