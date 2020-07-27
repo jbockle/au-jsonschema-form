@@ -1,5 +1,7 @@
 import { ErrorObject } from 'ajv';
 
+export { ErrorObject };
+
 export interface ValidationResult {
   valid: boolean,
   errors: ErrorObject[],

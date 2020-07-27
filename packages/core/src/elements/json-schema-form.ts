@@ -4,7 +4,7 @@ import { getLogger } from 'aurelia-logging';
 import { JsonSchema } from '../models/json-schema';
 import { UISchema } from '../models/ui-schema';
 import { FormTemplateRegistry, FormContext } from '../services';
-import { ValueChangedEventDict, ValidationResult, FormTheme, FormOptions } from '../models';
+import { ValueChangedEventDict, ValidationResult, FormTheme, FormOptions, SubmitArguments } from '../models';
 import utils from '../utils';
 
 type FormState = 'initializing' | 'ready' | 'error';
@@ -34,8 +34,8 @@ export class JsonSchemaForm {
   public validationResult?: ValidationResult;
 
   @bindable
-  public submit: (value: any) => void = (value: any) => {
-    alert('submit triggered:\n' + JSON.stringify(value, null, 2));
+  public submit: (args: SubmitArguments) => void = (args: SubmitArguments) => {
+    alert('submit triggered:\n' + JSON.stringify(args, null, 2));
   }
 
   @bindable
@@ -49,9 +49,7 @@ export class JsonSchemaForm {
   public error?: any;
 
   public onsubmit(): void {
-    if (this.validationResult?.valid ?? false) {
-      this.submit(this.value);
-    }
+    this.submit({ value: this.value, validationResult: this.validationResult });
   }
 
   public async bind(): Promise<void> {

@@ -1,7 +1,7 @@
 import { THEME } from '@aujsf/bootstrap-theme';
 import 'jquery';
 import 'bootstrap';
-import { UISchema, FormOptions, JsonSchemaObject } from '@aujsf/core';
+import { UISchema, FormOptions, JsonSchemaObject, ValidationResult } from '@aujsf/core';
 import { signalBindings } from 'aurelia-framework';
 
 // import v4 from 'ajv/lib/refs/json-schema-draft-04.json';
@@ -13,6 +13,10 @@ export class App {
   public theme = THEME;
 
   public model: any = {};
+
+  public submit(value: any, validationResult: ValidationResult): void {
+    alert('xsubmit triggered:\n' + JSON.stringify({ value, validationResult }, null, 2));
+  }
 
   public signalJson(): void {
     signalBindings('sfJson');

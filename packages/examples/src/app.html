@@ -7,7 +7,8 @@
                     ui-schema.bind="uiSchema"
                     value.bind="model"
                     options.bind="options"
-                    value-changed.trigger="signalJson()">
+                    value-changed.trigger="signalJson()"
+                    submit.call="submit(value, validationResult)">
     <button type="submit" class="btn btn-primary">Submit</button>
   </json-schema-form>
 
