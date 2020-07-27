@@ -1,4 +1,3 @@
-# aujsf
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@aujsf/core">
@@ -9,9 +8,11 @@
   </a>
 </p>
 
+<h2 align="center">Aurelia JSON Schema Forms</h2>
+
 > This project is still very much in alpha! use at your own risk!
 
-Create forms based on [json-schema]() specification!
+Create forms based on [json-schema](https://json-schema.org/) specification! Using ajv for model validation, @aujsf supports draft-04,draft-06, and draft-07.
 
 Theming is a first class citizen!
 
@@ -23,11 +24,10 @@ Theming is a first class citizen!
 
     ```typescript
     // main.ts
-    import 'core-js';
     import { Aurelia, PLATFORM } from 'aurelia-framework';
 
-    import { THEME } from '@aujsf/bootstrap-theme';
     import { IPluginOptions } from '@aujsf/core';
+    import { THEME } from '@aujsf/bootstrap-theme';
 
     export function configure(aurelia: Aurelia): void {
       aurelia.use
@@ -46,12 +46,13 @@ Theming is a first class citizen!
 <json-schema-form schema.bind="jsonSchema" 
                   ui-schema.bind="uiSchema"
                   value.bind="model"
-                  submit.call="submit()"></schema-form>
+                  submit.call="submit(value, validationResult)"></json-schema-form>
 ```
 
 ```typescript
+import { UISchema, FormOptions, JsonSchema, ValidationResult } from '@aujsf/core';
 export class MyComponent {
-  jsonSchema: JsonSchema<'object'> = {
+  jsonSchema: JsonSchema = {
     type: 'object',
     properties: {
       firstName: {
@@ -73,12 +74,12 @@ export class MyComponent {
 
   model: any = {};
 
-  submit(): void {
-    alert('submitted!' + JSON.stringify(this.model));
+  submit(value: any, validationResult: ValidationResult): void {
+    if (validationResult.valid) {
+      alert('valid:submitted!' + JSON.stringify(value, null, 2));
+    } else {
+      alert('invalid :(' + JSON.stringify(validationResult, null, 2));
+    }
   }
 }
 ```
-
-## Contributing
-
-PRs are welcome! Use git conventional commit messages.
