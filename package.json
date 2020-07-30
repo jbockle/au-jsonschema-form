@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "build": "lerna run build",
+    "docs": "lerna run docs --parallel --stream",
     "clean": "lerna clean -y",
     "postclean": "rimraf packages/**/package-lock.json",
     "test": "lerna exec -- npm test",
