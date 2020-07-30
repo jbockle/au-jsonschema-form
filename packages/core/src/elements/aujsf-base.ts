@@ -16,7 +16,7 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
   protected constructor(
     protected _element: Element,
     protected _templateRegistry: FormTemplateRegistry,
-    protected _formContext: FormContext,
+    public context: FormContext,
   ) { }
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })

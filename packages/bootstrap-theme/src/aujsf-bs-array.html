@@ -23,7 +23,7 @@
     </span>
 
     <template
-              repeat.for="definition of value.length | aujsf_getItemDefinition:schema:uiSchema:pointer | aujsf_sortDefinitions">
+              repeat.for="definition of definitions">
       <aujsf-array-item parent-ui-schema.bind="uiSchema"
                         item-title.bind="uiSchema | aujsf_itemTitle:definition:{value:value[$index]}"
                         parent-readonly.bind="readonly"

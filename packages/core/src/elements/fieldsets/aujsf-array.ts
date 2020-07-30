@@ -2,7 +2,7 @@ import { customElement } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 
 import { AujsfBase } from '../aujsf-base';
-import { JsonSchemaArray, ValueChangedEventDict } from '../../models';
+import { JsonSchemaArray, ValueChangedEventDict, ArrayKeyDefinition, JsonSchema } from '../../models';
 import utils from '../../utils';
 import { JsonPointer } from 'jsonpointerx';
 
@@ -10,10 +10,17 @@ import { JsonPointer } from 'jsonpointerx';
 export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
   protected _logger = getLogger('aujsf:sf-array');
 
+  // public definitionsComputeHandle = 0;
+
+  // @computedFrom('definitionsComputeHandle')
+  // public get definitions(): ArrayKeyDefinition[] {
+  //   return utils.form.getItemDefinitions(this);
+  // }
+
   public async bound(): Promise<void> {
     // TODO create collection mutation observer, dispatch value-changed
     this.value = this.value ?? [];
-
+    this.updateDefinitions();
     // TODO on rebind, don't re-add listener
     // TODO below handled events should stop propagation
     // TODO remove listeners on dispose
@@ -43,6 +50,8 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
     if (event && event.target !== this._element) {
       this.dispatchEvent('add-array-item', detail, event.target);
     }
+
+    this.updateDefinitions();
   }
 
   public delete(index: number, event: (MouseEvent & { target: Element }) | undefined = undefined): void {
@@ -61,6 +70,7 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
       };
 
       this.dispatchEvent('value-changed', detail);
+      this.updateDefinitions();
     }
   }
 
@@ -92,6 +102,42 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
 
       this.dispatchEvent('value-changed', detail);
     }
+  }
+
+  public definitions: ArrayKeyDefinition[] = [];
+
+  private updateDefinitions(): void {
+    const length = this.value?.length ?? 0;
+
+    if (length === 0) {
+      this.definitions = [];
+      return;
+    }
+
+    if (this.definitions.length > length) {
+      this.definitions.splice(length - 1, this.definitions.length - length);
+    }
+
+    for (let index = 0; index < (length); index++) {
+      const definition = {
+        key: index,
+        schema: this.getItemJsonSchema(index, this.schema, this.context.schema),
+        uiSchema: utils.form.getItemUiSchema(index, this.uiSchema),
+        pointer: new JsonPointer([...this.pointer.segments, index.toString()]),
+      };
+
+      this.definitions[index] || this.definitions.push(definition);
+    }
+  }
+
+  private getItemJsonSchema(index: number, schema: JsonSchemaArray, root: JsonSchema): JsonSchema {
+    const itemSchema = utils.jsonSchema.getItemJsonSchema(index, schema, root);
+
+    if (!itemSchema) {
+      throw new Error('unable to determine item schema');
+    }
+
+    return itemSchema;
   }
 }
 

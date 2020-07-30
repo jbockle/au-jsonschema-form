@@ -14,7 +14,6 @@ import { AujsfAllOf } from './elements/combined/aujsf-all-of';
 import { AujsfOneOf } from './elements/combined/aujsf-one-of';
 import { AujsfHidden } from './elements/form-elements/aujsf-hidden';
 
-import { AujsfGetItemDefinition } from './converters/aujsf-get-item-definition';
 import { AujsfSortDefinitions } from './converters/aujsf-sort-definitions';
 import { AujsfValue } from './converters/aujsf-value';
 import { AujsfJson } from './converters/aujsf-json';
@@ -43,7 +42,6 @@ export function configure(framework: FrameworkConfiguration, configure?: (option
     AujsfAllOf,
     AujsfOneOf,
     // converters
-    AujsfGetItemDefinition,
     AujsfSortDefinitions,
     AujsfItemTitle,
     AujsfValue,
