@@ -1,5 +1,6 @@
 <template>
-  <form submit.trigger="onsubmit()" novalidate show.bind="state === 'ready'">
+  <form submit.trigger="onsubmit()" novalidate show.bind="state === 'ready'"
+        autocomplete.bind="uiSchema['ui:autocomplete'] || 'off'">
 
     <aujsf-slot schema.bind="schema"
                 ui-schema.bind="uiSchema"

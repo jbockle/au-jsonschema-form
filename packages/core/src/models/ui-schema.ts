@@ -22,6 +22,12 @@ export interface UISchema {
   'ui:view'?: string | false;
 
   /**
+   * enable/disable browser autocomplete feature on this form, currently only valid on root UISchema
+   * @default 'off'
+   */
+  'ui:autocomplete'?: 'on' | 'off';
+
+  /**
    * specify the property or item order
    */
   'ui:order'?: number;
