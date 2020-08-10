@@ -7,22 +7,36 @@ import { signalBindings } from 'aurelia-framework';
 // import v4 from 'ajv/lib/refs/json-schema-draft-04.json';
 // import v6 from 'ajv/lib/refs/json-schema-draft-06.json';
 
+class Model {
+  public constructor(args: any) {
+    if (args) {
+      Object.keys(args).forEach(key => this[key] = args[key]);
+    }
+  }
+
+  [key: string]: any;
+  public foo(): void {
+    alert('foo!');
+  }
+}
+
 export class App {
   public message = 'hello world';
 
   public theme = THEME;
 
-  public model: any = {
+  public model: Model = new Model({
     combined: {
       oneOfSimple: {},
     },
     text: {
       text: 'foo',
     },
-  };
+  });
 
   public submit(value: any, validationResult: ValidationResult): void {
     alert('xsubmit triggered:\n' + JSON.stringify({ value, validationResult }, null, 2));
+    value.foo();
   }
 
   public signalJson(): void {

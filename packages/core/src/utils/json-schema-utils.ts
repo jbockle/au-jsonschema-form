@@ -77,12 +77,10 @@ export class JsonSchemaUtils {
 
 class FillDefaults {
   public constructor(
-    private initialValue: any,
+    public value: any,
     private rootSchema: JsonSchema) {
     this.fill(rootSchema);
   }
-
-  public value: any;
 
   private fill(schema: JsonSchema, segments: string[] = []): void {
     if ('$ref' in schema) {
@@ -94,8 +92,8 @@ class FillDefaults {
     const pointer = new JsonPointer(segments);
 
     if (pointer.root) {
-      JsonSchemaUtils.isJsonSchemaArray(schema) && (this.value = []);
-      JsonSchemaUtils.isJsonSchemaObject(schema) && (this.value = {});
+      JsonSchemaUtils.isJsonSchemaArray(schema) && !Array.isArray(this.value) && (this.value = []);
+      JsonSchemaUtils.isJsonSchemaObject(schema) && typeof this.value !== 'object' && (this.value = {});
     }
 
     if (schema.const) {
@@ -103,7 +101,7 @@ class FillDefaults {
       return;
     }
 
-    let pathValue = pointer.get(this.initialValue);
+    let pathValue = pointer.get(this.value);
 
     JsonSchemaUtils.isJsonSchemaBoolean(schema) && (pathValue = this.getBooleanValue(pathValue, schema));
     JsonSchemaUtils.isJsonSchemaNumber(schema) && (pathValue = this.getNumberValue(pathValue, schema));
