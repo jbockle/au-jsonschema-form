@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.18](http://???/compare/v0.0.17...v0.0.18) (2020-08-10)
+
+
+### Bug Fixes
+
+* **value-idempotent:** input value is idempotent ([7f9aa99](http://???/commits/7f9aa99713ed49943dc6f74a414771d3cc45e9ee))
+
+
+
+
+
 ## [0.0.17](http://???/compare/v0.0.16...v0.0.17) (2020-07-30)
 
 **Note:** Version bump only for package examples

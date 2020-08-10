@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.18](https://github.com/jbockle/au-jsonschema-form/compare/v0.0.17...v0.0.18) (2020-08-10)
+
+
+### Bug Fixes
+
+* **value-idempotent:** input value is idempotent ([7f9aa99](https://github.com/jbockle/au-jsonschema-form/commit/7f9aa99713ed49943dc6f74a414771d3cc45e9ee))
+
+
+### Features
+
+* **view-provider:** introduce extensible view providers ([3dd47b2](https://github.com/jbockle/au-jsonschema-form/commit/3dd47b213b3412fe75db670d3ac8aeeb5a16a9c4))
+
+
+
+
+
 ## [0.0.17](https://github.com/jbockle/au-jsonschema-form/compare/v0.0.16...v0.0.17) (2020-07-30)
 
 **Note:** Version bump only for package au-jsonschema-form
