@@ -1,11 +1,14 @@
-import { customElement } from 'aurelia-framework';
+import { customElement, inject } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
+import { JsonPointer } from 'jsonpointerx';
 
 import { AujsfBase } from '../aujsf-base';
 import { JsonSchemaArray, ValueChangedEventDict, ArrayKeyDefinition, JsonSchema } from '../../models';
+import { FormTemplateRegistry, FormContext } from '../../services';
 import utils from '../../utils';
-import { JsonPointer } from 'jsonpointerx';
+import { ArrayViewProvider } from '../../services/providers/array-view-provider';
 
+@inject(Element, FormTemplateRegistry, FormContext, ArrayViewProvider)
 @customElement('aujsf-array')
 export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
   protected _logger = getLogger('aujsf:sf-array');
@@ -30,10 +33,6 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
       (event: CustomEvent<number>) => { this.moveUp(event.detail); event.stopPropagation(); });
     this._element.addEventListener('move-array-item-down',
       (event: CustomEvent<number>) => { this.moveDown(event.detail); event.stopPropagation(); });
-  }
-
-  protected getTemplate(): string {
-    return 'array';
   }
 
   public add(event: (MouseEvent & { target: Element }) | undefined = undefined): void {

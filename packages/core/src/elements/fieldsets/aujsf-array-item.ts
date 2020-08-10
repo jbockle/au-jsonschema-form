@@ -1,9 +1,13 @@
-import { customElement, bindable, ViewStrategy, InlineViewStrategy } from 'aurelia-framework';
+import { customElement, bindable, ViewStrategy, InlineViewStrategy, inject } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 
 import { AujsfBase } from '../aujsf-base';
 import { JsonSchema, UISchema } from '../../models';
 
+import { FormContext, FormTemplateRegistry } from '../../services';
+import { EmptyViewProvider } from '../../services/providers/empty-view-provider';
+
+@inject(Element, FormTemplateRegistry, FormContext, EmptyViewProvider)
 @customElement('aujsf-array-item')
 export class AujsfArrayItem extends AujsfBase<JsonSchema> {
   protected _logger = getLogger('aujsf:sf-array-item');
@@ -28,10 +32,6 @@ export class AujsfArrayItem extends AujsfBase<JsonSchema> {
 
   @bindable
   public parentReadonly?: boolean;
-
-  protected getTemplate(): string {
-    return undefined!; // always undefined so sf-slot can determine the ui:view or risk nasty recursion!
-  }
 
   protected createViewStrategy(): ViewStrategy {
     const template = this._templateRegistry.get(this.getItemTemplate());

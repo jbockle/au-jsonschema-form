@@ -1,11 +1,14 @@
-import { customElement } from 'aurelia-framework';
+import { customElement, inject } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 
 import { AujsfBase } from '../aujsf-base';
 import { JsonSchemaObject, JsonSchema, UISchema, ObjectKeyDefinition } from '../../models';
 import { JsonPointer } from 'jsonpointerx';
 import utils from '../../utils';
+import { FormContext, FormTemplateRegistry } from '../../services';
+import { ObjectViewProvider } from '../../services/providers/object-view-provider';
 
+@inject(Element, FormTemplateRegistry, FormContext, ObjectViewProvider)
 @customElement('aujsf-object')
 export class AujsfObject extends AujsfBase<JsonSchemaObject> {
   protected _logger = getLogger('aujsf:sf-object');
@@ -30,10 +33,6 @@ export class AujsfObject extends AujsfBase<JsonSchemaObject> {
         }
       })
       .filter(utils.common.notNullOrUndefined);
-  }
-
-  protected getTemplate(): string {
-    return 'object';
   }
 
   public getKeys(): string[] {

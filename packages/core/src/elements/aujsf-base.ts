@@ -1,12 +1,14 @@
 import { Logger } from 'aurelia-logging';
-import { bindable, ViewStrategy, InlineViewStrategy, bindingMode, inject, useView, PLATFORM, computedFrom } from 'aurelia-framework';
+import {
+  PLATFORM, ViewStrategy, InlineViewStrategy,
+  bindingMode, useView, computedFrom, bindable,
+} from 'aurelia-framework';
 import { JsonPointer } from 'jsonpointerx';
 
-import { FormTemplateRegistry, FormContext } from '../services';
+import { FormTemplateRegistry, FormContext, ViewProvider } from '../services';
 import { JsonSchema, UISchema, ValueChangedEventDict, ErrorSchema } from '../models';
 import utils from '../utils';
 
-@inject(Element, FormTemplateRegistry, FormContext)
 @useView(PLATFORM.moduleName('@aujsf/core/elements/aujsf-view.html'))
 export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
   protected abstract _logger: Logger;
@@ -17,6 +19,7 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
     protected _element: Element,
     protected _templateRegistry: FormTemplateRegistry,
     public context: FormContext,
+    protected viewProvider: ViewProvider<JsonSchema>,
   ) { }
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
@@ -80,17 +83,6 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
     return this.hasErrors ? this.errors._errors_! : [];
   }
 
-  public getTitleTemplate(): string | undefined {
-    if ('ui:title' in this.uiSchema && typeof this.uiSchema['ui:title'] === 'string') {
-      return utils.common.fillTemplate(this.uiSchema['ui:title'], this);
-    }
-  }
-
-  public valueChanged(newValue: any, oldValue: any): void {
-    const detail: ValueChangedEventDict = { newValue, oldValue, pointer: this.pointer };
-    this.dispatchEvent('value-changed', detail);
-  }
-
   public async bind(bctx: any, obctx: any): Promise<void> {
     this._logger.debug('binding', this);
     this._bctx = bctx;
@@ -105,13 +97,19 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
     this.viewStrategy = this.createViewStrategy();
   }
 
-  private resolveUISchemaDefaults(): void {
-    this.uiSchema = this.uiSchema ?? {};
-    this.uiSchema['ui:view'] = this.uiSchema['ui:view'] ?? this.getTemplate();
+  protected async bound(): Promise<void> {
+    //
   }
 
-  protected getTemplate(): string | undefined {
-    return 'unknown';
+  protected resolveUISchemaDefaults(): void {
+    this.uiSchema = this.uiSchema ?? {};
+    this.uiSchema['ui:view'] = this.uiSchema['ui:view'] ?? this.viewProvider.getTemplate(this);
+  }
+
+  public getTitleTemplate(): string | undefined {
+    if ('ui:title' in this.uiSchema && typeof this.uiSchema['ui:title'] === 'string') {
+      return utils.common.fillTemplate(this.uiSchema['ui:title'], this);
+    }
   }
 
   protected createViewStrategy(): ViewStrategy {
@@ -128,10 +126,6 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
       template.entry.dependencies.map(d => d.src));
   }
 
-  protected async bound(): Promise<void> {
-    //
-  }
-
   private _bindHandle: any = -1;
   protected rebind(): void {
     clearTimeout(this._bindHandle);
@@ -146,6 +140,11 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
       bubbles: true,
       detail,
     }));
+  }
+
+  public valueChanged(newValue: any, oldValue: any): void {
+    const detail: ValueChangedEventDict = { newValue, oldValue, pointer: this.pointer };
+    this.dispatchEvent('value-changed', detail);
   }
 
   public schemaChanged(...args: any[]): void {

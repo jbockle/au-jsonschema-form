@@ -1,4 +1,4 @@
-import { customElement, ViewStrategy, InlineViewStrategy, observable } from 'aurelia-framework';
+import { customElement, ViewStrategy, InlineViewStrategy, observable, inject } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 
 import { AujsfBase } from '../aujsf-base';
@@ -13,6 +13,10 @@ interface OneOfOption {
   uiSchema: UISchema;
 }
 
+import { FormContext, FormTemplateRegistry } from '../../services';
+import { OneOfViewProvider } from '../../services/providers/one-of-view-provider';
+
+@inject(Element, FormTemplateRegistry, FormContext, OneOfViewProvider)
 @customElement('aujsf-one-of')
 export class AujsfOneOf extends AujsfBase<JsonSchemaOneOf, any> {
   private _validator = new Validator();
@@ -56,12 +60,12 @@ export class AujsfOneOf extends AujsfBase<JsonSchemaOneOf, any> {
     }
   }
 
-  protected getTemplate(): string {
-    return undefined!;
+  protected resolveUISchemaDefaults(): void {
+    this.uiSchema = this.uiSchema ?? {};
   }
 
   protected createViewStrategy(): ViewStrategy {
-    const template = this._templateRegistry.get('one-of');
+    const template = this._templateRegistry.get(this.viewProvider.getTemplate(this));
 
     return new InlineViewStrategy(
       template.entry.template.outerHTML,
