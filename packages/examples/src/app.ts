@@ -171,6 +171,17 @@ export class App {
               },
               minItems: 1,
             },
+            tabbed: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  street: { type: 'string' },
+                  country: { type: 'string', enum: ['USA', 'Canada'] },
+                },
+                required: ['street'],
+              },
+            },
             nestedObject: {
               type: 'array',
               items: {
@@ -199,6 +210,11 @@ export class App {
     arrays: {
       simple: {
         'ui:item-title': 'Item ${key+1} ${value || \'\'}',
+      } as UISchema,
+      tabbed: {
+        'ui:view': 'array-tabs',
+        'ui:item-title': 'Item ${key+1} ${(value && `${value.street || \'\'} ${value.country || \'\'}`) || \'\'}',
+        'ui:items': { 'ui:title': false },
       } as UISchema,
       nestedObject: {
         'ui:item-title': '${key}: ${value && value.lastName || \'\'}, ${value && value.firstName || \'\'}',

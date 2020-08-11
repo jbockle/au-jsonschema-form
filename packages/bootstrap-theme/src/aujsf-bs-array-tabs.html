@@ -1,6 +1,6 @@
 <template>
-  <fieldset add-array-item.trigger="$event.stopPropagation() || (currentTab = $event.detail.oldValue)"
-            delete-array-item.trigger="currentTab >= $event.detail && (currentTab = currentTab - 1)">
+  <require from="@aujsf/bootstrap-theme/aujsf-bs-error-counter"></require>
+  <fieldset>
     <div>
       <legend>
 
@@ -12,7 +12,7 @@
 
         <button type="button" class="d-block btn btn-sm btn-outline-success text-monospace"
                 if.bind="!readonly"
-                click.delegate="add($event)"
+                click.delegate="add() || (selectedTab = value.length - 1)"
                 title="Add new item"><strong class="mr-1">&plus;</strong>Add</button>
 
       </legend>
@@ -22,33 +22,35 @@
       ${error}
     </span>
 
-    <let definitions.bind="value.length | aujsf_getItemDefinition:schema:uiSchema:pointer"></let>
-
-    <ul class="nav nav-tabs" if.bind="definitions.length > 0">
-      <li class="nav-item" repeat.for="definition of definitions">
-        <a class="nav-link ${currentTab === definition.key ? 'active' : ''}"
-           style="cursor: pointer;user-select: none;"
-           click.delegate="currentTab = definition.key"
-           mouseenter.trigger="hoverTab = definition.key"
-           mouseleave.trigger="hoverTab = -1">
-          ${uiSchema | aujsf_ItemTitle:definition:{value:value[$index]}}
-          <span class="close ml-2" click.trigger="delete($index, $event) || $event.stopPropagation()">&times;</span>
-        </a>
-      </li>
+    <ul class="nav nav-tabs">
+      <template repeat.for="definition of definitions">
+        <li class="nav-item" click.delegate="selectedTab = $index"
+            style="cursor: pointer;">
+          <a class="nav-link ${selectedTab === $index ? 'active' : ''}">
+            ${uiSchema | aujsf_itemTitle:definition:{value:value[$index]}}
+            <aujsf-bs-error-counter definition.bind="definition" errors.bind="errors[$index]"></aujsf-bs-error-counter>
+            <span class="close ml-1"
+                  click.delegate="delete($index) || $event.stopPropagation() || selectedTab >= value.length && (selectedTab = selectedTab - 1)"
+                  if.bind="!uiSchema['ui:no-remove'] && !definition.uiSchema['ui:no-remove']"
+                  title="Delete item">
+              &times;
+            </span>
+          </a>
+        </li>
+      </template>
     </ul>
 
-    <div class="tab-content" repeat.for="definition of definitions">
-      <div class="tab-pane ${currentTab === definition.key ? 'active' : ''}">
-
-        <aujsf-slot schema.bind="definition.schema"
+    <div class="tab-content">
+      <div class="tab-pane ${selectedTab === $index ? 'active' : ''}" repeat.for="definition of definitions">
+        <aujsf-slot class="flex-grow-1"
+                    schema.bind="definition.schema"
                     ui-schema.bind="definition.uiSchema"
                     pointer.bind="definition.pointer"
-                    value.bind="value[$index]"
+                    value.bind="value[$index] & signal:id"
                     parent-readonly.bind="readonly"
                     errors.bind="errors[$index]">
         </aujsf-slot>
       </div>
     </div>
-
   </fieldset>
 </template>

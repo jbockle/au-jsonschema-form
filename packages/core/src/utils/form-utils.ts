@@ -6,7 +6,6 @@ import { ArrayUtils } from './array-utils';
 export class FormUtils {
   private static readonly nulltheme: FormTheme = {
     'array-tabs': null!,
-    'array-item': null!,
     'number-input': null!,
     'string-input': null!,
     'string-radio': null!,

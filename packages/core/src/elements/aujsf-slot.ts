@@ -17,6 +17,7 @@ const ATTRIBUTES = [
   ['errors.bind', 'errors'],
   ['required.bind', 'required'],
   ['parent-readonly.bind', 'parentReadonly'],
+  ['class.bind', 'class'],
 ].map(attr => `${attr[0]}="${attr[1]}"`).join(' ');
 
 @containerless
@@ -32,6 +33,9 @@ export class AujsfSlot {
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   public value: any;
+
+  @bindable
+  public class?: string;
 
   @bindable
   public schema!: JsonSchema;
@@ -115,5 +119,9 @@ export class AujsfSlot {
     }
 
     return 'unknown';
+  }
+
+  public valueChanged(newValue: any, oldValue: any): void {
+    this._logger.warn('value changed', { newValue, oldValue });
   }
 }

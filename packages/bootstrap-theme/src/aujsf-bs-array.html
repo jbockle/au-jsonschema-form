@@ -22,21 +22,41 @@
       ${error}
     </span>
 
-    <template
-              repeat.for="definition of definitions">
-      <aujsf-array-item parent-ui-schema.bind="uiSchema"
-                        item-title.bind="uiSchema | aujsf_itemTitle:definition:{value:value[$index]}"
-                        parent-readonly.bind="readonly"
-                        schema.bind="definition.schema"
-                        ui-schema.bind="definition.uiSchema"
-                        pointer.bind="definition.pointer"
-                        errors.bind="errors[$index]"
-                        value.bind="value[$index]"
-                        first.bind="$first"
-                        last.bind="$last"
-                        index.bind="$index"
-                        even.bind="$even">
-      </aujsf-array-item>
+    <template repeat.for="definition of definitions">
+      <fieldset class="d-flex flex-column w-100">
+
+        <div class="mt-1 d-flex">
+          <h5 if.bind="uiSchema['ui:item-title']">
+            ${uiSchema | aujsf_itemTitle:definition:{value:value[$index]}}
+          </h5>
+          <div class="ml-auto btn-group btn-group-sm text-monospace font-weight-bolder">
+            <button type="button" class="btn btn-outline-info" click.delegate="moveUp($index)" title="Move item up"
+                    if.bind="!uiSchema['ui:no-reorder'] && !definition.uiSchema['ui:no-reorder'] && !$first">
+              &uarr;
+            </button>
+
+            <button type="button" class="btn btn-outline-info" click.delegate="moveDown($index)" title="Move item down"
+                    if.bind="!uiSchema['ui:no-reorder'] && !definition.uiSchema['ui:no-reorder'] && !$last">
+              &darr;
+            </button>
+
+            <button type="button" class="btn btn-outline-danger" click.delegate="delete($index)" title="Delete item"
+                    if.bind="!uiSchema['ui:no-remove'] && !definition.uiSchema['ui:no-remove']">
+              &times;
+            </button>
+          </div>
+        </div>
+
+        <aujsf-slot class="flex-grow-1"
+                    schema.bind="definition.schema"
+                    ui-schema.bind="definition.uiSchema"
+                    pointer.bind="definition.pointer"
+                    value.bind="value[$index] & signal:id"
+                    parent-readonly.bind="readonly"
+                    errors.bind="errors[$index]">
+        </aujsf-slot>
+
+      </fieldset>
     </template>
   </fieldset>
 </template>

@@ -1,4 +1,5 @@
 import { customElement, inject } from 'aurelia-framework';
+import { BindingSignaler } from 'aurelia-templating-resources';
 import { getLogger } from 'aurelia-logging';
 import { JsonPointer } from 'jsonpointerx';
 
@@ -8,34 +9,18 @@ import { FormTemplateRegistry, FormContext } from '../../services';
 import utils from '../../utils';
 import { ArrayViewProvider } from '../../services/providers/array-view-provider';
 
-@inject(Element, FormTemplateRegistry, FormContext, ArrayViewProvider)
+@inject(Element, FormTemplateRegistry, FormContext, ArrayViewProvider, BindingSignaler)
 @customElement('aujsf-array')
 export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
   protected _logger = getLogger('aujsf:sf-array');
-
-  // public definitionsComputeHandle = 0;
-
-  // @computedFrom('definitionsComputeHandle')
-  // public get definitions(): ArrayKeyDefinition[] {
-  //   return utils.form.getItemDefinitions(this);
-  // }
 
   public async bound(): Promise<void> {
     // TODO create collection mutation observer, dispatch value-changed
     this.value = this.value ?? [];
     this.updateDefinitions();
-    // TODO on rebind, don't re-add listener
-    // TODO below handled events should stop propagation
-    // TODO remove listeners on dispose
-    this._element.addEventListener('delete-array-item',
-      (event: CustomEvent<number>) => { this.delete(event.detail); event.stopPropagation(); });
-    this._element.addEventListener('move-array-item-up',
-      (event: CustomEvent<number>) => { this.moveUp(event.detail); event.stopPropagation(); });
-    this._element.addEventListener('move-array-item-down',
-      (event: CustomEvent<number>) => { this.moveDown(event.detail); event.stopPropagation(); });
   }
 
-  public add(event: (MouseEvent & { target: Element }) | undefined = undefined): void {
+  public add(): void {
     const length = this.value.length;
     const newLength = this.value.push(null);
 
@@ -46,19 +31,10 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
 
     this.dispatchEvent('value-changed', detail);
 
-    if (event && event.target !== this._element) {
-      this.dispatchEvent('add-array-item', detail, event.target);
-    }
-
     this.updateDefinitions();
   }
 
-  public delete(index: number, event: (MouseEvent & { target: Element }) | undefined = undefined): void {
-    if (event && event.target !== this._element) {
-      this.dispatchEvent('delete-array-item', index, event.target);
-      return;
-    }
-
+  public delete(index: number): void {
     if (index in this.value) {
       const length = this.value.length;
       this.value.splice(index, 1);
@@ -85,6 +61,7 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
       };
 
       this.dispatchEvent('value-changed', detail);
+      this.signal();
     }
   }
 
@@ -100,6 +77,7 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
       };
 
       this.dispatchEvent('value-changed', detail);
+      this.signal();
     }
   }
 
@@ -126,6 +104,9 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
       };
 
       this.definitions[index] || this.definitions.push(definition);
+      if (this.definitions[index].key !== definition.key) {
+        this.definitions.splice(index, 1, definition);
+      }
     }
   }
 
@@ -137,6 +118,10 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
     }
 
     return itemSchema;
+  }
+
+  private signal(): void {
+    this.signaler?.signal(this.id);
   }
 }
 

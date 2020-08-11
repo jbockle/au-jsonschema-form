@@ -15,7 +15,6 @@ export interface FormTheme {
   'object': FormModule,
   'array': FormModule,
   'array-tabs': FormModule,
-  'array-item': FormModule,
   'string-input': FormModule,
   'string-select': FormModule,
   'string-radio': FormModule,

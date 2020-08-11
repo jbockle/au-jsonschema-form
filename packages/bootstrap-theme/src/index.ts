@@ -6,7 +6,6 @@ const theme: FormTheme = {
   'object': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-object.html'),
   'array': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-array.html'),
   'array-tabs': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-array-tabs.html'),
-  'array-item': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-array-item.html'),
   'string-input': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-string-input.html'),
   'string-select': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-string-select.html'),
   'string-radio': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-string-radio.html'),

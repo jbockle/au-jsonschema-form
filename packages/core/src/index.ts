@@ -5,7 +5,6 @@ import { JsonSchemaForm } from './elements/json-schema-form';
 import { AujsfObject } from './elements/fieldsets/aujsf-object';
 import { AujsfSlot } from './elements/aujsf-slot';
 import { AujsfArray } from './elements/fieldsets/aujsf-array';
-import { AujsfArrayItem } from './elements/fieldsets/aujsf-array-item';
 
 import { AujsfString } from './elements/form-elements/aujsf-string';
 import { AujsfNumber } from './elements/form-elements/aujsf-number';
@@ -32,7 +31,6 @@ export function configure(framework: FrameworkConfiguration, configure?: (option
     AujsfSlot,
     AujsfObject,
     AujsfArray,
-    AujsfArrayItem,
     // form elements
     AujsfHidden,
     AujsfString,

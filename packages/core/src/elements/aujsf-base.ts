@@ -8,6 +8,7 @@ import { JsonPointer } from 'jsonpointerx';
 import { FormTemplateRegistry, FormContext, ViewProvider } from '../services';
 import { JsonSchema, UISchema, ValueChangedEventDict, ErrorSchema } from '../models';
 import utils from '../utils';
+import { BindingSignaler } from 'aurelia-templating-resources';
 
 @useView(PLATFORM.moduleName('@aujsf/core/elements/aujsf-view.html'))
 export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
@@ -20,6 +21,7 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
     protected _templateRegistry: FormTemplateRegistry,
     public context: FormContext,
     protected viewProvider: ViewProvider<JsonSchema>,
+    protected signaler?: BindingSignaler,
   ) { }
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
