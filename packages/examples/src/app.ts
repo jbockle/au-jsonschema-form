@@ -184,7 +184,7 @@ export class App {
               type: 'array',
               items: {
                 type: 'string',
-                default: '',
+                // default: '',
               },
               minItems: 1,
             },
@@ -207,6 +207,13 @@ export class App {
                   firstName: { type: 'string' },
                   lastName: { type: 'string' },
                 },
+              },
+            },
+            checkboxes: {
+              type: 'array',
+              items: {
+                type: 'string',
+                enum: ['foo', 'bar', 'baz'],
               },
             },
           },

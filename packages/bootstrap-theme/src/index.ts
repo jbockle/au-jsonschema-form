@@ -5,6 +5,7 @@ import { FormTheme } from '@aujsf/core';
 const theme: FormTheme = {
   'object': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-object.html'),
   'array': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-array.html'),
+  'array-checkboxes': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-array-checkboxes.html'),
   'array-tabs': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-array-tabs.html'),
   'string-input': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-string-input.html'),
   'string-date-time': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-string-date-time.html'),

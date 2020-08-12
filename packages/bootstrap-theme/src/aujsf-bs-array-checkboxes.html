@@ -1,0 +1,30 @@
+<template>
+
+  <fieldset>
+    <div>
+      <legend class="mb-0">
+
+        <span if.bind="title">
+          ${title} <sup if.bind="required">*</sup>
+        </span>
+
+        <span class="form-text text-muted" if.bind="description">${description}</span>
+
+      </legend>
+    </div>
+
+    <span class="d-block invalid-feedback" if.bind="hasErrors" repeat.for="error of errorMessages">
+      ${error}
+    </span>
+
+    <div class="form-check" repeat.for="option of schema.items.enum">
+
+      <input id.bind="`${id}__${option}`" type="checkbox" class="form-check-input"
+             checked.bind="value"
+             value.bind="option">
+      <label for.bind="`${id}__${option}`" class="form-check-label">${option}</label>
+
+    </div>
+
+  </fieldset>
+</template>
