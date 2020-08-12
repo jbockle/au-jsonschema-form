@@ -1,7 +1,7 @@
 import { Logger } from 'aurelia-logging';
 import {
   PLATFORM, ViewStrategy, InlineViewStrategy,
-  bindingMode, useView, computedFrom, bindable,
+  bindingMode, useView, computedFrom, bindable, BindingEngine,
 } from 'aurelia-framework';
 import { JsonPointer } from 'jsonpointerx';
 
@@ -22,6 +22,7 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
     public context: FormContext,
     protected viewProvider: ViewProvider<JsonSchema>,
     protected signaler?: BindingSignaler,
+    protected engine?: BindingEngine,
   ) { }
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })

@@ -1,82 +1,54 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, inject, BindingEngine, Disposable } from 'aurelia-framework';
 import { BindingSignaler } from 'aurelia-templating-resources';
 import { getLogger } from 'aurelia-logging';
 import { JsonPointer } from 'jsonpointerx';
 
 import { AujsfBase } from '../aujsf-base';
-import { JsonSchemaArray, ValueChangedEventDict, ArrayKeyDefinition, JsonSchema } from '../../models';
+import { JsonSchemaArray, ArrayKeyDefinition, JsonSchema } from '../../models';
 import { FormTemplateRegistry, FormContext } from '../../services';
 import utils from '../../utils';
 import { ArrayViewProvider } from '../../services/providers/array-view-provider';
 
-@inject(Element, FormTemplateRegistry, FormContext, ArrayViewProvider, BindingSignaler)
+@inject(Element, FormTemplateRegistry, FormContext, ArrayViewProvider, BindingSignaler, BindingEngine)
 @customElement('aujsf-array')
 export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
   protected _logger = getLogger('aujsf:sf-array');
+  protected _observer?: Disposable;
 
   public async bound(): Promise<void> {
-    // TODO create collection mutation observer, dispatch value-changed
     this.value = this.value ?? [];
+    this._observer = this.engine?.collectionObserver(this.value).subscribe(changeRecords => {
+      this.valueChanged(this.value, changeRecords);
+    });
     this.updateDefinitions();
   }
 
+  public unbind(): void {
+    this._observer?.dispose();
+  }
+
   public add(): void {
-    const length = this.value.length;
-    const newLength = this.value.push(null);
-
-    const detail: ValueChangedEventDict = {
-      newValue: newLength, oldValue: length,
-      pointer: new JsonPointer([...this.pointer.segments, 'length']),
-    };
-
-    this.dispatchEvent('value-changed', detail);
-
+    this.value.push(null);
     this.updateDefinitions();
   }
 
   public delete(index: number): void {
     if (index in this.value) {
-      const length = this.value.length;
       this.value.splice(index, 1);
-
-      const detail: ValueChangedEventDict = {
-        newValue: this.value.length, oldValue: length,
-        pointer: new JsonPointer([...this.pointer.segments, 'length']),
-      };
-
-      this.dispatchEvent('value-changed', detail);
       this.updateDefinitions();
     }
   }
 
   public moveUp(index: number): void {
     if (index in this.value && index !== 0) {
-      const array = [...this.value];
-
       utils.array.move(this.value, index, 'up');
-
-      const detail: ValueChangedEventDict = {
-        newValue: this.value, oldValue: array,
-        pointer: this.pointer,
-      };
-
-      this.dispatchEvent('value-changed', detail);
       this.signal();
     }
   }
 
   public moveDown(index: number): void {
     if (index in this.value && index < this.value.length - 1) {
-      const array = [...this.value];
-
       utils.array.move(this.value, index, 'down');
-
-      const detail: ValueChangedEventDict = {
-        newValue: this.value, oldValue: array,
-        pointer: this.pointer,
-      };
-
-      this.dispatchEvent('value-changed', detail);
       this.signal();
     }
   }
