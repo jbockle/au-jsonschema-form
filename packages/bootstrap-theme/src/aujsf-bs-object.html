@@ -10,6 +10,19 @@
 
         <span class="form-text text-muted" if.bind="description">${description}</span>
 
+        <div class="input-group input-group-sm" if.bind="supportsAdditional">
+          <div class="input-group-prepend">
+            <button type="button" class="d-block btn btn-sm btn-outline-success text-monospace"
+                    click.delegate="add()"
+                    title="Add new item"><strong class="mr-1">&plus;</strong>Add</button>
+          </div>
+          <input type="text" class="form-control" placeholder="Add key" value.bind="newPropertyKey"
+                 keydown.delegate="onKeyDown($event)">
+        </div>
+        <em class="small text-danger" if.bind="supportsAdditional && keyError">
+          ${keyError}
+        </em>
+
       </legend>
     </div>
 

@@ -1,4 +1,4 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, inject, computedFrom, observable } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 
 import { AujsfBase } from '../aujsf-base';
@@ -13,6 +13,14 @@ import { ObjectViewProvider } from '../../services/providers/object-view-provide
 export class AujsfObject extends AujsfBase<JsonSchemaObject> {
   protected _logger = getLogger('aujsf:sf-object');
 
+  @observable
+  public newPropertyKey?: string;
+
+  @computedFrom()
+  public get supportsAdditional(): boolean {
+    return !this.readonly && !!this.schema.additionalProperties || !!this.schema.patternProperties;
+  }
+
   public definitions: ObjectKeyDefinition[] = [];
 
   public async bound(): Promise<void> {
@@ -20,14 +28,7 @@ export class AujsfObject extends AujsfBase<JsonSchemaObject> {
     this.definitions = this.getKeys()
       .map(key => {
         try {
-          const propertyUiSchema = this.getPropertyUiSchema(key);
-          return {
-            key,
-            uiSchema: propertyUiSchema,
-            schema: utils.common.clone(this.getPropertySchema(key)),
-            pointer: new JsonPointer([...this.pointer.segments, key]),
-            required: (this.schema.required ?? []).indexOf(key) !== -1,
-          } as ObjectKeyDefinition;
+          return this.getPropertyDefinition(key);
         } catch (error) {
           this._logger.error('error parsing key', key, error);
         }
@@ -35,11 +36,39 @@ export class AujsfObject extends AujsfBase<JsonSchemaObject> {
       .filter(utils.common.notNullOrUndefined);
   }
 
+  public add(): void {
+    if (this.newPropertyKey && !this.definitions.some(def => def.key === this.newPropertyKey)) {
+      this.definitions.push(this.getPropertyDefinition(this.newPropertyKey));
+    }
+
+    this.newPropertyKey = undefined;
+  }
+
+  public onKeyDown(event: KeyboardEvent): boolean {
+    if (event.keyCode === 13) {
+      return false;
+    }
+
+    return true;
+  }
+
   public getKeys(): string[] {
     return Object.keys(Object.assign(
       {},
       this.schema.properties ?? {},
       this.value ?? {}));
+  }
+
+  public getPropertyDefinition(key: string): ObjectKeyDefinition {
+    const propertyUiSchema = this.getPropertyUiSchema(key);
+
+    return {
+      key,
+      uiSchema: propertyUiSchema,
+      schema: utils.common.clone(this.getPropertySchema(key)),
+      pointer: new JsonPointer([...this.pointer.segments, key]),
+      required: (this.schema.required ?? []).indexOf(key) !== -1,
+    };
   }
 
   public getPropertySchema(property: string): JsonSchema {
@@ -58,6 +87,7 @@ export class AujsfObject extends AujsfBase<JsonSchemaObject> {
     }
 
     if (typeof this.schema.additionalProperties === 'boolean') {
+      // todo support ui:type
       throw new Error(`unable to determine property schema: 'additionalProperties' as a boolean is not supported. consider applying uiSchema['ui:type']`);
     } else if (this.schema.additionalProperties) {
       return this.schema.additionalProperties;

@@ -69,6 +69,26 @@ export class App {
       },
       type: 'object',
       properties: {
+        objects: {
+          type: 'object',
+          properties: {
+            patternOrAdditional: {
+              type: 'object',
+              properties: {
+                foo: { type: 'string' },
+              },
+              patternProperties: {
+                '^foo-\\w': {
+                  type: 'array',
+                  items: { type: 'string' },
+                },
+              },
+              additionalProperties: {
+                type: 'number',
+              },
+            },
+          },
+        },
         formats: {
           type: 'object',
           properties: {
