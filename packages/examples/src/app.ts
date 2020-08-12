@@ -69,6 +69,23 @@ export class App {
       },
       type: 'object',
       properties: {
+        formats: {
+          type: 'object',
+          properties: {
+            dateTime: {
+              type: 'string',
+              format: 'date-time',
+            },
+            date: {
+              type: 'string',
+              format: 'date',
+            },
+            time: {
+              type: 'string',
+              format: 'time',
+            },
+          },
+        },
         combined: {
           type: 'object',
           properties: {

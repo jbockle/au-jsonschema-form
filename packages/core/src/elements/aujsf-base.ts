@@ -117,11 +117,13 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
   protected createViewStrategy(): ViewStrategy {
     this._logger.debug('creating view strategy', this);
 
-    if (this.uiSchema['ui:view'] === 'unknown') {
-      return new InlineViewStrategy(`<template>unknown</template>`);
+    const view = this.uiSchema['ui:view'] || 'hidden';
+
+    if (view === 'unknown' || !this._templateRegistry.has(view)) {
+      return new InlineViewStrategy(`<template><code>ui:view '${view}' not found</code></template>`);
     }
 
-    const template = this._templateRegistry.get(this.uiSchema['ui:view'] || 'hidden');
+    const template = this._templateRegistry.get(view);
 
     return new InlineViewStrategy(
       template.entry.template.outerHTML,

@@ -6,10 +6,10 @@
     <aujsf-bs-label id.bind="id" title.bind="title" required.bind="required">
     </aujsf-bs-label>
 
-    <input id.bind="id" type="number"
-           disabled.bind="readonly"
+    <input id.bind="id" type="datetime-local"
            class="form-control ${hasErrors ? 'is-invalid' : value !== undefined ? 'is-valid' : ''}"
-           value.bind="value | aujsf_value:'number'">
+           disabled.bind="readonly"
+           value.bind="value | aujsf_value:'date-time':true">
 
     <small class="form-text text-muted" if.bind="description">${description}</small>
 
