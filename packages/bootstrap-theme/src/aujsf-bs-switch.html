@@ -1,18 +1,18 @@
 <template>
   <require from="@aujsf/bootstrap-theme/aujsf-bs-label.html"></require>
 
-  <div class="form-group form-check">
+  <div class="custom-control custom-switch">
 
-    <input type="checkbox" class="form-check-input ${hasErrors && 'is-invalid'}"
+    <input type="checkbox"
+           class="custom-control-input ${hasErrors && 'is-invalid'}"
            disabled.bind="readonly"
            checked.bind="value"
            id.bind="id">
+    <label class="custom-control-label"
+           for.bind="id">
+      ${title} <sup if.bind="required" title="Required">*</sup>
+    </label>
 
-    <aujsf-bs-label class="form-check-label"
-                    id.bind="id"
-                    title.bind="title"
-                    required.bind="required">
-    </aujsf-bs-label>
 
     <small class="form-text text-muted" if.bind="description">${description}</small>
 

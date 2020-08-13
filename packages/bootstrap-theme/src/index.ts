@@ -16,6 +16,7 @@ const theme: FormTheme = {
   'string-radio': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-string-radio.html'),
   'number-input': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-number-input.html'),
   'number-range': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-number-range.html'),
+  'switch': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-switch.html'),
   'checkbox': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-checkbox.html'),
   'all-of': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-all-of.html'),
   'one-of': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-one-of.html'),

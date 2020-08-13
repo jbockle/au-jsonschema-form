@@ -174,6 +174,9 @@ export class App {
               type: 'boolean',
               enum: [false],
             },
+            switch: {
+              type: 'boolean',
+            },
           },
         },
         number: {
@@ -281,6 +284,11 @@ export class App {
       },
       textArea: {
         'ui:view': 'textarea',
+      },
+    },
+    boolean: {
+      switch: {
+        'ui:view': 'switch',
       },
     },
   }
