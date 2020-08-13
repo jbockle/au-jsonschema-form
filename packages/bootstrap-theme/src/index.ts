@@ -7,6 +7,7 @@ const theme: FormTheme = {
   'array': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-array.html'),
   'array-checkboxes': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-array-checkboxes.html'),
   'array-tabs': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-array-tabs.html'),
+  'textarea': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-textarea.html'),
   'string-input': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-string-input.html'),
   'string-date-time': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-string-date-time.html'),
   'string-date': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-string-date.html'),

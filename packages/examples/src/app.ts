@@ -152,6 +152,9 @@ export class App {
             textEnumLarge: {
               $ref: '#/definitions/textEnumLarge',
             },
+            textArea: {
+              type: 'string',
+            },
           },
           required: [
             'textRequired',
@@ -270,6 +273,9 @@ export class App {
     text: {
       textReadonlyOverride: {
         'ui:read-only': false,
+      },
+      textArea: {
+        'ui:view': 'textarea',
       },
     },
   }
