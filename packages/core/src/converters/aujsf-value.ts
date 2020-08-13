@@ -24,7 +24,8 @@ export class AujsfValue {
           }
           break;
         case 'number':
-          return parseFloat(value) || undefined;
+          const parsed = parseFloat(value);
+          return isNaN(parsed) ? undefined : parsed;
         default:
           return value || undefined;
       }
