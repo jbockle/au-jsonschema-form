@@ -247,6 +247,13 @@ export class App {
                 enum: ['foo', 'bar', 'baz'],
               },
             },
+            selectMultiple: {
+              type: 'array',
+              items: {
+                type: 'string',
+                enum: ['foo', 'bar', 'baz'],
+              },
+            },
           },
         },
       },
@@ -277,6 +284,9 @@ export class App {
           'ui:title': false,
         },
       } as UISchema,
+      selectMultiple: {
+        'ui:view': 'array-select',
+      },
     },
     text: {
       textReadonlyOverride: {
