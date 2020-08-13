@@ -1,0 +1,26 @@
+<template>
+  <require from="@aujsf/bootstrap-theme/aujsf-bs-label.html"></require>
+
+  <div class="form-group">
+
+    <aujsf-bs-label id.bind="id" title.bind="title" required.bind="required">
+    </aujsf-bs-label>
+
+    <input id.bind="id" type="range"
+           step.bind="uiSchema['ui:step'] || 1"
+           min.bind="minimum"
+           max.bind="maximum"
+           disabled.bind="readonly"
+           class="custom-range ${hasErrors ? 'is-invalid' : value !== undefined ? 'is-valid' : ''}"
+           value.bind="value | aujsf_value:'number'">
+
+    <small class="form-text"><em class="mr-1">Current Value:</em>${typeof value === 'number' ? value : 'unset'}</small>
+
+    <small class="form-text text-muted" if.bind="description">${description}</small>
+
+    <div class="invalid-feedback" repeat.for="error of errorMessages">
+      ${error}
+    </div>
+
+  </div>
+</template>

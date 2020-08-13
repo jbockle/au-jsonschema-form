@@ -198,6 +198,11 @@ export class App {
               type: 'number',
               exclusiveMaximum: 2,
             },
+            range: {
+              type: 'number',
+              minimum: 0,
+              exclusiveMaximum: 4,
+            },
           },
         },
         arrays: {
