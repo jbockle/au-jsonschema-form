@@ -18,7 +18,7 @@ Theming is a first class citizen!
 
 ## Installation
 
-1. Install core dependency: `npm install @aujsf/core`
+1. Install core dependencies: `npm install @aujsf/core ajv jsonpointerx`
 1. Install a theme (*or create your own*): `npm install @aujsf/bootstrap-theme`
 1. Register the plugin:  
 
