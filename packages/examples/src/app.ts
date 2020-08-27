@@ -240,9 +240,10 @@ export class App {
         },
         arrays: {
           type: 'object',
+          description: 'Array Example',
           properties: {
             simple: {
-              type: 'array',
+              type: 'array', description: 'Simple Array Example',
               items: {
                 type: 'string',
                 // default: '',
@@ -251,6 +252,7 @@ export class App {
             },
             tabbed: {
               type: 'array',
+              description: 'Tabbed Array',
               items: {
                 type: 'object',
                 properties: {
@@ -272,6 +274,7 @@ export class App {
             },
             checkboxes: {
               type: 'array',
+              description: 'Enum strings are text boxes',
               items: {
                 type: 'string',
                 enum: ['foo', 'bar', 'baz'],

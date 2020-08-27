@@ -15,6 +15,12 @@ json-schema-form fieldset {
   margin: 4px 0;
 }
 
+json-schema-form fieldset legend .fieldset-description {
+  margin: 0;
+  margin-bottom: 4px;
+  font-size: 65%;
+}
+
 json-schema-form fieldset:hover {
   border-color: var(--light) !important;
 }
