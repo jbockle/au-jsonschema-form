@@ -55,6 +55,30 @@ export class App {
   public schemas: JsonSchemaObject[] = [
     {
       definitions: {
+        taggable: {
+          type: 'object',
+          properties: {
+            tags: {
+              type: 'array',
+              items: {
+                type: 'string',
+              },
+            },
+          },
+        },
+        entityBase: {
+          allOf: [
+            { $ref: '#/definitions/taggable' },
+            {
+              type: 'object',
+              properties: {
+                id: {
+                  type: 'string',
+                },
+              },
+            },
+          ],
+        },
         textEnumLarge: {
           type: 'string',
           enum: [
@@ -114,6 +138,12 @@ export class App {
                 { type: 'object' },
                 { properties: { firstName: { type: 'string' } }, required: ['firstName'] },
                 { properties: { lastName: { type: 'string' } }, required: ['lastName'] },
+              ],
+            },
+            allOfNested: {
+              allOf: [
+                { properties: { firstName: { type: 'string' } }, required: ['firstName'] },
+                { $ref: '#/definitions/entityBase' },
               ],
             },
             oneOfSimple: {
@@ -266,6 +296,14 @@ export class App {
       allOfExample: {
         firstName: {
           'ui:order': 0,
+        },
+      },
+      allOfNested: {
+        id: {
+          'ui:order': 0,
+        },
+        firstName: {
+          'ui:order': 1,
         },
       },
     },

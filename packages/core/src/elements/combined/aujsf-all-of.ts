@@ -15,9 +15,9 @@ export class AujsfAllOf extends AujsfBase<JsonSchemaAllOf, any> {
   public combinedSchema?: JsonSchema;
 
   public async bound(): Promise<void> {
-    this.combinedSchema = utils.common.mergeAll<JsonSchema>({}, utils.jsonSchema.resolveSchemas(this.schema.allOf, this.context.schema), {
-      arrayStrategy: 'union',
-    });
+    const mergedSchema = utils.jsonSchema.mergeAllOf(this.schema, this.context.schema);
+
+    this.combinedSchema = mergedSchema;
   }
 
   protected resolveUISchemaDefaults(): void {

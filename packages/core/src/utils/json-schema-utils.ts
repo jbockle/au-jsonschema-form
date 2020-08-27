@@ -3,9 +3,9 @@ import { JsonPointer } from 'jsonpointerx';
 import {
   JsonSchemaType,
   JsonSchema,
-  JsonSchemaObject, JsonSchemaArray, JsonSchemaString, JsonSchemaNumber, JsonSchemaBoolean,
+  JsonSchemaObject, JsonSchemaArray, JsonSchemaString, JsonSchemaNumber, JsonSchemaBoolean, JsonSchemaAllOf,
 } from '../models';
-
+import utils from '.';
 
 export class JsonSchemaUtils {
 
@@ -31,6 +31,10 @@ export class JsonSchemaUtils {
 
   public static isJsonSchemaArray(schema: JsonSchema): schema is JsonSchemaArray {
     return this.isSchemaType<JsonSchemaArray>(schema, 'array');
+  }
+
+  public static isJsonSchemaAllOf(schema: JsonSchema): schema is JsonSchemaAllOf {
+    return 'allOf' in schema && Array.isArray(schema.allOf);
   }
 
   private static isSchemaType<TSchemaType extends JsonSchema>(schema: JsonSchema, type: JsonSchemaType): schema is TSchemaType {
@@ -67,9 +71,23 @@ export class JsonSchemaUtils {
   public static resolveSchema(schemaOrSchemas: JsonSchema, root: JsonSchema): JsonSchema {
     if ('$ref' in schemaOrSchemas) {
       return this.resolveSchema(JsonPointer.compile(schemaOrSchemas.$ref).get(root), root);
-    } else {
+    }
+    else if (this.isJsonSchemaAllOf(schemaOrSchemas)) {
+      return this.mergeAllOf(schemaOrSchemas, root);
+    }
+    else {
       return schemaOrSchemas;
     }
+  }
+
+  public static mergeAllOf(schema: JsonSchemaAllOf, root: JsonSchema): JsonSchema {
+    const resolved = utils.jsonSchema.resolveSchemas(schema.allOf, root);
+
+    const combined = utils.common.mergeAll<JsonSchema>({}, resolved, {
+      arrayStrategy: 'union',
+    });
+
+    return combined;
   }
 
   public static fillDefaults = (value: any, schema: JsonSchema): any => new FillDefaults(value, schema).value;
@@ -116,6 +134,7 @@ class FillDefaults {
       pathValue = this.getArrayValue(pathValue, schema);
       this.set(pointer, pathValue);
       this.fillArray(pathValue, schema, segments);
+
     } else {
       this.set(pointer, pathValue);
     }
