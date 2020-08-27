@@ -42,16 +42,17 @@
     "predocs": "rimraf ../../docs/core",
     "docs": "typedoc --options ../typedoc.json --out ../../docs/core"
   },
-  "dependencies": {
-    "ajv": "^6.12.3",
-    "jsonpointerx": "^1.0.29"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "aurelia-framework": "^1.3.1",
     "aurelia-logging": "^1.5.2",
-    "aurelia-templating-resources": "^1.13.0"
+    "aurelia-templating-resources": "^1.13.0",
+    "ajv": "^6.12.4",
+    "jsonpointerx": "^1.0.29"
   },
   "devDependencies": {
+    "ajv": "^6.12.4",
+    "jsonpointerx": "^1.0.29",
     "aurelia-framework": "^1.3.1",
     "aurelia-logging": "^1.5.2",
     "aurelia-templating-resources": "^1.13.0",
