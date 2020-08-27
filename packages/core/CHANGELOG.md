@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.20](https://github.com/jbockle/au-jsonschema-form/compare/v0.0.19...v0.0.20) (2020-08-27)
+
+**Note:** Version bump only for package @aujsf/core
+
+
+
+
+
 ## [0.0.19](https://github.com/jbockle/au-jsonschema-form/compare/v0.0.18...v0.0.19) (2020-08-27)
 
 
