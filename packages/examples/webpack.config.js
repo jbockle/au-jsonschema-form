@@ -22,7 +22,7 @@ const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 const baseUrl = '/';
 
 const cssRules = [
-  { loader: 'css-loader?sourceMap' },
+  { loader: 'css-loader', options: { sourceMap: true, esModule: false } },
 ];
 
 module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, host } = {}) => ({
@@ -135,7 +135,7 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
         issuer: [{ test: /\.html$/i }],
         // CSS required in templates cannot be extracted safely
         // because Aurelia would try to require it again in runtime
-        use: cssRules,
+        use: ['to-string-loader', ...cssRules],
       },
       { test: /\.html$/i, loader: 'html-loader' },
       { test: /\.ts$/, loader: 'ts-loader', options: { configFile: 'tsconfig.build.json' } },
