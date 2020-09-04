@@ -2,7 +2,7 @@
   "name": "au-jsonschema-form",
   "private": true,
   "scripts": {
-    "build": "lerna run build",
+    "build": "lerna run build --stream",
     "docs": "lerna run docs --parallel --stream",
     "clean": "lerna clean -y",
     "postclean": "rimraf packages/**/package-lock.json",
