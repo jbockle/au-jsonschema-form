@@ -40,7 +40,7 @@
     "test:watch": "npm run test -- --watch",
     "lint": "eslint src/**/*.ts",
     "predocs": "rimraf ../../docs/core",
-    "docs": "typedoc --options ../typedoc.json --out ../../docs/core"
+    "docs": "typedoc --options ../typedoc.json --out ../../docs/core src"
   },
   "peerDependencies": {
     "ajv": "^6.12.4",

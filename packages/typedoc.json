@@ -1,6 +1,6 @@
 {
-   "tsconfig": "tsconfig.build.json",
-   "gitRemote": "origin",
-   "theme": "markdown",
-   "readme": "none"
+  "tsconfig": "tsconfig.build.json",
+  "gitRemote": "origin",
+  "theme": "markdown",
+  "mode": "modules"
 }

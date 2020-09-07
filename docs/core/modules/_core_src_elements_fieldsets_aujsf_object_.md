@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/elements/fieldsets/aujsf-object"](_core_src_elements_fieldsets_aujsf_object_.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/elements/fieldsets/aujsf-object"](_core_src_elements_fieldsets_aujsf_object_.md)
 
 # Module: "core/src/elements/fieldsets/aujsf-object"
 

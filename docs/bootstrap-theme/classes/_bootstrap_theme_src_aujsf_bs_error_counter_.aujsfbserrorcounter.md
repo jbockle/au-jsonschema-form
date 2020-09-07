@@ -1,4 +1,4 @@
-[@aujsf/bootstrap-theme](../README.md) › ["bootstrap-theme/src/aujsf-bs-error-counter"](../modules/_bootstrap_theme_src_aujsf_bs_error_counter_.md) › [AujsfBsErrorCounter](_bootstrap_theme_src_aujsf_bs_error_counter_.aujsfbserrorcounter.md)
+[@aujsf/bootstrap-theme](../README.md) › [Globals](../globals.md) › ["bootstrap-theme/src/aujsf-bs-error-counter"](../modules/_bootstrap_theme_src_aujsf_bs_error_counter_.md) › [AujsfBsErrorCounter](_bootstrap_theme_src_aujsf_bs_error_counter_.aujsfbserrorcounter.md)
 
 # Class: AujsfBsErrorCounter
 
@@ -27,7 +27,7 @@
 
 • **errors**: *ErrorSchema*
 
-*Defined in [bootstrap-theme/src/aujsf-bs-error-counter.ts:8](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/bootstrap-theme/src/aujsf-bs-error-counter.ts#L8)*
+*Defined in [bootstrap-theme/src/aujsf-bs-error-counter.ts:8](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/bootstrap-theme/src/aujsf-bs-error-counter.ts#L8)*
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 • **tooltip**: *string* = "This item contains errors"
 
-*Defined in [bootstrap-theme/src/aujsf-bs-error-counter.ts:15](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/bootstrap-theme/src/aujsf-bs-error-counter.ts#L15)*
+*Defined in [bootstrap-theme/src/aujsf-bs-error-counter.ts:15](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/bootstrap-theme/src/aujsf-bs-error-counter.ts#L15)*
 
 ## Accessors
 
@@ -43,7 +43,7 @@ ___
 
 • **get hasChildErrors**(): *boolean*
 
-*Defined in [bootstrap-theme/src/aujsf-bs-error-counter.ts:11](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/bootstrap-theme/src/aujsf-bs-error-counter.ts#L11)*
+*Defined in [bootstrap-theme/src/aujsf-bs-error-counter.ts:11](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/bootstrap-theme/src/aujsf-bs-error-counter.ts#L11)*
 
 **Returns:** *boolean*
 
@@ -53,7 +53,7 @@ ___
 
 ▸ **checkForErrors**(`errors`: ErrorSchema): *boolean*
 
-*Defined in [bootstrap-theme/src/aujsf-bs-error-counter.ts:17](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/bootstrap-theme/src/aujsf-bs-error-counter.ts#L17)*
+*Defined in [bootstrap-theme/src/aujsf-bs-error-counter.ts:17](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/bootstrap-theme/src/aujsf-bs-error-counter.ts#L17)*
 
 **Parameters:**
 

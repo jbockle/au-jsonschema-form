@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/models/index"](_core_src_models_index_.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/models/index"](_core_src_models_index_.md)
 
 # Module: "core/src/models/index"
 

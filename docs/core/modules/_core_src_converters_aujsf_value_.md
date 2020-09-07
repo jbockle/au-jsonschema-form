@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/converters/aujsf-value"](_core_src_converters_aujsf_value_.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/converters/aujsf-value"](_core_src_converters_aujsf_value_.md)
 
 # Module: "core/src/converters/aujsf-value"
 
@@ -18,4 +18,4 @@
 
 Ƭ **ValueType**: *"string" | "number" | "date" | "date-time" | "time" | "duration"*
 
-*Defined in [core/src/converters/aujsf-value.ts:3](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/converters/aujsf-value.ts#L3)*
+*Defined in [core/src/converters/aujsf-value.ts:3](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/converters/aujsf-value.ts#L3)*

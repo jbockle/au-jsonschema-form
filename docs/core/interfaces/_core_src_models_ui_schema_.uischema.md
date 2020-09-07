@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/models/ui-schema"](../modules/_core_src_models_ui_schema_.md) › [UISchema](_core_src_models_ui_schema_.uischema.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/models/ui-schema"](../modules/_core_src_models_ui_schema_.md) › [UISchema](_core_src_models_ui_schema_.uischema.md)
 
 # Interface: UISchema
 
@@ -45,7 +45,7 @@ unique prefix/suffix so that it will not clash with schema properties
 
 • **ui:autocomplete**? : *"on" | "off"*
 
-*Defined in [core/src/models/ui-schema.ts:28](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/ui-schema.ts#L28)*
+*Defined in [core/src/models/ui-schema.ts:28](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/ui-schema.ts#L28)*
 
 enable/disable browser autocomplete feature on this form, currently only valid on root UISchema
 
@@ -57,7 +57,7 @@ ___
 
 • **ui:item-title**? : *undefined | string*
 
-*Defined in [core/src/models/ui-schema.ts:71](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/ui-schema.ts#L71)*
+*Defined in [core/src/models/ui-schema.ts:71](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/ui-schema.ts#L71)*
 
 template-like literal string to format, @see SfItemTitle converter
 
@@ -67,7 +67,7 @@ ___
 
 • **ui:item-view**? : *undefined | string*
 
-*Defined in [core/src/models/ui-schema.ts:66](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/ui-schema.ts#L66)*
+*Defined in [core/src/models/ui-schema.ts:66](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/ui-schema.ts#L66)*
 
 the array item view to use, can be set on an array's ui schema or on a 'ui:items' ui schema
 
@@ -79,7 +79,7 @@ ___
 
 • **ui:items**? : *[UISchema](_core_src_models_ui_schema_.uischema.md) | [UISchema](_core_src_models_ui_schema_.uischema.md)[]*
 
-*Defined in [core/src/models/ui-schema.ts:60](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/ui-schema.ts#L60)*
+*Defined in [core/src/models/ui-schema.ts:60](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/ui-schema.ts#L60)*
 
 use for an array's UISchema to define the array item(s) UISchema,
 if an array, the the UISchema is applied to the item with the same index,
@@ -91,7 +91,7 @@ ___
 
 • **ui:no-remove**? : *undefined | false | true*
 
-*Defined in [core/src/models/ui-schema.ts:53](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/ui-schema.ts#L53)*
+*Defined in [core/src/models/ui-schema.ts:53](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/ui-schema.ts#L53)*
 
 used to prevent removing an item from an array
 
@@ -101,7 +101,7 @@ ___
 
 • **ui:no-reorder**? : *undefined | false | true*
 
-*Defined in [core/src/models/ui-schema.ts:48](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/ui-schema.ts#L48)*
+*Defined in [core/src/models/ui-schema.ts:48](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/ui-schema.ts#L48)*
 
 used to prevents an array's item from being re-ordered
 
@@ -111,7 +111,7 @@ ___
 
 • **ui:order**? : *undefined | number*
 
-*Defined in [core/src/models/ui-schema.ts:33](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/ui-schema.ts#L33)*
+*Defined in [core/src/models/ui-schema.ts:33](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/ui-schema.ts#L33)*
 
 specify the property or item order
 
@@ -121,7 +121,7 @@ ___
 
 • **ui:read-only**? : *undefined | false | true*
 
-*Defined in [core/src/models/ui-schema.ts:76](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/ui-schema.ts#L76)*
+*Defined in [core/src/models/ui-schema.ts:76](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/ui-schema.ts#L76)*
 
 override schema's readOnly
 
@@ -131,7 +131,7 @@ ___
 
 • **ui:select-default**? : *[]*
 
-*Defined in [core/src/models/ui-schema.ts:43](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/ui-schema.ts#L43)*
+*Defined in [core/src/models/ui-schema.ts:43](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/ui-schema.ts#L43)*
 
 show a pre-selected default option in the select dropdown, tuple is [label,value]
 
@@ -141,7 +141,7 @@ ___
 
 • **ui:title**? : *false | string*
 
-*Defined in [core/src/models/ui-schema.ts:16](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/ui-schema.ts#L16)*
+*Defined in [core/src/models/ui-schema.ts:16](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/ui-schema.ts#L16)*
 
 override the title
 
@@ -153,7 +153,7 @@ ___
 
 • **ui:type**? : *[SchemaType](../modules/_core_src_models_json_schema_.md#schematype)*
 
-*Defined in [core/src/models/ui-schema.ts:38](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/ui-schema.ts#L38)*
+*Defined in [core/src/models/ui-schema.ts:38](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/ui-schema.ts#L38)*
 
 override the schema type used (may be useful in array schema types)
 
@@ -163,7 +163,7 @@ ___
 
 • **ui:view**? : *string | false*
 
-*Defined in [core/src/models/ui-schema.ts:22](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/ui-schema.ts#L22)*
+*Defined in [core/src/models/ui-schema.ts:22](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/ui-schema.ts#L22)*
 
 override the view template to be used or set to false to prevent the schema element from showing
 

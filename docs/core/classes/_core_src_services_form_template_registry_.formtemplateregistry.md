@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/services/form-template-registry"](../modules/_core_src_services_form_template_registry_.md) › [FormTemplateRegistry](_core_src_services_form_template_registry_.formtemplateregistry.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/services/form-template-registry"](../modules/_core_src_services_form_template_registry_.md) › [FormTemplateRegistry](_core_src_services_form_template_registry_.formtemplateregistry.md)
 
 # Class: FormTemplateRegistry
 
@@ -36,7 +36,7 @@
 
 \+ **new FormTemplateRegistry**(`_loader`: Loader, `_viewEngine`: ViewEngine): *[FormTemplateRegistry](_core_src_services_form_template_registry_.formtemplateregistry.md)*
 
-*Defined in [core/src/services/form-template-registry.ts:15](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-template-registry.ts#L15)*
+*Defined in [core/src/services/form-template-registry.ts:15](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-template-registry.ts#L15)*
 
 **Parameters:**
 
@@ -53,7 +53,7 @@ Name | Type |
 
 • **_loader**: *Loader*
 
-*Defined in [core/src/services/form-template-registry.ts:18](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-template-registry.ts#L18)*
+*Defined in [core/src/services/form-template-registry.ts:18](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-template-registry.ts#L18)*
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 • **_logger**: *Logger‹›* = getLogger('aujsf:form-template-registry')
 
-*Defined in [core/src/services/form-template-registry.ts:14](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-template-registry.ts#L14)*
+*Defined in [core/src/services/form-template-registry.ts:14](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-template-registry.ts#L14)*
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 • **_templates**: *Map‹string, [FormTemplate](../interfaces/_core_src_models_form_template_.formtemplate.md)›* = new Map()
 
-*Defined in [core/src/services/form-template-registry.ts:15](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-template-registry.ts#L15)*
+*Defined in [core/src/services/form-template-registry.ts:15](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-template-registry.ts#L15)*
 
 ___
 
@@ -77,7 +77,7 @@ ___
 
 • **_viewEngine**: *ViewEngine*
 
-*Defined in [core/src/services/form-template-registry.ts:19](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-template-registry.ts#L19)*
+*Defined in [core/src/services/form-template-registry.ts:19](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-template-registry.ts#L19)*
 
 ## Accessors
 
@@ -85,7 +85,7 @@ ___
 
 • **get ready**(): *boolean*
 
-*Defined in [core/src/services/form-template-registry.ts:21](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-template-registry.ts#L21)*
+*Defined in [core/src/services/form-template-registry.ts:21](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-template-registry.ts#L21)*
 
 **Returns:** *boolean*
 
@@ -95,7 +95,7 @@ ___
 
 ▸ **add**(`name`: string, `url`: [FormModule](../modules/_core_src_models_form_template_.md#formmodule)): *Promise‹void›*
 
-*Defined in [core/src/services/form-template-registry.ts:26](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-template-registry.ts#L26)*
+*Defined in [core/src/services/form-template-registry.ts:26](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-template-registry.ts#L26)*
 
 **Parameters:**
 
@@ -112,7 +112,7 @@ ___
 
 ▸ **clear**(): *void*
 
-*Defined in [core/src/services/form-template-registry.ts:64](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-template-registry.ts#L64)*
+*Defined in [core/src/services/form-template-registry.ts:64](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-template-registry.ts#L64)*
 
 **Returns:** *void*
 
@@ -122,7 +122,7 @@ ___
 
 ▸ **get**(`name?`: undefined | string): *[FormTemplate](../interfaces/_core_src_models_form_template_.formtemplate.md)*
 
-*Defined in [core/src/services/form-template-registry.ts:44](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-template-registry.ts#L44)*
+*Defined in [core/src/services/form-template-registry.ts:44](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-template-registry.ts#L44)*
 
 **Parameters:**
 
@@ -138,7 +138,7 @@ ___
 
 ▸ **has**(`name`: string): *boolean*
 
-*Defined in [core/src/services/form-template-registry.ts:60](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-template-registry.ts#L60)*
+*Defined in [core/src/services/form-template-registry.ts:60](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-template-registry.ts#L60)*
 
 **Parameters:**
 

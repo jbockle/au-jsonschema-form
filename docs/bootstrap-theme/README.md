@@ -1,10 +1,18 @@
-[@aujsf/bootstrap-theme](README.md)
+[@aujsf/bootstrap-theme](README.md) › [Globals](globals.md)
 
 # @aujsf/bootstrap-theme
 
-## Index
+<p align="right">
+  <a href="https://www.npmjs.com/package/@aujsf/bootstrap-theme">
+    <img alt="NPM Status" src="https://img.shields.io/npm/v/@aujsf/core.svg?style=flat">
+  </a>
+  <a href="https://bundlephobia.com/result?p=@aujsf/bootstrap-theme">
+    <img alt="Bundlephobia" src="https://badgen.net/bundlephobia/minzip/@aujsf/bootstrap-theme">
+  </a>
+</p>
 
-### Modules
+Bootstrap 4 theme for @aujsf/core
 
-* ["bootstrap-theme/src/aujsf-bs-error-counter"](modules/_bootstrap_theme_src_aujsf_bs_error_counter_.md)
-* ["bootstrap-theme/src/index"](modules/_bootstrap_theme_src_index_.md)
+## Installation
+
+`npm install @aujsf/bootstrap-theme`

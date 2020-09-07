@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/models/submit-arguments"](../modules/_core_src_models_submit_arguments_.md) › [SubmitArguments](_core_src_models_submit_arguments_.submitarguments.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/models/submit-arguments"](../modules/_core_src_models_submit_arguments_.md) › [SubmitArguments](_core_src_models_submit_arguments_.submitarguments.md)
 
 # Interface: SubmitArguments
 
@@ -19,7 +19,7 @@
 
 • **validationResult**? : *[ValidationResult](_core_src_models_error_schema_.validationresult.md)*
 
-*Defined in [core/src/models/submit-arguments.ts:5](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/submit-arguments.ts#L5)*
+*Defined in [core/src/models/submit-arguments.ts:5](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/submit-arguments.ts#L5)*
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 • **value**: *any*
 
-*Defined in [core/src/models/submit-arguments.ts:4](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/submit-arguments.ts#L4)*
+*Defined in [core/src/models/submit-arguments.ts:4](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/submit-arguments.ts#L4)*

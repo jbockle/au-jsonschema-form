@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/services/providers/all-of-view-provider"](_core_src_services_providers_all_of_view_provider_.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/services/providers/all-of-view-provider"](_core_src_services_providers_all_of_view_provider_.md)
 
 # Module: "core/src/services/providers/all-of-view-provider"
 

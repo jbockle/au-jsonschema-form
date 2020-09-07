@@ -1,57 +1,18 @@
-[@aujsf/core](README.md)
+[@aujsf/core](README.md) › [Globals](globals.md)
 
 # @aujsf/core
 
-## Index
+<p align="right">
+  <a href="https://www.npmjs.com/package/@aujsf/core">
+    <img alt="NPM Status" src="https://img.shields.io/npm/v/@aujsf/core.svg?style=flat">
+  </a>
+  <a href="https://bundlephobia.com/result?p=@aujsf/core@0.0.7">
+    <img alt="Bundlephobia" src="https://badgen.net/bundlephobia/minzip/@aujsf/core">
+  </a>
+</p>
 
-### Modules
+Create forms based on JSON Schema in Aurelia (v1)!
 
-* ["core/node_modules/ajv/lib/refs/json-schema-draft-04"](modules/_core_node_modules_ajv_lib_refs_json_schema_draft_04_.md)
-* ["core/node_modules/ajv/lib/refs/json-schema-draft-06"](modules/_core_node_modules_ajv_lib_refs_json_schema_draft_06_.md)
-* ["core/src/converters/aujsf-item-title"](modules/_core_src_converters_aujsf_item_title_.md)
-* ["core/src/converters/aujsf-sort-definitions"](modules/_core_src_converters_aujsf_sort_definitions_.md)
-* ["core/src/converters/aujsf-value"](modules/_core_src_converters_aujsf_value_.md)
-* ["core/src/elements/aujsf-base"](modules/_core_src_elements_aujsf_base_.md)
-* ["core/src/elements/aujsf-slot"](modules/_core_src_elements_aujsf_slot_.md)
-* ["core/src/elements/combined/aujsf-all-of"](modules/_core_src_elements_combined_aujsf_all_of_.md)
-* ["core/src/elements/combined/aujsf-one-of"](modules/_core_src_elements_combined_aujsf_one_of_.md)
-* ["core/src/elements/fieldsets/aujsf-array"](modules/_core_src_elements_fieldsets_aujsf_array_.md)
-* ["core/src/elements/fieldsets/aujsf-object"](modules/_core_src_elements_fieldsets_aujsf_object_.md)
-* ["core/src/elements/form-elements/aujsf-boolean"](modules/_core_src_elements_form_elements_aujsf_boolean_.md)
-* ["core/src/elements/form-elements/aujsf-hidden"](modules/_core_src_elements_form_elements_aujsf_hidden_.md)
-* ["core/src/elements/form-elements/aujsf-number"](modules/_core_src_elements_form_elements_aujsf_number_.md)
-* ["core/src/elements/form-elements/aujsf-string"](modules/_core_src_elements_form_elements_aujsf_string_.md)
-* ["core/src/elements/json-schema-form"](modules/_core_src_elements_json_schema_form_.md)
-* ["core/src/index"](modules/_core_src_index_.md)
-* ["core/src/models/error-schema"](modules/_core_src_models_error_schema_.md)
-* ["core/src/models/form-events"](modules/_core_src_models_form_events_.md)
-* ["core/src/models/form-options"](modules/_core_src_models_form_options_.md)
-* ["core/src/models/form-template"](modules/_core_src_models_form_template_.md)
-* ["core/src/models/index"](modules/_core_src_models_index_.md)
-* ["core/src/models/json-schema"](modules/_core_src_models_json_schema_.md)
-* ["core/src/models/key-definition"](modules/_core_src_models_key_definition_.md)
-* ["core/src/models/submit-arguments"](modules/_core_src_models_submit_arguments_.md)
-* ["core/src/models/ui-schema"](modules/_core_src_models_ui_schema_.md)
-* ["core/src/plugin-options"](modules/_core_src_plugin_options_.md)
-* ["core/src/services/enhancer"](modules/_core_src_services_enhancer_.md)
-* ["core/src/services/form-context"](modules/_core_src_services_form_context_.md)
-* ["core/src/services/form-template-registry"](modules/_core_src_services_form_template_registry_.md)
-* ["core/src/services/index"](modules/_core_src_services_index_.md)
-* ["core/src/services/providers/all-of-view-provider"](modules/_core_src_services_providers_all_of_view_provider_.md)
-* ["core/src/services/providers/array-view-provider"](modules/_core_src_services_providers_array_view_provider_.md)
-* ["core/src/services/providers/boolean-view-provider"](modules/_core_src_services_providers_boolean_view_provider_.md)
-* ["core/src/services/providers/empty-view-provider"](modules/_core_src_services_providers_empty_view_provider_.md)
-* ["core/src/services/providers/number-view-provider"](modules/_core_src_services_providers_number_view_provider_.md)
-* ["core/src/services/providers/object-view-provider"](modules/_core_src_services_providers_object_view_provider_.md)
-* ["core/src/services/providers/one-of-view-provider"](modules/_core_src_services_providers_one_of_view_provider_.md)
-* ["core/src/services/providers/string-view-provider"](modules/_core_src_services_providers_string_view_provider_.md)
-* ["core/src/services/providers/view-provider"](modules/_core_src_services_providers_view_provider_.md)
-* ["core/src/utils/array-utils"](modules/_core_src_utils_array_utils_.md)
-* ["core/src/utils/clone"](modules/_core_src_utils_clone_.md)
-* ["core/src/utils/common-utils"](modules/_core_src_utils_common_utils_.md)
-* ["core/src/utils/fill-defaults"](modules/_core_src_utils_fill_defaults_.md)
-* ["core/src/utils/form-utils"](modules/_core_src_utils_form_utils_.md)
-* ["core/src/utils/index"](modules/_core_src_utils_index_.md)
-* ["core/src/utils/json-schema-utils"](modules/_core_src_utils_json_schema_utils_.md)
-* ["core/src/utils/merge"](modules/_core_src_utils_merge_.md)
-* ["core/src/utils/validator"](modules/_core_src_utils_validator_.md)
+## Installation
+
+`npm install @aujsf/core`

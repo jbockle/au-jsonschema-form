@@ -42,7 +42,7 @@
     "test:watch": "npm run test -- --watch",
     "lint": "eslint src/**/*.ts",
     "predocs": "rimraf ../../docs/bootstrap-theme",
-    "docs": "typedoc --options ../typedoc.json --out ../../docs/bootstrap-theme"
+    "docs": "typedoc --options ../typedoc.json --out ../../docs/bootstrap-theme src"
   },
   "dependencies": {
     "@aujsf/core": "^0.1.1"

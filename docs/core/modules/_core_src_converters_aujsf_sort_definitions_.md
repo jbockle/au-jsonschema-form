@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/converters/aujsf-sort-definitions"](_core_src_converters_aujsf_sort_definitions_.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/converters/aujsf-sort-definitions"](_core_src_converters_aujsf_sort_definitions_.md)
 
 # Module: "core/src/converters/aujsf-sort-definitions"
 

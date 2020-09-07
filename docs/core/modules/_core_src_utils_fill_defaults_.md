@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/utils/fill-defaults"](_core_src_utils_fill_defaults_.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/utils/fill-defaults"](_core_src_utils_fill_defaults_.md)
 
 # Module: "core/src/utils/fill-defaults"
 

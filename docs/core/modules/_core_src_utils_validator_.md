@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/utils/validator"](_core_src_utils_validator_.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/utils/validator"](_core_src_utils_validator_.md)
 
 # Module: "core/src/utils/validator"
 

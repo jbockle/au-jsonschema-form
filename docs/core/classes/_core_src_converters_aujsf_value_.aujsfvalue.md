@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/converters/aujsf-value"](../modules/_core_src_converters_aujsf_value_.md) › [AujsfValue](_core_src_converters_aujsf_value_.aujsfvalue.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/converters/aujsf-value"](../modules/_core_src_converters_aujsf_value_.md) › [AujsfValue](_core_src_converters_aujsf_value_.aujsfvalue.md)
 
 # Class: AujsfValue
 
@@ -24,7 +24,7 @@
 
 \+ **new AujsfValue**(): *[AujsfValue](_core_src_converters_aujsf_value_.aujsfvalue.md)*
 
-*Defined in [core/src/converters/aujsf-value.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/converters/aujsf-value.ts#L6)*
+*Defined in [core/src/converters/aujsf-value.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/converters/aujsf-value.ts#L6)*
 
 **Returns:** *[AujsfValue](_core_src_converters_aujsf_value_.aujsfvalue.md)*
 
@@ -34,7 +34,7 @@
 
 ▸ **fromView**(`value`: string, `type`: [ValueType](../modules/_core_src_converters_aujsf_value_.md#valuetype)): *number | string | undefined*
 
-*Defined in [core/src/converters/aujsf-value.ts:20](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/converters/aujsf-value.ts#L20)*
+*Defined in [core/src/converters/aujsf-value.ts:20](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/converters/aujsf-value.ts#L20)*
 
 **Parameters:**
 
@@ -51,7 +51,7 @@ ___
 
 ▸ **toDatetimeLocal**(`date`: Date): *string*
 
-*Defined in [core/src/converters/aujsf-value.ts:43](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/converters/aujsf-value.ts#L43)*
+*Defined in [core/src/converters/aujsf-value.ts:43](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/converters/aujsf-value.ts#L43)*
 
 **Parameters:**
 
@@ -67,7 +67,7 @@ ___
 
 ▸ **toView**(`value`: string, `type`: [ValueType](../modules/_core_src_converters_aujsf_value_.md#valuetype), `toLocal`: boolean): *string*
 
-*Defined in [core/src/converters/aujsf-value.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/converters/aujsf-value.ts#L12)*
+*Defined in [core/src/converters/aujsf-value.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/converters/aujsf-value.ts#L12)*
 
 **Parameters:**
 

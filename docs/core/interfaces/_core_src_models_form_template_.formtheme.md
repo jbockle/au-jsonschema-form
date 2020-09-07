@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/models/form-template"](../modules/_core_src_models_form_template_.md) › [FormTheme](_core_src_models_form_template_.formtheme.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/models/form-template"](../modules/_core_src_models_form_template_.md) › [FormTheme](_core_src_models_form_template_.formtheme.md)
 
 # Interface: FormTheme
 
@@ -37,7 +37,7 @@
 
 • **all-of**: *[FormModule](../modules/_core_src_models_form_template_.md#formmodule)*
 
-*Defined in [core/src/models/form-template.ts:30](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L30)*
+*Defined in [core/src/models/form-template.ts:30](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-template.ts#L30)*
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 • **array**: *[FormModule](../modules/_core_src_models_form_template_.md#formmodule)*
 
-*Defined in [core/src/models/form-template.ts:17](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L17)*
+*Defined in [core/src/models/form-template.ts:17](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-template.ts#L17)*
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 • **array-checkboxes**: *[FormModule](../modules/_core_src_models_form_template_.md#formmodule)*
 
-*Defined in [core/src/models/form-template.ts:19](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L19)*
+*Defined in [core/src/models/form-template.ts:19](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-template.ts#L19)*
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 • **array-select**: *[FormModule](../modules/_core_src_models_form_template_.md#formmodule)*
 
-*Defined in [core/src/models/form-template.ts:18](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L18)*
+*Defined in [core/src/models/form-template.ts:18](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-template.ts#L18)*
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 • **array-tabs**: *[FormModule](../modules/_core_src_models_form_template_.md#formmodule)*
 
-*Defined in [core/src/models/form-template.ts:20](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L20)*
+*Defined in [core/src/models/form-template.ts:20](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-template.ts#L20)*
 
 ___
 
@@ -77,7 +77,7 @@ ___
 
 • **checkbox**: *[FormModule](../modules/_core_src_models_form_template_.md#formmodule)*
 
-*Defined in [core/src/models/form-template.ts:29](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L29)*
+*Defined in [core/src/models/form-template.ts:29](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-template.ts#L29)*
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 • **number-input**: *[FormModule](../modules/_core_src_models_form_template_.md#formmodule)*
 
-*Defined in [core/src/models/form-template.ts:28](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L28)*
+*Defined in [core/src/models/form-template.ts:28](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-template.ts#L28)*
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 • **object**: *[FormModule](../modules/_core_src_models_form_template_.md#formmodule)*
 
-*Defined in [core/src/models/form-template.ts:16](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L16)*
+*Defined in [core/src/models/form-template.ts:16](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-template.ts#L16)*
 
 ___
 
@@ -101,7 +101,7 @@ ___
 
 • **one-of**: *[FormModule](../modules/_core_src_models_form_template_.md#formmodule)*
 
-*Defined in [core/src/models/form-template.ts:31](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L31)*
+*Defined in [core/src/models/form-template.ts:31](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-template.ts#L31)*
 
 ___
 
@@ -109,7 +109,7 @@ ___
 
 • **string-date**: *[FormModule](../modules/_core_src_models_form_template_.md#formmodule)*
 
-*Defined in [core/src/models/form-template.ts:26](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L26)*
+*Defined in [core/src/models/form-template.ts:26](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-template.ts#L26)*
 
 ___
 
@@ -117,7 +117,7 @@ ___
 
 • **string-date-time**: *[FormModule](../modules/_core_src_models_form_template_.md#formmodule)*
 
-*Defined in [core/src/models/form-template.ts:25](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L25)*
+*Defined in [core/src/models/form-template.ts:25](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-template.ts#L25)*
 
 ___
 
@@ -125,7 +125,7 @@ ___
 
 • **string-input**: *[FormModule](../modules/_core_src_models_form_template_.md#formmodule)*
 
-*Defined in [core/src/models/form-template.ts:22](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L22)*
+*Defined in [core/src/models/form-template.ts:22](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-template.ts#L22)*
 
 ___
 
@@ -133,7 +133,7 @@ ___
 
 • **string-radio**: *[FormModule](../modules/_core_src_models_form_template_.md#formmodule)*
 
-*Defined in [core/src/models/form-template.ts:24](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L24)*
+*Defined in [core/src/models/form-template.ts:24](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-template.ts#L24)*
 
 ___
 
@@ -141,7 +141,7 @@ ___
 
 • **string-select**: *[FormModule](../modules/_core_src_models_form_template_.md#formmodule)*
 
-*Defined in [core/src/models/form-template.ts:23](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L23)*
+*Defined in [core/src/models/form-template.ts:23](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-template.ts#L23)*
 
 ___
 
@@ -149,7 +149,7 @@ ___
 
 • **string-time**: *[FormModule](../modules/_core_src_models_form_template_.md#formmodule)*
 
-*Defined in [core/src/models/form-template.ts:27](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L27)*
+*Defined in [core/src/models/form-template.ts:27](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-template.ts#L27)*
 
 ___
 
@@ -157,4 +157,4 @@ ___
 
 • **textarea**: *[FormModule](../modules/_core_src_models_form_template_.md#formmodule)*
 
-*Defined in [core/src/models/form-template.ts:21](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L21)*
+*Defined in [core/src/models/form-template.ts:21](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-template.ts#L21)*

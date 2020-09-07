@@ -1,5 +1,3 @@
-# @aujsf/bootstrap-theme
-
 <p align="right">
   <a href="https://www.npmjs.com/package/@aujsf/bootstrap-theme">
     <img alt="NPM Status" src="https://img.shields.io/npm/v/@aujsf/core.svg?style=flat">

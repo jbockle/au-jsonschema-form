@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/utils/merge"](../modules/_core_src_utils_merge_.md) › [MergeOptions](_core_src_utils_merge_.mergeoptions.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/utils/merge"](../modules/_core_src_utils_merge_.md) › [MergeOptions](_core_src_utils_merge_.mergeoptions.md)
 
 # Interface: MergeOptions
 
@@ -18,4 +18,4 @@
 
 • **arrayStrategy**: *"replace" | "union"*
 
-*Defined in [core/src/utils/merge.ts:2](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/merge.ts#L2)*
+*Defined in [core/src/utils/merge.ts:2](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/utils/merge.ts#L2)*

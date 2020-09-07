@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/models/form-options"](_core_src_models_form_options_.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/models/form-options"](_core_src_models_form_options_.md)
 
 # Module: "core/src/models/form-options"
 
@@ -19,4 +19,4 @@
 
 Ƭ **FormOptions**: *Partial‹[InternalFormOptions](../interfaces/_core_src_models_form_options_.internalformoptions.md)›*
 
-*Defined in [core/src/models/form-options.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-options.ts#L12)*
+*Defined in [core/src/models/form-options.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-options.ts#L12)*

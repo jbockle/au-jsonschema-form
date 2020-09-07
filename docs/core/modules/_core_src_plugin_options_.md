@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/plugin-options"](_core_src_plugin_options_.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/plugin-options"](_core_src_plugin_options_.md)
 
 # Module: "core/src/plugin-options"
 

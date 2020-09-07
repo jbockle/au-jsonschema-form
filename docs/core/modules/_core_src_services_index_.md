@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/services/index"](_core_src_services_index_.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/services/index"](_core_src_services_index_.md)
 
 # Module: "core/src/services/index"
 

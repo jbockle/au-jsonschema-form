@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/elements/aujsf-base"](_core_src_elements_aujsf_base_.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/elements/aujsf-base"](_core_src_elements_aujsf_base_.md)
 
 # Module: "core/src/elements/aujsf-base"
 

@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/services/form-template-registry"](_core_src_services_form_template_registry_.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/services/form-template-registry"](_core_src_services_form_template_registry_.md)
 
 # Module: "core/src/services/form-template-registry"
 
@@ -18,22 +18,22 @@
 
 ### ▪ **HIDDEN_VIEW**: *object*
 
-*Defined in [core/src/services/form-template-registry.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-template-registry.ts#L6)*
+*Defined in [core/src/services/form-template-registry.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-template-registry.ts#L6)*
 
 ###  entry
 
 • **entry**: *never* = null!
 
-*Defined in [core/src/services/form-template-registry.ts:8](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-template-registry.ts#L8)*
+*Defined in [core/src/services/form-template-registry.ts:8](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-template-registry.ts#L8)*
 
 ###  name
 
 • **name**: *string* = "hidden"
 
-*Defined in [core/src/services/form-template-registry.ts:7](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-template-registry.ts#L7)*
+*Defined in [core/src/services/form-template-registry.ts:7](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-template-registry.ts#L7)*
 
 ###  url
 
 • **url**: *never* = null!
 
-*Defined in [core/src/services/form-template-registry.ts:9](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-template-registry.ts#L9)*
+*Defined in [core/src/services/form-template-registry.ts:9](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-template-registry.ts#L9)*

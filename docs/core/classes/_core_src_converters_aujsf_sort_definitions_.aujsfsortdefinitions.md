@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/converters/aujsf-sort-definitions"](../modules/_core_src_converters_aujsf_sort_definitions_.md) › [AujsfSortDefinitions](_core_src_converters_aujsf_sort_definitions_.aujsfsortdefinitions.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/converters/aujsf-sort-definitions"](../modules/_core_src_converters_aujsf_sort_definitions_.md) › [AujsfSortDefinitions](_core_src_converters_aujsf_sort_definitions_.aujsfsortdefinitions.md)
 
 # Class: AujsfSortDefinitions
 
@@ -18,7 +18,7 @@
 
 ▸ **toView**(`definitions`: [KeyDefinition](../interfaces/_core_src_models_key_definition_.keydefinition.md)[]): *[KeyDefinition](../interfaces/_core_src_models_key_definition_.keydefinition.md)[]*
 
-*Defined in [core/src/converters/aujsf-sort-definitions.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/converters/aujsf-sort-definitions.ts#L6)*
+*Defined in [core/src/converters/aujsf-sort-definitions.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/converters/aujsf-sort-definitions.ts#L6)*
 
 **Parameters:**
 

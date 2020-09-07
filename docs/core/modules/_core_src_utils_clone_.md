@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/utils/clone"](_core_src_utils_clone_.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/utils/clone"](_core_src_utils_clone_.md)
 
 # Module: "core/src/utils/clone"
 
@@ -14,7 +14,7 @@
 
 ▸ **clone**(`obj`: any): *any*
 
-*Defined in [core/src/utils/clone.ts:1](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/clone.ts#L1)*
+*Defined in [core/src/utils/clone.ts:1](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/utils/clone.ts#L1)*
 
 **Parameters:**
 

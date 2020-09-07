@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/converters/aujsf-item-title"](_core_src_converters_aujsf_item_title_.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/converters/aujsf-item-title"](_core_src_converters_aujsf_item_title_.md)
 
 # Module: "core/src/converters/aujsf-item-title"
 

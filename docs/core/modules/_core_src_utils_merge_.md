@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/utils/merge"](_core_src_utils_merge_.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/utils/merge"](_core_src_utils_merge_.md)
 
 # Module: "core/src/utils/merge"
 
@@ -23,7 +23,7 @@
 
 ▸ **merge**‹**T**›(`target`: any, `source`: any, `options?`: Partial‹[MergeOptions](../interfaces/_core_src_utils_merge_.mergeoptions.md)›): *T*
 
-*Defined in [core/src/utils/merge.ts:9](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/merge.ts#L9)*
+*Defined in [core/src/utils/merge.ts:9](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/utils/merge.ts#L9)*
 
 **Type parameters:**
 
@@ -45,7 +45,7 @@ ___
 
 ▸ **mergeAll**‹**T**›(`target`: any, `source`: any[], `options?`: Partial‹[MergeOptions](../interfaces/_core_src_utils_merge_.mergeoptions.md)›): *T*
 
-*Defined in [core/src/utils/merge.ts:24](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/merge.ts#L24)*
+*Defined in [core/src/utils/merge.ts:24](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/utils/merge.ts#L24)*
 
 **Type parameters:**
 
@@ -67,10 +67,10 @@ Name | Type |
 
 ### ▪ **DEFAULT_MERGE_OPTIONS**: *object*
 
-*Defined in [core/src/utils/merge.ts:5](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/merge.ts#L5)*
+*Defined in [core/src/utils/merge.ts:5](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/utils/merge.ts#L5)*
 
 ###  arrayStrategy
 
 • **arrayStrategy**: *"replace"* = "replace"
 
-*Defined in [core/src/utils/merge.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/merge.ts#L6)*
+*Defined in [core/src/utils/merge.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/utils/merge.ts#L6)*

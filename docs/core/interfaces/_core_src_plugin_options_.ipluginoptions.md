@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/plugin-options"](../modules/_core_src_plugin_options_.md) › [IPluginOptions](_core_src_plugin_options_.ipluginoptions.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/plugin-options"](../modules/_core_src_plugin_options_.md) › [IPluginOptions](_core_src_plugin_options_.ipluginoptions.md)
 
 # Interface: IPluginOptions
 
@@ -23,7 +23,7 @@
 
 • **defaultTheme**? : *[FormTheme](_core_src_models_form_template_.formtheme.md)*
 
-*Defined in [core/src/plugin-options.ts:4](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/plugin-options.ts#L4)*
+*Defined in [core/src/plugin-options.ts:4](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/plugin-options.ts#L4)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **hideErrors**? : *undefined | false | true*
 
-*Defined in [core/src/plugin-options.ts:5](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/plugin-options.ts#L5)*
+*Defined in [core/src/plugin-options.ts:5](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/plugin-options.ts#L5)*

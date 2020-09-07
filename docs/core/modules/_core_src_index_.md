@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/index"](_core_src_index_.md)
+[@aujsf/core](../README.md) › [Globals](../globals.md) › ["core/src/index"](_core_src_index_.md)
 
 # Module: "core/src/index"
 
@@ -269,7 +269,7 @@ ___
 
 ▸ **configure**(`framework`: FrameworkConfiguration, `configure?`: undefined | function): *void*
 
-*Defined in [core/src/index.ts:22](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/index.ts#L22)*
+*Defined in [core/src/index.ts:22](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/index.ts#L22)*
 
 **Parameters:**
 
