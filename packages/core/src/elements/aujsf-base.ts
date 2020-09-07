@@ -1,8 +1,5 @@
 import { Logger } from 'aurelia-logging';
-import {
-  PLATFORM, ViewStrategy, InlineViewStrategy,
-  bindingMode, useView, computedFrom, bindable, BindingEngine,
-} from 'aurelia-framework';
+import { bindingMode, computedFrom, bindable, BindingEngine, noView, View, Container } from 'aurelia-framework';
 import { JsonPointer } from 'jsonpointerx';
 
 import { FormTemplateRegistry, FormContext, ViewProvider } from '../services';
@@ -10,7 +7,7 @@ import { JsonSchema, UISchema, ValueChangedEventDict, ErrorSchema } from '../mod
 import utils from '../utils';
 import { BindingSignaler } from 'aurelia-templating-resources';
 
-@useView(PLATFORM.moduleName('@aujsf/core/elements/aujsf-view.html'))
+@noView
 export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
   protected abstract _logger: Logger;
   protected _bctx: any;
@@ -18,6 +15,7 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
 
   protected constructor(
     protected _element: Element,
+    protected _container: Container,
     protected _templateRegistry: FormTemplateRegistry,
     public context: FormContext,
     protected viewProvider: ViewProvider<JsonSchema>,
@@ -46,7 +44,7 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
   @bindable
   public errors: ErrorSchema = {};
 
-  public viewStrategy!: ViewStrategy;
+  public view?: View;
 
   @computedFrom('parentReadonly', 'schema')
   public get readonly(): boolean {
@@ -86,22 +84,30 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
     return this.hasErrors ? this.errors._errors_! : [];
   }
 
-  public async bind(bctx: any, obctx: any): Promise<void> {
+  public bind(bctx: any, obctx: any): void {
     this._logger.debug('binding', this);
     this._bctx = bctx;
     this._obctx = obctx;
 
     this.resolveUISchemaDefaults();
 
-    await this.bound();
+    this.bound();
 
     this._logger.debug('bound', this);
 
-    this.viewStrategy = this.createViewStrategy();
+    this.enhance();
   }
 
-  protected async bound(): Promise<void> {
+  protected bound(): void {
     //
+  }
+
+  public detached(): void {
+    this.view?.detached();
+  }
+
+  public unbind(): void {
+    this.view?.unbind();
   }
 
   protected resolveUISchemaDefaults(): void {
@@ -115,20 +121,28 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
     }
   }
 
-  protected createViewStrategy(): ViewStrategy {
+  protected enhance(): void {
     this._logger.debug('creating view strategy', this);
 
     const view = this.uiSchema['ui:view'] || 'hidden';
 
     if (view === 'unknown' || !this._templateRegistry.has(view)) {
-      return new InlineViewStrategy(`<template><code>ui:view '${view}' not found</code></template>`);
+      this.view = this.context.enhancer.error({
+        message: `the ui:view '${view}' was not found`,
+        element: this._element,
+      });
+
+      return;
     }
 
     const template = this._templateRegistry.get(view);
 
-    return new InlineViewStrategy(
-      template.entry.template.outerHTML,
-      template.entry.dependencies.map(d => d.src));
+    this.view = this.context.enhancer.enhanceTemplate({
+      element: this._element,
+      bindingContext: this,
+      container: this._container,
+      template,
+    });
   }
 
   private _bindHandle: any = -1;

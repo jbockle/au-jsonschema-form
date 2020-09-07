@@ -14,7 +14,13 @@
     </slot>
   </form>
 
-  <pre if.bind="state === 'error'" style="color: #ff0000;background-color: #ccc;">
-    An error is preventing the form to render
-  </pre>
+  <template replaceable part="initializing">
+    <pre style="color: #32ad61; background-color: #fff;"
+         if.bind="state === 'initializing'">...initializing</pre>
+  </template>
+
+  <template replaceable part="error">
+    <pre style="color: #ff0000;background-color: #000;"
+         if.bind="state === 'error'">An error is preventing the form to render</pre>
+  </template>
 </template>

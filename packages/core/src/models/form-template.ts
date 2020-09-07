@@ -1,4 +1,4 @@
-import { TemplateRegistryEntry } from 'aurelia-framework';
+import { TemplateRegistryEntry, ViewResources } from 'aurelia-framework';
 
 export type FormModule = string;
 
@@ -9,6 +9,7 @@ export interface FormTemplateReference {
 
 export interface FormTemplate extends FormTemplateReference {
   entry: TemplateRegistryEntry;
+  resources?: ViewResources;
 }
 
 export interface FormTheme {

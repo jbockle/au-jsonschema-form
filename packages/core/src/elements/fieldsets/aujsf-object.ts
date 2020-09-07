@@ -1,4 +1,4 @@
-import { customElement, inject, computedFrom, observable } from 'aurelia-framework';
+import { customElement, inject, computedFrom, observable, Container } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 
 import { AujsfBase } from '../aujsf-base';
@@ -8,7 +8,7 @@ import utils from '../../utils';
 import { FormContext, FormTemplateRegistry } from '../../services';
 import { ObjectViewProvider } from '../../services/providers/object-view-provider';
 
-@inject(Element, FormTemplateRegistry, FormContext, ObjectViewProvider)
+@inject(Element, Container, FormTemplateRegistry, FormContext, ObjectViewProvider)
 @customElement('aujsf-object')
 export class AujsfObject extends AujsfBase<JsonSchemaObject> {
   protected _logger = getLogger('aujsf:sf-object');
@@ -23,7 +23,7 @@ export class AujsfObject extends AujsfBase<JsonSchemaObject> {
 
   public definitions: ObjectKeyDefinition[] = [];
 
-  public async bound(): Promise<void> {
+  public bound(): void {
     this.value = this.value ?? {};
     this.definitions = this.getKeys()
       .map(key => {

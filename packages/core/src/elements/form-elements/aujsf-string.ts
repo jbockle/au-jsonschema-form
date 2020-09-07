@@ -1,4 +1,4 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, inject, Container } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 
 import { AujsfBase } from '../aujsf-base';
@@ -7,7 +7,7 @@ import { StringViewProvider } from '../../services/providers/string-view-provide
 import { FormTemplateRegistry, FormContext } from '../../services';
 
 @customElement('aujsf-string')
-@inject(Element, FormTemplateRegistry, FormContext, StringViewProvider)
+@inject(Element, Container, FormTemplateRegistry, FormContext, StringViewProvider)
 export class AujsfString extends AujsfBase<JsonSchemaString, string> {
   protected _logger = getLogger('aujsf:sf-string');
 }

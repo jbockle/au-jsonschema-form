@@ -1,15 +1,14 @@
-import { ViewStrategy, InlineViewStrategy, observable, bindable, useView, PLATFORM, bindingMode, containerless } from 'aurelia-framework';
+import { observable, bindable, bindingMode, noView, inject, Container, View } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 import { JsonPointer } from 'jsonpointerx';
 
-import { JsonSchema, SchemaType, UISchema, ErrorSchema } from '../models';
+import { JsonSchema, UISchema, ErrorSchema, JsonSchemaType } from '../models';
 import { JsonSchemaUtils } from '../utils/json-schema-utils';
-import { FormTemplateRegistry } from '../services/form-template-registry';
 import { FormContext } from '../services/form-context';
 
-type SlotType = SchemaType | 'all-of' | 'any-of' | 'one-of' | 'hidden' | 'unknown';
+type SlotType = JsonSchemaType | 'all-of' | 'any-of' | 'one-of' | 'hidden' | 'unknown';
 
-const ATTRIBUTES = [
+const ATTRIBUTES: [string, string][] = [
   ['schema.bind', 'schema'],
   ['ui-schema.bind', 'uiSchema'],
   ['value.bind', 'value'],
@@ -18,17 +17,17 @@ const ATTRIBUTES = [
   ['required.bind', 'required'],
   ['parent-readonly.bind', 'parentReadonly'],
   ['class.bind', 'class'],
-].map(attr => `${attr[0]}="${attr[1]}"`).join(' ');
+];
 
-@containerless
-@useView(PLATFORM.moduleName('@aujsf/core/elements/aujsf-view.html'))
+@noView()
+@inject(Element, Container, FormContext)
 export class AujsfSlot {
   protected _logger = getLogger('aujsf:sf-slot');
 
   protected constructor(
     protected _element: Element,
-    protected _formTemplateRegistry: FormTemplateRegistry,
-    protected _formContext: FormContext,
+    protected _container: Container,
+    protected _context: FormContext,
   ) { }
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
@@ -58,36 +57,40 @@ export class AujsfSlot {
   @observable
   public type!: SlotType;
 
-  public viewStrategy!: InlineViewStrategy;
+  public view?: View;
 
   public schemaChanged(): void {
-    if (this.viewStrategy) {
-      this.viewStrategy = undefined!;
+    try {
+      this.errors = this.errors ?? {};
+      this.resolveUISchemaDefaults();
+      this.type = this.uiSchema['ui:view'] === false ? 'hidden' : this.resolveSlotType(this.schema);
+      this.pointer = this.pointer ?? new JsonPointer([]);
+
+      this.view = this._context.enhancer.enhanceSlot({
+        tagName: `aujsf-${this.type}`,
+        attributes: ATTRIBUTES,
+        appendTo: this._element,
+        bindingContext: this,
+        container: this._container,
+      });
+
+      this._logger.debug('bound', this.pointer.toString());
+    } catch (error) {
+      this._logger.error('an error occurred while building the sf-slot', { error, viewModel: this });
+      this.view = this._context.enhancer.error({
+        message: 'an error occurred loading the form element',
+        element: this._element,
+      });
     }
-
-    setTimeout(() => {
-      try {
-        this.errors = this.errors ?? {};
-        this.resolveUISchemaDefaults();
-        this.type = this.uiSchema['ui:view'] === false ? 'hidden' : this.resolveSlotType(this.schema);
-        this.pointer = this.pointer ?? new JsonPointer([]);
-
-        this.viewStrategy = this.createViewStrategy(this.type);
-
-        this._logger.debug('bound', this.pointer.toString());
-      } catch (error) {
-        this._logger.error('an error occurred while building the sf-slot', { error, viewModel: this });
-        this.viewStrategy = new InlineViewStrategy(`<template style="color: red;">ERROR</template>`);
-      }
-    }, 0);
   }
 
   protected bind(_ctx: any, _octx: any): void {
     this.schemaChanged();
   }
 
-  private createViewStrategy(type: SlotType): ViewStrategy {
-    return new InlineViewStrategy(`<template><aujsf-${type} ${ATTRIBUTES}></aujsf-${type}></template>`);
+  protected unbind(): void {
+    this.view?.detached();
+    this.view?.unbind();
   }
 
   private resolveUISchemaDefaults(): void {
@@ -95,8 +98,8 @@ export class AujsfSlot {
   }
 
   public resolveSlotType(schema: JsonSchema): SlotType {
-    if ('ui:type' in this.uiSchema) {
-      return this.uiSchema['ui:type']!;
+    if ('ui:type' in this.uiSchema && !Array.isArray(this.uiSchema['ui:type'])) {
+      return this.uiSchema['ui:type'] as any;
     }
 
     if ('type' in schema) {
@@ -114,7 +117,7 @@ export class AujsfSlot {
     } else if ('oneOf' in schema) {
       return 'one-of';
     } else if ('$ref' in schema) {
-      this.schema = this._formContext.validator.ajv.getSchema(schema.$ref)!.schema as JsonSchema;
+      this.schema = this._context.validator.ajv.getSchema(schema.$ref)!.schema as JsonSchema;
       return this.resolveSlotType(this.schema);
     }
 

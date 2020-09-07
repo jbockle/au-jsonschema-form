@@ -1,16 +1,21 @@
 <template>
   <require from="bootswatch/dist/darkly/bootstrap.css"></require>
   <require from="@aujsf/bootstrap-theme/styles.css"></require>
-  ${message}
 
-  <json-schema-form schema.bind="schemas[0]"
-                    ui-schema.bind="uiSchema"
-                    value.bind="model"
-                    options.bind="options"
-                    value-changed.trigger="signalJson()"
-                    submit.call="submit(value, validationResult)">
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </json-schema-form>
+  <label>
+    <input type="checkbox" checked.bind="ready">
+    show form
+  </label>
+  <div if.bind="ready">
+    <json-schema-form schema.bind="schemas[0]"
+                      ui-schema.bind="uiSchema"
+                      value.bind="model"
+                      options.bind="options"
+                      value-changed.trigger="signalJson()"
+                      submit.call="submit(value, validationResult)">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </json-schema-form>
 
-  <pre>${model | aujsf_json}</pre>
+    <pre>${model | aujsf_json}</pre>
+  </div>
 </template>
