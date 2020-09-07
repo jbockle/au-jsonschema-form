@@ -6,5 +6,6 @@
   "gitRevision": "master",
   "excludePrivate": true,
   "excludeProtected": true,
-  "stripInternal": true
+  "stripInternal": true,
+  "excludeExternals": true
 }

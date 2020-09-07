@@ -6,8 +6,6 @@
 
 ### Modules
 
-* ["core/node_modules/ajv/lib/refs/json-schema-draft-04"](modules/_core_node_modules_ajv_lib_refs_json_schema_draft_04_.md)
-* ["core/node_modules/ajv/lib/refs/json-schema-draft-06"](modules/_core_node_modules_ajv_lib_refs_json_schema_draft_06_.md)
 * ["core/src/converters/aujsf-item-title"](modules/_core_src_converters_aujsf_item_title_.md)
 * ["core/src/converters/aujsf-sort-definitions"](modules/_core_src_converters_aujsf_sort_definitions_.md)
 * ["core/src/converters/aujsf-value"](modules/_core_src_converters_aujsf_value_.md)

@@ -7,7 +7,6 @@
 ### References
 
 * [ArrayKeyDefinition](_core_src_index_.md#arraykeydefinition)
-* [ErrorObject](_core_src_index_.md#errorobject)
 * [ErrorSchema](_core_src_index_.md#errorschema)
 * [FormContext](_core_src_index_.md#formcontext)
 * [FormModule](_core_src_index_.md#formmodule)
@@ -52,12 +51,6 @@
 ###  ArrayKeyDefinition
 
 • **ArrayKeyDefinition**:
-
-___
-
-###  ErrorObject
-
-• **ErrorObject**:
 
 ___
 
