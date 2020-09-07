@@ -4,6 +4,11 @@ type ValueType = 'string' | 'number' | 'date' | 'date-time' | 'time' | 'duration
 
 @valueConverter('aujsf_value')
 export class AujsfValue {
+  public constructor() {
+    // eslint-disable-next-line no-console
+    console.error('created');
+  }
+
   public toView(value: string, type: ValueType = 'string', toLocal: boolean = false): string {
     if (typeof value === 'string' && type === 'date-time' && toLocal) {
       return this.toDatetimeLocal(new Date(Date.parse(value)));

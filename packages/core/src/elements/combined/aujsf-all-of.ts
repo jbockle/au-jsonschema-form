@@ -15,7 +15,7 @@ export class AujsfAllOf extends AujsfBase<JsonSchemaAllOf, any> {
   public combinedSchema?: JsonSchema;
 
   public bound(): void {
-    const mergedSchema = utils.jsonSchema.mergeAllOf(this.schema, this.context.schema);
+    const mergedSchema = utils.jsonSchema.mergeAllOf(this.schema, this.context.schema!);
 
     this.combinedSchema = mergedSchema;
   }

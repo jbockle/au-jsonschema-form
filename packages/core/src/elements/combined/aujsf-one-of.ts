@@ -43,7 +43,7 @@ export class AujsfOneOf extends AujsfBase<JsonSchemaOneOf, any> {
     this.options = this.schema.oneOf.map((schema, index) => ({
       index,
       title: this.getOptionTitle(schema, index),
-      schema: utils.jsonSchema.resolveSchema(schema, this.context.schema),
+      schema: utils.jsonSchema.resolveSchema(schema, this.context.schema!),
       uiSchema: { ...this.uiSchema },
     }));
 

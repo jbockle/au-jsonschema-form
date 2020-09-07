@@ -60,4 +60,8 @@ export class FormTemplateRegistry {
   public has(name: string): boolean {
     return this._templates.has(name);
   }
+
+  public clear(): void {
+    this._templates.clear();
+  }
 }

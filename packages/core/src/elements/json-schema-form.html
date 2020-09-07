@@ -2,7 +2,7 @@
   <form submit.trigger="onsubmit()" novalidate show.bind="state === 'ready'"
         autocomplete.bind="uiSchema['ui:autocomplete'] || 'off'">
 
-    <aujsf-slot schema.bind="schema"
+    <aujsf-slot schema.bind="context.schema"
                 ui-schema.bind="uiSchema"
                 value.bind="value"
                 errors.bind="validationResult.errorSchema"
@@ -10,7 +10,7 @@
     </aujsf-slot>
 
     <slot>
-      <button type="submit">Submit</button>
+      <button type=" submit">Submit</button>
     </slot>
   </form>
 

@@ -1,8 +1,9 @@
 import { merge, mergeAll } from './merge';
+import { clone } from './clone';
 
 export class CommonUtils {
   public static clone<T>(item: T): T {
-    return JSON.parse(JSON.stringify(item));
+    return clone(item);
   }
 
   public static startCase(text: string): string {

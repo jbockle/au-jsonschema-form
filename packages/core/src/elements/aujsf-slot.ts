@@ -123,8 +123,4 @@ export class AujsfSlot {
 
     return 'unknown';
   }
-
-  public valueChanged(newValue: any, oldValue: any): void {
-    this._logger.warn('value changed', { newValue, oldValue });
-  }
 }

@@ -27,14 +27,21 @@ export class App {
 
   public ready = true;
 
-  public model: Model = new Model({
-    combined: {
-      oneOfSimple: {},
-    },
-    text: {
-      text: 'foo',
-    },
-  });
+  public model?: Model;
+
+  public attached(): void {
+    setTimeout(() => {
+      this.model = new Model({
+        combined: {
+          oneOfSimple: {},
+        },
+        text: {
+          textRequired: 'foo',
+        },
+      });
+    }, 5000);
+    this.signalJson();
+  }
 
   public submit(value: any, validationResult: ValidationResult): void {
     alert('xsubmit triggered:\n' + JSON.stringify({ value, validationResult }, null, 2));

@@ -9,7 +9,7 @@ import utils from '../utils';
 
 type FormState = 'initializing' | 'ready' | 'error';
 
-@inject(Element, NewInstance.of(FormContext), TaskQueue, NewInstance.of(FormTemplateRegistry))
+@inject(Element, TaskQueue, NewInstance.of(FormTemplateRegistry), NewInstance.of(FormContext))
 @useView(PLATFORM.moduleName('@aujsf/core/elements/json-schema-form.html'))
 @customElement('json-schema-form')
 export class JsonSchemaForm {
@@ -17,19 +17,19 @@ export class JsonSchemaForm {
 
   public constructor(
     private _element: Element,
-    private _formContext: FormContext,
     private _taskQueue: TaskQueue,
-    public _registry: FormTemplateRegistry,
+    private _registry: FormTemplateRegistry,
+    private context: FormContext,
   ) { }
 
-  @bindable
-  public schema!: JsonSchema;
+  @bindable({ defaultBindingMode: bindingMode.toView })
+  public schema?: JsonSchema;
 
-  @bindable
-  public uiSchema: UISchema = {};
+  @bindable({ defaultBindingMode: bindingMode.toView })
+  public uiSchema?: UISchema = {};
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
-  public value: any;
+  public value?: any = {};
 
   @bindable({ defaultBindingMode: bindingMode.fromView })
   public validationResult?: ValidationResult;
@@ -40,10 +40,10 @@ export class JsonSchemaForm {
   }
 
   @bindable
-  public themes: Partial<FormTheme>[] = [];
+  public themes?: Partial<FormTheme>[] = [];
 
   @bindable
-  public options: FormOptions = {};
+  public options?: FormOptions = {};
 
   @observable
   public state: FormState = 'initializing';
@@ -59,65 +59,85 @@ export class JsonSchemaForm {
   }
 
   private async compile(): Promise<void> {
-    // eslint-disable-next-line no-console
-    console.time('compile');
-    this.error = undefined;
-    this.state = 'initializing';
+    this._taskQueue.queueMicroTask(async () => {
+      // eslint-disable-next-line no-console
+      console.time('compile');
+      this.error = undefined;
+      this.state = 'initializing';
 
-    try {
+      try {
+        await this.themesChanged(this.themes);
+        this.optionsChanged(this.options);
+        this.schemaChanged(this.schema);
+        this.valueChanged(this.value);
+        this.uiSchemaChanged();
+
+        this.validate();
+
+        this._element.addEventListener('value-changed', (event: CustomEvent<ValueChangedEventDict>) => {
+          signalBindings('aujsf:ValueChanged');
+          this._logger.debug('value-changed', event);
+          this.validate();
+        });
+
+        this.state = 'ready';
+      }
+      catch (error) {
+        this.error = error;
+
+        this.state = 'error';
+        this._logger.error('An error occurred while initializing', error);
+      }
+      // eslint-disable-next-line no-console
+      console.timeEnd('compile');
+    });
+  }
+
+  public optionsChanged(newValue?: FormOptions, oldValue?: FormOptions): void {
+    this._logger.debug('options changed', { newValue, oldValue });
+    this.context.options = newValue;
+  }
+
+  public schemaChanged(newValue?: JsonSchema, oldValue?: JsonSchema): void {
+    if (newValue && newValue !== oldValue) {
+      newValue = utils.common.clone(newValue);
+      this._logger.debug('schema changed', { newValue, oldValue });
+
+      if (this.options) {
+        this.context.schema = newValue;
+        this.value = utils.jsonSchema.fillDefaults(this.value, newValue);
+      }
+    }
+  }
+
+  public uiSchemaChanged(newValue?: UISchema, oldValue?: UISchema): void {
+    this._logger.debug('ui-schema changed', { newValue, oldValue });
+    this.context.uiSchema = utils.common.clone(newValue ?? {});
+  }
+
+  public async themesChanged(newValue?: Partial<FormTheme>[], oldValue?: Partial<FormTheme>[]): Promise<void> {
+    this._logger.debug('themes changed', { newValue, oldValue });
+    if (newValue) {
       await utils.form.useThemes(this._registry,
-        this._formContext.options.defaultTheme ?? {},
-        ...this.themes);
+        this.context.pluginOptions.defaultTheme ?? {},
+        ...newValue);
 
       utils.form.themeIsValid(this._registry);
-
-      this._formContext.setSchema(utils.common.clone(this.schema), this.options);
-
-      this.value = utils.jsonSchema.fillDefaults(this.value, this.schema);
-
-      this._formContext.uiSchema = utils.common.clone(this.uiSchema);
-      this._formContext.value = this.value;
-
-      this.validate();
-
-      this._element.addEventListener('value-changed', (event: CustomEvent<ValueChangedEventDict>) => {
-        signalBindings('aujsf:ValueChanged');
-        this._logger.debug('value-changed', event);
-        this.validate();
-      });
-
-      this.state = 'ready';
     }
-    catch (error) {
-      this.error = error;
+  }
 
-      this.state = 'error';
-      this._logger.error('An error occurred while initializing', error);
+  public valueChanged(newValue: any, oldValue?: any): void {
+    this._logger.debug('value changed', { newValue, oldValue });
+    if (this.schema) {
+      utils.jsonSchema.fillDefaults(newValue, this.schema);
     }
-    // eslint-disable-next-line no-console
-    console.timeEnd('compile');
-  }
 
-  public optionsChanged(newValue: FormOptions, _oldValue: FormOptions): void {
-    this._formContext.setSchema(utils.common.clone(this.schema), newValue);
-  }
-
-  public schemaChanged(newValue: JsonSchema, _oldValue: JsonSchema): void {
-    this._formContext.setSchema(utils.common.clone(newValue), this.options);
-    this.value = utils.jsonSchema.fillDefaults(this.value, newValue);
-  }
-
-  public uiSchemaChanged(newValue: UISchema, _oldValue: UISchema): void {
-    this._formContext.uiSchema = utils.common.clone(newValue);
-  }
-
-  public valueChanged(newValue: any, _oldValue: any): void {
-    this._formContext.value = newValue;
+    this.context.value = newValue;
   }
 
   public validate(): void {
     this._taskQueue.queueMicroTask(() => {
-      this.validationResult = this._formContext.validator.validate(this.value);
+      this.validationResult = this.context.validator.validate(this.value);
     });
   }
 }

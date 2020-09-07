@@ -70,7 +70,7 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
     for (let index = 0; index < (length); index++) {
       const definition = {
         key: index,
-        schema: this.getItemJsonSchema(index, this.schema, this.context.schema),
+        schema: this.getItemJsonSchema(index, this.schema, this.context.schema!),
         uiSchema: utils.form.getItemUiSchema(index, this.uiSchema),
         pointer: new JsonPointer([...this.pointer.segments, index.toString()]),
       };

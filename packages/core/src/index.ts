@@ -15,7 +15,6 @@ import { AujsfHidden } from './elements/form-elements/aujsf-hidden';
 
 import { AujsfSortDefinitions } from './converters/aujsf-sort-definitions';
 import { AujsfValue } from './converters/aujsf-value';
-import { AujsfJson } from './converters/aujsf-json';
 import { AujsfItemTitle } from './converters/aujsf-item-title';
 
 import { IPluginOptions, PluginOptions } from './plugin-options';
@@ -43,7 +42,6 @@ export function configure(framework: FrameworkConfiguration, configure?: (option
     AujsfSortDefinitions,
     AujsfItemTitle,
     AujsfValue,
-    AujsfJson,
   ]);
 }
 
