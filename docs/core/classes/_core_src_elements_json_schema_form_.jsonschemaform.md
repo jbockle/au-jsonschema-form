@@ -16,7 +16,7 @@
 
 * [error](_core_src_elements_json_schema_form_.jsonschemaform.md#optional-error)
 * [options](_core_src_elements_json_schema_form_.jsonschemaform.md#optional-options)
-* [schema](_core_src_elements_json_schema_form_.jsonschemaform.md#optional-schema)
+* [schema](_core_src_elements_json_schema_form_.jsonschemaform.md#schema)
 * [state](_core_src_elements_json_schema_form_.jsonschemaform.md#state)
 * [themes](_core_src_elements_json_schema_form_.jsonschemaform.md#optional-themes)
 * [uiSchema](_core_src_elements_json_schema_form_.jsonschemaform.md#optional-uischema)
@@ -25,15 +25,8 @@
 
 ### Methods
 
-* [bind](_core_src_elements_json_schema_form_.jsonschemaform.md#bind)
-* [onsubmit](_core_src_elements_json_schema_form_.jsonschemaform.md#onsubmit)
-* [optionsChanged](_core_src_elements_json_schema_form_.jsonschemaform.md#optionschanged)
-* [schemaChanged](_core_src_elements_json_schema_form_.jsonschemaform.md#schemachanged)
 * [submit](_core_src_elements_json_schema_form_.jsonschemaform.md#submit)
-* [themesChanged](_core_src_elements_json_schema_form_.jsonschemaform.md#themeschanged)
-* [uiSchemaChanged](_core_src_elements_json_schema_form_.jsonschemaform.md#uischemachanged)
 * [validate](_core_src_elements_json_schema_form_.jsonschemaform.md#validate)
-* [valueChanged](_core_src_elements_json_schema_form_.jsonschemaform.md#valuechanged)
 
 ## Constructors
 
@@ -60,7 +53,7 @@ Name | Type |
 
 • **error**? : *any*
 
-*Defined in [core/src/elements/json-schema-form.ts:51](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L51)*
+*Defined in [core/src/elements/json-schema-form.ts:106](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L106)*
 
 ___
 
@@ -68,15 +61,21 @@ ___
 
 • **options**? : *[FormOptions](../modules/_core_src_models_form_options_.md#formoptions)*
 
-*Defined in [core/src/elements/json-schema-form.ts:46](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L46)*
+*Defined in [core/src/elements/json-schema-form.ts:101](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L101)*
+
+form options
 
 ___
 
-### `Optional` schema
+###  schema
 
-• **schema**? : *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)*
+• **schema**: *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)*
 
-*Defined in [core/src/elements/json-schema-form.ts:26](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L26)*
+*Defined in [core/src/elements/json-schema-form.ts:30](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L30)*
+
+the json schema to build the form from and validate the model against
+
+**`bindable`** input
 
 ___
 
@@ -84,7 +83,7 @@ ___
 
 • **state**: *[FormState](../modules/_core_src_elements_json_schema_form_.md#formstate)* = "initializing"
 
-*Defined in [core/src/elements/json-schema-form.ts:49](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L49)*
+*Defined in [core/src/elements/json-schema-form.ts:104](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L104)*
 
 ___
 
@@ -92,7 +91,38 @@ ___
 
 • **themes**? : *Partial‹[FormTheme](../interfaces/_core_src_models_form_template_.formtheme.md)›[]* = []
 
-*Defined in [core/src/elements/json-schema-form.ts:43](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L43)*
+*Defined in [core/src/elements/json-schema-form.ts:95](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L95)*
+
+list of form modules to include
+
+**`remarks`** if the module name appears more than once, it overrides previous module
+
+**`example`** 
+```ts
+// set default theme in plugin
+aurelia.use.plugin(PLATFORM.moduleName(`@aujsf/core`), options => {
+  options.defaultTheme = {
+    'string-input': `@aujsf/bootstrap-theme/string-input.html`,
+    'checkbox': `@aujsf/bootstrap-theme/checkbox.html`
+  };
+});
+```
+
+then in view
+```html
+  <json-schema-form themes.bind="[{'string-input': 'path/to/string-input.html','array-tabs': 'path/to/array-tabs.html'},{'array-tabs': 'path/to/foo-array-tabs.html'}]"...></json-schema-form>
+```
+
+results in the following combined theme
+```ts
+{
+  'string-input': 'path/to/string-input.html',
+  'checkbox': `@aujsf/bootstrap-theme/checkbox.html`,
+  'array-tabs': 'path/to/foo-array-tabs.html'
+}
+```
+
+**`bindable`** input
 
 ___
 
@@ -100,7 +130,11 @@ ___
 
 • **uiSchema**? : *[UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md)*
 
-*Defined in [core/src/elements/json-schema-form.ts:29](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L29)*
+*Defined in [core/src/elements/json-schema-form.ts:37](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L37)*
+
+the ui-schema to override model values
+
+**`bindable`** input
 
 ___
 
@@ -108,7 +142,11 @@ ___
 
 • **validationResult**? : *[ValidationResult](../interfaces/_core_src_models_error_schema_.validationresult.md)*
 
-*Defined in [core/src/elements/json-schema-form.ts:35](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L35)*
+*Defined in [core/src/elements/json-schema-form.ts:51](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L51)*
+
+the validation result from AJV
+
+**`bindable`** output
 
 ___
 
@@ -116,109 +154,29 @@ ___
 
 • **value**? : *any*
 
-*Defined in [core/src/elements/json-schema-form.ts:32](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L32)*
+*Defined in [core/src/elements/json-schema-form.ts:44](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L44)*
+
+the form's value, this is pre-populated against the schema
+
+**`bindable`** input/output
 
 ## Methods
-
-###  bind
-
-▸ **bind**(): *void*
-
-*Defined in [core/src/elements/json-schema-form.ts:57](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L57)*
-
-**Returns:** *void*
-
-___
-
-###  onsubmit
-
-▸ **onsubmit**(): *void*
-
-*Defined in [core/src/elements/json-schema-form.ts:53](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L53)*
-
-**Returns:** *void*
-
-___
-
-###  optionsChanged
-
-▸ **optionsChanged**(`newValue?`: [FormOptions](../modules/_core_src_models_form_options_.md#formoptions), `oldValue?`: [FormOptions](../modules/_core_src_models_form_options_.md#formoptions)): *void*
-
-*Defined in [core/src/elements/json-schema-form.ts:96](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L96)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`newValue?` | [FormOptions](../modules/_core_src_models_form_options_.md#formoptions) |
-`oldValue?` | [FormOptions](../modules/_core_src_models_form_options_.md#formoptions) |
-
-**Returns:** *void*
-
-___
-
-###  schemaChanged
-
-▸ **schemaChanged**(`newValue?`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema), `oldValue?`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)): *void*
-
-*Defined in [core/src/elements/json-schema-form.ts:101](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L101)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`newValue?` | [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) |
-`oldValue?` | [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) |
-
-**Returns:** *void*
-
-___
 
 ###  submit
 
 ▸ **submit**(`args`: [SubmitArguments](../interfaces/_core_src_models_submit_arguments_.submitarguments.md)): *void*
 
-*Defined in [core/src/elements/json-schema-form.ts:38](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L38)*
+*Defined in [core/src/elements/json-schema-form.ts:59](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L59)*
+
+action to call when submit is triggered
+
+**`bindable`** callback
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`args` | [SubmitArguments](../interfaces/_core_src_models_submit_arguments_.submitarguments.md) |
-
-**Returns:** *void*
-
-___
-
-###  themesChanged
-
-▸ **themesChanged**(`newValue?`: Partial‹[FormTheme](../interfaces/_core_src_models_form_template_.formtheme.md)›[], `oldValue?`: Partial‹[FormTheme](../interfaces/_core_src_models_form_template_.formtheme.md)›[]): *Promise‹void›*
-
-*Defined in [core/src/elements/json-schema-form.ts:118](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L118)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`newValue?` | Partial‹[FormTheme](../interfaces/_core_src_models_form_template_.formtheme.md)›[] |
-`oldValue?` | Partial‹[FormTheme](../interfaces/_core_src_models_form_template_.formtheme.md)›[] |
-
-**Returns:** *Promise‹void›*
-
-___
-
-###  uiSchemaChanged
-
-▸ **uiSchemaChanged**(`newValue?`: [UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md), `oldValue?`: [UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md)): *void*
-
-*Defined in [core/src/elements/json-schema-form.ts:113](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L113)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`newValue?` | [UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md) |
-`oldValue?` | [UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md) |
+Name | Type | Description |
+------ | ------ | ------ |
+`args` | [SubmitArguments](../interfaces/_core_src_models_submit_arguments_.submitarguments.md) | the arguments to pass to the submit call |
 
 **Returns:** *void*
 
@@ -228,23 +186,6 @@ ___
 
 ▸ **validate**(): *void*
 
-*Defined in [core/src/elements/json-schema-form.ts:138](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L138)*
-
-**Returns:** *void*
-
-___
-
-###  valueChanged
-
-▸ **valueChanged**(`newValue`: any, `oldValue?`: any): *void*
-
-*Defined in [core/src/elements/json-schema-form.ts:129](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L129)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`newValue` | any |
-`oldValue?` | any |
+*Defined in [core/src/elements/json-schema-form.ts:108](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/json-schema-form.ts#L108)*
 
 **Returns:** *void*

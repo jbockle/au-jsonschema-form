@@ -22,26 +22,81 @@ export class JsonSchemaForm {
     private context: FormContext,
   ) { }
 
+  /**
+   * the json schema to build the form from and validate the model against
+   * @bindable input
+   */
   @bindable({ defaultBindingMode: bindingMode.toView })
-  public schema?: JsonSchema;
+  public schema!: JsonSchema;
 
+  /**
+   * the ui-schema to override model values
+   * @bindable input
+   */
   @bindable({ defaultBindingMode: bindingMode.toView })
   public uiSchema?: UISchema = {};
 
+  /**
+   * the form's value, this is pre-populated against the schema
+   * @bindable input/output
+   */
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   public value?: any = {};
 
+  /**
+   * the validation result from AJV
+   * @bindable output
+   */
   @bindable({ defaultBindingMode: bindingMode.fromView })
   public validationResult?: ValidationResult;
 
+  /**
+   * action to call when submit is triggered
+   * @param args the arguments to pass to the submit call
+   * @bindable callback
+   */
   @bindable
   public submit: (args: SubmitArguments) => void = (args: SubmitArguments) => {
     alert('submit triggered:\n' + JSON.stringify(args, null, 2));
   }
 
+  /**
+   * list of form modules to include
+   * @remarks if the module name appears more than once, it overrides previous module
+   * 
+   * @example
+   * ```ts
+   * // set default theme in plugin
+   * aurelia.use.plugin(PLATFORM.moduleName(`@aujsf/core`), options => {
+   *   options.defaultTheme = {
+   *     'string-input': `@aujsf/bootstrap-theme/string-input.html`,
+   *     'checkbox': `@aujsf/bootstrap-theme/checkbox.html`
+   *   };
+   * });
+   * ```
+   * 
+   * then in view
+   * ```html
+   *   <json-schema-form themes.bind="[{'string-input': 'path/to/string-input.html','array-tabs': 'path/to/array-tabs.html'},{'array-tabs': 'path/to/foo-array-tabs.html'}]"...></json-schema-form>
+   * ```
+   * 
+   * results in the following combined theme
+   * ```ts
+   * {
+   *   'string-input': 'path/to/string-input.html',
+   *   'checkbox': `@aujsf/bootstrap-theme/checkbox.html`,
+   *   'array-tabs': 'path/to/foo-array-tabs.html'
+   * }
+   * ```
+   * 
+   * @bindable input
+   */
   @bindable
   public themes?: Partial<FormTheme>[] = [];
 
+  /**
+   * form options
+   */
   @bindable
   public options?: FormOptions = {};
 
@@ -50,11 +105,17 @@ export class JsonSchemaForm {
 
   public error?: any;
 
-  public onsubmit(): void {
+  public validate(): void {
+    this._taskQueue.queueMicroTask(() => {
+      this.validationResult = this.context.validator.validate(this.value);
+    });
+  }
+
+  protected onsubmit(): void {
     this.submit({ value: this.value, validationResult: this.validationResult });
   }
 
-  public bind(): void {
+  protected bind(): void {
     this.compile();
   }
 
@@ -93,12 +154,12 @@ export class JsonSchemaForm {
     });
   }
 
-  public optionsChanged(newValue?: FormOptions, oldValue?: FormOptions): void {
+  protected optionsChanged(newValue?: FormOptions, oldValue?: FormOptions): void {
     this._logger.debug('options changed', { newValue, oldValue });
     this.context.options = newValue;
   }
 
-  public schemaChanged(newValue?: JsonSchema, oldValue?: JsonSchema): void {
+  protected schemaChanged(newValue?: JsonSchema, oldValue?: JsonSchema): void {
     if (newValue && newValue !== oldValue) {
       newValue = utils.common.clone(newValue);
       this._logger.debug('schema changed', { newValue, oldValue });
@@ -110,12 +171,12 @@ export class JsonSchemaForm {
     }
   }
 
-  public uiSchemaChanged(newValue?: UISchema, oldValue?: UISchema): void {
+  protected uiSchemaChanged(newValue?: UISchema, oldValue?: UISchema): void {
     this._logger.debug('ui-schema changed', { newValue, oldValue });
     this.context.uiSchema = utils.common.clone(newValue ?? {});
   }
 
-  public async themesChanged(newValue?: Partial<FormTheme>[], oldValue?: Partial<FormTheme>[]): Promise<void> {
+  protected async themesChanged(newValue?: Partial<FormTheme>[], oldValue?: Partial<FormTheme>[]): Promise<void> {
     this._logger.debug('themes changed', { newValue, oldValue });
     if (newValue) {
       await utils.form.useThemes(this._registry,
@@ -126,18 +187,12 @@ export class JsonSchemaForm {
     }
   }
 
-  public valueChanged(newValue: any, oldValue?: any): void {
+  protected valueChanged(newValue: any, oldValue?: any): void {
     this._logger.debug('value changed', { newValue, oldValue });
     if (this.schema) {
       utils.jsonSchema.fillDefaults(newValue, this.schema);
     }
 
     this.context.value = newValue;
-  }
-
-  public validate(): void {
-    this._taskQueue.queueMicroTask(() => {
-      this.validationResult = this.context.validator.validate(this.value);
-    });
   }
 }
