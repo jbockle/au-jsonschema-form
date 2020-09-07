@@ -18,7 +18,7 @@
 
 ▸ **toView**(`definitions`: [KeyDefinition](../interfaces/_core_src_models_key_definition_.keydefinition.md)[]): *[KeyDefinition](../interfaces/_core_src_models_key_definition_.keydefinition.md)[]*
 
-*Defined in [core/src/converters/aujsf-sort-definitions.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/converters/aujsf-sort-definitions.ts#L6)*
+*Defined in [core/src/converters/aujsf-sort-definitions.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/converters/aujsf-sort-definitions.ts#L6)*
 
 **Parameters:**
 

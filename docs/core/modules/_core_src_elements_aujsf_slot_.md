@@ -20,15 +20,15 @@
 
 ###  SlotType
 
-Ƭ **SlotType**: *[SchemaType](_core_src_models_json_schema_.md#schematype) | "all-of" | "any-of" | "one-of" | "hidden" | "unknown"*
+Ƭ **SlotType**: *[JsonSchemaType](_core_src_models_json_schema_.md#jsonschematype) | "all-of" | "any-of" | "one-of" | "hidden" | "unknown"*
 
-*Defined in [core/src/elements/aujsf-slot.ts:10](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/aujsf-slot.ts#L10)*
+*Defined in [core/src/elements/aujsf-slot.ts:9](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/aujsf-slot.ts#L9)*
 
 ## Variables
 
 ### `Const` ATTRIBUTES
 
-• **ATTRIBUTES**: *string* = [
+• **ATTRIBUTES**: *[][]* = [
   ['schema.bind', 'schema'],
   ['ui-schema.bind', 'uiSchema'],
   ['value.bind', 'value'],
@@ -36,6 +36,7 @@
   ['errors.bind', 'errors'],
   ['required.bind', 'required'],
   ['parent-readonly.bind', 'parentReadonly'],
-].map(attr => `${attr[0]}="${attr[1]}"`).join(' ')
+  ['class.bind', 'class'],
+]
 
-*Defined in [core/src/elements/aujsf-slot.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/aujsf-slot.ts#L12)*
+*Defined in [core/src/elements/aujsf-slot.ts:11](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/aujsf-slot.ts#L11)*

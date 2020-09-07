@@ -34,12 +34,14 @@
 * [KeyDefinition](_core_src_index_.md#keydefinition)
 * [ObjectKeyDefinition](_core_src_index_.md#objectkeydefinition)
 * [PluginOptions](_core_src_index_.md#pluginoptions)
+* [ProviderRule](_core_src_index_.md#providerrule)
 * [SchemaType](_core_src_index_.md#schematype)
 * [SubmitArguments](_core_src_index_.md#submitarguments)
 * [TemplateNames](_core_src_index_.md#templatenames)
 * [UISchema](_core_src_index_.md#uischema)
 * [ValidationResult](_core_src_index_.md#validationresult)
 * [ValueChangedEventDict](_core_src_index_.md#valuechangedeventdict)
+* [ViewProvider](_core_src_index_.md#viewprovider)
 
 ### Functions
 
@@ -215,6 +217,12 @@ ___
 
 ___
 
+###  ProviderRule
+
+• **ProviderRule**:
+
+___
+
 ###  SchemaType
 
 • **SchemaType**:
@@ -249,13 +257,19 @@ ___
 
 • **ValueChangedEventDict**:
 
+___
+
+###  ViewProvider
+
+• **ViewProvider**:
+
 ## Functions
 
 ###  configure
 
 ▸ **configure**(`framework`: FrameworkConfiguration, `configure?`: undefined | function): *void*
 
-*Defined in [core/src/index.ts:24](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/index.ts#L24)*
+*Defined in [core/src/index.ts:22](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/index.ts#L22)*
 
 **Parameters:**
 

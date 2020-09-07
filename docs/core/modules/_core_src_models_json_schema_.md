@@ -33,7 +33,7 @@
 
 Ƭ **JsonSchema**: *[JsonSchemaObject](../interfaces/_core_src_models_json_schema_.jsonschemaobject.md) | [JsonSchemaArray](../interfaces/_core_src_models_json_schema_.jsonschemaarray.md) | [JsonSchemaNumber](../interfaces/_core_src_models_json_schema_.jsonschemanumber.md) | [JsonSchemaBoolean](../interfaces/_core_src_models_json_schema_.jsonschemaboolean.md) | [JsonSchemaString](../interfaces/_core_src_models_json_schema_.jsonschemastring.md) | [JsonSchemaNull](../interfaces/_core_src_models_json_schema_.jsonschemanull.md) | [JsonSchemaMulti](../interfaces/_core_src_models_json_schema_.jsonschemamulti.md) | [JsonSchemaRef](../interfaces/_core_src_models_json_schema_.jsonschemaref.md) | [JsonSchemaAllOf](../interfaces/_core_src_models_json_schema_.jsonschemaallof.md) | [JsonSchemaAnyOf](../interfaces/_core_src_models_json_schema_.jsonschemaanyof.md) | [JsonSchemaOneOf](../interfaces/_core_src_models_json_schema_.jsonschemaoneof.md)*
 
-*Defined in [core/src/models/json-schema.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/json-schema.ts#L12)*
+*Defined in [core/src/models/json-schema.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/json-schema.ts#L12)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 Ƭ **JsonSchemaType**: *"object" | "array" | "number" | "string" | "boolean" | "null"*
 
-*Defined in [core/src/models/json-schema.ts:2](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/json-schema.ts#L2)*
+*Defined in [core/src/models/json-schema.ts:2](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/json-schema.ts#L2)*
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 Ƭ **SchemaType**: *[JsonSchemaType](_core_src_models_json_schema_.md#jsonschematype) | Array‹[JsonSchemaType](_core_src_models_json_schema_.md#jsonschematype)›*
 
-*Defined in [core/src/models/json-schema.ts:10](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/json-schema.ts#L10)*
+*Defined in [core/src/models/json-schema.ts:10](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/json-schema.ts#L10)*

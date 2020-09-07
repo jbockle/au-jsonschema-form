@@ -37,7 +37,7 @@
 
 *Overrides [JsonSchemaBase](_core_src_models_json_schema_.jsonschemabase.md).[const](_core_src_models_json_schema_.jsonschemabase.md#optional-const)*
 
-*Defined in [core/src/models/json-schema.ts:86](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/json-schema.ts#L86)*
+*Defined in [core/src/models/json-schema.ts:86](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/json-schema.ts#L86)*
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 *Overrides [JsonSchemaAnnotations](_core_src_models_json_schema_.jsonschemaannotations.md).[default](_core_src_models_json_schema_.jsonschemaannotations.md#optional-default)*
 
-*Defined in [core/src/models/json-schema.ts:87](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/json-schema.ts#L87)*
+*Defined in [core/src/models/json-schema.ts:87](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/json-schema.ts#L87)*
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 *Inherited from [JsonSchemaAnnotations](_core_src_models_json_schema_.jsonschemaannotations.md).[description](_core_src_models_json_schema_.jsonschemaannotations.md#optional-description)*
 
-*Defined in [core/src/models/json-schema.ts:28](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/json-schema.ts#L28)*
+*Defined in [core/src/models/json-schema.ts:28](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/json-schema.ts#L28)*
 
 ___
 
@@ -67,7 +67,7 @@ ___
 
 *Overrides [JsonSchemaBase](_core_src_models_json_schema_.jsonschemabase.md).[enum](_core_src_models_json_schema_.jsonschemabase.md#optional-enum)*
 
-*Defined in [core/src/models/json-schema.ts:85](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/json-schema.ts#L85)*
+*Defined in [core/src/models/json-schema.ts:85](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/json-schema.ts#L85)*
 
 ___
 
@@ -77,7 +77,7 @@ ___
 
 *Overrides [JsonSchemaBase](_core_src_models_json_schema_.jsonschemabase.md).[format](_core_src_models_json_schema_.jsonschemabase.md#optional-format)*
 
-*Defined in [core/src/models/json-schema.ts:91](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/json-schema.ts#L91)*
+*Defined in [core/src/models/json-schema.ts:91](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/json-schema.ts#L91)*
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 • **maxLength**? : *undefined | number*
 
-*Defined in [core/src/models/json-schema.ts:89](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/json-schema.ts#L89)*
+*Defined in [core/src/models/json-schema.ts:89](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/json-schema.ts#L89)*
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 • **minLength**? : *undefined | number*
 
-*Defined in [core/src/models/json-schema.ts:90](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/json-schema.ts#L90)*
+*Defined in [core/src/models/json-schema.ts:90](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/json-schema.ts#L90)*
 
 ___
 
@@ -101,7 +101,7 @@ ___
 
 • **pattern**? : *undefined | string*
 
-*Defined in [core/src/models/json-schema.ts:88](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/json-schema.ts#L88)*
+*Defined in [core/src/models/json-schema.ts:88](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/json-schema.ts#L88)*
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 *Inherited from [JsonSchemaAnnotations](_core_src_models_json_schema_.jsonschemaannotations.md).[readOnly](_core_src_models_json_schema_.jsonschemaannotations.md#optional-readonly)*
 
-*Defined in [core/src/models/json-schema.ts:29](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/json-schema.ts#L29)*
+*Defined in [core/src/models/json-schema.ts:29](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/json-schema.ts#L29)*
 
 ___
 
@@ -121,7 +121,7 @@ ___
 
 *Inherited from [JsonSchemaAnnotations](_core_src_models_json_schema_.jsonschemaannotations.md).[title](_core_src_models_json_schema_.jsonschemaannotations.md#optional-title)*
 
-*Defined in [core/src/models/json-schema.ts:27](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/json-schema.ts#L27)*
+*Defined in [core/src/models/json-schema.ts:27](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/json-schema.ts#L27)*
 
 ___
 
@@ -131,7 +131,7 @@ ___
 
 *Overrides [JsonSchemaBase](_core_src_models_json_schema_.jsonschemabase.md).[type](_core_src_models_json_schema_.jsonschemabase.md#optional-type)*
 
-*Defined in [core/src/models/json-schema.ts:84](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/json-schema.ts#L84)*
+*Defined in [core/src/models/json-schema.ts:84](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/json-schema.ts#L84)*
 
 ___
 
@@ -141,4 +141,4 @@ ___
 
 *Inherited from [JsonSchemaAnnotations](_core_src_models_json_schema_.jsonschemaannotations.md).[writeOnly](_core_src_models_json_schema_.jsonschemaannotations.md#optional-writeonly)*
 
-*Defined in [core/src/models/json-schema.ts:30](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/json-schema.ts#L30)*
+*Defined in [core/src/models/json-schema.ts:30](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/json-schema.ts#L30)*

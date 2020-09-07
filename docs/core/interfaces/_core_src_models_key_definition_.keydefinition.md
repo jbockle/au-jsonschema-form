@@ -25,7 +25,7 @@
 
 • **key**: *string | number*
 
-*Defined in [core/src/models/key-definition.ts:10](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/key-definition.ts#L10)*
+*Defined in [core/src/models/key-definition.ts:10](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/key-definition.ts#L10)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **pointer**: *JsonPointer*
 
-*Defined in [core/src/models/key-definition.ts:9](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/key-definition.ts#L9)*
+*Defined in [core/src/models/key-definition.ts:9](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/key-definition.ts#L9)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 • **schema**: *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)*
 
-*Defined in [core/src/models/key-definition.ts:7](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/key-definition.ts#L7)*
+*Defined in [core/src/models/key-definition.ts:7](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/key-definition.ts#L7)*
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 • **uiSchema**: *[UISchema](_core_src_models_ui_schema_.uischema.md)*
 
-*Defined in [core/src/models/key-definition.ts:8](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/key-definition.ts#L8)*
+*Defined in [core/src/models/key-definition.ts:8](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/key-definition.ts#L8)*

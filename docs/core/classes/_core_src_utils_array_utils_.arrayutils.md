@@ -19,7 +19,7 @@
 
 ▸ **last**‹**T**›(`array`: T[]): *T | undefined*
 
-*Defined in [core/src/utils/array-utils.ts:3](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/array-utils.ts#L3)*
+*Defined in [core/src/utils/array-utils.ts:3](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/array-utils.ts#L3)*
 
 **Type parameters:**
 
@@ -39,7 +39,7 @@ ___
 
 ▸ **move**(`array`: any[], `index`: number, `direction`: "up" | "down"): *void*
 
-*Defined in [core/src/utils/array-utils.ts:9](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/array-utils.ts#L9)*
+*Defined in [core/src/utils/array-utils.ts:9](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/array-utils.ts#L9)*
 
 **Parameters:**
 

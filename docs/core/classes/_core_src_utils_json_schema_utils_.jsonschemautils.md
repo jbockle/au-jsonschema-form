@@ -12,6 +12,7 @@
 
 * [fillDefaults](_core_src_utils_json_schema_utils_.jsonschemautils.md#static-filldefaults)
 * [getItemJsonSchema](_core_src_utils_json_schema_utils_.jsonschemautils.md#static-getitemjsonschema)
+* [isJsonSchemaAllOf](_core_src_utils_json_schema_utils_.jsonschemautils.md#static-isjsonschemaallof)
 * [isJsonSchemaArray](_core_src_utils_json_schema_utils_.jsonschemautils.md#static-isjsonschemaarray)
 * [isJsonSchemaBoolean](_core_src_utils_json_schema_utils_.jsonschemautils.md#static-isjsonschemaboolean)
 * [isJsonSchemaNumber](_core_src_utils_json_schema_utils_.jsonschemautils.md#static-isjsonschemanumber)
@@ -19,6 +20,7 @@
 * [isJsonSchemaString](_core_src_utils_json_schema_utils_.jsonschemautils.md#static-isjsonschemastring)
 * [isNullable](_core_src_utils_json_schema_utils_.jsonschemautils.md#static-isnullable)
 * [isSchemaType](_core_src_utils_json_schema_utils_.jsonschemautils.md#static-private-isschematype)
+* [mergeAllOf](_core_src_utils_json_schema_utils_.jsonschemautils.md#static-mergeallof)
 * [resolveSchema](_core_src_utils_json_schema_utils_.jsonschemautils.md#static-resolveschema)
 * [resolveSchemas](_core_src_utils_json_schema_utils_.jsonschemautils.md#static-resolveschemas)
 
@@ -26,9 +28,9 @@
 
 ### `Static` fillDefaults
 
-▸ **fillDefaults**(`value`: any, `schema`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)): *any*
+▸ **fillDefaults**(`value`: any, `schema`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)): *void*
 
-*Defined in [core/src/utils/json-schema-utils.ts:75](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L75)*
+*Defined in [core/src/utils/json-schema-utils.ts:94](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/json-schema-utils.ts#L94)*
 
 **Parameters:**
 
@@ -37,7 +39,7 @@ Name | Type |
 `value` | any |
 `schema` | [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) |
 
-**Returns:** *any*
+**Returns:** *void*
 
 ___
 
@@ -45,7 +47,7 @@ ___
 
 ▸ **getItemJsonSchema**(`index`: number, `schema`: [JsonSchemaArray](../interfaces/_core_src_models_json_schema_.jsonschemaarray.md), `root`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)): *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) | undefined*
 
-*Defined in [core/src/utils/json-schema-utils.ts:44](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L44)*
+*Defined in [core/src/utils/json-schema-utils.ts:49](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/json-schema-utils.ts#L49)*
 
 **Parameters:**
 
@@ -59,11 +61,27 @@ Name | Type |
 
 ___
 
+### `Static` isJsonSchemaAllOf
+
+▸ **isJsonSchemaAllOf**(`schema`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)): *schema is JsonSchemaAllOf*
+
+*Defined in [core/src/utils/json-schema-utils.ts:37](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/json-schema-utils.ts#L37)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`schema` | [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) |
+
+**Returns:** *schema is JsonSchemaAllOf*
+
+___
+
 ### `Static` isJsonSchemaArray
 
 ▸ **isJsonSchemaArray**(`schema`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)): *schema is JsonSchemaArray*
 
-*Defined in [core/src/utils/json-schema-utils.ts:32](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L32)*
+*Defined in [core/src/utils/json-schema-utils.ts:33](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/json-schema-utils.ts#L33)*
 
 **Parameters:**
 
@@ -79,7 +97,7 @@ ___
 
 ▸ **isJsonSchemaBoolean**(`schema`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)): *schema is JsonSchemaBoolean*
 
-*Defined in [core/src/utils/json-schema-utils.ts:24](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L24)*
+*Defined in [core/src/utils/json-schema-utils.ts:25](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/json-schema-utils.ts#L25)*
 
 **Parameters:**
 
@@ -95,7 +113,7 @@ ___
 
 ▸ **isJsonSchemaNumber**(`schema`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)): *schema is JsonSchemaNumber*
 
-*Defined in [core/src/utils/json-schema-utils.ts:16](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L16)*
+*Defined in [core/src/utils/json-schema-utils.ts:17](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/json-schema-utils.ts#L17)*
 
 **Parameters:**
 
@@ -111,7 +129,7 @@ ___
 
 ▸ **isJsonSchemaObject**(`schema`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)): *schema is JsonSchemaObject*
 
-*Defined in [core/src/utils/json-schema-utils.ts:28](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L28)*
+*Defined in [core/src/utils/json-schema-utils.ts:29](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/json-schema-utils.ts#L29)*
 
 **Parameters:**
 
@@ -127,7 +145,7 @@ ___
 
 ▸ **isJsonSchemaString**(`schema`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)): *schema is JsonSchemaString*
 
-*Defined in [core/src/utils/json-schema-utils.ts:20](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L20)*
+*Defined in [core/src/utils/json-schema-utils.ts:21](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/json-schema-utils.ts#L21)*
 
 **Parameters:**
 
@@ -141,9 +159,9 @@ ___
 
 ### `Static` isNullable
 
-▸ **isNullable**(`type`: [JsonSchemaType](../modules/_core_src_models_json_schema_.md#jsonschematype)[]): *type is ["null", JsonSchemaType]*
+▸ **isNullable**(`type`: [JsonSchemaType](../modules/_core_src_models_json_schema_.md#jsonschematype)[]): *type is []*
 
-*Defined in [core/src/utils/json-schema-utils.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L12)*
+*Defined in [core/src/utils/json-schema-utils.ts:13](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/json-schema-utils.ts#L13)*
 
 **Parameters:**
 
@@ -151,7 +169,7 @@ Name | Type |
 ------ | ------ |
 `type` | [JsonSchemaType](../modules/_core_src_models_json_schema_.md#jsonschematype)[] |
 
-**Returns:** *type is ["null", JsonSchemaType]*
+**Returns:** *type is []*
 
 ___
 
@@ -159,7 +177,7 @@ ___
 
 ▸ **isSchemaType**‹**TSchemaType**›(`schema`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema), `type`: [JsonSchemaType](../modules/_core_src_models_json_schema_.md#jsonschematype)): *schema is TSchemaType*
 
-*Defined in [core/src/utils/json-schema-utils.ts:36](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L36)*
+*Defined in [core/src/utils/json-schema-utils.ts:41](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/json-schema-utils.ts#L41)*
 
 **Type parameters:**
 
@@ -176,11 +194,28 @@ Name | Type |
 
 ___
 
+### `Static` mergeAllOf
+
+▸ **mergeAllOf**(`schema`: [JsonSchemaAllOf](../interfaces/_core_src_models_json_schema_.jsonschemaallof.md), `root`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)): *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)*
+
+*Defined in [core/src/utils/json-schema-utils.ts:84](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/json-schema-utils.ts#L84)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`schema` | [JsonSchemaAllOf](../interfaces/_core_src_models_json_schema_.jsonschemaallof.md) |
+`root` | [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) |
+
+**Returns:** *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)*
+
+___
+
 ### `Static` resolveSchema
 
 ▸ **resolveSchema**(`schemaOrSchemas`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema), `root`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)): *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)*
 
-*Defined in [core/src/utils/json-schema-utils.ts:67](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L67)*
+*Defined in [core/src/utils/json-schema-utils.ts:72](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/json-schema-utils.ts#L72)*
 
 **Parameters:**
 
@@ -197,7 +232,7 @@ ___
 
 ▸ **resolveSchemas**(`schemas`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)[], `root`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)): *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)[]*
 
-*Defined in [core/src/utils/json-schema-utils.ts:63](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L63)*
+*Defined in [core/src/utils/json-schema-utils.ts:68](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/json-schema-utils.ts#L68)*
 
 **Parameters:**
 

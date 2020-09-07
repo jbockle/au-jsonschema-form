@@ -18,4 +18,4 @@
 
 • **ajv**: *Partial‹[AjvOptions](_core_src_models_form_options_.ajvoptions.md)›*
 
-*Defined in [core/src/models/form-options.ts:9](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/form-options.ts#L9)*
+*Defined in [core/src/models/form-options.ts:9](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-options.ts#L9)*

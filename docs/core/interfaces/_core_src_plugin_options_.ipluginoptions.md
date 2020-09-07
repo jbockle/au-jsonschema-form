@@ -15,6 +15,7 @@
 ### Properties
 
 * [defaultTheme](_core_src_plugin_options_.ipluginoptions.md#optional-defaulttheme)
+* [hideErrors](_core_src_plugin_options_.ipluginoptions.md#optional-hideerrors)
 
 ## Properties
 
@@ -22,4 +23,12 @@
 
 • **defaultTheme**? : *[FormTheme](_core_src_models_form_template_.formtheme.md)*
 
-*Defined in [core/src/plugin-options.ts:4](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/plugin-options.ts#L4)*
+*Defined in [core/src/plugin-options.ts:4](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/plugin-options.ts#L4)*
+
+___
+
+### `Optional` hideErrors
+
+• **hideErrors**? : *undefined | false | true*
+
+*Defined in [core/src/plugin-options.ts:5](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/plugin-options.ts#L5)*

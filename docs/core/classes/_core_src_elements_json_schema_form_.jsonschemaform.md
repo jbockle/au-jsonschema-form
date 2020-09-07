@@ -15,26 +15,28 @@
 ### Properties
 
 * [_element](_core_src_elements_json_schema_form_.jsonschemaform.md#private-_element)
-* [_formContext](_core_src_elements_json_schema_form_.jsonschemaform.md#private-_formcontext)
 * [_logger](_core_src_elements_json_schema_form_.jsonschemaform.md#protected-_logger)
-* [_templateRegistry](_core_src_elements_json_schema_form_.jsonschemaform.md#_templateregistry)
-* [_validateHandle](_core_src_elements_json_schema_form_.jsonschemaform.md#private-_validatehandle)
+* [_registry](_core_src_elements_json_schema_form_.jsonschemaform.md#private-_registry)
+* [_taskQueue](_core_src_elements_json_schema_form_.jsonschemaform.md#private-_taskqueue)
+* [context](_core_src_elements_json_schema_form_.jsonschemaform.md#private-context)
 * [error](_core_src_elements_json_schema_form_.jsonschemaform.md#optional-error)
-* [options](_core_src_elements_json_schema_form_.jsonschemaform.md#options)
-* [schema](_core_src_elements_json_schema_form_.jsonschemaform.md#schema)
+* [options](_core_src_elements_json_schema_form_.jsonschemaform.md#optional-options)
+* [schema](_core_src_elements_json_schema_form_.jsonschemaform.md#optional-schema)
 * [state](_core_src_elements_json_schema_form_.jsonschemaform.md#state)
-* [themes](_core_src_elements_json_schema_form_.jsonschemaform.md#themes)
-* [uiSchema](_core_src_elements_json_schema_form_.jsonschemaform.md#uischema)
+* [themes](_core_src_elements_json_schema_form_.jsonschemaform.md#optional-themes)
+* [uiSchema](_core_src_elements_json_schema_form_.jsonschemaform.md#optional-uischema)
 * [validationResult](_core_src_elements_json_schema_form_.jsonschemaform.md#optional-validationresult)
-* [value](_core_src_elements_json_schema_form_.jsonschemaform.md#value)
+* [value](_core_src_elements_json_schema_form_.jsonschemaform.md#optional-value)
 
 ### Methods
 
 * [bind](_core_src_elements_json_schema_form_.jsonschemaform.md#bind)
+* [compile](_core_src_elements_json_schema_form_.jsonschemaform.md#private-compile)
 * [onsubmit](_core_src_elements_json_schema_form_.jsonschemaform.md#onsubmit)
 * [optionsChanged](_core_src_elements_json_schema_form_.jsonschemaform.md#optionschanged)
 * [schemaChanged](_core_src_elements_json_schema_form_.jsonschemaform.md#schemachanged)
 * [submit](_core_src_elements_json_schema_form_.jsonschemaform.md#submit)
+* [themesChanged](_core_src_elements_json_schema_form_.jsonschemaform.md#themeschanged)
 * [uiSchemaChanged](_core_src_elements_json_schema_form_.jsonschemaform.md#uischemachanged)
 * [validate](_core_src_elements_json_schema_form_.jsonschemaform.md#validate)
 * [valueChanged](_core_src_elements_json_schema_form_.jsonschemaform.md#valuechanged)
@@ -43,17 +45,18 @@
 
 ###  constructor
 
-\+ **new JsonSchemaForm**(`_element`: Element, `_formContext`: [FormContext](_core_src_services_form_context_.formcontext.md), `_templateRegistry`: [FormTemplateRegistry](_core_src_services_form_template_registry_.formtemplateregistry.md)): *[JsonSchemaForm](_core_src_elements_json_schema_form_.jsonschemaform.md)*
+\+ **new JsonSchemaForm**(`_element`: Element, `_taskQueue`: TaskQueue, `_registry`: [FormTemplateRegistry](_core_src_services_form_template_registry_.formtemplateregistry.md), `context`: [FormContext](_core_src_services_form_context_.formcontext.md)): *[JsonSchemaForm](_core_src_elements_json_schema_form_.jsonschemaform.md)*
 
-*Defined in [core/src/elements/json-schema-form.ts:16](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L16)*
+*Defined in [core/src/elements/json-schema-form.ts:16](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L16)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `_element` | Element |
-`_formContext` | [FormContext](_core_src_services_form_context_.formcontext.md) |
-`_templateRegistry` | [FormTemplateRegistry](_core_src_services_form_template_registry_.formtemplateregistry.md) |
+`_taskQueue` | TaskQueue |
+`_registry` | [FormTemplateRegistry](_core_src_services_form_template_registry_.formtemplateregistry.md) |
+`context` | [FormContext](_core_src_services_form_context_.formcontext.md) |
 
 **Returns:** *[JsonSchemaForm](_core_src_elements_json_schema_form_.jsonschemaform.md)*
 
@@ -63,15 +66,7 @@ Name | Type |
 
 • **_element**: *Element*
 
-*Defined in [core/src/elements/json-schema-form.ts:19](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L19)*
-
-___
-
-### `Private` _formContext
-
-• **_formContext**: *[FormContext](_core_src_services_form_context_.formcontext.md)*
-
-*Defined in [core/src/elements/json-schema-form.ts:20](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L20)*
+*Defined in [core/src/elements/json-schema-form.ts:19](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L19)*
 
 ___
 
@@ -79,23 +74,31 @@ ___
 
 • **_logger**: *Logger‹›* = getLogger('aujsf:json-schema-form')
 
-*Defined in [core/src/elements/json-schema-form.ts:16](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L16)*
+*Defined in [core/src/elements/json-schema-form.ts:16](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L16)*
 
 ___
 
-###  _templateRegistry
+### `Private` _registry
 
-• **_templateRegistry**: *[FormTemplateRegistry](_core_src_services_form_template_registry_.formtemplateregistry.md)*
+• **_registry**: *[FormTemplateRegistry](_core_src_services_form_template_registry_.formtemplateregistry.md)*
 
-*Defined in [core/src/elements/json-schema-form.ts:21](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L21)*
+*Defined in [core/src/elements/json-schema-form.ts:21](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L21)*
 
 ___
 
-### `Private` _validateHandle
+### `Private` _taskQueue
 
-• **_validateHandle**: *any* = -1
+• **_taskQueue**: *TaskQueue*
 
-*Defined in [core/src/elements/json-schema-form.ts:107](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L107)*
+*Defined in [core/src/elements/json-schema-form.ts:20](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L20)*
+
+___
+
+### `Private` context
+
+• **context**: *[FormContext](_core_src_services_form_context_.formcontext.md)*
+
+*Defined in [core/src/elements/json-schema-form.ts:22](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L22)*
 
 ___
 
@@ -103,23 +106,23 @@ ___
 
 • **error**? : *any*
 
-*Defined in [core/src/elements/json-schema-form.ts:49](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L49)*
+*Defined in [core/src/elements/json-schema-form.ts:51](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L51)*
 
 ___
 
-###  options
+### `Optional` options
 
-• **options**: *[FormOptions](../modules/_core_src_models_form_options_.md#formoptions)*
+• **options**? : *[FormOptions](../modules/_core_src_models_form_options_.md#formoptions)*
 
-*Defined in [core/src/elements/json-schema-form.ts:45](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L45)*
+*Defined in [core/src/elements/json-schema-form.ts:46](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L46)*
 
 ___
 
-###  schema
+### `Optional` schema
 
-• **schema**: *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)*
+• **schema**? : *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)*
 
-*Defined in [core/src/elements/json-schema-form.ts:25](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L25)*
+*Defined in [core/src/elements/json-schema-form.ts:26](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L26)*
 
 ___
 
@@ -127,23 +130,23 @@ ___
 
 • **state**: *[FormState](../modules/_core_src_elements_json_schema_form_.md#formstate)* = "initializing"
 
-*Defined in [core/src/elements/json-schema-form.ts:47](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L47)*
+*Defined in [core/src/elements/json-schema-form.ts:49](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L49)*
 
 ___
 
-###  themes
+### `Optional` themes
 
-• **themes**: *Partial‹[FormTheme](../interfaces/_core_src_models_form_template_.formtheme.md)›[]* = []
+• **themes**? : *Partial‹[FormTheme](../interfaces/_core_src_models_form_template_.formtheme.md)›[]* = []
 
-*Defined in [core/src/elements/json-schema-form.ts:42](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L42)*
+*Defined in [core/src/elements/json-schema-form.ts:43](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L43)*
 
 ___
 
-###  uiSchema
+### `Optional` uiSchema
 
-• **uiSchema**: *[UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md)*
+• **uiSchema**? : *[UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md)*
 
-*Defined in [core/src/elements/json-schema-form.ts:28](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L28)*
+*Defined in [core/src/elements/json-schema-form.ts:29](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L29)*
 
 ___
 
@@ -151,23 +154,33 @@ ___
 
 • **validationResult**? : *[ValidationResult](../interfaces/_core_src_models_error_schema_.validationresult.md)*
 
-*Defined in [core/src/elements/json-schema-form.ts:34](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L34)*
+*Defined in [core/src/elements/json-schema-form.ts:35](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L35)*
 
 ___
 
-###  value
+### `Optional` value
 
-• **value**: *any*
+• **value**? : *any*
 
-*Defined in [core/src/elements/json-schema-form.ts:31](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L31)*
+*Defined in [core/src/elements/json-schema-form.ts:32](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L32)*
 
 ## Methods
 
 ###  bind
 
-▸ **bind**(): *Promise‹void›*
+▸ **bind**(): *void*
 
-*Defined in [core/src/elements/json-schema-form.ts:55](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L55)*
+*Defined in [core/src/elements/json-schema-form.ts:57](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L57)*
+
+**Returns:** *void*
+
+___
+
+### `Private` compile
+
+▸ **compile**(): *Promise‹void›*
+
+*Defined in [core/src/elements/json-schema-form.ts:61](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L61)*
 
 **Returns:** *Promise‹void›*
 
@@ -177,7 +190,7 @@ ___
 
 ▸ **onsubmit**(): *void*
 
-*Defined in [core/src/elements/json-schema-form.ts:51](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L51)*
+*Defined in [core/src/elements/json-schema-form.ts:53](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L53)*
 
 **Returns:** *void*
 
@@ -185,16 +198,16 @@ ___
 
 ###  optionsChanged
 
-▸ **optionsChanged**(`newValue`: [FormOptions](../modules/_core_src_models_form_options_.md#formoptions), `_oldValue`: [FormOptions](../modules/_core_src_models_form_options_.md#formoptions)): *void*
+▸ **optionsChanged**(`newValue?`: [FormOptions](../modules/_core_src_models_form_options_.md#formoptions), `oldValue?`: [FormOptions](../modules/_core_src_models_form_options_.md#formoptions)): *void*
 
-*Defined in [core/src/elements/json-schema-form.ts:90](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L90)*
+*Defined in [core/src/elements/json-schema-form.ts:96](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L96)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`newValue` | [FormOptions](../modules/_core_src_models_form_options_.md#formoptions) |
-`_oldValue` | [FormOptions](../modules/_core_src_models_form_options_.md#formoptions) |
+`newValue?` | [FormOptions](../modules/_core_src_models_form_options_.md#formoptions) |
+`oldValue?` | [FormOptions](../modules/_core_src_models_form_options_.md#formoptions) |
 
 **Returns:** *void*
 
@@ -202,16 +215,16 @@ ___
 
 ###  schemaChanged
 
-▸ **schemaChanged**(`newValue`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema), `_oldValue`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)): *void*
+▸ **schemaChanged**(`newValue?`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema), `oldValue?`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)): *void*
 
-*Defined in [core/src/elements/json-schema-form.ts:94](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L94)*
+*Defined in [core/src/elements/json-schema-form.ts:101](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L101)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`newValue` | [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) |
-`_oldValue` | [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) |
+`newValue?` | [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) |
+`oldValue?` | [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) |
 
 **Returns:** *void*
 
@@ -221,7 +234,7 @@ ___
 
 ▸ **submit**(`args`: [SubmitArguments](../interfaces/_core_src_models_submit_arguments_.submitarguments.md)): *void*
 
-*Defined in [core/src/elements/json-schema-form.ts:37](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L37)*
+*Defined in [core/src/elements/json-schema-form.ts:38](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L38)*
 
 **Parameters:**
 
@@ -233,18 +246,35 @@ Name | Type |
 
 ___
 
-###  uiSchemaChanged
+###  themesChanged
 
-▸ **uiSchemaChanged**(`newValue`: [UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md), `_oldValue`: [UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md)): *void*
+▸ **themesChanged**(`newValue?`: Partial‹[FormTheme](../interfaces/_core_src_models_form_template_.formtheme.md)›[], `oldValue?`: Partial‹[FormTheme](../interfaces/_core_src_models_form_template_.formtheme.md)›[]): *Promise‹void›*
 
-*Defined in [core/src/elements/json-schema-form.ts:99](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L99)*
+*Defined in [core/src/elements/json-schema-form.ts:118](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L118)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`newValue` | [UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md) |
-`_oldValue` | [UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md) |
+`newValue?` | Partial‹[FormTheme](../interfaces/_core_src_models_form_template_.formtheme.md)›[] |
+`oldValue?` | Partial‹[FormTheme](../interfaces/_core_src_models_form_template_.formtheme.md)›[] |
+
+**Returns:** *Promise‹void›*
+
+___
+
+###  uiSchemaChanged
+
+▸ **uiSchemaChanged**(`newValue?`: [UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md), `oldValue?`: [UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md)): *void*
+
+*Defined in [core/src/elements/json-schema-form.ts:113](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L113)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`newValue?` | [UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md) |
+`oldValue?` | [UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md) |
 
 **Returns:** *void*
 
@@ -252,15 +282,9 @@ ___
 
 ###  validate
 
-▸ **validate**(`wait?`: undefined | number): *void*
+▸ **validate**(): *void*
 
-*Defined in [core/src/elements/json-schema-form.ts:108](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L108)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`wait?` | undefined &#124; number |
+*Defined in [core/src/elements/json-schema-form.ts:138](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L138)*
 
 **Returns:** *void*
 
@@ -268,15 +292,15 @@ ___
 
 ###  valueChanged
 
-▸ **valueChanged**(`newValue`: any, `_oldValue`: any): *void*
+▸ **valueChanged**(`newValue`: any, `oldValue?`: any): *void*
 
-*Defined in [core/src/elements/json-schema-form.ts:103](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L103)*
+*Defined in [core/src/elements/json-schema-form.ts:129](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L129)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `newValue` | any |
-`_oldValue` | any |
+`oldValue?` | any |
 
 **Returns:** *void*

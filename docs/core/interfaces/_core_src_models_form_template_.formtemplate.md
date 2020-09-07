@@ -14,6 +14,7 @@
 
 * [entry](_core_src_models_form_template_.formtemplate.md#entry)
 * [name](_core_src_models_form_template_.formtemplate.md#name)
+* [resources](_core_src_models_form_template_.formtemplate.md#optional-resources)
 * [url](_core_src_models_form_template_.formtemplate.md#url)
 
 ## Properties
@@ -22,7 +23,7 @@
 
 • **entry**: *TemplateRegistryEntry*
 
-*Defined in [core/src/models/form-template.ts:11](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/form-template.ts#L11)*
+*Defined in [core/src/models/form-template.ts:11](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L11)*
 
 ___
 
@@ -32,7 +33,15 @@ ___
 
 *Inherited from [FormTemplateReference](_core_src_models_form_template_.formtemplatereference.md).[name](_core_src_models_form_template_.formtemplatereference.md#name)*
 
-*Defined in [core/src/models/form-template.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/form-template.ts#L6)*
+*Defined in [core/src/models/form-template.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L6)*
+
+___
+
+### `Optional` resources
+
+• **resources**? : *ViewResources*
+
+*Defined in [core/src/models/form-template.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L12)*
 
 ___
 
@@ -42,4 +51,4 @@ ___
 
 *Inherited from [FormTemplateReference](_core_src_models_form_template_.formtemplatereference.md).[url](_core_src_models_form_template_.formtemplatereference.md#url)*
 
-*Defined in [core/src/models/form-template.ts:7](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/form-template.ts#L7)*
+*Defined in [core/src/models/form-template.ts:7](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-template.ts#L7)*

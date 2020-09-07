@@ -8,23 +8,73 @@
 
 ## Index
 
+### Constructors
+
+* [constructor](_core_src_converters_aujsf_value_.aujsfvalue.md#constructor)
+
 ### Methods
 
 * [fromView](_core_src_converters_aujsf_value_.aujsfvalue.md#fromview)
+* [toDatetimeLocal](_core_src_converters_aujsf_value_.aujsfvalue.md#private-todatetimelocal)
+* [toView](_core_src_converters_aujsf_value_.aujsfvalue.md#toview)
+
+## Constructors
+
+###  constructor
+
+\+ **new AujsfValue**(): *[AujsfValue](_core_src_converters_aujsf_value_.aujsfvalue.md)*
+
+*Defined in [core/src/converters/aujsf-value.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/converters/aujsf-value.ts#L6)*
+
+**Returns:** *[AujsfValue](_core_src_converters_aujsf_value_.aujsfvalue.md)*
 
 ## Methods
 
 ###  fromView
 
-▸ **fromView**(`value`: string, `toNumber`: boolean): *number | string | undefined*
+▸ **fromView**(`value`: string, `type`: [ValueType](../modules/_core_src_converters_aujsf_value_.md#valuetype)): *number | string | undefined*
 
-*Defined in [core/src/converters/aujsf-value.ts:5](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/converters/aujsf-value.ts#L5)*
+*Defined in [core/src/converters/aujsf-value.ts:20](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/converters/aujsf-value.ts#L20)*
 
 **Parameters:**
 
 Name | Type | Default |
 ------ | ------ | ------ |
 `value` | string | - |
-`toNumber` | boolean | false |
+`type` | [ValueType](../modules/_core_src_converters_aujsf_value_.md#valuetype) | "string" |
 
 **Returns:** *number | string | undefined*
+
+___
+
+### `Private` toDatetimeLocal
+
+▸ **toDatetimeLocal**(`date`: Date): *string*
+
+*Defined in [core/src/converters/aujsf-value.ts:43](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/converters/aujsf-value.ts#L43)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`date` | Date |
+
+**Returns:** *string*
+
+___
+
+###  toView
+
+▸ **toView**(`value`: string, `type`: [ValueType](../modules/_core_src_converters_aujsf_value_.md#valuetype), `toLocal`: boolean): *string*
+
+*Defined in [core/src/converters/aujsf-value.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/converters/aujsf-value.ts#L12)*
+
+**Parameters:**
+
+Name | Type | Default |
+------ | ------ | ------ |
+`value` | string | - |
+`type` | [ValueType](../modules/_core_src_converters_aujsf_value_.md#valuetype) | "string" |
+`toLocal` | boolean | false |
+
+**Returns:** *string*

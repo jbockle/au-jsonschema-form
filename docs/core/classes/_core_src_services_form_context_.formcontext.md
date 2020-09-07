@@ -15,37 +15,34 @@
 ### Properties
 
 * [_logger](_core_src_services_form_context_.formcontext.md#private-_logger)
-* [options](_core_src_services_form_context_.formcontext.md#options)
+* [_options](_core_src_services_form_context_.formcontext.md#private-optional-_options)
+* [_schema](_core_src_services_form_context_.formcontext.md#private-optional-_schema)
+* [enhancer](_core_src_services_form_context_.formcontext.md#enhancer)
+* [pluginOptions](_core_src_services_form_context_.formcontext.md#pluginoptions)
 * [uiSchema](_core_src_services_form_context_.formcontext.md#uischema)
 * [validator](_core_src_services_form_context_.formcontext.md#validator)
 * [value](_core_src_services_form_context_.formcontext.md#value)
 
 ### Accessors
 
+* [options](_core_src_services_form_context_.formcontext.md#options)
 * [schema](_core_src_services_form_context_.formcontext.md#schema)
-
-### Methods
-
-* [setSchema](_core_src_services_form_context_.formcontext.md#setschema)
-
-### Object literals
-
-* [_schema](_core_src_services_form_context_.formcontext.md#private-_schema)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new FormContext**(`validator`: [Validator](_core_src_utils_validator_.validator.md), `options`: [PluginOptions](_core_src_plugin_options_.pluginoptions.md)): *[FormContext](_core_src_services_form_context_.formcontext.md)*
+\+ **new FormContext**(`validator`: [Validator](_core_src_utils_validator_.validator.md), `pluginOptions`: [PluginOptions](_core_src_plugin_options_.pluginoptions.md), `enhancer`: [Enhancer](_core_src_services_enhancer_.enhancer.md)): *[FormContext](_core_src_services_form_context_.formcontext.md)*
 
-*Defined in [core/src/services/form-context.ts:11](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/services/form-context.ts#L11)*
+*Defined in [core/src/services/form-context.ts:13](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-context.ts#L13)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `validator` | [Validator](_core_src_utils_validator_.validator.md) |
-`options` | [PluginOptions](_core_src_plugin_options_.pluginoptions.md) |
+`pluginOptions` | [PluginOptions](_core_src_plugin_options_.pluginoptions.md) |
+`enhancer` | [Enhancer](_core_src_services_enhancer_.enhancer.md) |
 
 **Returns:** *[FormContext](_core_src_services_form_context_.formcontext.md)*
 
@@ -55,15 +52,39 @@ Name | Type |
 
 • **_logger**: *Logger‹›* = getLogger('aujsf:form-context')
 
-*Defined in [core/src/services/form-context.ts:10](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/services/form-context.ts#L10)*
+*Defined in [core/src/services/form-context.ts:11](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-context.ts#L11)*
 
 ___
 
-###  options
+### `Private` `Optional` _options
 
-• **options**: *[PluginOptions](_core_src_plugin_options_.pluginoptions.md)*
+• **_options**? : *[FormOptions](../modules/_core_src_models_form_options_.md#formoptions)*
 
-*Defined in [core/src/services/form-context.ts:15](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/services/form-context.ts#L15)*
+*Defined in [core/src/services/form-context.ts:13](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-context.ts#L13)*
+
+___
+
+### `Private` `Optional` _schema
+
+• **_schema**? : *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)*
+
+*Defined in [core/src/services/form-context.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-context.ts#L12)*
+
+___
+
+###  enhancer
+
+• **enhancer**: *[Enhancer](_core_src_services_enhancer_.enhancer.md)*
+
+*Defined in [core/src/services/form-context.ts:18](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-context.ts#L18)*
+
+___
+
+###  pluginOptions
+
+• **pluginOptions**: *[PluginOptions](_core_src_plugin_options_.pluginoptions.md)*
+
+*Defined in [core/src/services/form-context.ts:17](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-context.ts#L17)*
 
 ___
 
@@ -71,7 +92,7 @@ ___
 
 • **uiSchema**: *[UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md)*
 
-*Defined in [core/src/services/form-context.ts:28](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/services/form-context.ts#L28)*
+*Defined in [core/src/services/form-context.ts:23](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-context.ts#L23)*
 
 ___
 
@@ -79,7 +100,7 @@ ___
 
 • **validator**: *[Validator](_core_src_utils_validator_.validator.md)*
 
-*Defined in [core/src/services/form-context.ts:14](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/services/form-context.ts#L14)*
+*Defined in [core/src/services/form-context.ts:16](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-context.ts#L16)*
 
 ___
 
@@ -87,45 +108,48 @@ ___
 
 • **value**: *any*
 
-*Defined in [core/src/services/form-context.ts:30](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/services/form-context.ts#L30)*
+*Defined in [core/src/services/form-context.ts:25](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-context.ts#L25)*
 
 ## Accessors
 
-###  schema
+###  options
 
-• **get schema**(): *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)*
+• **get options**(): *[FormOptions](../modules/_core_src_models_form_options_.md#formoptions) | undefined*
 
-*Defined in [core/src/services/form-context.ts:24](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/services/form-context.ts#L24)*
+*Defined in [core/src/services/form-context.ts:28](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-context.ts#L28)*
 
-**Returns:** *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)*
+**Returns:** *[FormOptions](../modules/_core_src_models_form_options_.md#formoptions) | undefined*
 
-## Methods
+• **set options**(`options`: [FormOptions](../modules/_core_src_models_form_options_.md#formoptions) | undefined): *void*
 
-###  setSchema
-
-▸ **setSchema**(`schema`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema), `options`: [FormOptions](../modules/_core_src_models_form_options_.md#formoptions)): *void*
-
-*Defined in [core/src/services/form-context.ts:18](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/services/form-context.ts#L18)*
+*Defined in [core/src/services/form-context.ts:32](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-context.ts#L32)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`schema` | [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) |
-`options` | [FormOptions](../modules/_core_src_models_form_options_.md#formoptions) |
+`options` | [FormOptions](../modules/_core_src_models_form_options_.md#formoptions) &#124; undefined |
 
 **Returns:** *void*
 
-## Object literals
+___
 
-### `Private` _schema
+###  schema
 
-### ▪ **_schema**: *object*
+• **get schema**(): *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) | undefined*
 
-*Defined in [core/src/services/form-context.ts:11](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/services/form-context.ts#L11)*
+*Defined in [core/src/services/form-context.ts:41](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-context.ts#L41)*
 
-###  type
+**Returns:** *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) | undefined*
 
-• **type**: *"null"* = "null"
+• **set schema**(`schema`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) | undefined): *void*
 
-*Defined in [core/src/services/form-context.ts:11](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/services/form-context.ts#L11)*
+*Defined in [core/src/services/form-context.ts:45](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/services/form-context.ts#L45)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`schema` | [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) &#124; undefined |
+
+**Returns:** *void*

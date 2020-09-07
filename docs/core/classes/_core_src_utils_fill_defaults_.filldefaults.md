@@ -1,4 +1,4 @@
-[@aujsf/core](../README.md) › ["core/src/utils/json-schema-utils"](../modules/_core_src_utils_json_schema_utils_.md) › [FillDefaults](_core_src_utils_json_schema_utils_.filldefaults.md)
+[@aujsf/core](../README.md) › ["core/src/utils/fill-defaults"](../modules/_core_src_utils_fill_defaults_.md) › [FillDefaults](_core_src_utils_fill_defaults_.filldefaults.md)
 
 # Class: FillDefaults
 
@@ -10,60 +10,51 @@
 
 ### Constructors
 
-* [constructor](_core_src_utils_json_schema_utils_.filldefaults.md#constructor)
+* [constructor](_core_src_utils_fill_defaults_.filldefaults.md#constructor)
 
 ### Properties
 
-* [initialValue](_core_src_utils_json_schema_utils_.filldefaults.md#private-initialvalue)
-* [rootSchema](_core_src_utils_json_schema_utils_.filldefaults.md#private-rootschema)
-* [value](_core_src_utils_json_schema_utils_.filldefaults.md#value)
+* [rootSchema](_core_src_utils_fill_defaults_.filldefaults.md#private-rootschema)
+* [value](_core_src_utils_fill_defaults_.filldefaults.md#value)
 
 ### Methods
 
-* [fill](_core_src_utils_json_schema_utils_.filldefaults.md#private-fill)
-* [fillArray](_core_src_utils_json_schema_utils_.filldefaults.md#private-fillarray)
-* [fillExtraProperties](_core_src_utils_json_schema_utils_.filldefaults.md#private-fillextraproperties)
-* [fillObject](_core_src_utils_json_schema_utils_.filldefaults.md#private-fillobject)
-* [getArrayValue](_core_src_utils_json_schema_utils_.filldefaults.md#private-getarrayvalue)
-* [getBooleanValue](_core_src_utils_json_schema_utils_.filldefaults.md#private-getbooleanvalue)
-* [getDefault](_core_src_utils_json_schema_utils_.filldefaults.md#private-getdefault)
-* [getNumberValue](_core_src_utils_json_schema_utils_.filldefaults.md#private-getnumbervalue)
-* [getObjectValue](_core_src_utils_json_schema_utils_.filldefaults.md#private-getobjectvalue)
-* [getStringValue](_core_src_utils_json_schema_utils_.filldefaults.md#private-getstringvalue)
-* [set](_core_src_utils_json_schema_utils_.filldefaults.md#private-set)
+* [fill](_core_src_utils_fill_defaults_.filldefaults.md#private-fill)
+* [fillArray](_core_src_utils_fill_defaults_.filldefaults.md#private-fillarray)
+* [fillExtraProperties](_core_src_utils_fill_defaults_.filldefaults.md#private-fillextraproperties)
+* [fillObject](_core_src_utils_fill_defaults_.filldefaults.md#private-fillobject)
+* [getArrayValue](_core_src_utils_fill_defaults_.filldefaults.md#private-getarrayvalue)
+* [getBooleanValue](_core_src_utils_fill_defaults_.filldefaults.md#private-getbooleanvalue)
+* [getDefault](_core_src_utils_fill_defaults_.filldefaults.md#private-getdefault)
+* [getNumberValue](_core_src_utils_fill_defaults_.filldefaults.md#private-getnumbervalue)
+* [getObjectValue](_core_src_utils_fill_defaults_.filldefaults.md#private-getobjectvalue)
+* [getStringValue](_core_src_utils_fill_defaults_.filldefaults.md#private-getstringvalue)
+* [set](_core_src_utils_fill_defaults_.filldefaults.md#private-set)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new FillDefaults**(`initialValue`: any, `rootSchema`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)): *[FillDefaults](_core_src_utils_json_schema_utils_.filldefaults.md)*
+\+ **new FillDefaults**(`value`: any, `rootSchema`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)): *[FillDefaults](_core_src_utils_fill_defaults_.filldefaults.md)*
 
-*Defined in [core/src/utils/json-schema-utils.ts:78](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L78)*
+*Defined in [core/src/utils/fill-defaults.ts:9](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/fill-defaults.ts#L9)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`initialValue` | any |
+`value` | any |
 `rootSchema` | [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) |
 
-**Returns:** *[FillDefaults](_core_src_utils_json_schema_utils_.filldefaults.md)*
+**Returns:** *[FillDefaults](_core_src_utils_fill_defaults_.filldefaults.md)*
 
 ## Properties
-
-### `Private` initialValue
-
-• **initialValue**: *any*
-
-*Defined in [core/src/utils/json-schema-utils.ts:80](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L80)*
-
-___
 
 ### `Private` rootSchema
 
 • **rootSchema**: *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)*
 
-*Defined in [core/src/utils/json-schema-utils.ts:81](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L81)*
+*Defined in [core/src/utils/fill-defaults.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/fill-defaults.ts#L12)*
 
 ___
 
@@ -71,7 +62,7 @@ ___
 
 • **value**: *any*
 
-*Defined in [core/src/utils/json-schema-utils.ts:85](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L85)*
+*Defined in [core/src/utils/fill-defaults.ts:11](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/fill-defaults.ts#L11)*
 
 ## Methods
 
@@ -79,7 +70,7 @@ ___
 
 ▸ **fill**(`schema`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema), `segments`: string[]): *void*
 
-*Defined in [core/src/utils/json-schema-utils.ts:87](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L87)*
+*Defined in [core/src/utils/fill-defaults.ts:17](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/fill-defaults.ts#L17)*
 
 **Parameters:**
 
@@ -96,7 +87,7 @@ ___
 
 ▸ **fillArray**(`pathValue`: any[], `schema`: [JsonSchemaArray](../interfaces/_core_src_models_json_schema_.jsonschemaarray.md), `segments`: string[]): *void*
 
-*Defined in [core/src/utils/json-schema-utils.ts:215](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L215)*
+*Defined in [core/src/utils/fill-defaults.ts:156](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/fill-defaults.ts#L156)*
 
 **Parameters:**
 
@@ -114,7 +105,7 @@ ___
 
 ▸ **fillExtraProperties**(`pathValue`: any, `schema`: [JsonSchemaObject](../interfaces/_core_src_models_json_schema_.jsonschemaobject.md), `segments`: string[]): *void*
 
-*Defined in [core/src/utils/json-schema-utils.ts:189](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L189)*
+*Defined in [core/src/utils/fill-defaults.ts:130](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/fill-defaults.ts#L130)*
 
 **Parameters:**
 
@@ -132,7 +123,7 @@ ___
 
 ▸ **fillObject**(`pathValue`: any, `schema`: [JsonSchemaObject](../interfaces/_core_src_models_json_schema_.jsonschemaobject.md), `segments`: string[]): *void*
 
-*Defined in [core/src/utils/json-schema-utils.ts:178](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L178)*
+*Defined in [core/src/utils/fill-defaults.ts:118](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/fill-defaults.ts#L118)*
 
 **Parameters:**
 
@@ -150,7 +141,7 @@ ___
 
 ▸ **getArrayValue**(`pathValue`: any, `schema`: [JsonSchemaArray](../interfaces/_core_src_models_json_schema_.jsonschemaarray.md)): *any[]*
 
-*Defined in [core/src/utils/json-schema-utils.ts:138](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L138)*
+*Defined in [core/src/utils/fill-defaults.ts:73](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/fill-defaults.ts#L73)*
 
 **Parameters:**
 
@@ -167,7 +158,7 @@ ___
 
 ▸ **getBooleanValue**(`pathValue`: any, `schema`: [JsonSchemaBoolean](../interfaces/_core_src_models_json_schema_.jsonschemaboolean.md)): *boolean*
 
-*Defined in [core/src/utils/json-schema-utils.ts:170](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L170)*
+*Defined in [core/src/utils/fill-defaults.ts:109](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/fill-defaults.ts#L109)*
 
 **Parameters:**
 
@@ -184,7 +175,7 @@ ___
 
 ▸ **getDefault**(`schema`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema), `fallback`: any): *any*
 
-*Defined in [core/src/utils/json-schema-utils.ts:225](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L225)*
+*Defined in [core/src/utils/fill-defaults.ts:167](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/fill-defaults.ts#L167)*
 
 **Parameters:**
 
@@ -201,7 +192,7 @@ ___
 
 ▸ **getNumberValue**(`pathValue`: any, `schema`: [JsonSchemaNumber](../interfaces/_core_src_models_json_schema_.jsonschemanumber.md)): *number | bigint | undefined*
 
-*Defined in [core/src/utils/json-schema-utils.ts:162](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L162)*
+*Defined in [core/src/utils/fill-defaults.ts:100](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/fill-defaults.ts#L100)*
 
 **Parameters:**
 
@@ -218,7 +209,7 @@ ___
 
 ▸ **getObjectValue**(`pathValue`: any, `schema`: [JsonSchemaObject](../interfaces/_core_src_models_json_schema_.jsonschemaobject.md)): *any*
 
-*Defined in [core/src/utils/json-schema-utils.ts:148](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L148)*
+*Defined in [core/src/utils/fill-defaults.ts:84](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/fill-defaults.ts#L84)*
 
 **Parameters:**
 
@@ -235,7 +226,7 @@ ___
 
 ▸ **getStringValue**(`pathValue`: any, `schema`: [JsonSchemaString](../interfaces/_core_src_models_json_schema_.jsonschemastring.md)): *string | undefined*
 
-*Defined in [core/src/utils/json-schema-utils.ts:154](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L154)*
+*Defined in [core/src/utils/fill-defaults.ts:91](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/fill-defaults.ts#L91)*
 
 **Parameters:**
 
@@ -252,7 +243,7 @@ ___
 
 ▸ **set**(`pointer`: JsonPointer, `value`: any): *void*
 
-*Defined in [core/src/utils/json-schema-utils.ts:126](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/json-schema-utils.ts#L126)*
+*Defined in [core/src/utils/fill-defaults.ts:60](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/fill-defaults.ts#L60)*
 
 **Parameters:**
 

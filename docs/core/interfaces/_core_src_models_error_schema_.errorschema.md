@@ -23,7 +23,7 @@
 
 • **_errorobjects_**? : *ErrorObject[]*
 
-*Defined in [core/src/models/error-schema.ts:13](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/error-schema.ts#L13)*
+*Defined in [core/src/models/error-schema.ts:13](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/error-schema.ts#L13)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **_errors_**? : *string[]*
 
-*Defined in [core/src/models/error-schema.ts:14](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/error-schema.ts#L14)*
+*Defined in [core/src/models/error-schema.ts:14](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/error-schema.ts#L14)*

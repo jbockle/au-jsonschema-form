@@ -20,7 +20,7 @@
 
 • **newValue**: *any*
 
-*Defined in [core/src/models/form-events.ts:4](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/form-events.ts#L4)*
+*Defined in [core/src/models/form-events.ts:4](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-events.ts#L4)*
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 • **oldValue**: *any*
 
-*Defined in [core/src/models/form-events.ts:5](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/form-events.ts#L5)*
+*Defined in [core/src/models/form-events.ts:5](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-events.ts#L5)*
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 • **pointer**: *JsonPointer*
 
-*Defined in [core/src/models/form-events.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/models/form-events.ts#L6)*
+*Defined in [core/src/models/form-events.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/models/form-events.ts#L6)*

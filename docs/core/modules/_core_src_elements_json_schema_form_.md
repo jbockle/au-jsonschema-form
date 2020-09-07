@@ -18,4 +18,4 @@
 
 Ƭ **FormState**: *"initializing" | "ready" | "error"*
 
-*Defined in [core/src/elements/json-schema-form.ts:10](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/elements/json-schema-form.ts#L10)*
+*Defined in [core/src/elements/json-schema-form.ts:10](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/elements/json-schema-form.ts#L10)*

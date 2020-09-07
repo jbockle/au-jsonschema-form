@@ -6,5 +6,4 @@
 
 ### Classes
 
-* [FillDefaults](../classes/_core_src_utils_json_schema_utils_.filldefaults.md)
 * [JsonSchemaUtils](../classes/_core_src_utils_json_schema_utils_.jsonschemautils.md)

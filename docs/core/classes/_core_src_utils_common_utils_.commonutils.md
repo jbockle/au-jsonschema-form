@@ -12,10 +12,13 @@
 
 * [merge](_core_src_utils_common_utils_.commonutils.md#static-merge)
 * [mergeAll](_core_src_utils_common_utils_.commonutils.md#static-mergeall)
+* [rcssescape](_core_src_utils_common_utils_.commonutils.md#static-private-rcssescape)
 
 ### Methods
 
 * [clone](_core_src_utils_common_utils_.commonutils.md#static-clone)
+* [escapeSelector](_core_src_utils_common_utils_.commonutils.md#static-escapeselector)
+* [fcssescape](_core_src_utils_common_utils_.commonutils.md#static-private-fcssescape)
 * [fillTemplate](_core_src_utils_common_utils_.commonutils.md#static-filltemplate)
 * [notNullOrUndefined](_core_src_utils_common_utils_.commonutils.md#static-notnullorundefined)
 * [startCase](_core_src_utils_common_utils_.commonutils.md#static-startcase)
@@ -26,7 +29,7 @@
 
 ▪ **merge**: *[merge](../modules/_core_src_utils_merge_.md#merge)* = merge
 
-*Defined in [core/src/utils/common-utils.ts:25](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/common-utils.ts#L25)*
+*Defined in [core/src/utils/common-utils.ts:26](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/common-utils.ts#L26)*
 
 ___
 
@@ -34,7 +37,15 @@ ___
 
 ▪ **mergeAll**: *[mergeAll](../modules/_core_src_utils_merge_.md#mergeall)* = mergeAll
 
-*Defined in [core/src/utils/common-utils.ts:27](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/common-utils.ts#L27)*
+*Defined in [core/src/utils/common-utils.ts:28](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/common-utils.ts#L28)*
+
+___
+
+### `Static` `Private` rcssescape
+
+▪ **rcssescape**: *RegExp‹›* = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\x80-\uFFFF\w-]/g
+
+*Defined in [core/src/utils/common-utils.ts:30](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/common-utils.ts#L30)*
 
 ## Methods
 
@@ -42,7 +53,7 @@ ___
 
 ▸ **clone**‹**T**›(`item`: T): *T*
 
-*Defined in [core/src/utils/common-utils.ts:4](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/common-utils.ts#L4)*
+*Defined in [core/src/utils/common-utils.ts:5](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/common-utils.ts#L5)*
 
 **Type parameters:**
 
@@ -58,11 +69,44 @@ Name | Type |
 
 ___
 
+### `Static` escapeSelector
+
+▸ **escapeSelector**(`selector`: string): *string*
+
+*Defined in [core/src/utils/common-utils.ts:47](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/common-utils.ts#L47)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`selector` | string |
+
+**Returns:** *string*
+
+___
+
+### `Static` `Private` fcssescape
+
+▸ **fcssescape**(`ch`: string, `asCodePoint`: any): *string*
+
+*Defined in [core/src/utils/common-utils.ts:31](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/common-utils.ts#L31)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`ch` | string |
+`asCodePoint` | any |
+
+**Returns:** *string*
+
+___
+
 ### `Static` fillTemplate
 
 ▸ **fillTemplate**(`templateString`: string, `templateVars`: any): *string*
 
-*Defined in [core/src/utils/common-utils.ts:15](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/common-utils.ts#L15)*
+*Defined in [core/src/utils/common-utils.ts:16](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/common-utils.ts#L16)*
 
 **Parameters:**
 
@@ -79,7 +123,7 @@ ___
 
 ▸ **notNullOrUndefined**‹**T**›(`item`: T | undefined): *item is T*
 
-*Defined in [core/src/utils/common-utils.ts:21](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/common-utils.ts#L21)*
+*Defined in [core/src/utils/common-utils.ts:22](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/common-utils.ts#L22)*
 
 **Type parameters:**
 
@@ -99,7 +143,7 @@ ___
 
 ▸ **startCase**(`text`: string): *string*
 
-*Defined in [core/src/utils/common-utils.ts:8](https://github.com/jbockle/au-jsonschema-form/blob/05b11cf/packages/core/src/utils/common-utils.ts#L8)*
+*Defined in [core/src/utils/common-utils.ts:9](https://github.com/jbockle/au-jsonschema-form/blob/ffdfbe8/packages/core/src/utils/common-utils.ts#L9)*
 
 **Parameters:**
 
