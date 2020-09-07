@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/jbockle/au-jsonschema-form/compare/v0.1.0...v0.1.1) (2020-09-07)
+
+
+### Bug Fixes
+
+* **bindable:** add change handlers to root bindable properties ([30bb446](https://github.com/jbockle/au-jsonschema-form/commit/30bb44677795ecad6058d07615dde81bcff25a3a))
+
+
+
+
+
 # [0.1.0](https://github.com/jbockle/au-jsonschema-form/compare/v0.0.20...v0.1.0) (2020-09-07)
 
 **Note:** Version bump only for package @aujsf/core

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](http://???/compare/v0.1.0...v0.1.1) (2020-09-07)
+
+
+### Bug Fixes
+
+* **bindable:** add change handlers to root bindable properties ([30bb446](http://???/commits/30bb44677795ecad6058d07615dde81bcff25a3a))
+
+
+
+
+
 # [0.1.0](http://???/compare/v0.0.20...v0.1.0) (2020-09-07)
 
 **Note:** Version bump only for package examples
