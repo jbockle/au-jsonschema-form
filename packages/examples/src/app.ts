@@ -25,6 +25,8 @@ export class App {
 
   public theme = THEME;
 
+  public ready = true;
+
   public model: Model = new Model({
     combined: {
       oneOfSimple: {},
@@ -93,6 +95,9 @@ export class App {
       },
       type: 'object',
       properties: {
+        unknown: {
+          type: 'string',
+        },
         objects: {
           type: 'object',
           properties: {
@@ -295,6 +300,9 @@ export class App {
 
   public uiSchema: UISchema = {
     'ui:title': false,
+    unknown: {
+      'ui:view': 'foo',
+    },
     combined: {
       allOfExample: {
         firstName: {

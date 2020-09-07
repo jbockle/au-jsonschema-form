@@ -7,7 +7,10 @@ import { IPluginOptions } from '@aujsf/core';
 export function configure(aurelia: Aurelia): void {
   aurelia.use
     .standardConfiguration()
-    .plugin(PLATFORM.moduleName('@aujsf/core'), (options: IPluginOptions) => options.defaultTheme = THEME);
+    .plugin(PLATFORM.moduleName('@aujsf/core'), (options: IPluginOptions) => {
+      options.defaultTheme = THEME;
+      // options.hideErrors = true;
+    });
 
   aurelia.use.developmentLogging('debug');
 

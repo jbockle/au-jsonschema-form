@@ -1,4 +1,4 @@
-import { customElement, ViewStrategy, InlineViewStrategy, observable, inject } from 'aurelia-framework';
+import { customElement, observable, inject, Container } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 
 import { AujsfBase } from '../aujsf-base';
@@ -16,7 +16,7 @@ interface OneOfOption {
 import { FormContext, FormTemplateRegistry } from '../../services';
 import { OneOfViewProvider } from '../../services/providers/one-of-view-provider';
 
-@inject(Element, FormTemplateRegistry, FormContext, OneOfViewProvider)
+@inject(Element, Container, FormTemplateRegistry, FormContext, OneOfViewProvider)
 @customElement('aujsf-one-of')
 export class AujsfOneOf extends AujsfBase<JsonSchemaOneOf, any> {
   private _validator = new Validator();
@@ -39,7 +39,7 @@ export class AujsfOneOf extends AujsfBase<JsonSchemaOneOf, any> {
     }
   }
 
-  public async bound(): Promise<void> {
+  public bound(): void {
     this.options = this.schema.oneOf.map((schema, index) => ({
       index,
       title: this.getOptionTitle(schema, index),
@@ -64,12 +64,15 @@ export class AujsfOneOf extends AujsfBase<JsonSchemaOneOf, any> {
     this.uiSchema = this.uiSchema ?? {};
   }
 
-  protected createViewStrategy(): ViewStrategy {
+  protected enhance(): void {
     const template = this._templateRegistry.get(this.viewProvider.getTemplate(this));
 
-    return new InlineViewStrategy(
-      template.entry.template.outerHTML,
-      template.entry.dependencies.map(d => d.src));
+    this.view = this.context.enhancer.enhanceTemplate({
+      element: this._element,
+      bindingContext: this,
+      container: this._container,
+      template,
+    });
   }
 
   public getOptionTitle(schema: JsonSchema, index: number): string {

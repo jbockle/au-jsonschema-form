@@ -1,4 +1,4 @@
-import { customElement, inject, BindingEngine, Disposable } from 'aurelia-framework';
+import { customElement, inject, BindingEngine, Disposable, Container } from 'aurelia-framework';
 import { BindingSignaler } from 'aurelia-templating-resources';
 import { getLogger } from 'aurelia-logging';
 import { JsonPointer } from 'jsonpointerx';
@@ -9,13 +9,13 @@ import { FormTemplateRegistry, FormContext } from '../../services';
 import utils from '../../utils';
 import { ArrayViewProvider } from '../../services/providers/array-view-provider';
 
-@inject(Element, FormTemplateRegistry, FormContext, ArrayViewProvider, BindingSignaler, BindingEngine)
+@inject(Element, Container, FormTemplateRegistry, FormContext, ArrayViewProvider, BindingSignaler, BindingEngine)
 @customElement('aujsf-array')
 export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
   protected _logger = getLogger('aujsf:sf-array');
   protected _observer?: Disposable;
 
-  public async bound(): Promise<void> {
+  public bound(): void {
     this.value = this.value ?? [];
     this._observer = this.engine?.collectionObserver(this.value).subscribe(changeRecords => {
       this.valueChanged(this.value, changeRecords);
