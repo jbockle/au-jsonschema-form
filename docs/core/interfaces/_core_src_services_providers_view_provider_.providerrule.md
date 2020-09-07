@@ -26,7 +26,7 @@
 
 • **predicate**: *function*
 
-*Defined in [core/src/services/providers/view-provider.ts:7](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/providers/view-provider.ts#L7)*
+*Defined in [core/src/services/providers/view-provider.ts:7](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/services/providers/view-provider.ts#L7)*
 
 #### Type declaration:
 
@@ -44,7 +44,7 @@ ___
 
 • **priority**? : *undefined | number*
 
-*Defined in [core/src/services/providers/view-provider.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/providers/view-provider.ts#L6)*
+*Defined in [core/src/services/providers/view-provider.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/services/providers/view-provider.ts#L6)*
 
 ___
 
@@ -52,4 +52,4 @@ ___
 
 • **view**: *string*
 
-*Defined in [core/src/services/providers/view-provider.ts:5](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/providers/view-provider.ts#L5)*
+*Defined in [core/src/services/providers/view-provider.ts:5](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/services/providers/view-provider.ts#L5)*

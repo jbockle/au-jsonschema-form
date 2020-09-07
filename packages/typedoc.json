@@ -2,5 +2,9 @@
   "tsconfig": "tsconfig.build.json",
   "gitRemote": "origin",
   "theme": "markdown",
-  "mode": "modules"
+  "mode": "modules",
+  "gitRevision": "master",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "stripInternal": true
 }

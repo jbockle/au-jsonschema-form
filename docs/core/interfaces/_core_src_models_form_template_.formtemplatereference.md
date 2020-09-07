@@ -21,7 +21,7 @@
 
 • **name**: *string*
 
-*Defined in [core/src/models/form-template.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-template.ts#L6)*
+*Defined in [core/src/models/form-template.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/models/form-template.ts#L6)*
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 • **url**: *[FormModule](../modules/_core_src_models_form_template_.md#formmodule)*
 
-*Defined in [core/src/models/form-template.ts:7](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/form-template.ts#L7)*
+*Defined in [core/src/models/form-template.ts:7](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/models/form-template.ts#L7)*

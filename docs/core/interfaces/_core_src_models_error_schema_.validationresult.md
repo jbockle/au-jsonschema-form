@@ -20,7 +20,7 @@
 
 • **errorSchema**: *[ErrorSchema](_core_src_models_error_schema_.errorschema.md)*
 
-*Defined in [core/src/models/error-schema.ts:8](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/error-schema.ts#L8)*
+*Defined in [core/src/models/error-schema.ts:8](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/models/error-schema.ts#L8)*
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 • **errors**: *ErrorObject[]*
 
-*Defined in [core/src/models/error-schema.ts:7](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/error-schema.ts#L7)*
+*Defined in [core/src/models/error-schema.ts:7](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/models/error-schema.ts#L7)*
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 • **valid**: *boolean*
 
-*Defined in [core/src/models/error-schema.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/error-schema.ts#L6)*
+*Defined in [core/src/models/error-schema.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/models/error-schema.ts#L6)*

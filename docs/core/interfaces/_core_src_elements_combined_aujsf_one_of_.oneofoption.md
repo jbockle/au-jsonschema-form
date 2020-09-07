@@ -21,7 +21,7 @@
 
 • **index**: *number*
 
-*Defined in [core/src/elements/combined/aujsf-one-of.ts:10](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/elements/combined/aujsf-one-of.ts#L10)*
+*Defined in [core/src/elements/combined/aujsf-one-of.ts:10](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/combined/aujsf-one-of.ts#L10)*
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **schema**: *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)*
 
-*Defined in [core/src/elements/combined/aujsf-one-of.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/elements/combined/aujsf-one-of.ts#L12)*
+*Defined in [core/src/elements/combined/aujsf-one-of.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/combined/aujsf-one-of.ts#L12)*
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 • **title**: *string*
 
-*Defined in [core/src/elements/combined/aujsf-one-of.ts:11](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/elements/combined/aujsf-one-of.ts#L11)*
+*Defined in [core/src/elements/combined/aujsf-one-of.ts:11](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/combined/aujsf-one-of.ts#L11)*
 
 ___
 
@@ -45,4 +45,4 @@ ___
 
 • **uiSchema**: *[UISchema](_core_src_models_ui_schema_.uischema.md)*
 
-*Defined in [core/src/elements/combined/aujsf-one-of.ts:13](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/elements/combined/aujsf-one-of.ts#L13)*
+*Defined in [core/src/elements/combined/aujsf-one-of.ts:13](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/combined/aujsf-one-of.ts#L13)*

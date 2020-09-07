@@ -25,7 +25,7 @@
 
 *Overrides [KeyDefinition](_core_src_models_key_definition_.keydefinition.md).[key](_core_src_models_key_definition_.keydefinition.md#key)*
 
-*Defined in [core/src/models/key-definition.ts:18](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/key-definition.ts#L18)*
+*Defined in [core/src/models/key-definition.ts:18](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/models/key-definition.ts#L18)*
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 *Inherited from [KeyDefinition](_core_src_models_key_definition_.keydefinition.md).[pointer](_core_src_models_key_definition_.keydefinition.md#pointer)*
 
-*Defined in [core/src/models/key-definition.ts:9](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/key-definition.ts#L9)*
+*Defined in [core/src/models/key-definition.ts:9](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/models/key-definition.ts#L9)*
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 *Inherited from [KeyDefinition](_core_src_models_key_definition_.keydefinition.md).[schema](_core_src_models_key_definition_.keydefinition.md#schema)*
 
-*Defined in [core/src/models/key-definition.ts:7](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/key-definition.ts#L7)*
+*Defined in [core/src/models/key-definition.ts:7](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/models/key-definition.ts#L7)*
 
 ___
 
@@ -55,4 +55,4 @@ ___
 
 *Inherited from [KeyDefinition](_core_src_models_key_definition_.keydefinition.md).[uiSchema](_core_src_models_key_definition_.keydefinition.md#uischema)*
 
-*Defined in [core/src/models/key-definition.ts:8](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/models/key-definition.ts#L8)*
+*Defined in [core/src/models/key-definition.ts:8](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/models/key-definition.ts#L8)*

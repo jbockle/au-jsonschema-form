@@ -35,4 +35,4 @@
   object: null!,
 })
 
-*Defined in [core/src/utils/form-utils.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/utils/form-utils.ts#L6)*
+*Defined in [core/src/utils/form-utils.ts:6](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/utils/form-utils.ts#L6)*

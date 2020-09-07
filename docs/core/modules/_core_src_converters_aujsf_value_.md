@@ -18,4 +18,4 @@
 
 Ƭ **ValueType**: *"string" | "number" | "date" | "date-time" | "time" | "duration"*
 
-*Defined in [core/src/converters/aujsf-value.ts:3](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/converters/aujsf-value.ts#L3)*
+*Defined in [core/src/converters/aujsf-value.ts:3](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/converters/aujsf-value.ts#L3)*

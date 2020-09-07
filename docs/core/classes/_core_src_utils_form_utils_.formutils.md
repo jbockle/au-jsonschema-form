@@ -20,7 +20,7 @@
 
 ▸ **getItemUiSchema**(`index`: number, `uiSchema`: [UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md)): *[UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md)*
 
-*Defined in [core/src/utils/form-utils.ts:47](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/utils/form-utils.ts#L47)*
+*Defined in [core/src/utils/form-utils.ts:47](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/utils/form-utils.ts#L47)*
 
 **Parameters:**
 
@@ -37,7 +37,7 @@ ___
 
 ▸ **themeIsValid**(`formTemplateRegistry`: [FormTemplateRegistry](_core_src_services_form_template_registry_.formtemplateregistry.md)): *void*
 
-*Defined in [core/src/utils/form-utils.ts:37](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/utils/form-utils.ts#L37)*
+*Defined in [core/src/utils/form-utils.ts:37](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/utils/form-utils.ts#L37)*
 
 **Parameters:**
 
@@ -53,7 +53,7 @@ ___
 
 ▸ **useThemes**(`formTemplateRegistry`: [FormTemplateRegistry](_core_src_services_form_template_registry_.formtemplateregistry.md), ...`themes`: Partial‹[FormTheme](../interfaces/_core_src_models_form_template_.formtheme.md)›[]): *Promise‹void›*
 
-*Defined in [core/src/utils/form-utils.ts:26](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/utils/form-utils.ts#L26)*
+*Defined in [core/src/utils/form-utils.ts:26](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/utils/form-utils.ts#L26)*
 
 **Parameters:**
 

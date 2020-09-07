@@ -10,7 +10,6 @@
 
 ### Properties
 
-* [_logger](_core_src_utils_validator_.validator.md#private-_logger)
 * [ajv](_core_src_utils_validator_.validator.md#ajv)
 * [validator](_core_src_utils_validator_.validator.md#optional-validator)
 
@@ -21,19 +20,11 @@
 
 ## Properties
 
-### `Private` _logger
-
-• **_logger**: *Logger‹›* = getLogger('aujsf:validator')
-
-*Defined in [core/src/utils/validator.ts:11](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/utils/validator.ts#L11)*
-
-___
-
 ###  ajv
 
 • **ajv**: *Ajv.Ajv*
 
-*Defined in [core/src/utils/validator.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/utils/validator.ts#L12)*
+*Defined in [core/src/utils/validator.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/utils/validator.ts#L12)*
 
 ___
 
@@ -41,7 +32,7 @@ ___
 
 • **validator**? : *Ajv.ValidateFunction*
 
-*Defined in [core/src/utils/validator.ts:13](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/utils/validator.ts#L13)*
+*Defined in [core/src/utils/validator.ts:13](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/utils/validator.ts#L13)*
 
 ## Methods
 
@@ -49,7 +40,7 @@ ___
 
 ▸ **createErrorSchema**(`errors`: Ajv.ErrorObject[]): *[ErrorSchema](../interfaces/_core_src_models_error_schema_.errorschema.md)*
 
-*Defined in [core/src/utils/validator.ts:65](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/utils/validator.ts#L65)*
+*Defined in [core/src/utils/validator.ts:65](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/utils/validator.ts#L65)*
 
 **Parameters:**
 
@@ -65,7 +56,7 @@ ___
 
 ▸ **validate**(`data`: any): *[ValidationResult](../interfaces/_core_src_models_error_schema_.validationresult.md)*
 
-*Defined in [core/src/utils/validator.ts:47](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/utils/validator.ts#L47)*
+*Defined in [core/src/utils/validator.ts:47](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/utils/validator.ts#L47)*
 
 **Parameters:**
 

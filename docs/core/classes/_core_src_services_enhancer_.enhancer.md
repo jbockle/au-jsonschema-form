@@ -14,7 +14,6 @@
 
 ### Properties
 
-* [_templating](_core_src_services_enhancer_.enhancer.md#private-_templating)
 * [hideErrors](_core_src_services_enhancer_.enhancer.md#hideerrors)
 
 ### Methods
@@ -29,7 +28,7 @@
 
 \+ **new Enhancer**(`_templating`: TemplatingEngine): *[Enhancer](_core_src_services_enhancer_.enhancer.md)*
 
-*Defined in [core/src/services/enhancer.ts:5](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/enhancer.ts#L5)*
+*Defined in [core/src/services/enhancer.ts:5](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/services/enhancer.ts#L5)*
 
 **Parameters:**
 
@@ -41,19 +40,11 @@ Name | Type |
 
 ## Properties
 
-### `Private` _templating
-
-• **_templating**: *TemplatingEngine*
-
-*Defined in [core/src/services/enhancer.ts:7](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/enhancer.ts#L7)*
-
-___
-
 ###  hideErrors
 
 • **hideErrors**: *boolean* = false
 
-*Defined in [core/src/services/enhancer.ts:10](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/enhancer.ts#L10)*
+*Defined in [core/src/services/enhancer.ts:10](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/services/enhancer.ts#L10)*
 
 ## Methods
 
@@ -61,7 +52,7 @@ ___
 
 ▸ **enhanceSlot**(`options`: object): *View*
 
-*Defined in [core/src/services/enhancer.ts:56](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/enhancer.ts#L56)*
+*Defined in [core/src/services/enhancer.ts:56](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/services/enhancer.ts#L56)*
 
 **Parameters:**
 
@@ -83,7 +74,7 @@ ___
 
 ▸ **enhanceTemplate**(`options`: object): *View*
 
-*Defined in [core/src/services/enhancer.ts:33](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/enhancer.ts#L33)*
+*Defined in [core/src/services/enhancer.ts:33](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/services/enhancer.ts#L33)*
 
 **Parameters:**
 
@@ -105,7 +96,7 @@ ___
 
 ▸ **error**(`options`: object): *View | undefined*
 
-*Defined in [core/src/services/enhancer.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/enhancer.ts#L12)*
+*Defined in [core/src/services/enhancer.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/services/enhancer.ts#L12)*
 
 **Parameters:**
 

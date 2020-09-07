@@ -269,7 +269,7 @@ ___
 
 ▸ **configure**(`framework`: FrameworkConfiguration, `configure?`: undefined | function): *void*
 
-*Defined in [core/src/index.ts:22](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/index.ts#L22)*
+*Defined in [core/src/index.ts:22](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/index.ts#L22)*
 
 **Parameters:**
 

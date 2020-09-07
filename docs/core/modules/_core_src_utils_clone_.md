@@ -14,7 +14,7 @@
 
 ▸ **clone**(`obj`: any): *any*
 
-*Defined in [core/src/utils/clone.ts:1](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/utils/clone.ts#L1)*
+*Defined in [core/src/utils/clone.ts:1](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/utils/clone.ts#L1)*
 
 **Parameters:**
 

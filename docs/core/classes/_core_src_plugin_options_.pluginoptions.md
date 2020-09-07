@@ -25,7 +25,7 @@
 
 *Implementation of [IPluginOptions](../interfaces/_core_src_plugin_options_.ipluginoptions.md).[defaultTheme](../interfaces/_core_src_plugin_options_.ipluginoptions.md#optional-defaulttheme)*
 
-*Defined in [core/src/plugin-options.ts:9](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/plugin-options.ts#L9)*
+*Defined in [core/src/plugin-options.ts:9](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/plugin-options.ts#L9)*
 
 ___
 
@@ -35,4 +35,4 @@ ___
 
 *Implementation of [IPluginOptions](../interfaces/_core_src_plugin_options_.ipluginoptions.md).[hideErrors](../interfaces/_core_src_plugin_options_.ipluginoptions.md#optional-hideerrors)*
 
-*Defined in [core/src/plugin-options.ts:10](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/plugin-options.ts#L10)*
+*Defined in [core/src/plugin-options.ts:10](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/plugin-options.ts#L10)*

@@ -18,4 +18,4 @@
 
 • **arrayStrategy**: *"replace" | "union"*
 
-*Defined in [core/src/utils/merge.ts:2](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/utils/merge.ts#L2)*
+*Defined in [core/src/utils/merge.ts:2](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/utils/merge.ts#L2)*

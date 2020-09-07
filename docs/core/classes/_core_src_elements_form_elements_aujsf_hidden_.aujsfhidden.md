@@ -24,7 +24,7 @@
 
 • **errors**: *[ErrorSchema](../interfaces/_core_src_models_error_schema_.errorschema.md)*
 
-*Defined in [core/src/elements/form-elements/aujsf-hidden.ts:28](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/elements/form-elements/aujsf-hidden.ts#L28)*
+*Defined in [core/src/elements/form-elements/aujsf-hidden.ts:28](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/form-elements/aujsf-hidden.ts#L28)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • **parentReadonly**? : *undefined | false | true*
 
-*Defined in [core/src/elements/form-elements/aujsf-hidden.ts:25](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/elements/form-elements/aujsf-hidden.ts#L25)*
+*Defined in [core/src/elements/form-elements/aujsf-hidden.ts:25](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/form-elements/aujsf-hidden.ts#L25)*
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 • **pointer**: *JsonPointer*
 
-*Defined in [core/src/elements/form-elements/aujsf-hidden.ts:19](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/elements/form-elements/aujsf-hidden.ts#L19)*
+*Defined in [core/src/elements/form-elements/aujsf-hidden.ts:19](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/form-elements/aujsf-hidden.ts#L19)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 • **required**? : *undefined | false | true*
 
-*Defined in [core/src/elements/form-elements/aujsf-hidden.ts:22](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/elements/form-elements/aujsf-hidden.ts#L22)*
+*Defined in [core/src/elements/form-elements/aujsf-hidden.ts:22](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/form-elements/aujsf-hidden.ts#L22)*
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 • **schema**: *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)*
 
-*Defined in [core/src/elements/form-elements/aujsf-hidden.ts:13](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/elements/form-elements/aujsf-hidden.ts#L13)*
+*Defined in [core/src/elements/form-elements/aujsf-hidden.ts:13](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/form-elements/aujsf-hidden.ts#L13)*
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 • **uiSchema**: *[UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md)*
 
-*Defined in [core/src/elements/form-elements/aujsf-hidden.ts:16](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/elements/form-elements/aujsf-hidden.ts#L16)*
+*Defined in [core/src/elements/form-elements/aujsf-hidden.ts:16](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/form-elements/aujsf-hidden.ts#L16)*
 
 ___
 
@@ -72,4 +72,4 @@ ___
 
 • **value**: *any*
 
-*Defined in [core/src/elements/form-elements/aujsf-hidden.ts:10](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/elements/form-elements/aujsf-hidden.ts#L10)*
+*Defined in [core/src/elements/form-elements/aujsf-hidden.ts:10](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/elements/form-elements/aujsf-hidden.ts#L10)*

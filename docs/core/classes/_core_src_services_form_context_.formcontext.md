@@ -14,9 +14,6 @@
 
 ### Properties
 
-* [_logger](_core_src_services_form_context_.formcontext.md#private-_logger)
-* [_options](_core_src_services_form_context_.formcontext.md#private-optional-_options)
-* [_schema](_core_src_services_form_context_.formcontext.md#private-optional-_schema)
 * [enhancer](_core_src_services_form_context_.formcontext.md#enhancer)
 * [pluginOptions](_core_src_services_form_context_.formcontext.md#pluginoptions)
 * [uiSchema](_core_src_services_form_context_.formcontext.md#uischema)
@@ -34,7 +31,7 @@
 
 \+ **new FormContext**(`validator`: [Validator](_core_src_utils_validator_.validator.md), `pluginOptions`: [PluginOptions](_core_src_plugin_options_.pluginoptions.md), `enhancer`: [Enhancer](_core_src_services_enhancer_.enhancer.md)): *[FormContext](_core_src_services_form_context_.formcontext.md)*
 
-*Defined in [core/src/services/form-context.ts:13](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-context.ts#L13)*
+*Defined in [core/src/services/form-context.ts:13](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/services/form-context.ts#L13)*
 
 **Parameters:**
 
@@ -48,35 +45,11 @@ Name | Type |
 
 ## Properties
 
-### `Private` _logger
-
-• **_logger**: *Logger‹›* = getLogger('aujsf:form-context')
-
-*Defined in [core/src/services/form-context.ts:11](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-context.ts#L11)*
-
-___
-
-### `Private` `Optional` _options
-
-• **_options**? : *[FormOptions](../modules/_core_src_models_form_options_.md#formoptions)*
-
-*Defined in [core/src/services/form-context.ts:13](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-context.ts#L13)*
-
-___
-
-### `Private` `Optional` _schema
-
-• **_schema**? : *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema)*
-
-*Defined in [core/src/services/form-context.ts:12](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-context.ts#L12)*
-
-___
-
 ###  enhancer
 
 • **enhancer**: *[Enhancer](_core_src_services_enhancer_.enhancer.md)*
 
-*Defined in [core/src/services/form-context.ts:18](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-context.ts#L18)*
+*Defined in [core/src/services/form-context.ts:18](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/services/form-context.ts#L18)*
 
 ___
 
@@ -84,7 +57,7 @@ ___
 
 • **pluginOptions**: *[PluginOptions](_core_src_plugin_options_.pluginoptions.md)*
 
-*Defined in [core/src/services/form-context.ts:17](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-context.ts#L17)*
+*Defined in [core/src/services/form-context.ts:17](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/services/form-context.ts#L17)*
 
 ___
 
@@ -92,7 +65,7 @@ ___
 
 • **uiSchema**: *[UISchema](../interfaces/_core_src_models_ui_schema_.uischema.md)*
 
-*Defined in [core/src/services/form-context.ts:23](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-context.ts#L23)*
+*Defined in [core/src/services/form-context.ts:23](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/services/form-context.ts#L23)*
 
 ___
 
@@ -100,7 +73,7 @@ ___
 
 • **validator**: *[Validator](_core_src_utils_validator_.validator.md)*
 
-*Defined in [core/src/services/form-context.ts:16](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-context.ts#L16)*
+*Defined in [core/src/services/form-context.ts:16](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/services/form-context.ts#L16)*
 
 ___
 
@@ -108,7 +81,7 @@ ___
 
 • **value**: *any*
 
-*Defined in [core/src/services/form-context.ts:25](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-context.ts#L25)*
+*Defined in [core/src/services/form-context.ts:25](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/services/form-context.ts#L25)*
 
 ## Accessors
 
@@ -116,13 +89,13 @@ ___
 
 • **get options**(): *[FormOptions](../modules/_core_src_models_form_options_.md#formoptions) | undefined*
 
-*Defined in [core/src/services/form-context.ts:28](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-context.ts#L28)*
+*Defined in [core/src/services/form-context.ts:28](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/services/form-context.ts#L28)*
 
 **Returns:** *[FormOptions](../modules/_core_src_models_form_options_.md#formoptions) | undefined*
 
 • **set options**(`options`: [FormOptions](../modules/_core_src_models_form_options_.md#formoptions) | undefined): *void*
 
-*Defined in [core/src/services/form-context.ts:32](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-context.ts#L32)*
+*Defined in [core/src/services/form-context.ts:32](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/services/form-context.ts#L32)*
 
 **Parameters:**
 
@@ -138,13 +111,13 @@ ___
 
 • **get schema**(): *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) | undefined*
 
-*Defined in [core/src/services/form-context.ts:41](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-context.ts#L41)*
+*Defined in [core/src/services/form-context.ts:41](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/services/form-context.ts#L41)*
 
 **Returns:** *[JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) | undefined*
 
 • **set schema**(`schema`: [JsonSchema](../modules/_core_src_models_json_schema_.md#jsonschema) | undefined): *void*
 
-*Defined in [core/src/services/form-context.ts:45](https://github.com/jbockle/au-jsonschema-form/blob/edb7bd4/packages/core/src/services/form-context.ts#L45)*
+*Defined in [core/src/services/form-context.ts:45](https://github.com/jbockle/au-jsonschema-form/blob/master/packages/core/src/services/form-context.ts#L45)*
 
 **Parameters:**
 
