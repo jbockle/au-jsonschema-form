@@ -1,14 +1,16 @@
 import { Logger } from 'aurelia-logging';
-import { bindingMode, computedFrom, bindable, BindingEngine, noView, View, Container } from 'aurelia-framework';
+import { bindingMode, computedFrom, bindable, BindingEngine, noView, Container } from 'aurelia-framework';
 import { JsonPointer } from 'jsonpointerx';
 
 import { FormTemplateRegistry, FormContext, ViewProvider } from '../services';
 import { JsonSchema, UISchema, ValueChangedEventDict, ErrorSchema } from '../models';
 import utils from '../utils';
 import { BindingSignaler } from 'aurelia-templating-resources';
+import { ViewBase } from './view-base';
 
 @noView
-export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
+export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any>
+  extends ViewBase {
   protected abstract _logger: Logger;
   protected _bctx: any;
   protected _obctx: any;
@@ -21,7 +23,9 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
     protected viewProvider: ViewProvider<JsonSchema>,
     protected signaler?: BindingSignaler,
     protected engine?: BindingEngine,
-  ) { }
+  ) {
+    super();
+  }
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   public value!: TValue;
@@ -43,8 +47,6 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
 
   @bindable
   public errors: ErrorSchema = {};
-
-  public view?: View;
 
   @computedFrom('parentReadonly', 'schema')
   public get readonly(): boolean {
@@ -102,14 +104,6 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
     //
   }
 
-  public detached(): void {
-    this.view?.detached();
-  }
-
-  public unbind(): void {
-    this.view?.unbind();
-  }
-
   protected resolveUISchemaDefaults(): void {
     this.uiSchema = this.uiSchema ?? {};
     this.uiSchema['ui:view'] = this.uiSchema['ui:view'] ?? this.viewProvider.getTemplate(this);
@@ -124,18 +118,18 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any> {
   protected enhance(): void {
     this._logger.debug('creating view strategy', this);
 
-    const view = this.uiSchema['ui:view'] || 'hidden';
+    const viewName = this.uiSchema['ui:view'] || 'hidden';
 
-    if (view === 'unknown' || !this._templateRegistry.has(view)) {
+    if (viewName === 'unknown' || !this._templateRegistry.has(viewName)) {
       this.view = this.context.enhancer.error({
-        message: `the ui:view '${view}' was not found`,
+        message: `the ui:view '${viewName}' was not found`,
         element: this._element,
       });
 
       return;
     }
 
-    const template = this._templateRegistry.get(view);
+    const template = this._templateRegistry.get(viewName);
 
     this.view = this.context.enhancer.enhanceTemplate({
       element: this._element,

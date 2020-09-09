@@ -1,10 +1,11 @@
-import { observable, bindable, bindingMode, noView, inject, Container, View } from 'aurelia-framework';
+import { observable, bindable, bindingMode, noView, inject, Container } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 import { JsonPointer } from 'jsonpointerx';
 
 import { JsonSchema, UISchema, ErrorSchema, JsonSchemaType } from '../models';
 import { JsonSchemaUtils } from '../utils/json-schema-utils';
 import { FormContext } from '../services/form-context';
+import { ViewBase } from './view-base';
 
 type SlotType = JsonSchemaType | 'all-of' | 'any-of' | 'one-of' | 'hidden' | 'unknown';
 
@@ -21,14 +22,16 @@ const ATTRIBUTES: [string, string][] = [
 
 @noView()
 @inject(Element, Container, FormContext)
-export class AujsfSlot {
+export class AujsfSlot extends ViewBase {
   protected _logger = getLogger('aujsf:sf-slot');
 
   protected constructor(
     protected _element: Element,
     protected _container: Container,
     protected _context: FormContext,
-  ) { }
+  ) {
+    super();
+  }
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   public value: any;
@@ -57,8 +60,6 @@ export class AujsfSlot {
   @observable
   public type!: SlotType;
 
-  public view?: View;
-
   public schemaChanged(): void {
     try {
       this.errors = this.errors ?? {};
@@ -86,11 +87,6 @@ export class AujsfSlot {
 
   protected bind(_ctx: any, _octx: any): void {
     this.schemaChanged();
-  }
-
-  protected unbind(): void {
-    this.view?.detached();
-    this.view?.unbind();
   }
 
   private resolveUISchemaDefaults(): void {
