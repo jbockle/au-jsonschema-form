@@ -4,7 +4,7 @@ import { getLogger } from 'aurelia-logging';
 import { JsonPointer } from 'jsonpointerx';
 
 import { AujsfBase } from '../aujsf-base';
-import { JsonSchemaArray, ArrayKeyDefinition, JsonSchema } from '../../models';
+import { JsonSchemaArray, ArrayKeyDefinition, JsonSchema, UISchema } from '../../models';
 import { FormTemplateRegistry, FormContext } from '../../services';
 import utils from '../../utils';
 import { ArrayViewProvider } from '../../services/providers/array-view-provider';
@@ -68,10 +68,13 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
     }
 
     for (let index = 0; index < (length); index++) {
+      const schema = this.getItemJsonSchema(index, this.schema, this.context.schema!);
+      const uiSchema = this.getItemUiSchema(index, this.uiSchema, schema);
+
       const definition = {
         key: index,
-        schema: this.getItemJsonSchema(index, this.schema, this.context.schema!),
-        uiSchema: utils.form.getItemUiSchema(index, this.uiSchema),
+        schema,
+        uiSchema,
         pointer: new JsonPointer([...this.pointer.segments, index.toString()]),
       };
 
@@ -90,6 +93,22 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
     }
 
     return itemSchema;
+  }
+
+  private getItemUiSchema(index: number, uiSchema: UISchema, schema: JsonSchema): UISchema {
+    if ('ui:items' in uiSchema) {
+      if (Array.isArray(uiSchema['ui:items'])) {
+        if (index in uiSchema['ui:items']) {
+          return utils.common.clone(uiSchema['ui:items'][index]);
+        }
+
+        return utils.array.last(uiSchema['ui:items'])!;
+      } else {
+        return utils.common.clone(uiSchema['ui:items']!);
+      }
+    }
+
+    return schema['x-ui-schema'] ?? {};
   }
 
   private signal(): void {

@@ -113,7 +113,7 @@ export class App {
                 override: { type: 'boolean' },
               },
               if: { properties: { override: { const: true } } },
-              then: { properties: { count: { type: 'number' } } },
+              then: { properties: { count: { type: 'number', 'x-ui-schema': { 'ui:order': 4 } } } },
               else: { properties: { count: { type: 'null' } } },
             },
           },
@@ -268,6 +268,9 @@ export class App {
           description: 'Array Example',
           properties: {
             simple: {
+              'x-ui-schema': <UISchema>{
+                'ui:item-title': 'Item ${key+1} ${value || \'\'}',
+              },
               type: 'array', description: 'Simple Array Example',
               items: {
                 type: 'string',
@@ -276,6 +279,11 @@ export class App {
               minItems: 1,
             },
             tabbed: {
+              'x-ui-schema': <UISchema>{
+                'ui:view': 'array-tabs',
+                'ui:item-title': 'Item ${key+1} ${(value && `${value.street || \'\'} ${value.country || \'\'}`) || \'\'}',
+                'ui:items': { 'ui:title': false },
+              },
               type: 'array',
               description: 'Tabbed Array',
               items: {
@@ -339,14 +347,6 @@ export class App {
       },
     },
     arrays: {
-      simple: {
-        'ui:item-title': 'Item ${key+1} ${value || \'\'}',
-      } as UISchema,
-      tabbed: {
-        'ui:view': 'array-tabs',
-        'ui:item-title': 'Item ${key+1} ${(value && `${value.street || \'\'} ${value.country || \'\'}`) || \'\'}',
-        'ui:items': { 'ui:title': false },
-      } as UISchema,
       nestedObject: {
         'ui:item-title': '${key}: ${value && value.lastName || \'\'}, ${value && value.firstName || \'\'}',
         'ui:items': {

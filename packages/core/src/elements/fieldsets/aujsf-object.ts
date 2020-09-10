@@ -60,12 +60,13 @@ export class AujsfObject extends AujsfBase<JsonSchemaObject> {
   }
 
   public getPropertyDefinition(key: string): ObjectKeyDefinition {
-    const propertyUiSchema = this.getPropertyUiSchema(key);
+    const schema = utils.common.clone(this.getPropertySchema(key));
+    const propertyUiSchema = this.getPropertyUiSchema(key, schema);
 
     return {
       key,
       uiSchema: propertyUiSchema,
-      schema: utils.common.clone(this.getPropertySchema(key)),
+      schema,
       pointer: new JsonPointer([...this.pointer.segments, key]),
       required: (this.schema.required ?? []).indexOf(key) !== -1,
     };
@@ -96,10 +97,10 @@ export class AujsfObject extends AujsfBase<JsonSchemaObject> {
     throw new Error(`unable to determine schema type`);
   }
 
-  public getPropertyUiSchema(property: string): UISchema {
+  public getPropertyUiSchema(property: string, schema: JsonSchema): UISchema {
     return property in this.uiSchema
       ? utils.common.clone(this.uiSchema[property])
-      : {};
+      : schema['x-ui-schema'] ?? {};
   }
 }
 

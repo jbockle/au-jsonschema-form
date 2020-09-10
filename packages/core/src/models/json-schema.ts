@@ -1,3 +1,4 @@
+import { UISchema } from './ui-schema';
 
 export type JsonSchemaType =
   'object' |
@@ -23,6 +24,7 @@ export type JsonSchema =
   JsonSchemaOneOf;
 
 interface JsonSchemaAnnotations {
+  'x-ui-schema'?: UISchema;
   type?: SchemaType;
   title?: string;
   description?: string;

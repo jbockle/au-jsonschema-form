@@ -91,6 +91,7 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any>
     this._bctx = bctx;
     this._obctx = obctx;
 
+    this.uiSchema = this.uiSchema ?? this.schema['x-ui-schema'];
     this.resolveUISchemaDefaults();
 
     this.bound();
