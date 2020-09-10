@@ -74,6 +74,7 @@ export class Validator {
 
       let pointer = JsonPointer.compile(error.dataPath);
 
+      // move missingProperty error to the properties error schema
       if (error.keyword === 'required' && 'missingProperty' in error.params) {
         pointer = new JsonPointer([...pointer.segments, error.params['missingProperty']]);
       }
