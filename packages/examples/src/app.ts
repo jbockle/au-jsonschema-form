@@ -2,7 +2,6 @@ import { THEME } from '@aujsf/bootstrap-theme';
 import 'jquery';
 import 'bootstrap';
 import { UISchema, FormOptions, JsonSchemaObject, ValidationResult } from '@aujsf/core';
-import { signalBindings } from 'aurelia-framework';
 
 // import v4 from 'ajv/lib/refs/json-schema-draft-04.json';
 // import v6 from 'ajv/lib/refs/json-schema-draft-06.json';
@@ -27,9 +26,9 @@ export class App {
 
   public ready = true;
 
-  public model?: Model;
+  public model?: Model = new Model({});
 
-  public attached(): void {
+  public xattached(): void {
     setTimeout(() => {
       this.model = new Model({
         combined: {
@@ -39,17 +38,12 @@ export class App {
           textRequired: 'foo',
         },
       });
-    }, 5000);
-    this.signalJson();
+    }, 0);
   }
 
   public submit(value: any, validationResult: ValidationResult): void {
     alert('xsubmit triggered:\n' + JSON.stringify({ value, validationResult }, null, 2));
     value.foo();
-  }
-
-  public signalJson(): void {
-    signalBindings('aujsf:UpdateJson');
   }
 
   public options: FormOptions = {
@@ -104,6 +98,25 @@ export class App {
       properties: {
         unknown: {
           type: 'string',
+        },
+        conditional: {
+          type: 'object',
+          properties: {
+            simpleConditional: {
+              type: 'string',
+              if: { pattern: '^a' },
+              then: { pattern: '^abcd' },
+            },
+            objectConditional: {
+              type: 'object',
+              properties: {
+                override: { type: 'boolean' },
+              },
+              if: { properties: { override: { const: true } } },
+              then: { properties: { count: { type: 'number' } } },
+              else: { properties: { count: { type: 'null' } } },
+            },
+          },
         },
         objects: {
           type: 'object',

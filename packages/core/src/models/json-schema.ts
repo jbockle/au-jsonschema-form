@@ -120,3 +120,9 @@ export interface JsonSchemaOneOf extends JsonSchemaAnnotations {
 export interface JsonSchemaNot extends JsonSchemaAnnotations {
   not: JsonSchema;
 }
+
+export interface JsonSchemaConditional {
+  if: JsonSchema;
+  then: JsonSchema;
+  else?: JsonSchema;
+}

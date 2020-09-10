@@ -12,6 +12,7 @@ import { AujsfBoolean } from './elements/form-elements/aujsf-boolean';
 import { AujsfAllOf } from './elements/combined/aujsf-all-of';
 import { AujsfOneOf } from './elements/combined/aujsf-one-of';
 import { AujsfHidden } from './elements/form-elements/aujsf-hidden';
+import { AujsfConditional } from './elements/form-elements/aujsf-conditional';
 
 import { AujsfSortDefinitions } from './converters/aujsf-sort-definitions';
 import { AujsfValue } from './converters/aujsf-value';
@@ -35,6 +36,7 @@ export function configure(framework: FrameworkConfiguration, configure?: (option
     AujsfString,
     AujsfNumber,
     AujsfBoolean,
+    AujsfConditional,
     // combined schemas
     AujsfAllOf,
     AujsfOneOf,

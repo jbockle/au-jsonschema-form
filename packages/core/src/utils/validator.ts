@@ -44,6 +44,10 @@ export class Validator {
     return ajv;
   }
 
+  // public validateKey(): void {
+  //   this.ajv.validate()
+  // }
+
   public validate(data: any): ValidationResult {
     if (this.validator) {
       this.validator(data);

@@ -7,7 +7,7 @@ import { JsonSchemaUtils } from '../utils/json-schema-utils';
 import { FormContext } from '../services/form-context';
 import { ViewBase } from './view-base';
 
-type SlotType = JsonSchemaType | 'all-of' | 'any-of' | 'one-of' | 'hidden' | 'unknown';
+type SlotType = JsonSchemaType | 'all-of' | 'any-of' | 'one-of' | 'hidden' | 'unknown' | 'conditional';
 
 const ATTRIBUTES: [string, string][] = [
   ['schema.bind', 'schema'],
@@ -98,7 +98,10 @@ export class AujsfSlot extends ViewBase {
       return this.uiSchema['ui:type'] as any;
     }
 
-    if ('type' in schema) {
+    if ('if' in schema) {
+      return 'conditional';
+    }
+    else if ('type' in schema) {
       if (typeof schema.type === 'string') {
         return schema.type;
       }

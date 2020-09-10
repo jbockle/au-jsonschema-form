@@ -29,6 +29,7 @@ export interface FormTheme {
   'checkbox': FormModule,
   'all-of': FormModule,
   'one-of': FormModule,
+  'conditional': FormModule,
   [name: string]: FormModule;
 }
 

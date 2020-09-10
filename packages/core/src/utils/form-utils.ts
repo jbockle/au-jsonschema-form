@@ -17,9 +17,10 @@ const REQUIRED_VIEWS = Object.keys(<FormTheme>{
   'string-date-time': null!,
   'string-date': null!,
   'string-time': null!,
-  array: null!,
-  checkbox: null!,
-  object: null!,
+  'conditional': null!,
+  'array': null!,
+  'checkbox': null!,
+  'object': null!,
 });
 
 export class FormUtils {

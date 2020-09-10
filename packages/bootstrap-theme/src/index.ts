@@ -21,6 +21,7 @@ const theme: FormTheme = {
   'checkbox': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-checkbox.html'),
   'all-of': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-all-of.html'),
   'one-of': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-one-of.html'),
+  'conditional': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-conditional.html'),
 };
 
 export const THEME = Object.freeze(theme);
