@@ -1,0 +1,29 @@
+<template class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/#" title="Aurelia JSON Schema Form">
+      @aujsf
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#appNavbar"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="appNavbar">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ${route.active && 'active'}"
+            repeat.for="route of routes">
+          <a href.bind="route.href" class="nav-link">
+            ${route.title}
+          </a>
+        </li>
+      </ul>
+
+      <div class="nav-item">
+        <a class="nav-link" href="https://github.com/jbockle/au-jsonschema-form">
+          <img alt="GitHub stars" class="m-auto"
+               src="https://img.shields.io/github/stars/jbockle/au-jsonschema-form?style=social">
+        </a>
+      </div>
+    </div>
+  </div>
+</template>

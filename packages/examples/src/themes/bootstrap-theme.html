@@ -1,0 +1,11 @@
+<template>
+  <require from="./bootstrap-theme.scss" as="scoped"></require>
+
+  <bootstrap-theme-base>
+    <json-schema-form schema.bind="example.schema"
+                      ui-schema.bind="example.uiSchema"
+                      value.bind="example.value"
+                      errors.bind="example.errors"
+                      value-changed.trigger="onValueUpdated()"></json-schema-form>
+  </bootstrap-theme-base>
+</template>

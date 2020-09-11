@@ -1,0 +1,52 @@
+<template>
+  <require from="./examples.scss"></require>
+  <require from="../resources/elements/monaco-editor"></require>
+  <require from="../resources/converters/json"></require>
+  <require from="../themes/bootstrap-theme"></require>
+
+  <div class="examples-layout flex-fill">
+    <div class="empty"></div>
+    <div class="form-group">
+      <label></label>
+      <select value.bind="selectedExample"
+              class="form-control ml-auto">
+        <option model.bind="null">Select an example...</option>
+        <option model.bind="example"
+                repeat.for="example of examples">
+          ${example.displayName}
+        </option>
+      </select>
+    </div>
+
+    <div class="monaco-grid">
+      <template if.bind="example">
+        <div class="monaco-editor-layout">
+          <h4>JSON Schema</h4>
+          <monaco-editor language="json"
+                         value.bind="example.schema | json:2">
+          </monaco-editor>
+        </div>
+
+        <div class="monaco-editor-layout">
+          <h4>UI Schema</h4>
+          <monaco-editor language="json"
+                         value.bind="example.uiSchema | json:2">
+          </monaco-editor>
+        </div>
+
+        <div class="monaco-editor-layout">
+          <h4>Value</h4>
+          <monaco-editor language="json"
+                         readonly.bind="true"
+                         value.bind="example.value | json:2:valueTrigger">
+          </monaco-editor>
+        </div>
+      </template>
+    </div>
+
+    <bootstrap-theme if.bind="example" class="p-1 overflow-auto"
+                     example.bind="example"></bootstrap-theme>
+    <placeholder else></placeholder>
+
+  </div>
+</template>

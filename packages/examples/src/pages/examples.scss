@@ -1,0 +1,36 @@
+@import "~bootswatch/dist/sandstone/variables";
+
+.examples-layout {
+  display: grid;
+  grid-template-areas:
+    "empty header"
+    "editor form";
+  grid-template-rows: min-content auto;
+  grid-template-columns: auto 400px;
+
+  .form-group {
+    grid-area: header;
+  }
+
+  .monaco-grid {
+    grid-area: editor;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 1fr 1fr;
+    margin-bottom: 40px;
+
+    .monaco-editor-layout {
+      border: 1px solid $secondary;
+      display: grid;
+      grid-template-rows: min-content auto;
+
+      h4 {
+        margin: 4px;
+      }
+    }
+  }
+
+  bootstrap-theme, placeholder {
+    grid-area: form;
+  }
+}

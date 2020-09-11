@@ -1,20 +1,8 @@
 <template>
-  <require from="bootswatch/dist/darkly/bootstrap.css"></require>
-  <require from="@aujsf/bootstrap-theme/styles.css"></require>
+  <require from="./styles.scss"></require>
+  <require from="./layout/navigation"></require>
 
-  <label>
-    <input type="checkbox" checked.bind="ready">
-    show form
-  </label>
-  <div if.bind="ready">
-    <json-schema-form schema.bind="schemas[0]"
-                      ui-schema.bind="uiSchema"
-                      value.bind="model"
-                      options.bind="options"
-                      submit.call="submit(value, validationResult)">
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </json-schema-form>
+  <navigation routes.bind="router.navigation"></navigation>
 
-    <pre>${model}</pre>
-  </div>
+  <router-view class="d-flex container flex-fill"></router-view>
 </template>

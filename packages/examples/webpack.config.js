@@ -1,7 +1,7 @@
 /* eslint-disable */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 const { AureliaPlugin, ModuleDependenciesPlugin } = require('aurelia-webpack-plugin');
@@ -23,6 +23,7 @@ const baseUrl = '/';
 
 const cssRules = [
   { loader: 'css-loader', options: { sourceMap: true, esModule: false } },
+  'sass-loader'
 ];
 
 module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, host } = {}) => ({
@@ -40,7 +41,7 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
     symlinks: false,
   },
   entry: {
-    app: ['aurelia-bootstrapper'],
+    app: 'aurelia-bootstrapper',
   },
   mode: production ? 'production' : 'development',
   output: {
@@ -123,7 +124,7 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
       // CSS required in JS/TS files should use the style-loader that auto-injects it into the website
       // only when the issuer is a .js/.ts file, so the loaders are not applied inside html templates
       {
-        test: /\.css$/i,
+        test: /\.s?css$/i,
         issuer: [{ not: [{ test: /\.html$/i }] }],
         use: extractCss ? [{
           loader: MiniCssExtractPlugin.loader,
@@ -131,7 +132,7 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
         ] : ['style-loader', ...cssRules],
       },
       {
-        test: /\.css$/i,
+        test: /\.s?css$/i,
         issuer: [{ test: /\.html$/i }],
         // CSS required in templates cannot be extracted safely
         // because Aurelia would try to require it again in runtime
@@ -159,6 +160,12 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
   },
   plugins: [
     ...when(!tests, new DuplicatePackageCheckerPlugin()),
+    new MonacoWebpackPlugin({
+      languages: ['json'],
+      features: [
+        '!accessibilityHelp'
+      ]
+    }),
     new AureliaPlugin(),
     new ProvidePlugin({
       'Promise': ['promise-polyfill', 'default'],

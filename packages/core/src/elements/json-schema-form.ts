@@ -168,6 +168,7 @@ export class JsonSchemaForm {
       if (this.options) {
         this.context.schema = newValue;
         utils.jsonSchema.fillDefaults(this.value, newValue);
+        this.validate();
       }
     }
   }
