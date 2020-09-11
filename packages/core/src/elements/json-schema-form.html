@@ -3,7 +3,7 @@
         autocomplete.bind="uiSchema['ui:autocomplete'] || 'off'">
 
     <aujsf-slot schema.bind="context.schema"
-                ui-schema.bind="uiSchema"
+                ui-schema.bind="context.uiSchema"
                 value.bind="value"
                 errors.bind="validationResult.errorSchema"
                 if.bind="state === 'ready'">

@@ -9,6 +9,8 @@ import utils from '../utils';
 
 type FormState = 'initializing' | 'ready' | 'error';
 
+const DEFAULT_ROOT_UI_SCHEMA: UISchema = { 'ui:title': false };
+
 @inject(Element, TaskQueue, NewInstance.of(FormTemplateRegistry), NewInstance.of(FormContext))
 @useView(PLATFORM.moduleName('@aujsf/core/elements/json-schema-form.html'))
 @customElement('json-schema-form')
@@ -34,14 +36,14 @@ export class JsonSchemaForm {
    * @bindable input
    */
   @bindable({ defaultBindingMode: bindingMode.toView })
-  public uiSchema?: UISchema = {};
+  public uiSchema?: UISchema;
 
   /**
    * the form's value, this is pre-populated against the schema
    * @bindable input/output
    */
   @bindable({ defaultBindingMode: bindingMode.twoWay })
-  public value?: any = {};
+  public value?: any;
 
   /**
    * the validation result from AJV
@@ -129,9 +131,8 @@ export class JsonSchemaForm {
       try {
         await this.themesChanged(this.themes);
         this.optionsChanged(this.options);
+        this.uiSchemaChanged(this.uiSchema);
         this.schemaChanged(this.schema);
-        this.valueChanged(this.value);
-        this.uiSchemaChanged();
 
         this.validate();
 
@@ -166,14 +167,16 @@ export class JsonSchemaForm {
 
       if (this.options) {
         this.context.schema = newValue;
-        this.value = utils.jsonSchema.fillDefaults(this.value, newValue);
+        utils.jsonSchema.fillDefaults(this.value, newValue);
       }
     }
   }
 
   protected uiSchemaChanged(newValue?: UISchema, oldValue?: UISchema): void {
     this._logger.debug('ui-schema changed', { newValue, oldValue });
-    this.context.uiSchema = utils.common.clone(newValue ?? {});
+    const uiSchema: UISchema = { ...DEFAULT_ROOT_UI_SCHEMA };
+    utils.common.merge(uiSchema, utils.common.clone(newValue ?? {}));
+    this.context.uiSchema = uiSchema;
   }
 
   protected async themesChanged(newValue?: Partial<FormTheme>[], oldValue?: Partial<FormTheme>[]): Promise<void> {
