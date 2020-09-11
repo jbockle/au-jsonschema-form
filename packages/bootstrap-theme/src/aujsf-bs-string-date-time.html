@@ -9,6 +9,7 @@
     <input id.bind="id" type="datetime-local"
            class="form-control ${hasErrors ? 'is-invalid' : value !== undefined ? 'is-valid' : ''}"
            disabled.bind="readonly"
+           placeholder.bind="uiSchema['ui:placeholder']"
            value.bind="value | aujsf_value:'date-time':true">
 
     <small class="form-text text-muted" if.bind="description">${description}</small>

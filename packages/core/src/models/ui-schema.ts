@@ -38,9 +38,9 @@ export interface UISchema {
   'ui:type'?: SchemaType;
 
   /**
-   * show a pre-selected default option in the select dropdown, tuple is [label,value]
+   * used to specify a placeholder for input/select
    */
-  'ui:select-default'?: [string, any];
+  'ui:placeholder'?: string;
 
   /**
    * used to prevents an array's item from being re-ordered
