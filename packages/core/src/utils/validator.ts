@@ -72,10 +72,6 @@ export class Validator {
     };
 
     errors.forEach(error => {
-      if (error.dataPath === '' && error.keyword !== 'required') {
-        errorSchema._errors_?.push(error.message!);
-      }
-
       let pointer = JsonPointer.compile(error.dataPath);
 
       // move missingProperty error to the properties error schema
