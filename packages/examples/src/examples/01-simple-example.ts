@@ -20,6 +20,10 @@ export class SimpleExample implements Example {
         type: 'string',
         format: 'date',
       },
+      shortBio: {
+        type: 'string',
+        maxLength: 100,
+      },
       email: {
         type: 'string',
         format: 'email',
@@ -34,6 +38,9 @@ export class SimpleExample implements Example {
     },
     surName: {
       'ui:title': 'Last Name',
+    },
+    shortBio: {
+      'ui:view': 'textarea',
     },
   };
 
