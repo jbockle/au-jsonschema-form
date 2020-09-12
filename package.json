@@ -10,8 +10,8 @@
     "test": "lerna exec -- npm test",
     "lint": "lerna run lint --parallel --stream",
     "start": "lerna exec --scope examples -- npm start",
-    "prepublish:patch": "npm run build",
-    "publish:patch": "lerna publish patch -y --conventional-commits --create-release github",
+    "publish:patch": "npm run build && lerna publish patch -y --conventional-commits --create-release github",
+    "publish:prompt": "npm run build && lerna publish --conventional-commits --create-release github",
     "bootstrap": "lerna bootstrap"
   },
   "husky": {
