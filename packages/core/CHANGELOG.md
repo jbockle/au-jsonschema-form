@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/jbockle/au-jsonschema-form/compare/v0.1.1...v0.2.0) (2020-09-12)
+
+
+### Bug Fixes
+
+* **enhance:** cleanup enhanced view ([d44e782](https://github.com/jbockle/au-jsonschema-form/commit/d44e78245d68711b0b44c32efffc2a9c28f3d73e))
+* **placeholder:** placeholder shows undefined ([7f585b2](https://github.com/jbockle/au-jsonschema-form/commit/7f585b2e22ed3c23f9111b7175d972ea6aead558))
+* **validator:** duplicate error message added ([f8ddf71](https://github.com/jbockle/au-jsonschema-form/commit/f8ddf710087baff6adbfed0932e7f4ae3a790f43))
+
+
+### Features
+
+* **conditional:** add if/then/else conditionals ([08e3b9b](https://github.com/jbockle/au-jsonschema-form/commit/08e3b9bd04d9d39e95d64815c05004f21c346dc5))
+* **placeholder:** add support for placeholders ([72b40d0](https://github.com/jbockle/au-jsonschema-form/commit/72b40d008e41b4f8c36aad14188461d701ce9c78))
+* **ui-schema:** inline ui schema in json schemaadd 'x-ui-schema' extension property to json schema ([5261de0](https://github.com/jbockle/au-jsonschema-form/commit/5261de07b0f3700b4c257f43c89b04595d362ec0))
+
+
+
+
+
 ## [0.1.1](https://github.com/jbockle/au-jsonschema-form/compare/v0.1.0...v0.1.1) (2020-09-07)
 
 

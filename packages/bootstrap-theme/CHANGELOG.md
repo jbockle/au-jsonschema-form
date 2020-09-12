@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/jbockle/au-jsonschema-form/compare/v0.1.1...v0.2.0) (2020-09-12)
+
+
+### Features
+
+* **conditional:** add if/then/else conditionals ([08e3b9b](https://github.com/jbockle/au-jsonschema-form/commit/08e3b9bd04d9d39e95d64815c05004f21c346dc5))
+* **placeholder:** add support for placeholders ([72b40d0](https://github.com/jbockle/au-jsonschema-form/commit/72b40d008e41b4f8c36aad14188461d701ce9c78))
+
+
+
+
+
 ## [0.1.1](https://github.com/jbockle/au-jsonschema-form/compare/v0.1.0...v0.1.1) (2020-09-07)
 
 **Note:** Version bump only for package @aujsf/bootstrap-theme

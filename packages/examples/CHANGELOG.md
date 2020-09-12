@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](http://???/compare/v0.1.1...v0.2.0) (2020-09-12)
+
+
+### Features
+
+* **conditional:** add if/then/else conditionals ([08e3b9b](http://???/commits/08e3b9bd04d9d39e95d64815c05004f21c346dc5))
+* **ui-schema:** inline ui schema in json schemaadd 'x-ui-schema' extension property to json schema ([5261de0](http://???/commits/5261de07b0f3700b4c257f43c89b04595d362ec0))
+
+
+
+
+
 ## [0.1.1](http://???/compare/v0.1.0...v0.1.1) (2020-09-07)
 
 
