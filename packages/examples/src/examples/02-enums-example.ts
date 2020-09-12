@@ -1,13 +1,11 @@
-import { JsonSchema, UISchema, FormOptions } from '@aujsf/core';
+import { JsonSchema, UISchema } from '@aujsf/core';
 
 import { Example } from './example';
 
-export class EnumExample implements Example {
+export class EnumExample extends Example {
   public static id = 'enum-example';
 
   public static displayName = 'Enum Example';
-
-  public value: any = {};
 
   public schema: JsonSchema = {
     type: 'object',
@@ -39,6 +37,4 @@ export class EnumExample implements Example {
       'ui:placeholder': 'Choose...',
     },
   };
-
-  public options: FormOptions = {};
 }

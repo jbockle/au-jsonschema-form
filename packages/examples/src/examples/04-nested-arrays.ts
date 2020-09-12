@@ -1,7 +1,7 @@
 import { Example } from './example';
-import { UISchema, JsonSchema, FormOptions } from '@aujsf/core';
+import { UISchema, JsonSchema } from '@aujsf/core';
 
-export class NestedArraysExample implements Example {
+export class NestedArraysExample extends Example {
   public static id = 'nested-arrays-example';
 
   public static displayName = 'Nested Arrays Example';
@@ -32,6 +32,4 @@ export class NestedArraysExample implements Example {
       'ui:item-title': '${key + 1}:${value || \'Enter Item\'}',
     },
   };
-
-  public options: FormOptions = {};
 }

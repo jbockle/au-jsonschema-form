@@ -1,7 +1,7 @@
 import { Example } from './example';
-import { UISchema, JsonSchema, FormOptions } from '@aujsf/core';
+import { UISchema, JsonSchema } from '@aujsf/core';
 
-export class ArraysExample implements Example {
+export class ArraysExample extends Example {
   public static id = 'arrays-example';
 
   public static displayName = 'Arrays Example';
@@ -22,6 +22,4 @@ export class ArraysExample implements Example {
     'ui:item-title': '${key + 1}:${value || \'Enter Item\'}',
     'ui:items': { 'ui:title': false },
   };
-
-  public options: FormOptions = {};
 }

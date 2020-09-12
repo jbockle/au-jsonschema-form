@@ -18,6 +18,7 @@
     grid-template-columns: auto;
     grid-template-rows: 1fr 1fr 1fr;
     margin-bottom: 40px;
+    gap: 4px;
 
     .monaco-editor-layout {
       border: 1px solid $secondary;

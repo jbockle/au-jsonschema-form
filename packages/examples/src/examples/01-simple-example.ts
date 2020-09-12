@@ -1,7 +1,7 @@
 import { Example } from './example';
-import { UISchema, JsonSchema, FormOptions } from '@aujsf/core';
+import { UISchema, JsonSchema } from '@aujsf/core';
 
-export class SimpleExample implements Example {
+export class SimpleExample extends Example {
   public static id = 'simple-example';
 
   public static displayName = 'Simple Example';
@@ -43,6 +43,4 @@ export class SimpleExample implements Example {
       'ui:view': 'textarea',
     },
   };
-
-  public options: FormOptions = {};
 }
