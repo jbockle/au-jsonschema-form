@@ -57,6 +57,7 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
     // changes module id's to use hashes be based on the relative path of the module, required for long term cacheability
     moduleIds: 'named',
     chunkIds: 'named',
+    concatenateModules: false,
     // Use splitChunks to breakdown the App/Aurelia bundle down into smaller chunks
     // https://webpack.js.org/plugins/split-chunks-plugin/
     splitChunks: {
