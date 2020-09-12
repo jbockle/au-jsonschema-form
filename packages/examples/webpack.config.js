@@ -52,12 +52,12 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
     chunkFilename: production ? '[name].[chunkhash].chunk.js' : '[name].[hash].chunk.js',
   },
   optimization: {
+    concatenateModules: false,
     runtimeChunk: true,  // separates the runtime chunk, required for long term cacheability
     // moduleIds is the replacement for HashedModuleIdsPlugin and NamedModulesPlugin deprecated in https://github.com/webpack/webpack/releases/tag/v4.16.0
     // changes module id's to use hashes be based on the relative path of the module, required for long term cacheability
     moduleIds: 'named',
     chunkIds: 'named',
-    concatenateModules: false,
     // Use splitChunks to breakdown the App/Aurelia bundle down into smaller chunks
     // https://webpack.js.org/plugins/split-chunks-plugin/
     splitChunks: {
@@ -119,7 +119,8 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
     port: port || 9000,
     host: host,
   },
-  devtool: production ? 'nosources-source-map' : 'cheap-module-eval-source-map',
+  devtool: 'cheap-module-eval-source-map',
+  // devtool: production ? 'nosources-source-map' : 'cheap-module-eval-source-map',
   module: {
     rules: [
       // CSS required in JS/TS files should use the style-loader that auto-injects it into the website
