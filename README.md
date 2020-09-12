@@ -12,7 +12,9 @@
 
 > This project is still very much in alpha! use at your own risk!
 
-Create forms based on [json-schema](https://json-schema.org/) specification! Using ajv for model validation, @aujsf supports draft-04,draft-06, and draft-07.
+Create forms based on [json-schema](https://json-schema.org/) specification! Heavily influenced by the react-jsonschema-form library, but with many things abstracted into custom views for layouting/theming. 
+
+Using ajv for model validation, @aujsf supports draft-04,draft-06, and draft-07.
 
 Theming is a first class citizen!
 
