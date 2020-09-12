@@ -2,6 +2,7 @@
   "name": "au-jsonschema-form",
   "private": true,
   "scripts": {
+    "prebuild": "npm run bootstrap",
     "build": "lerna run build --stream",
     "docs": "lerna run docs --parallel --stream",
     "clean": "lerna clean -y",
