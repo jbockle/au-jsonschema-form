@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 const { AureliaPlugin, ModuleDependenciesPlugin } = require('aurelia-webpack-plugin');
 const { ProvidePlugin } = require('webpack');
@@ -188,6 +189,11 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
       filename: production ? 'css/[name].[contenthash].bundle.css' : 'css/[name].[hash].bundle.css',
       chunkFilename: production ? 'css/[name].[contenthash].chunk.css' : 'css/[name].[hash].chunk.css',
     })),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'static', to: outDir, globOptions: { ignore: ['.*'] } }
+      ]
+    }),
     // ...when(!tests, new CopyWebpackPlugin([
     //   { from: 'static', to: outDir, ignore: ['.*'] }])), // ignore dot (hidden) files
     ...when(analyze, new BundleAnalyzerPlugin()),

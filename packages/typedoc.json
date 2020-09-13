@@ -1,8 +1,6 @@
 {
-  "tsconfig": "tsconfig.build.json",
+  "tsconfig": "tsconfig.json",
   "gitRemote": "origin",
-  "theme": "markdown",
-  "mode": "modules",
   "gitRevision": "master",
   "excludePrivate": true,
   "excludeProtected": true,

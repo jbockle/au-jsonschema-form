@@ -42,3 +42,5 @@ Thumbs.db
 
 .nyc_output
 coverage
+
+/packages/examples/static/api

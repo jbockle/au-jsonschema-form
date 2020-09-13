@@ -10,6 +10,8 @@
 
 <h2 align="center">Aurelia JSON Schema Forms</h2>
 
+[Documentation and Examples](https://aujsf.jbockle.dev)
+
 > This project is still very much in alpha! use at your own risk!
 
 Create forms based on [json-schema](https://json-schema.org/) specification! Heavily influenced by the react-jsonschema-form library, but with many things abstracted into custom views for layouting/theming. 
@@ -85,8 +87,3 @@ export class MyComponent {
   }
 }
 ```
-
-## API
-
-* [@aujsf/core](docs/core/README.md)
-* [@aujsf/bootstrap-theme](docs/bootstrap-theme/README.md)

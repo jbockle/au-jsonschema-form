@@ -3,6 +3,8 @@ import { Aurelia, PLATFORM } from 'aurelia-framework';
 
 import { IPluginOptions } from '@aujsf/core';
 import { THEME } from '@aujsf/bootstrap-theme';
+import 'jquery';
+import 'bootstrap';
 
 import { App } from './app';
 
