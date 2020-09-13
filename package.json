@@ -2,8 +2,8 @@
   "name": "au-jsonschema-form",
   "private": true,
   "scripts": {
-    "prebuild": "npm run bootstrap",
     "build": "lerna run build --stream",
+    "build:site": "npm run bootstrap && npm run docs && npm run build",
     "docs": "lerna run docs --parallel --stream",
     "clean": "lerna clean -y",
     "postclean": "rimraf packages/**/package-lock.json",
@@ -21,10 +21,10 @@
     }
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^3.10.1",
-    "@typescript-eslint/parser": "^3.10.1",
-    "eslint": "^7.7.0",
-    "husky": "^4.2.5",
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
+    "eslint": "^7.9.0",
+    "husky": "^4.3.0",
     "lerna": "^3.22.1",
     "lerna-audit": "^1.2.0",
     "rimraf": "^3.0.2",
