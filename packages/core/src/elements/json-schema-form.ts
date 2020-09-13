@@ -170,6 +170,10 @@ export class JsonSchemaForm {
         utils.jsonSchema.fillDefaults(this.value, newValue);
         this.validate();
       }
+
+      if (newValue['x-ui-schema'] && !this.uiSchema) {
+        this.uiSchema = newValue['x-ui-schema'];
+      }
     }
   }
 
