@@ -2,9 +2,9 @@ import { Example } from './example';
 import { UISchema, JsonSchema } from '@aujsf/core';
 
 export class SimpleExample extends Example {
-  public static id = 'simple-example';
+  public static id = '01-simple';
 
-  public static displayName = 'Simple Example';
+  public static displayName = 'Simple';
 
   public value: any = {
     givenName: 'John',

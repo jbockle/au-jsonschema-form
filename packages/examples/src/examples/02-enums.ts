@@ -2,10 +2,10 @@ import { JsonSchema, UISchema } from '@aujsf/core';
 
 import { Example } from './example';
 
-export class EnumExample extends Example {
-  public static id = 'enum-example';
+export class EnumsExample extends Example {
+  public static id = '02-enums';
 
-  public static displayName = 'Enum Example';
+  public static displayName = 'Enums';
 
   public schema: JsonSchema = {
     type: 'object',

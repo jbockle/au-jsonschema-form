@@ -2,9 +2,9 @@ import { Example } from './example';
 import { UISchema, JsonSchema } from '@aujsf/core';
 
 export class ArraysExample extends Example {
-  public static id = 'arrays-example';
+  public static id = '03-arrays';
 
-  public static displayName = 'Arrays Example';
+  public static displayName = 'Arrays';
 
   public value: any = ['Apples'];
 

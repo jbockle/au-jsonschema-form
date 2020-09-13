@@ -2,7 +2,7 @@ import { JsonSchema, UISchema } from '@aujsf/core';
 import { Example } from './example';
 
 export class InlineUISchemaExample extends Example {
-  public static id = 'inline-ui-schema';
+  public static id = '05-inline-ui-schema';
 
   public static displayName = 'Inlined UI Schema';
 

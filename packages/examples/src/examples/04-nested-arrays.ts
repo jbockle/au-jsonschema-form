@@ -2,9 +2,9 @@ import { Example } from './example';
 import { UISchema, JsonSchema } from '@aujsf/core';
 
 export class NestedArraysExample extends Example {
-  public static id = 'nested-arrays-example';
+  public static id = '04-nested-arrays';
 
-  public static displayName = 'Nested Arrays Example';
+  public static displayName = 'Nested Arrays';
 
   public value: any = [['Dog', 'Woof'], ['Cat', 'Meow']];
 
