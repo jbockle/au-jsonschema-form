@@ -9,8 +9,6 @@ import utils from '../utils';
 
 type FormState = 'initializing' | 'ready' | 'error';
 
-const DEFAULT_ROOT_UI_SCHEMA: UISchema = { 'ui:title': false };
-
 @inject(Element, TaskQueue, NewInstance.of(FormTemplateRegistry), NewInstance.of(FormContext))
 @useView(PLATFORM.moduleName('@aujsf/core/elements/json-schema-form.html'))
 @customElement('json-schema-form')
@@ -170,18 +168,12 @@ export class JsonSchemaForm {
         utils.jsonSchema.fillDefaults(this.value, newValue);
         this.validate();
       }
-
-      if (newValue['x-ui-schema'] && !this.uiSchema) {
-        this.uiSchema = newValue['x-ui-schema'];
-      }
     }
   }
 
   protected uiSchemaChanged(newValue?: UISchema, oldValue?: UISchema): void {
     this._logger.debug('ui-schema changed', { newValue, oldValue });
-    const uiSchema: UISchema = { ...DEFAULT_ROOT_UI_SCHEMA };
-    utils.common.merge(uiSchema, utils.common.clone(newValue ?? {}));
-    this.context.uiSchema = uiSchema;
+    this.context.uiSchema = utils.common.clone(newValue ?? {});
   }
 
   protected async themesChanged(newValue?: Partial<FormTheme>[], oldValue?: Partial<FormTheme>[]): Promise<void> {

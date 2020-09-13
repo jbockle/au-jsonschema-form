@@ -58,6 +58,9 @@ export class AujsfSlot extends ViewBase {
   @bindable
   public errors: ErrorSchema = {}
 
+  @bindable
+  public root = false;
+
   @observable
   public type!: SlotType;
 
@@ -91,7 +94,14 @@ export class AujsfSlot extends ViewBase {
   }
 
   private resolveUISchemaDefaults(): void {
-    this.uiSchema = this.uiSchema ?? {};
+    this.uiSchema = Object.assign(
+      <UISchema>{ 'ui:placeholder': '' },
+      this.schema['x-ui-schema'] ?? {},
+      this.uiSchema ?? {});
+
+    if (this.root && this.uiSchema['ui:title'] === undefined) {
+      this.uiSchema['ui:title'] = false;
+    }
   }
 
   public resolveSlotType(schema: JsonSchema): SlotType {

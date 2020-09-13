@@ -1,4 +1,4 @@
-import { JsonSchema } from '@aujsf/core';
+import { JsonSchema, UISchema } from '@aujsf/core';
 import { Example } from './example';
 
 export class InlineUISchemaExample extends Example {
@@ -24,7 +24,7 @@ export class InlineUISchemaExample extends Example {
         },
         items: {
           'x-ui-schema': {
-            'ui:title': false,
+            'ui:title': `I'm overridden by the forms UI Schema`,
           },
           type: 'string',
         },
@@ -32,5 +32,11 @@ export class InlineUISchemaExample extends Example {
     },
   }
 
-  public uiSchema = undefined!;
+  public uiSchema = {
+    favoriteFoods: <UISchema>{
+      'ui:items': {
+        'ui:title': false,
+      },
+    },
+  };
 }
