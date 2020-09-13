@@ -45,7 +45,7 @@ export class AujsfObject extends AujsfBase<JsonSchemaObject> {
   }
 
   public onKeyDown(event: KeyboardEvent): boolean {
-    if (event.keyCode === 13) {
+    if (event.key.toLowerCase() === 'enter') {
       return false;
     }
 
