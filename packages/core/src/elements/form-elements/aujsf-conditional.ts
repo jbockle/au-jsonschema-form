@@ -1,5 +1,5 @@
 import { getLogger } from 'aurelia-logging';
-import { inject, Container, observable } from 'aurelia-framework';
+import { inject, Container, observable, customElement } from 'aurelia-framework';
 
 import { AujsfBase } from '../aujsf-base';
 import { JsonSchemaConditional, JsonSchema } from '../../models';
@@ -8,6 +8,7 @@ import { FormTemplateRegistry, FormContext } from '../../services';
 import { ConditionalViewProvider } from '../../services/providers/conditional-view-provider';
 
 @inject(Element, Container, FormTemplateRegistry, FormContext, ConditionalViewProvider)
+@customElement('aujsf-conditional')
 export class AujsfConditional extends AujsfBase<JsonSchema & JsonSchemaConditional>{
   @observable
   public slot?: HTMLElement;

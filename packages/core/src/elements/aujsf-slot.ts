@@ -1,4 +1,4 @@
-import { observable, bindable, bindingMode, noView, inject, Container } from 'aurelia-framework';
+import { observable, bindable, bindingMode, noView, inject, Container, customElement } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 import { JsonPointer } from 'jsonpointerx';
 
@@ -22,6 +22,7 @@ const ATTRIBUTES: [string, string][] = [
 
 @noView()
 @inject(Element, Container, FormContext)
+@customElement('aujsf-slot')
 export class AujsfSlot extends ViewBase {
   protected _logger = getLogger('aujsf:sf-slot');
 

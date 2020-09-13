@@ -119,8 +119,7 @@ module.exports = ({ production } = {}, { extractCss, analyze, tests, hmr, port, 
     port: port || 9000,
     host: host,
   },
-  devtool: 'cheap-module-eval-source-map',
-  // devtool: production ? 'nosources-source-map' : 'cheap-module-eval-source-map',
+  devtool: production ? 'nosources-source-map' : 'cheap-module-eval-source-map',
   module: {
     rules: [
       // CSS required in JS/TS files should use the style-loader that auto-injects it into the website
