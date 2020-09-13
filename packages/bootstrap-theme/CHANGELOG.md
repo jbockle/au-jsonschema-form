@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/jbockle/au-jsonschema-form/compare/v0.2.0...v0.2.1) (2020-09-13)
+
+
+### Features
+
+*  additional properties use placeholder ([25cea2d](https://github.com/jbockle/au-jsonschema-form/commit/25cea2d2c78fb496115b5e28382cbc91fac099a0))
+
+
+
+
+
 # [0.2.0](https://github.com/jbockle/au-jsonschema-form/compare/v0.1.1...v0.2.0) (2020-09-12)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](http://???/compare/v0.2.0...v0.2.1) (2020-09-13)
+
+
+### Bug Fixes
+
+* handle root x-ui-schema ([7656ab1](http://???/commits/7656ab1ea4393722ab6a32486180dd89df1b4c8c))
+* **metadata:** add missing customElement decos ([88f92e8](http://???/commits/88f92e8c53b8d438a2f728f488ecc8d581af7319))
+
+
+
+
+
 # [0.2.0](http://???/compare/v0.1.1...v0.2.0) (2020-09-12)
 
 
