@@ -6,10 +6,9 @@
   },
   "include": [
     "src",
-    "types",
-    "__tests__"
+    "types"
   ],
   "exclude": [
-    "__tests__"
+    "**/*.spec.ts"
   ]
 }

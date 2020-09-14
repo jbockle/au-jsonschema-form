@@ -1,6 +1,6 @@
 module.exports = {
   preset: 'ts-jest',
-  setupFiles: ['<rootDir>/__tests__/pretest.ts'],
+  setupFiles: ['<rootDir>/tests/pretest.ts'],
   moduleNameMapper: {
     '^@aujsf/(.*)$': '<rootDir>/../$1/src',
     '^src/(.*)$': '<rootDir>/src/$1',
@@ -13,6 +13,7 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     'src/**/*.ts',
+    '!src/**/*.spec.ts'
   ],
   coverageDirectory: 'coverage',
   coverageReporters: [
