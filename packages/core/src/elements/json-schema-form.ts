@@ -18,8 +18,8 @@ export class JsonSchemaForm {
   public constructor(
     private _element: Element,
     private _taskQueue: TaskQueue,
-    private _registry: FormTemplateRegistry,
-    private context: FormContext,
+    public registry: FormTemplateRegistry,
+    public context: FormContext,
   ) { }
 
   /**
@@ -176,14 +176,14 @@ export class JsonSchemaForm {
     this.context.uiSchema = utils.common.clone(newValue ?? {});
   }
 
-  protected async themesChanged(newValue?: Partial<FormTheme>[], oldValue?: Partial<FormTheme>[]): Promise<void> {
+  public async themesChanged(newValue?: Partial<FormTheme>[], oldValue?: Partial<FormTheme>[]): Promise<void> {
     this._logger.debug('themes changed', { newValue, oldValue });
     if (newValue) {
-      await utils.form.useThemes(this._registry,
+      await utils.form.useThemes(this.registry,
         this.context.pluginOptions.defaultTheme ?? {},
         ...newValue);
 
-      utils.form.themeIsValid(this._registry);
+      utils.form.themeIsValid(this.registry);
     }
   }
 
