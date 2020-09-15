@@ -1,5 +1,5 @@
 import { observable, inject, TaskQueue } from 'aurelia-framework';
-import { NavigationInstruction, RouteConfig, Router } from 'aurelia-router';
+import { activationStrategy, NavigationInstruction, RouteConfig, Router } from 'aurelia-router';
 import { EventAggregator } from 'aurelia-event-aggregator';
 
 import { examples } from '../examples';
@@ -28,6 +28,13 @@ export class Examples {
   public activate(params: { id?: string }, _routeConfig: RouteConfig, _navigationInstruction: NavigationInstruction): void {
     if (params.id && this.selectedExample?.id !== params.id) {
       this.selectedExample = this.examples.find(e => e.id === params.id);
+
+      if (this.selectedExample) {
+        const example = new this.selectedExample();
+        this._tasks.queueMicroTask(() => {
+          this.example = example;
+        });
+      }
     }
   }
 
@@ -42,12 +49,13 @@ export class Examples {
 
     if (example) {
       this._router.navigateToRoute('examples', { id: example.id });
-      this._tasks.queueMicroTask(() => {
-        this.example = new example();
-      });
     }
     else {
       this._router.navigateToRoute('examples', {});
     }
+  }
+
+  public determineActivationStrategy(): string {
+    return activationStrategy.replace;
   }
 }
