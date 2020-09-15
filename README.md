@@ -1,5 +1,8 @@
 
 <p align="center">
+  <a href="https://codecov.io/gh/jbockle/au-jsonschema-form">
+    <img src="https://codecov.io/gh/jbockle/au-jsonschema-form/branch/master/graph/badge.svg" />
+  </a>
   <a href="https://www.npmjs.com/package/@aujsf/core">
     <img alt="NPM Status" src="https://img.shields.io/npm/v/@aujsf/core.svg?style=flat">
   </a>
