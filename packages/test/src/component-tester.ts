@@ -23,18 +23,26 @@ export class ComponentTester<T = any> {
   public unbind!: () => Promise<void>;
   public element!: Element;
   public viewModel!: T;
+  public aurelia!: Aurelia;
 
   private html!: string;
   private resources: (string | Function)[] = [];
   private bindingContext!: any;
   private rootView!: View;
   private host!: HTMLDivElement;
+  private plugin?: [(frameworkConfig: FrameworkConfiguration) => any, any];
 
-  public configure(aurelia: Aurelia): FrameworkConfiguration {
-    return aurelia.use.standardConfiguration();
+  public addPlugin(plugin: (frameworkConfig: FrameworkConfiguration) => any, config?: any): ComponentTester<T> {
+    this.plugin = [plugin, config];
+    return this;
   }
 
-  public bootstrap(configure: (aurelia: Aurelia) => FrameworkConfiguration): void {
+  public configure(aurelia: Aurelia): void {
+    aurelia.use.standardConfiguration();
+    this.plugin && aurelia.use.plugin(...this.plugin);
+  }
+
+  public bootstrap(configure: (aurelia: Aurelia) => void): void {
     this.configure = configure;
   }
 
@@ -60,6 +68,7 @@ export class ComponentTester<T = any> {
 
   public create(bootstrap: (configure: (aurelia: Aurelia) => Promise<void>) => Promise<void>): Promise<void> {
     return bootstrap(async (aurelia: AureliaWithRoot) => {
+      this.aurelia = aurelia;
       await Promise.resolve(this.configure(aurelia));
       if (this.resources) {
         aurelia.use.globalResources(this.resources);
