@@ -38,7 +38,7 @@
     "pretest": "npm run clean",
     "test": "jest",
     "test:watch": "npm run test -- --watch",
-    "lint": "eslint src/**/*.ts --ignore-pattern **/*.spec.ts",
+    "lint": "eslint src/**/*.ts",
     "predocs": "rimraf ../examples/static/api/core",
     "docs": "typedoc --options ../typedoc.json --out ../examples/static/api/core src"
   },
