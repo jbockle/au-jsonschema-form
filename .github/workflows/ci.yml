@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: bootstrap, build, test
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - run: npm ci
+    - run: npm run bootstrap
+    - run: npm run build
+    - run: npm test
+    - name: Codecov
+      uses: codecov/codecov-action@v1.0.13
+      with:
+        name: \@aujsf/core
+        file: packages/core/coverage/coverage-final.json
+        fail_ci_if_error: true
