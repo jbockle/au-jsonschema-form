@@ -1,5 +1,6 @@
 
 <p align="center">
+  <img src="https://github.com/jbockle/au-jsonschema-form/workflows/CI/badge.svg">
   <a href="https://codecov.io/gh/jbockle/au-jsonschema-form">
     <img src="https://codecov.io/gh/jbockle/au-jsonschema-form/branch/master/graph/badge.svg" />
   </a>
