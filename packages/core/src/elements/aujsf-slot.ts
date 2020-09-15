@@ -9,7 +9,10 @@ import { ViewBase } from './view-base';
 
 type SlotType = JsonSchemaType | 'all-of' | 'any-of' | 'one-of' | 'hidden' | 'unknown' | 'conditional';
 
-const ATTRIBUTES: [string, string][] = [
+/**
+ * @internal
+ */
+export const ATTRIBUTES: [string, string][] = [
   ['schema.bind', 'schema'],
   ['ui-schema.bind', 'uiSchema'],
   ['value.bind', 'value'],
@@ -29,7 +32,7 @@ export class AujsfSlot extends ViewBase {
   protected constructor(
     protected _element: Element,
     protected _container: Container,
-    protected _context: FormContext,
+    public context: FormContext,
   ) {
     super();
   }
@@ -64,14 +67,17 @@ export class AujsfSlot extends ViewBase {
   @observable
   public type!: SlotType;
 
+  public error?: any;
+
   public schemaChanged(): void {
     try {
+      delete this.error;
       this.errors = this.errors ?? {};
       this.resolveUISchemaDefaults();
       this.type = this.uiSchema['ui:view'] === false ? 'hidden' : this.resolveSlotType(this.schema);
       this.pointer = this.pointer ?? new JsonPointer([]);
 
-      this.view = this._context.enhancer.enhanceSlot({
+      this.view = this.context.enhancer.enhanceSlot({
         tagName: `aujsf-${this.type}`,
         attributes: ATTRIBUTES,
         appendTo: this._element,
@@ -81,8 +87,9 @@ export class AujsfSlot extends ViewBase {
 
       this._logger.debug('bound', this.pointer.toString());
     } catch (error) {
+      this.error = error;
       this._logger.error('an error occurred while building the sf-slot', { error, viewModel: this });
-      this.view = this._context.enhancer.error({
+      this.view = this.context.enhancer.error({
         message: 'an error occurred loading the form element',
         element: this._element,
       });
@@ -120,14 +127,16 @@ export class AujsfSlot extends ViewBase {
       if (Array.isArray(schema.type) && JsonSchemaUtils.isNullable(schema.type)) {
         return schema.type.find(type => type !== 'null')!;
       }
-    } else if ('allOf' in schema) {
+    }
+
+    if ('allOf' in schema) {
       return 'all-of';
     } else if ('anyOf' in schema) {
       return 'any-of';
     } else if ('oneOf' in schema) {
       return 'one-of';
     } else if ('$ref' in schema) {
-      this.schema = this._context.validator.ajv.getSchema(schema.$ref)!.schema as JsonSchema;
+      this.schema = this.context.validator.ajv.getSchema(schema.$ref)!.schema as JsonSchema;
       return this.resolveSlotType(this.schema);
     }
 
