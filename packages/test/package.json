@@ -1,6 +1,6 @@
 {
   "name": "@aujsf/test",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "description": "testing utils",
   "license": "UNLICENSED",
@@ -8,11 +8,11 @@
   "typings": "src/index.ts",
   "scripts": {},
   "devDependencies": {
-    "typescript": "^4.0.2",
-    "aurelia-polyfills": "^1.3.4",
-    "aurelia-templating": "^1.10.4",
     "aurelia-framework": "^1.3.1",
     "aurelia-loader-nodejs": "^1.1.0",
-    "aurelia-pal-nodejs": "^2.0.0"
+    "aurelia-pal-nodejs": "^2.0.0",
+    "aurelia-polyfills": "^1.3.4",
+    "aurelia-templating": "^1.10.4",
+    "typescript": "^4.0.2"
   }
 }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/jbockle/au-jsonschema-form/compare/v0.2.1...v0.2.2) (2020-09-15)
+
+
+### Bug Fixes
+
+* show aujsf-slot error message ([2973962](https://github.com/jbockle/au-jsonschema-form/commit/29739624850aa6f8eb14b49faa70443bf002ab4c))
+
+
+
+
+
 ## [0.2.1](https://github.com/jbockle/au-jsonschema-form/compare/v0.2.0...v0.2.1) (2020-09-13)
 
 
