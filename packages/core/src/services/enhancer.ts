@@ -18,10 +18,11 @@ export class Enhancer {
     }
 
     const element = DOM.createElement('code');
-    element.innerText = options.message;
+    element.innerHTML = options.message;
     element.style.color = '#FF0000';
     element.style.backgroundColor = '#000';
     element.style.padding = '5px';
+
     options.element.innerHTML = '';
     options.element.appendChild(element);
 
