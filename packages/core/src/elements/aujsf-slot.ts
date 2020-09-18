@@ -74,7 +74,9 @@ export class AujsfSlot extends ViewBase {
       delete this.error;
       this.errors = this.errors ?? {};
       this.resolveUISchemaDefaults();
-      this.type = this.uiSchema['ui:view'] === false ? 'hidden' : this.resolveSlotType(this.schema);
+      this.type = this.uiSchema['ui:view'] === false
+        ? 'hidden'
+        : this.resolveSlotType(this.schema);
       this.pointer = this.pointer ?? new JsonPointer([]);
 
       this.view = this.context.enhancer.enhanceSlot({
@@ -111,6 +113,7 @@ export class AujsfSlot extends ViewBase {
     }
   }
 
+  // TODO this needs to be simplified
   public resolveSlotType(schema: JsonSchema): SlotType {
     if ('ui:type' in this.uiSchema && !Array.isArray(this.uiSchema['ui:type'])) {
       return this.uiSchema['ui:type'] as any;
@@ -121,11 +124,11 @@ export class AujsfSlot extends ViewBase {
     }
     else if ('type' in schema) {
       if (typeof schema.type === 'string') {
-        return schema.type;
+        return this.integerToNumber(schema.type);
       }
 
       if (Array.isArray(schema.type) && JsonSchemaUtils.isNullable(schema.type)) {
-        return schema.type.find(type => type !== 'null')!;
+        return this.integerToNumber(schema.type.find(type => type !== 'null')!);
       }
     }
 
@@ -141,5 +144,13 @@ export class AujsfSlot extends ViewBase {
     }
 
     return 'unknown';
+  }
+
+  private integerToNumber(type: SlotType): SlotType {
+    if (type === 'integer') {
+      return 'number';
+    }
+
+    return type;
   }
 }

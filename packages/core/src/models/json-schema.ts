@@ -4,6 +4,7 @@ export type JsonSchemaType =
   'object' |
   'array' |
   'number' |
+  'integer' |
   'string' |
   'boolean' |
   'null';
@@ -66,7 +67,7 @@ export interface JsonSchemaArray extends JsonSchemaBase {
 }
 
 export interface JsonSchemaNumber extends JsonSchemaBase {
-  type: 'number';
+  type: 'number' | 'integer';
   enum?: number[];
   minimum?: number;
   maximum?: number;

@@ -99,6 +99,15 @@ describe('aujsf-slot', () => {
       .toMatch(/^<aujsf-string/);
   });
 
+  it('creates number view-model', async () => {
+    await component
+      .boundTo({ schema: { type: 'integer' } })
+      .create(bootstrap);
+
+    expect(component.element.innerHTML)
+      .toMatch(/^<aujsf-number/);
+  });
+
   it('when nullable, creates string view-model', async () => {
     await component
       .boundTo({ schema: { type: ['string', 'null'] } })
