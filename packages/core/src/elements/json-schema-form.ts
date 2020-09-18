@@ -115,14 +115,13 @@ export class JsonSchemaForm {
     this.submit({ value: this.value, validationResult: this.validationResult });
   }
 
+  // TODO remove bind/compile methods and state is computedFrom instead
   protected bind(): void {
     this.compile();
   }
 
   private async compile(): Promise<void> {
     this._taskQueue.queueMicroTask(async () => {
-      // eslint-disable-next-line no-console
-      console.time('compile');
       this.error = undefined;
       this.state = 'initializing';
 
@@ -148,8 +147,6 @@ export class JsonSchemaForm {
         this.state = 'error';
         this._logger.error('An error occurred while initializing', error);
       }
-      // eslint-disable-next-line no-console
-      console.timeEnd('compile');
     });
   }
 
