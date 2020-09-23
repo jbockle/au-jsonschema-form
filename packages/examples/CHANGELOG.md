@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.4](http://???/compare/v0.2.3...v0.2.4) (2020-09-23)
+
+**Note:** Version bump only for package examples
+
+
+
+
+
 ## [0.2.3](http://???/compare/v0.2.2...v0.2.3) (2020-09-23)
 
 
