@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](http://???/compare/v0.2.2...v0.2.3) (2020-09-23)
+
+
+### Bug Fixes
+
+* cloning a null value should check if null ([7f78dab](http://???/commits/7f78dab761ed6a7499600b54e3a229d0a22185e3))
+
+
+
+
+
 ## [0.2.2](http://???/compare/v0.2.1...v0.2.2) (2020-09-15)
 
 **Note:** Version bump only for package examples
