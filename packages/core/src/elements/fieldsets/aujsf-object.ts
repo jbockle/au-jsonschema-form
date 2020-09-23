@@ -60,7 +60,8 @@ export class AujsfObject extends AujsfBase<JsonSchemaObject> {
   }
 
   public getPropertyDefinition(key: string): ObjectKeyDefinition {
-    const schema = utils.common.clone(this.getPropertySchema(key));
+    const propertySchema = this.getPropertySchema(key);
+    const schema = utils.common.clone(propertySchema);
     const propertyUiSchema = this.getPropertyUiSchema(key, schema);
 
     return {

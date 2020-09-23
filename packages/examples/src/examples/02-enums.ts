@@ -29,6 +29,26 @@ export class EnumsExample extends Example {
           'c++',
         ],
       },
+      nullableRadio: {
+        type: ['string', 'null'],
+        enum: [
+          null,
+          'alpha',
+          'bravo',
+          'charlie',
+        ],
+      },
+      nullableSelect: {
+        type: ['string', 'null'],
+        enum: [
+          null,
+          'alpha',
+          'bravo',
+          'charlie',
+          'delta',
+          'echo',
+        ],
+      },
     },
   };
 

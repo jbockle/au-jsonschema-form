@@ -12,7 +12,10 @@ export function clone(obj: any): any {
       result[key] = clone(value);
     }
     else if (valueType === 'object') {
-      if (value instanceof Date) {
+      if (value === null) {
+        result[key] = null;
+      }
+      else if (value instanceof Date) {
         result[key] = new Date(value.getTime());
       }
       else if (value instanceof RegExp) {
