@@ -1,5 +1,5 @@
 import { getLogger } from 'aurelia-logging';
-import { inject, Container, observable, customElement } from 'aurelia-framework';
+import { inject, Container, customElement } from 'aurelia-framework';
 
 import { AujsfBase } from '../aujsf-base';
 import { JsonSchemaConditional, JsonSchema } from '../../models';
@@ -10,22 +10,11 @@ import { ConditionalViewProvider } from '../../services/providers/conditional-vi
 @inject(Element, Container, FormTemplateRegistry, FormContext, ConditionalViewProvider)
 @customElement('aujsf-conditional')
 export class AujsfConditional extends AujsfBase<JsonSchema & JsonSchemaConditional>{
-  @observable
   public slot?: HTMLElement;
 
   protected _logger = getLogger('aujsf:conditional');
 
   public adapter?: ConditionalAdapter;
-
-  public slotChanged(newElement?: HTMLElement, oldElement?: HTMLElement): void {
-    setTimeout(() => {
-      if (newElement && oldElement !== undefined) {
-        // TODO assumptious, need to rework this to select last focused element
-        const firstInput = newElement.querySelector('input');
-        firstInput?.focus();
-      }
-    });
-  }
 
   public bound(): void {
     this._element.addEventListener('value-changed', () => {
