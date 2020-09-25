@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/jbockle/au-jsonschema-form/compare/v0.2.4...v0.2.5) (2020-09-25)
+
+
+### Features
+
+* **view-class:** add custom css class to view ([d0a2c3a](https://github.com/jbockle/au-jsonschema-form/commit/d0a2c3ad269df8c660948fb0d481a7e9289b9a35))
+
+
+
+
+
 ## [0.2.4](https://github.com/jbockle/au-jsonschema-form/compare/v0.2.3...v0.2.4) (2020-09-23)
 
 
