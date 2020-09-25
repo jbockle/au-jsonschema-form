@@ -22,6 +22,11 @@ export interface UISchema {
   'ui:view'?: string | false;
 
   /**
+   * add one or css classes to the ui:view's element
+   */
+  'ui:view-class'?: string;
+
+  /**
    * enable/disable browser autocomplete feature on this form, currently only valid on root UISchema
    * @default 'off'
    */

@@ -32,6 +32,9 @@ export class AujsfAllOf extends AujsfBase<JsonSchemaAllOf, any> {
       bindingContext: this,
       container: this._container,
       template,
+      attributes: this.uiSchema['ui:view-class']
+        ? [['class', this.uiSchema['ui:view-class']]]
+        : undefined,
     });
   }
 }

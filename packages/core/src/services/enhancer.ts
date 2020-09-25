@@ -1,4 +1,4 @@
-import { inject, TemplatingEngine, View, Container, DOM, EnhanceInstruction } from 'aurelia-framework';
+import { inject, TemplatingEngine, View, Container, DOM, EnhanceInstruction, ViewResources } from 'aurelia-framework';
 import { FormTemplate } from '../models';
 
 @inject(TemplatingEngine)
@@ -33,15 +33,42 @@ export class Enhancer {
 
   public enhanceTemplate(options: {
     template: FormTemplate,
+    attributes?: [string, string][],
     element: Element,
-    container: Container,
     bindingContext: any,
     overrideBindingContext?: any,
+    container: Container,
+    resources?: ViewResources,
   }): View {
-    const element = DOM.createElement('div');
-    element.innerHTML = options.template.entry.template.innerHTML;
-    options.element.innerHTML = '';
-    options.element.appendChild(element);
+    return this.enhanceSlot({
+      tagName: 'ui-view',
+      attributes: options.attributes,
+      innerHtml: options.template.entry.template.innerHTML,
+      appendTo: options.element,
+      bindingContext: options.bindingContext,
+      overrideBindingContext: options.overrideBindingContext,
+      container: options.container,
+      resources: options.template.resources,
+    });
+  }
+
+  public enhanceSlot(options: {
+    tagName: string,
+    attributes?: [string, string][],
+    innerHtml?: string,
+    appendTo: Element,
+    bindingContext: any,
+    overrideBindingContext?: any,
+    container: Container,
+    resources?: ViewResources,
+  }): View {
+    const element = DOM.createElement(options.tagName);
+    options.attributes?.forEach(attr => {
+      element.setAttribute(attr[0], attr[1]);
+    });
+    element.innerHTML = options.innerHtml || '';
+    options.appendTo.innerHTML = '';
+    options.appendTo.append(element);
 
     const container = options.container.createChild();
 
@@ -50,32 +77,7 @@ export class Enhancer {
       bindingContext: options.bindingContext,
       overrideContext: options.overrideBindingContext,
       container,
-      resources: options.template.resources,
-    });
-  }
-
-  public enhanceSlot(options: {
-    tagName: string,
-    attributes: [string, string][],
-    appendTo: Element,
-    container: Container,
-    bindingContext: any,
-  }): View {
-    const element = DOM.createElement(options.tagName);
-
-    options.appendTo.innerHTML = '';
-
-    options.appendTo.append(element);
-    options.attributes?.forEach(attr => {
-      element.setAttribute(attr[0], attr[1]);
-    });
-
-    const container = options.container.createChild();
-
-    return this._templating.enhance(<EnhanceInstruction>{
-      element,
-      bindingContext: options.bindingContext,
-      container,
+      resources: options.resources,
     });
   }
 }

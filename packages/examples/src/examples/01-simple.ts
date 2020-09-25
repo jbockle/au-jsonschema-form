@@ -33,6 +33,7 @@ export class SimpleExample extends Example {
   };
 
   public uiSchema: UISchema = {
+    'ui:view-class': 'd-block border border-info px-2 mb-1',
     givenName: {
       'ui:title': 'First Name',
     },
