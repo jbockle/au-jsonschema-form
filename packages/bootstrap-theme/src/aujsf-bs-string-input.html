@@ -9,7 +9,7 @@
     <input id.bind="id" type="string"
            class="form-control ${hasErrors ? 'is-invalid' : value !== undefined ? 'is-valid' : ''}"
            disabled.bind="readonly"
-           placeholder.bind="uiSchema['ui:placeholder']"
+           placeholder.bind="uiSchema['ui:placeholder'] || ''"
            value.bind="value | aujsf_value">
 
     <small class="form-text text-muted" if.bind="description">${description}</small>
