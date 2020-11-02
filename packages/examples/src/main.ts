@@ -12,7 +12,7 @@ export function configure(aurelia: Aurelia): void {
   aurelia.use
     .standardConfiguration()
     .plugin(PLATFORM.moduleName('@aujsf/core'), (options: IPluginOptions) => {
-      options.defaultTheme = THEME;
+      options.theme = THEME;
       // options.hideErrors = true;
     });
 

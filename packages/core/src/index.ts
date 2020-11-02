@@ -19,11 +19,20 @@ import { AujsfValue } from './converters/aujsf-value';
 import { AujsfItemTitle } from './converters/aujsf-item-title';
 
 import { IPluginOptions, PluginOptions } from './plugin-options';
+import { FormTemplateRegistry } from './services';
 
-export function configure(framework: FrameworkConfiguration, configure?: (options: IPluginOptions) => void): void {
+export async function configure(framework: FrameworkConfiguration, configure?: (options: IPluginOptions) => void): Promise<void> {
   const options = framework.container.get(PluginOptions);
 
   configure instanceof Function && configure(options);
+
+  options.assertValid();
+
+  const registry = framework.container.get(FormTemplateRegistry);
+
+  for (const template in options.theme) {
+    await registry.add(template, options.theme[template]);
+  }
 
   framework.globalResources([
     JsonSchemaForm,

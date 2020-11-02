@@ -4,12 +4,12 @@ import { getLogger } from 'aurelia-logging';
 import { JsonSchema } from '../models/json-schema';
 import { UISchema } from '../models/ui-schema';
 import { FormTemplateRegistry, FormContext } from '../services';
-import { ValueChangedEventDict, ValidationResult, FormTheme, FormOptions, SubmitArguments } from '../models';
+import { ValueChangedEventDict, ValidationResult, FormOptions, SubmitArguments } from '../models';
 import utils from '../utils';
 
 type FormState = 'initializing' | 'ready' | 'error';
 
-@inject(Element, TaskQueue, NewInstance.of(FormTemplateRegistry), NewInstance.of(FormContext))
+@inject(Element, TaskQueue, FormTemplateRegistry, NewInstance.of(FormContext))
 @useView(PLATFORM.moduleName('@aujsf/core/elements/json-schema-form.html'))
 @customElement('json-schema-form')
 export class JsonSchemaForm {
@@ -61,40 +61,6 @@ export class JsonSchemaForm {
   }
 
   /**
-   * list of form modules to include
-   * @remarks if the module name appears more than once, it overrides previous module
-   * 
-   * @example
-   * ```ts
-   * // set default theme in plugin
-   * aurelia.use.plugin(PLATFORM.moduleName(`@aujsf/core`), options => {
-   *   options.defaultTheme = {
-   *     'string-input': `@aujsf/bootstrap-theme/string-input.html`,
-   *     'checkbox': `@aujsf/bootstrap-theme/checkbox.html`
-   *   };
-   * });
-   * ```
-   * 
-   * then in view
-   * ```html
-   *   <json-schema-form themes.bind="[{'string-input': 'path/to/string-input.html','array-tabs': 'path/to/array-tabs.html'},{'array-tabs': 'path/to/foo-array-tabs.html'}]"...></json-schema-form>
-   * ```
-   * 
-   * results in the following combined theme
-   * ```ts
-   * {
-   *   'string-input': 'path/to/string-input.html',
-   *   'checkbox': `@aujsf/bootstrap-theme/checkbox.html`,
-   *   'array-tabs': 'path/to/foo-array-tabs.html'
-   * }
-   * ```
-   * 
-   * @bindable input
-   */
-  @bindable
-  public themes?: Partial<FormTheme>[] = [];
-
-  /**
    * form options
    */
   @bindable
@@ -126,7 +92,6 @@ export class JsonSchemaForm {
       this.state = 'initializing';
 
       try {
-        await this.themesChanged(this.themes);
         this.optionsChanged(this.options);
         this.uiSchemaChanged(this.uiSchema);
         this.schemaChanged(this.schema);
@@ -171,17 +136,6 @@ export class JsonSchemaForm {
   protected uiSchemaChanged(newValue?: UISchema, oldValue?: UISchema): void {
     this._logger.debug('ui-schema changed', { newValue, oldValue });
     this.context.uiSchema = utils.common.clone(newValue ?? {});
-  }
-
-  public async themesChanged(newValue?: Partial<FormTheme>[], oldValue?: Partial<FormTheme>[]): Promise<void> {
-    this._logger.debug('themes changed', { newValue, oldValue });
-    if (newValue) {
-      await utils.form.useThemes(this.registry,
-        this.context.pluginOptions.defaultTheme ?? {},
-        ...newValue);
-
-      utils.form.themeIsValid(this.registry);
-    }
   }
 
   protected valueChanged(newValue: any, oldValue?: any): void {
