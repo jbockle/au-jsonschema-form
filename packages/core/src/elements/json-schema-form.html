@@ -1,27 +1,16 @@
-<template>
-  <form submit.trigger="onsubmit()" novalidate show.bind="state === 'ready'"
+<template value-changed.trigger="tryValidate() & debounce:100">
+  <form novalidate
+        submit.trigger="onsubmit()"
         autocomplete.bind="uiSchema['ui:autocomplete'] || 'off'">
 
     <aujsf-slot schema.bind="context.schema"
                 ui-schema.bind="context.uiSchema"
                 value.bind="value"
                 errors.bind="validationResult.errorSchema"
-                root.bind="true"
-                if.bind="state === 'ready'">
-    </aujsf-slot>
+                root.bind="true"></aujsf-slot>
 
     <slot>
       <button type=" submit">Submit</button>
     </slot>
   </form>
-
-  <template replaceable part="initializing">
-    <pre style="color: #32ad61; background-color: #fff;"
-         if.bind="state === 'initializing'">...initializing</pre>
-  </template>
-
-  <template replaceable part="error">
-    <pre style="color: #ff0000;background-color: #000;"
-         if.bind="state === 'error'">An error is preventing the form to render</pre>
-  </template>
 </template>

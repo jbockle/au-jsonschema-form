@@ -5,41 +5,37 @@ import { JsonPointer } from 'jsonpointerx';
 import v4 from 'ajv/lib/refs/json-schema-draft-04.json';
 import v6 from 'ajv/lib/refs/json-schema-draft-06.json';
 
-import { JsonSchema, ErrorSchema, ValidationResult, FormOptions } from '../models';
+import { JsonSchema, ErrorSchema, ValidationResult } from '../models';
 
 export class Validator {
   private _logger = getLogger('aujsf:validator');
-  public ajv!: Ajv.Ajv;
-  public validator?: Ajv.ValidateFunction;
+  private _ajv?: Ajv.Ajv;
+  private _validator?: Ajv.ValidateFunction;
 
   /**
    * @internal
    */
-  public setSchema(schema: JsonSchema, options: FormOptions): void {
+  public setSchema(schema: JsonSchema): void {
     this._logger.debug('received schema', schema);
-    this.ajv = this.createAjv(options);
-    this.validator = this.ajv.compile(schema);
+    this._ajv = this.createAjv();
+    this._validator = this._ajv.compile(schema);
   }
 
   /**
    * @internal
    */
-  public createAjv(options: FormOptions): Ajv.Ajv {
-    const ajv = new Ajv(Object.assign({
+  public createAjv(): Ajv.Ajv {
+    const ajv = new Ajv({
       allErrors: true,
       multipleOfPrecision: 8,
       schemaId: 'auto',
       unknownFormats: 'ignore',
       jsonPointers: true,
       verbose: true,
-    }, options.ajv?.options ?? {}));
+    });
 
-    if (options.ajv?.transform instanceof Function) {
-      options.ajv.transform(ajv);
-    } else {
-      ajv.addMetaSchema(v4);
-      ajv.addMetaSchema(v6);
-    }
+    ajv.addMetaSchema(v4);
+    ajv.addMetaSchema(v6);
 
     return ajv;
   }
@@ -49,13 +45,13 @@ export class Validator {
   // }
 
   public validate(data: any): ValidationResult {
-    if (this.validator) {
-      this.validator(data);
+    if (this._validator) {
+      this._validator(data);
 
       const result: ValidationResult = {
-        valid: !this.validator.errors,
-        errors: this.validator.errors ?? [],
-        errorSchema: this.createErrorSchema(this.validator.errors ?? []),
+        valid: !this._validator.errors,
+        errors: this._validator.errors ?? [],
+        errorSchema: this.createErrorSchema(this._validator.errors ?? []),
       };
 
       this._logger.info('validation completed', { ...result });
@@ -64,6 +60,12 @@ export class Validator {
     } else {
       throw new Error(`a schema has not been set`);
     }
+  }
+
+  public isValid(schema: JsonSchema, data: any): boolean {
+    const valid = this._ajv?.validate(schema, data) as boolean | undefined;
+
+    return valid ?? false;
   }
 
   public createErrorSchema(errors: Ajv.ErrorObject[]): ErrorSchema {
@@ -92,5 +94,11 @@ export class Validator {
     });
 
     return errorSchema;
+  }
+
+  public getReferenceSchema($ref: string): JsonSchema | undefined {
+    const schema = this._ajv?.getSchema($ref)?.schema;
+
+    return schema as JsonSchema;
   }
 }

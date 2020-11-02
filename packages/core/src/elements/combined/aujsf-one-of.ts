@@ -33,7 +33,7 @@ export class AujsfOneOf extends AujsfBase<JsonSchemaOneOf, any> {
       return;
     }
 
-    this._validator.setSchema(newValue.schema, {});
+    this._validator.setSchema(newValue.schema);
     if (!this._validator.validate(this.value).valid) {
       this.value = undefined;
     }
@@ -49,7 +49,7 @@ export class AujsfOneOf extends AujsfBase<JsonSchemaOneOf, any> {
 
     if (this.value) {
       this.options.some(option => {
-        this._validator.setSchema(option.schema, {});
+        this._validator.setSchema(option.schema);
         if (this._validator.validate(this.value).valid) {
           this.selectedOption = option;
           return true;

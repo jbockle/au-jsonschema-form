@@ -43,7 +43,7 @@ export class AujsfSlot extends ViewBase {
   @bindable
   public class?: string;
 
-  @bindable
+  @bindable({ defaultBindingMode: bindingMode.toView })
   public schema!: JsonSchema;
 
   @bindable
@@ -139,8 +139,14 @@ export class AujsfSlot extends ViewBase {
     } else if ('oneOf' in schema) {
       return 'one-of';
     } else if ('$ref' in schema) {
-      this.schema = this.context.validator.ajv.getSchema(schema.$ref)!.schema as JsonSchema;
-      return this.resolveSlotType(this.schema);
+      const refSchema = this.context.validator.getReferenceSchema(schema.$ref);
+      if (refSchema) {
+        this.schema = refSchema;
+
+        return this.resolveSlotType(this.schema);
+      }
+
+      throw new Error(`schema reference '${schema.$ref}' was not found`);
     }
 
     return 'unknown';

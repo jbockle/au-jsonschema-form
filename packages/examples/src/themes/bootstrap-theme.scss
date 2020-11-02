@@ -6,6 +6,7 @@
 
 bootstrap-theme-base {
   all: initial;
+  display: block;
   margin: 0; // 1
   font-family: $font-family-base;
   @include font-size($font-size-base);
@@ -14,4 +15,5 @@ bootstrap-theme-base {
   color: $body-color;
   text-align: left; // 3
   background-color: $body-bg; // 2
+  padding: 5px;
 }

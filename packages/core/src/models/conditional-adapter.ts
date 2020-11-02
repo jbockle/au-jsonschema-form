@@ -47,8 +47,7 @@ export class ConditionalAdapter {
 
   public valueChanged(): void {
     setTimeout(() => {
-      this.ifValid = this.viewModel.context.validator.ajv
-        .validate(this.viewModel.schema.if, this.viewModel.value) as boolean;
+      this.ifValid = this.viewModel.context.validator.isValid(this.viewModel.schema.if, this.viewModel.value);
     });
   }
 }

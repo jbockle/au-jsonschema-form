@@ -1,10 +1,9 @@
-import { JsonSchema, UISchema, FormOptions } from '@aujsf/core';
+import { JsonSchema, UISchema } from '@aujsf/core';
 
 export abstract class Example {
   public value: any = {};
   public abstract schema: JsonSchema;
   public uiSchema: UISchema = {};
-  public options: FormOptions = {};
 }
 
 export interface ExampleCtor {
