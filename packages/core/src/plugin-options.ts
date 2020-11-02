@@ -39,9 +39,6 @@ export interface IPluginOptions {
   assertValid(): void;
 }
 
-/**
- * @internal
- */
 export class PluginOptions implements IPluginOptions {
   public theme!: FormTheme;
   public hideErrors?: boolean;
