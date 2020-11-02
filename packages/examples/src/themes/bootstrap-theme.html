@@ -8,12 +8,6 @@
                       errors.bind="example.errors"
                       value-changed.trigger="onValueUpdated()">
       <button type="submit" class="btn btn-primary">Submit</button>
-      <template replace-part="initializing">
-        <div class="text-center" if.bind="state === 'initializing'">
-          <div class="spinner-border spinner-border-sm" role="status"></div>
-          <em>Loading...</em>
-        </div>
-      </template>
     </json-schema-form>
   </bootstrap-theme-base>
 </template>
