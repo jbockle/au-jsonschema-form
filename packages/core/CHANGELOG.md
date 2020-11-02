@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/jbockle/au-jsonschema-form/compare/v0.3.0...v0.3.1) (2020-11-02)
+
+
+### Reverts
+
+* plugin option should be public ([56fbe99](https://github.com/jbockle/au-jsonschema-form/commit/56fbe99ef411d9f4c4fa1ed578d4f93a03099dba))
+
+
+
+
+
+
 ## [0.2.5](https://github.com/jbockle/au-jsonschema-form/compare/v0.2.4...v0.2.5) (2020-09-25)
 
 
