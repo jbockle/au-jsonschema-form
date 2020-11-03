@@ -71,6 +71,11 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any>
     return this.uiSchema['ui:description'] ?? this.schema.description;
   }
 
+  @computedFrom('schema', 'uiSchema')
+  public get placeholder(): string {
+    return this.uiSchema['ui:placeholder'] ?? '';
+  }
+
   @computedFrom('pointer')
   public get id(): string {
     return this.pointer.toString();

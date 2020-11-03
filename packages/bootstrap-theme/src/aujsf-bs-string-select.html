@@ -10,10 +10,10 @@
             disabled.bind="readonly"
             class="custom-select ${hasErrors ? 'is-invalid' : value !== undefined ? 'is-valid' : ''}">
 
-      <option if.bind="uiSchema['ui:placeholder']"
+      <option if.bind="placeholder"
               model.bind="undefined"
               selected>
-        ${uiSchema['ui:placeholder']}
+        ${placeholder}
       </option>
 
       <option repeat.for="option of schema.enum" model.bind="option">

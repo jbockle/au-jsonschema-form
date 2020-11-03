@@ -17,7 +17,7 @@
                     title="Add new item"><strong class="mr-1">&plus;</strong>Add</button>
           </div>
           <input type="text" class="form-control"
-                 placeholder.bind="uiSchema['ui:placeholder'] || 'Add key'"
+                 placeholder.bind="placeholder || 'Add key'"
                  value.bind="newPropertyKey"
                  keydown.delegate="onKeyDown($event)">
         </div>

@@ -10,7 +10,7 @@
            step="2"
            class="form-control ${hasErrors ? 'is-invalid' : value !== undefined ? 'is-valid' : ''}"
            disabled.bind="readonly"
-           placeholder.bind="uiSchema['ui:placeholder']"
+           placeholder.bind="placeholder"
            value.bind="value | aujsf_value:'time'">
 
     <small class="form-text text-muted" if.bind="description">${description}</small>

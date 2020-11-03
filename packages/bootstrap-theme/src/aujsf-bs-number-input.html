@@ -8,7 +8,7 @@
 
     <input id.bind="id" type="number"
            disabled.bind="readonly"
-           placeholder.bind="uiSchema['ui:placeholder']"
+           placeholder.bind="placeholder"
            class="form-control ${hasErrors ? 'is-invalid' : value !== undefined ? 'is-valid' : ''}"
            value.bind="value | aujsf_value:'number'">
 

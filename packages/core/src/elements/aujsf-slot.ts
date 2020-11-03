@@ -104,7 +104,7 @@ export class AujsfSlot extends ViewBase {
 
   private resolveUISchemaDefaults(): void {
     this.uiSchema = Object.assign(
-      <UISchema>{ 'ui:placeholder': '' },
+      {},
       this.schema['x-ui-schema'] ?? {},
       this.uiSchema ?? {});
 

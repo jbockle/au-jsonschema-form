@@ -21,14 +21,6 @@ describe('aujsf-slot', () => {
     });
   });
 
-  it('sets ui schema defaults', async () => {
-    await component.create(bootstrap);
-
-    expect(component.viewModel.uiSchema).toEqual({
-      'ui:placeholder': '',
-    });
-  });
-
   it('merges inline ui schema', async () => {
     await component
       .boundTo({
@@ -43,7 +35,6 @@ describe('aujsf-slot', () => {
       .create(bootstrap);
 
     expect(component.viewModel.uiSchema).toEqual({
-      'ui:placeholder': '',
       'ui:title': 'Name',
       'ui:setting': true,
     });
@@ -177,7 +168,6 @@ describe('aujsf-slot', () => {
       .boundTo({ schema: schema.properties!.foo, uiSchema: {} })
       .create(bootstrap);
 
-    component.viewModel.context.options = {};
     component.viewModel.context.schema = schema;
     component.viewModel.schemaChanged();
 
