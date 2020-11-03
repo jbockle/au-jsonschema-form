@@ -45,9 +45,11 @@ export class ConditionalAdapter {
     return elseSchema;
   }
 
+  private _ifValidHandler: any = -1;
   public valueChanged(): void {
-    setTimeout(() => {
+    clearTimeout(this._ifValidHandler);
+    this._ifValidHandler = setTimeout(() => {
       this.ifValid = this.viewModel.context.validator.isValid(this.viewModel.schema.if, this.viewModel.value);
-    });
+    }, 50);
   }
 }
