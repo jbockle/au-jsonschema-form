@@ -52,14 +52,20 @@ export class AujsfObject extends AujsfBase<JsonSchemaObject> {
     return true;
   }
 
-  public getKeys(): string[] {
-    return Object.keys(Object.assign(
-      {},
-      this.schema.properties ?? {},
-      this.value ?? {}));
+  private getKeys(): string[] {
+    return [
+      ...Object.keys(this.schema.properties ?? {}),
+      ...this.getAdditionalKeys(),
+    ];
   }
 
-  public getPropertyDefinition(key: string): ObjectKeyDefinition {
+  private getAdditionalKeys(): string[] {
+    return this.schema.additionalProperties || this.schema.patternProperties
+      ? Object.keys(this.value ?? {})
+      : [];
+  }
+
+  private getPropertyDefinition(key: string): ObjectKeyDefinition {
     const propertySchema = this.getPropertySchema(key);
     const schema = utils.common.clone(propertySchema);
     const propertyUiSchema = this.getPropertyUiSchema(key, schema);
@@ -73,7 +79,7 @@ export class AujsfObject extends AujsfBase<JsonSchemaObject> {
     };
   }
 
-  public getPropertySchema(property: string): JsonSchema {
+  private getPropertySchema(property: string): JsonSchema {
     if (this.schema.properties) {
       if (property in this.schema.properties) {
         return this.schema.properties[property];
@@ -98,7 +104,7 @@ export class AujsfObject extends AujsfBase<JsonSchemaObject> {
     throw new Error(`unable to determine schema type`);
   }
 
-  public getPropertyUiSchema(property: string, schema: JsonSchema): UISchema {
+  private getPropertyUiSchema(property: string, schema: JsonSchema): UISchema {
     return property in this.uiSchema
       ? utils.common.clone(this.uiSchema[property])
       : schema['x-ui-schema'] ?? {};
