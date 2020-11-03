@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/jbockle/au-jsonschema-form/compare/v0.3.1...v0.3.2) (2020-11-03)
+
+
+### Bug Fixes
+
+* conditional should debounce if validation ([ece9727](https://github.com/jbockle/au-jsonschema-form/commit/ece97277ad5a68a62144bbe27d78cdaa694ffcfc))
+* only get value keys if schema supports it ([20ae2cf](https://github.com/jbockle/au-jsonschema-form/commit/20ae2cf8200b6b830a67ba2cb892c54347087159))
+
+
+
+
+
 ## [0.3.1](https://github.com/jbockle/au-jsonschema-form/compare/v0.3.0...v0.3.1) (2020-11-02)
 
 
