@@ -55,14 +55,12 @@ export class JsonSchemaForm {
   /**
    * action to call when submit is triggered
    * @param args the arguments to pass to the submit call
-   * @bindable callback
+   * @bindable callback(...SubmitArguments)
    */
   @bindable
   public submit: (args: SubmitArguments) => void = (args: SubmitArguments) => {
     alert('submit triggered:\n' + JSON.stringify(args, null, 2));
   }
-
-  public error?: any;
 
   public tryValidate(): void {
     this._taskQueue.queueMicroTask(() => {
@@ -78,24 +76,26 @@ export class JsonSchemaForm {
   }
 
   protected schemaChanged(newSchema?: JsonSchema, oldSchema?: JsonSchema): void {
+    this._logger.debug('schema changed', { newSchema, oldSchema });
+
     if (newSchema && newSchema !== oldSchema) {
-      this._logger.debug('schema changed', { newSchema, oldSchema });
-      newSchema = utils.common.clone(newSchema);
-      this.context.schema = newSchema;
-      utils.jsonSchema.fillDefaults(this.value, newSchema);
+      this.context.schema = utils.common.clone(newSchema);
+      utils.jsonSchema.fillDefaults(this.value, this.context.schema);
       this.tryValidate();
     }
   }
 
   protected uiSchemaChanged(newValue?: UISchema, oldValue?: UISchema): void {
     this._logger.debug('ui-schema changed', { newValue, oldValue });
+
     this.context.uiSchema = utils.common.clone(newValue ?? {});
   }
 
   protected valueChanged(newValue: any, oldValue?: any): void {
     this._logger.debug('value changed', { newValue, oldValue });
-    if (this.schema) {
-      utils.jsonSchema.fillDefaults(newValue, this.schema);
+
+    if (this.context.schema) {
+      utils.jsonSchema.fillDefaults(newValue, this.context.schema);
       this.tryValidate();
     }
 
