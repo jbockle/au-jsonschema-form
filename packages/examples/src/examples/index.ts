@@ -8,6 +8,7 @@ import { InlineUISchemaExample } from './05-inline-ui-schema';
 import { ConditionalExample } from './07-conditional-example';
 import { OrderExample } from './06-order';
 import { AdditionalPropertiesExample } from './08-additional-properties';
+import { OneOfExample } from './09-one-of';
 
 export const examples: ExampleCtor[] = [
   SimpleExample,
@@ -18,4 +19,5 @@ export const examples: ExampleCtor[] = [
   OrderExample,
   ConditionalExample,
   AdditionalPropertiesExample,
+  OneOfExample,
 ];
