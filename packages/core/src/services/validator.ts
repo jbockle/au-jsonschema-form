@@ -7,10 +7,20 @@ import v6 from 'ajv/lib/refs/json-schema-draft-06.json';
 
 import { JsonSchema, ErrorSchema, ValidationResult } from '../models';
 
+export type ValidatorFactory = (configurators: IAjvConfigurator[]) => Validator;
+
+export interface IAjvConfigurator {
+  configure(ajv: Ajv.Ajv): void;
+}
+
 export class Validator {
   private _logger = getLogger('aujsf:validator');
   private _ajv?: Ajv.Ajv;
   private _validator?: Ajv.ValidateFunction;
+
+  public constructor(
+    private _configurators: IAjvConfigurator[] = [],
+  ) { }
 
   /**
    * @internal
@@ -37,12 +47,10 @@ export class Validator {
     ajv.addMetaSchema(v4);
     ajv.addMetaSchema(v6);
 
+    this._configurators.forEach(c => c.configure(ajv));
+
     return ajv;
   }
-
-  // public validateKey(): void {
-  //   this.ajv.validate()
-  // }
 
   public validate(data: any): ValidationResult {
     if (this._validator) {

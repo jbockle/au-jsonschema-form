@@ -3,7 +3,7 @@ import { getLogger } from 'aurelia-logging';
 
 import { AujsfBase } from '../aujsf-base';
 import { JsonSchemaOneOf, JsonSchema, UISchema } from '../../models';
-import { Validator } from '../../utils/validator';
+import { Validator } from '../../services/validator';
 import utils from '../../utils';
 
 interface OneOfOption {
@@ -19,9 +19,20 @@ import { OneOfViewProvider } from '../../services/providers/one-of-view-provider
 @inject(Element, Container, FormTemplateRegistry, FormContext, OneOfViewProvider)
 @customElement('aujsf-one-of')
 export class AujsfOneOf extends AujsfBase<JsonSchemaOneOf, any> {
-  private _validator = new Validator();
+  private _validator: Validator;
 
   protected _logger = getLogger('aujsf:sf-one-of');
+
+  public constructor(
+    element: Element,
+    container: Container,
+    templateRegistry: FormTemplateRegistry,
+    context: FormContext,
+    viewProvider: OneOfViewProvider,
+  ) {
+    super(element, container, templateRegistry, context, viewProvider);
+    this._validator = context.validatorFactory(context.pluginOptions.ajvConfigurators);
+  }
 
   @observable
   public selectedOption: OneOfOption | null = null;

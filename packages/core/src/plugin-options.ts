@@ -1,3 +1,4 @@
+import { IAjvConfigurator } from './services/validator';
 import { FormTheme } from './models';
 
 const REQUIRED_VIEWS = Object.keys(<FormTheme>{
@@ -27,6 +28,8 @@ export interface IPluginOptions {
    */
   theme: FormTheme;
 
+  ajvConfigurators: IAjvConfigurator[];
+
   // TODO inverse so default is to hide
   /**
    * indicates whether the UI should not show form rendering errors
@@ -41,6 +44,7 @@ export interface IPluginOptions {
 
 export class PluginOptions implements IPluginOptions {
   public theme!: FormTheme;
+  public ajvConfigurators: IAjvConfigurator[] = [];
   public hideErrors?: boolean;
 
   public assertValid(): void {

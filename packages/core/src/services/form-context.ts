@@ -1,23 +1,26 @@
-import { inject, NewInstance, computedFrom } from 'aurelia-framework';
+import { inject, NewInstance, computedFrom, Factory } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 
 import { JsonSchema, UISchema } from '../models';
-import { Validator } from '../utils/validator';
+import { Validator, ValidatorFactory } from './validator';
 import { PluginOptions } from '../plugin-options';
 import { Enhancer } from './enhancer';
 
-@inject(NewInstance.of(Validator), PluginOptions, NewInstance.of(Enhancer))
+@inject(Factory.of(Validator), PluginOptions, NewInstance.of(Enhancer))
 export class FormContext {
   private _logger = getLogger('aujsf:form-context');
   private _schema?: JsonSchema;
 
   public constructor(
-    public validator: Validator,
+    public validatorFactory: ValidatorFactory,
     public pluginOptions: PluginOptions,
     public enhancer: Enhancer,
   ) {
+    this.validator = validatorFactory(pluginOptions.ajvConfigurators);
     enhancer.hideErrors = !!pluginOptions.hideErrors;
   }
+
+  public validator: Validator;
 
   public uiSchema!: UISchema;
 
