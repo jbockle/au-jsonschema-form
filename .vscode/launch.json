@@ -11,6 +11,7 @@
       "sourceMapPathOverrides": {
         "webpack:///./src/*": "${webRoot}/*",
         "webpack:///../core/src/*": "${workspaceRoot}/packages/core/src/*",
+        "webpack:///../bootstrap-theme/src/*": "${workspaceRoot}/packages/bootstrap-theme/src/*",
         "webpack:///../examples/src/*": "${workspaceRoot}/packages/examples/src/*"
       }
     }
