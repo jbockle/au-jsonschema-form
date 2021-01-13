@@ -4,7 +4,7 @@ import { inject, Container, customElement } from 'aurelia-framework';
 import { AujsfBase } from '../aujsf-base';
 import { JsonSchemaConditional, JsonSchema } from '../../models';
 import { ConditionalAdapter } from '../../models/conditional-adapter';
-import { FormTemplateRegistry, FormContext } from '../../services';
+import { FormTemplateRegistry, FormContext, Enhancer } from '../../services';
 import { ConditionalViewProvider } from '../../services/providers/conditional-view-provider';
 
 @inject(Element, Container, FormTemplateRegistry, FormContext, ConditionalViewProvider)
@@ -42,7 +42,7 @@ export class AujsfConditional extends AujsfBase<JsonSchema & JsonSchemaCondition
     // TODO should try/catch exception
     const template = this._templateRegistry.get(this.viewProvider.getTemplate(this));
 
-    this.view = this.context.enhancer.enhanceTemplate({
+    this.view = this._container.get(Enhancer).enhanceTemplate({
       element: this._element,
       bindingContext: this,
       container: this._container,

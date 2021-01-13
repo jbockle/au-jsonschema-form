@@ -1,5 +1,7 @@
 <template value-changed.trigger="tryValidate() & debounce:100">
-  <form novalidate
+  <require from="@aujsf/bootstrap-theme/styles.css" as="scoped"></require>
+  <form if.bind="status === 'ready'"
+        novalidate
         submit.trigger="onsubmit()"
         autocomplete.bind="uiSchema['ui:autocomplete'] || 'off'">
 
@@ -9,9 +11,14 @@
                 errors.bind="validationResult.errorSchema"
                 root.bind="true"></aujsf-slot>
 
-    <slot>
-      <button type=" submit">Submit</button>
-    </slot>
-
+    <button type="submit" class="btn btn-primary">
+      Submit
+    </button>
   </form>
+  <div class="m-1 text-dark text-center" else>
+    <div class="spinner-border spinner-border-sm" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <em>Loading...</em>
+  </div>
 </template>

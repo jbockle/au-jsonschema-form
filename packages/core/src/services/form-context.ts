@@ -1,42 +1,37 @@
-import { inject, NewInstance, computedFrom, Factory } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
+import { Validator } from '../utils/validator';
 
-import { JsonSchema, UISchema } from '../models';
-import { Validator, ValidatorFactory } from './validator';
-import { PluginOptions } from '../plugin-options';
-import { Enhancer } from './enhancer';
+import { FormOptions, JsonSchema, UISchema } from '../models';
 
-@inject(Factory.of(Validator), PluginOptions, NewInstance.of(Enhancer))
 export class FormContext {
   private _logger = getLogger('aujsf:form-context');
-  private _schema?: JsonSchema;
+  private _schema: JsonSchema = <any>{};
+  private _formOptions: FormOptions = {};
 
-  public constructor(
-    public validatorFactory: ValidatorFactory,
-    public pluginOptions: PluginOptions,
-    public enhancer: Enhancer,
-  ) {
-    this.validator = validatorFactory(pluginOptions.ajvConfigurators);
-    enhancer.hideErrors = !!pluginOptions.hideErrors;
-  }
+  public validator?: Validator;
 
-  public validator: Validator;
+  public uiSchema: UISchema = {};
 
-  public uiSchema!: UISchema;
+  public value: any;
 
-  public value!: any;
-
-  @computedFrom('_schema')
-  public get schema(): JsonSchema | undefined {
+  public get schema(): JsonSchema {
     return this._schema;
   }
 
-  public set schema(schema: JsonSchema | undefined) {
+  public set schema(schema: JsonSchema) {
     this._logger.debug('setting schema', { new: schema, previous: this._schema });
     this._schema = schema;
 
-    if (schema) {
-      this.validator.setSchema(schema);
-    }
+    this.validator = new Validator(this.schema, this.formOptions.validatorOptions);
+  }
+
+  public get formOptions(): FormOptions {
+    return this._formOptions;
+  }
+
+  public set formOptions(value: FormOptions) {
+    this._formOptions = value;
+
+    this.validator = new Validator(this.schema, this.formOptions.validatorOptions);
   }
 }

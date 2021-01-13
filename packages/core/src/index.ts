@@ -1,7 +1,5 @@
 import { FrameworkConfiguration } from 'aurelia-framework';
 
-import { JsonSchemaForm } from './elements/json-schema-form';
-
 import { AujsfObject } from './elements/fieldsets/aujsf-object';
 import { AujsfSlot } from './elements/aujsf-slot';
 import { AujsfArray } from './elements/fieldsets/aujsf-array';
@@ -18,24 +16,8 @@ import { AujsfSortDefinitions } from './converters/aujsf-sort-definitions';
 import { AujsfValue } from './converters/aujsf-value';
 import { AujsfItemTitle } from './converters/aujsf-item-title';
 
-import { IPluginOptions, PluginOptions } from './plugin-options';
-import { FormTemplateRegistry } from './services';
-
-export async function configure(framework: FrameworkConfiguration, configure?: (options: IPluginOptions) => void): Promise<void> {
-  const options = framework.container.get(PluginOptions);
-
-  configure instanceof Function && configure(options);
-
-  options.assertValid();
-
-  const registry = framework.container.get(FormTemplateRegistry);
-
-  for (const template in options.theme) {
-    await registry.add(template, options.theme[template]);
-  }
-
+export function configure(framework: FrameworkConfiguration): void {
   framework.globalResources([
-    JsonSchemaForm,
     // fieldset
     AujsfSlot,
     AujsfObject,
@@ -58,4 +40,4 @@ export async function configure(framework: FrameworkConfiguration, configure?: (
 
 export * from './models';
 export * from './services';
-export * from './plugin-options';
+export * from './elements/json-schema-form';

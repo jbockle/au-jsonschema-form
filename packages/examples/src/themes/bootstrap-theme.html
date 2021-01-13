@@ -1,13 +1,21 @@
-<template>
-  <require from="./bootstrap-theme.scss" as="scoped"></require>
+<template class="p-1">
+  <div class="border border-light rounded px-2 py-1 mb-1">
 
-  <bootstrap-theme-base>
-    <json-schema-form schema.bind="example.schema"
-                      ui-schema.bind="example.uiSchema"
-                      value.bind="example.value"
-                      errors.bind="example.errors"
-                      value-changed.trigger="onValueUpdated()">
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </json-schema-form>
-  </bootstrap-theme-base>
+    <h5 class="font-italic text-underline">Form Options</h5>
+
+    <div class="form-check form-check-inline" repeat.for="size of options.sizes">
+      <input class="form-check-input" type="radio"
+             name="sizeOption" id.bind="'size'+size.name"
+             model.bind="size"
+             checked.bind="selectedSize">
+      <label class="form-check-label" for.bind="'size'+size.name" style="user-select: none;">${size.name}</label>
+    </div>
+  </div>
+
+  <bs4-json-schema-form class="${selectedSize.class}"
+                        schema.bind="example.schema"
+                        ui-schema.bind="example.uiSchema"
+                        value.bind="example.value"
+                        errors.bind="example.errors"
+                        value-changed.trigger="onValueUpdated()"></bs4-json-schema-form>
 </template>

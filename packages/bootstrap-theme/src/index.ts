@@ -1,4 +1,4 @@
-import { PLATFORM } from 'aurelia-framework';
+import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
 
 import { FormTheme } from '@aujsf/core';
 
@@ -24,4 +24,10 @@ const theme: FormTheme = {
   'conditional': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-conditional.html'),
 };
 
-export const THEME = Object.freeze(theme);
+export const BS4_THEME = Object.freeze(theme);
+
+export function configure(framework: FrameworkConfiguration): void {
+  framework.globalResources([
+    PLATFORM.moduleName('@aujsf/bootstrap-theme/bs4-json-schema-form'),
+  ]);
+}

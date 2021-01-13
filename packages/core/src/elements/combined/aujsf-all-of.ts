@@ -4,7 +4,7 @@ import { customElement, inject, Container } from 'aurelia-framework';
 import { AujsfBase } from '../aujsf-base';
 import { JsonSchemaAllOf, JsonSchema } from '../../models/json-schema';
 import utils from '../../utils';
-import { FormContext, FormTemplateRegistry } from '../../services';
+import { FormContext, FormTemplateRegistry, Enhancer } from '../../services';
 import { AllOfViewProvider } from '../../services/providers/all-of-view-provider';
 
 @inject(Element, Container, FormTemplateRegistry, FormContext, AllOfViewProvider)
@@ -27,7 +27,7 @@ export class AujsfAllOf extends AujsfBase<JsonSchemaAllOf, any> {
   protected enhance(): void {
     const template = this._templateRegistry.get(this.viewProvider.getTemplate(this));
 
-    this.view = this.context.enhancer.enhanceTemplate({
+    this.view = this._container.get(Enhancer).enhanceTemplate({
       element: this._element,
       bindingContext: this,
       container: this._container,

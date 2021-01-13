@@ -1,11 +1,11 @@
-import { observable, bindable, bindingMode, noView, inject, Container, customElement } from 'aurelia-framework';
+import { observable, bindable, bindingMode, inject, customElement, inlineView, View } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 import { JsonPointer } from 'jsonpointerx';
 
 import { JsonSchema, UISchema, ErrorSchema, JsonSchemaType } from '../models';
 import { JsonSchemaUtils } from '../utils/json-schema-utils';
-import { FormContext } from '../services/form-context';
 import { ViewBase } from './view-base';
+import { FormContext, Enhancer } from '../services';
 
 type SlotType = JsonSchemaType | 'all-of' | 'any-of' | 'one-of' | 'hidden' | 'unknown' | 'conditional';
 
@@ -23,16 +23,16 @@ export const ATTRIBUTES: [string, string][] = [
   ['class.bind', 'class'],
 ];
 
-@noView()
-@inject(Element, Container, FormContext)
+@inlineView(`<template></template>`)
+@inject(Element, Enhancer, FormContext)
 @customElement('aujsf-slot')
 export class AujsfSlot extends ViewBase {
   protected _logger = getLogger('aujsf:sf-slot');
 
   protected constructor(
     protected _element: Element,
-    protected _container: Container,
-    public context: FormContext,
+    protected _enhancer: Enhancer,
+    protected _context: FormContext,
   ) {
     super();
   }
@@ -69,6 +69,14 @@ export class AujsfSlot extends ViewBase {
 
   public error?: any;
 
+  protected owningView?: View;
+  protected myView?: View;
+
+  public created(owningView: View, myView: View): void {
+    this.owningView = owningView;
+    this.myView = myView;
+  }
+
   public schemaChanged(): void {
     try {
       delete this.error;
@@ -79,19 +87,19 @@ export class AujsfSlot extends ViewBase {
         : this.resolveSlotType(this.schema);
       this.pointer = this.pointer ?? new JsonPointer([]);
 
-      this.view = this.context.enhancer.enhanceSlot({
+      this.view = this._enhancer.enhanceSlot({
         tagName: `aujsf-${this.type}`,
         attributes: ATTRIBUTES,
         appendTo: this._element,
         bindingContext: this,
-        container: this._container,
+        container: this.myView!.container,
       });
 
       this._logger.debug('bound', this.pointer.toString());
     } catch (error) {
       this.error = error;
       this._logger.error('an error occurred while building the sf-slot', { error, viewModel: this });
-      this.view = this.context.enhancer.error({
+      this.view = this._enhancer.error({
         message: 'an error occurred loading the form element',
         element: this._element,
       });
@@ -139,7 +147,7 @@ export class AujsfSlot extends ViewBase {
     } else if ('oneOf' in schema) {
       return 'one-of';
     } else if ('$ref' in schema) {
-      const refSchema = this.context.validator.getReferenceSchema(schema.$ref);
+      const refSchema = this._context.validator!.getReferenceSchema(schema.$ref);
       if (refSchema) {
         this.schema = refSchema;
 

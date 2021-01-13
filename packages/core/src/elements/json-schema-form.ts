@@ -1,28 +1,52 @@
-import {
-  inject, customElement, useView,
-  NewInstance, TaskQueue, PLATFORM,
-  bindable, bindingMode,
-  signalBindings,
-} from 'aurelia-framework';
+import { TaskQueue, bindable, bindingMode, signalBindings, View, NewInstance } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 
-import { JsonSchema } from '../models/json-schema';
-import { UISchema } from '../models/ui-schema';
 import { FormTemplateRegistry, FormContext } from '../services';
-import { ValidationResult, SubmitArguments } from '../models';
+import { ValidationResult, SubmitArguments, FormTheme, UISchema, JsonSchema, FormOptions } from '../models';
 import utils from '../utils';
 
-@inject(TaskQueue, FormTemplateRegistry, NewInstance.of(FormContext))
-@useView(PLATFORM.moduleName('@aujsf/core/elements/json-schema-form.html'))
-@customElement('json-schema-form')
-export class JsonSchemaForm {
-  protected _logger = getLogger('aujsf:json-schema-form');
+/**
+ * The form custom element base class
+ * @description implement your own form by inheriting from this
+ */
+export abstract class JsonSchemaForm {
+  protected logger = getLogger('aujsf:json-schema-form');
+  protected taskQueue?: TaskQueue;
 
-  public constructor(
-    private _taskQueue: TaskQueue,
-    public registry: FormTemplateRegistry,
-    public context: FormContext,
-  ) { }
+  protected constructor(protected element: Element) {
+    let debounceHandle: any = -1;
+    element.addEventListener('value-changed', () => {
+      clearTimeout(debounceHandle);
+      debounceHandle = setTimeout(this.tryValidate.bind(this), 100);
+    });
+  }
+
+  /**
+   * override to specify theme controls
+   */
+  protected abstract getTheme(): FormTheme;
+
+  public registry!: FormTemplateRegistry;
+  public context!: FormContext;
+
+  public status: 'initializing' | 'ready' = 'initializing';
+
+  protected owningView?: View;
+  protected myView?: View;
+
+  protected async created(owningView: View, myView: View): Promise<void> {
+    this.owningView = owningView;
+    this.myView = myView;
+
+    this.taskQueue = myView.container.get(TaskQueue);
+    this.registry = myView.container.get(NewInstance.of(FormTemplateRegistry));
+    this.context = myView.container.get(NewInstance.of(FormContext));
+
+    const theme = this.getTheme();
+    await Promise.all(Object.keys(theme).map(key => this.registry.add(key, theme[key])));
+
+    this.status = 'ready';
+  }
 
   /**
    * the json schema to build the form from and validate the model against
@@ -45,6 +69,9 @@ export class JsonSchemaForm {
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   public value?: any;
 
+  @bindable({ defaultBindingMode: bindingMode.toView })
+  public options?: FormOptions;
+
   /**
    * the validation result from AJV
    * @bindable output
@@ -63,10 +90,8 @@ export class JsonSchemaForm {
   }
 
   public tryValidate(): void {
-    this._taskQueue.queueMicroTask(() => {
-      if (this.context.schema) {
-        this.validationResult = this.context.validator.validate(this.value);
-      }
+    this.taskQueue?.queueMicroTask(async () => {
+      this.validationResult = await this.context.validator?.validate(this.value);
       signalBindings('aujsf:ValueChanged');
     });
   }
@@ -76,7 +101,7 @@ export class JsonSchemaForm {
   }
 
   protected schemaChanged(newSchema?: JsonSchema, oldSchema?: JsonSchema): void {
-    this._logger.debug('schema changed', { newSchema, oldSchema });
+    this.logger.debug('schema changed', { newSchema, oldSchema });
 
     if (newSchema && newSchema !== oldSchema) {
       this.context.schema = utils.common.clone(newSchema);
@@ -86,13 +111,13 @@ export class JsonSchemaForm {
   }
 
   protected uiSchemaChanged(newValue?: UISchema, oldValue?: UISchema): void {
-    this._logger.debug('ui-schema changed', { newValue, oldValue });
+    this.logger.debug('ui-schema changed', { newValue, oldValue });
 
     this.context.uiSchema = utils.common.clone(newValue ?? {});
   }
 
   protected valueChanged(newValue: any, oldValue?: any): void {
-    this._logger.debug('value changed', { newValue, oldValue });
+    this.logger.debug('value changed', { newValue, oldValue });
 
     if (this.context.schema) {
       utils.jsonSchema.fillDefaults(newValue, this.context.schema);
@@ -100,5 +125,16 @@ export class JsonSchemaForm {
     }
 
     this.context.value = newValue;
+  }
+
+  protected optionsChanged(newValue?: FormOptions, oldValue?: FormOptions): void {
+    this.logger.debug('options changed', { newValue, oldValue });
+
+    if (newValue) {
+      this.context.formOptions = newValue;
+    }
+    else {
+      this.context.formOptions = {};
+    }
   }
 }

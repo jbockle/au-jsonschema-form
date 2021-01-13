@@ -7,34 +7,45 @@ import v6 from 'ajv/lib/refs/json-schema-draft-06.json';
 
 import { JsonSchema, ErrorSchema, ValidationResult } from '../models';
 
-export type ValidatorFactory = (configurators: IAjvConfigurator[]) => Validator;
+export type AjvConfigurator = (ajv: Ajv.Ajv) => void;
 
-export interface IAjvConfigurator {
-  configure(ajv: Ajv.Ajv): void;
+export interface ValidatorOptions {
+  configurators?: AjvConfigurator[]
 }
 
 export class Validator {
   private _logger = getLogger('aujsf:validator');
-  private _ajv?: Ajv.Ajv;
-  private _validator?: Ajv.ValidateFunction;
+  private _ajv: Ajv.Ajv;
+  private _validator: Ajv.ValidateFunction;
 
   public constructor(
-    private _configurators: IAjvConfigurator[] = [],
-  ) { }
-
-  /**
-   * @internal
-   */
-  public setSchema(schema: JsonSchema): void {
-    this._logger.debug('received schema', schema);
+    public schema: JsonSchema,
+    public options?: ValidatorOptions,
+  ) {
     this._ajv = this.createAjv();
+    options?.configurators?.forEach(c => c(this._ajv));
     this._validator = this._ajv.compile(schema);
   }
 
-  /**
-   * @internal
-   */
-  public createAjv(): Ajv.Ajv {
+  public async validate(data: any): Promise<ValidationResult> {
+    const validationResult = this._validator(data);
+
+    if (validationResult instanceof Promise) {
+      await validationResult;
+    }
+
+    const result: ValidationResult = {
+      valid: !this._validator.errors,
+      errors: this._validator.errors ?? [],
+      errorSchema: this.createErrorSchema(this._validator.errors ?? []),
+    };
+
+    this._logger.info('validation completed', { ...result });
+
+    return result;
+  }
+
+  private createAjv(): Ajv.Ajv {
     const ajv = new Ajv({
       allErrors: true,
       multipleOfPrecision: 8,
@@ -47,36 +58,10 @@ export class Validator {
     ajv.addMetaSchema(v4);
     ajv.addMetaSchema(v6);
 
-    this._configurators.forEach(c => c.configure(ajv));
-
     return ajv;
   }
 
-  public validate(data: any): ValidationResult {
-    if (this._validator) {
-      this._validator(data);
-
-      const result: ValidationResult = {
-        valid: !this._validator.errors,
-        errors: this._validator.errors ?? [],
-        errorSchema: this.createErrorSchema(this._validator.errors ?? []),
-      };
-
-      this._logger.info('validation completed', { ...result });
-
-      return result;
-    } else {
-      throw new Error(`a schema has not been set`);
-    }
-  }
-
-  public isValid(schema: JsonSchema, data: any): boolean {
-    const valid = this._ajv?.validate(schema, data) as boolean | undefined;
-
-    return valid ?? false;
-  }
-
-  public createErrorSchema(errors: Ajv.ErrorObject[]): ErrorSchema {
+  private createErrorSchema(errors: Ajv.ErrorObject[]): ErrorSchema {
     const errorSchema: ErrorSchema = {
       _errors_: [],
     };
@@ -90,6 +75,7 @@ export class Validator {
       }
 
       let childErrorSchema: ErrorSchema = pointer.get(errorSchema);
+
       if (!pointer.get(errorSchema)) {
         childErrorSchema = {
           _errors_: [],

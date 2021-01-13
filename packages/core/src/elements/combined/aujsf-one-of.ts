@@ -3,24 +3,23 @@ import { getLogger } from 'aurelia-logging';
 
 import { AujsfBase } from '../aujsf-base';
 import { JsonSchemaOneOf, JsonSchema, UISchema } from '../../models';
-import { Validator } from '../../services/validator';
+import { Validator } from '../../utils/validator';
 import utils from '../../utils';
+
+import { FormContext, FormTemplateRegistry, Enhancer } from '../../services';
+import { OneOfViewProvider } from '../../services/providers/one-of-view-provider';
 
 interface OneOfOption {
   index: number;
   title: string;
   schema: JsonSchema;
   uiSchema: UISchema;
+  validator: Validator;
 }
-
-import { FormContext, FormTemplateRegistry } from '../../services';
-import { OneOfViewProvider } from '../../services/providers/one-of-view-provider';
 
 @inject(Element, Container, FormTemplateRegistry, FormContext, OneOfViewProvider)
 @customElement('aujsf-one-of')
 export class AujsfOneOf extends AujsfBase<JsonSchemaOneOf, any> {
-  private _validator: Validator;
-
   protected _logger = getLogger('aujsf:sf-one-of');
 
   public constructor(
@@ -31,42 +30,48 @@ export class AujsfOneOf extends AujsfBase<JsonSchemaOneOf, any> {
     viewProvider: OneOfViewProvider,
   ) {
     super(element, container, templateRegistry, context, viewProvider);
-    this._validator = context.validatorFactory(context.pluginOptions.ajvConfigurators);
   }
 
   @observable
   public selectedOption: OneOfOption | null = null;
 
-  public options?: OneOfOption[];
+  public options: OneOfOption[] = [];
 
-  public selectedOptionChanged(newValue: OneOfOption | null): void {
+  public async selectedOptionChanged(newValue: OneOfOption | null): Promise<void> {
     if (newValue === null) {
       return;
     }
 
-    this._validator.setSchema(newValue.schema);
-    if (!this._validator.validate(this.value).valid) {
+    const result = await newValue.validator.validate(this.value);
+
+    if (!result.valid) {
       this.value = undefined;
     }
   }
 
   public bound(): void {
-    this.options = this.schema.oneOf.map((schema, index) => ({
-      index,
-      title: this.getOptionTitle(schema, index),
-      schema: utils.jsonSchema.resolveSchema(schema, this.context.schema!),
-      uiSchema: { ...this.uiSchema },
-    }));
+    this.options = this.schema.oneOf.map((schema, index) => {
+      const resolvedSchema = utils.jsonSchema.resolveSchema(schema, this.context.schema!);
+
+      return {
+        index,
+        title: this.getOptionTitle(schema, index),
+        schema: resolvedSchema,
+        uiSchema: { ...this.uiSchema },
+        validator: new Validator(resolvedSchema, this.context.formOptions.validatorOptions),
+      };
+    });
 
     if (this.value) {
-      this.options.some(option => {
-        this._validator.setSchema(option.schema);
-        if (this._validator.validate(this.value).valid) {
+      // if there is already a value present on bind, determine which, if any, oneOf schema is currently selected
+      this.options.some(async option => {
+        const result = await option.validator.validate(this.value);
+
+        if (result.valid) {
           this.selectedOption = option;
-          return true;
         }
 
-        return false;
+        return result.valid;
       });
     }
   }
@@ -78,7 +83,7 @@ export class AujsfOneOf extends AujsfBase<JsonSchemaOneOf, any> {
   protected enhance(): void {
     const template = this._templateRegistry.get(this.viewProvider.getTemplate(this));
 
-    this.view = this.context.enhancer.enhanceTemplate({
+    this.view = this._container.get(Enhancer).enhanceTemplate({
       element: this._element,
       bindingContext: this,
       container: this._container,

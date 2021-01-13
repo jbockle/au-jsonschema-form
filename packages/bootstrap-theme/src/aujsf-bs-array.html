@@ -26,9 +26,9 @@
       <fieldset class="d-flex flex-column w-100">
 
         <div class="mt-1 d-flex">
-          <h5 if.bind="uiSchema['ui:item-title']">
+          <legend if.bind="uiSchema['ui:item-title']">
             ${uiSchema | aujsf_itemTitle:definition:{value:value[$index]}}
-          </h5>
+          </legend>
           <div class="ml-auto btn-group btn-group-sm text-monospace font-weight-bolder">
             <button type="button" class="btn btn-outline-info" click.delegate="moveUp($index)" title="Move item up"
                     if.bind="!uiSchema['ui:no-reorder'] && !definition.uiSchema['ui:no-reorder'] && !$first">

@@ -20,6 +20,26 @@ export class SimpleExample extends Example {
         type: 'string',
         format: 'date',
       },
+      age: {
+        type: 'integer',
+        minimum: 0,
+      },
+      gender: {
+        type: 'string',
+        enum: ['male', 'female'],
+      },
+      title: {
+        type: 'string',
+        enum: [
+          'Mr',
+          'Mrs',
+          'Ms',
+          'Miss',
+          'Sir',
+          'Dr',
+          'Professor',
+        ],
+      },
       shortBio: {
         type: 'string',
         maxLength: 100,
@@ -27,6 +47,9 @@ export class SimpleExample extends Example {
       email: {
         type: 'string',
         format: 'email',
+      },
+      agree: {
+        type: 'boolean',
       },
     },
     required: ['givenName', 'surName', 'email'],

@@ -6,7 +6,7 @@ export class OneOfExample extends Example {
 
   public static displayName = 'One Of';
 
-  public value: any = [];
+  public value: any = ['Bananas'];
 
   public schema: JsonSchema = {
     type: 'array',

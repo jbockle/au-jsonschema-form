@@ -1,14 +1,14 @@
 import { Logger } from 'aurelia-logging';
-import { bindingMode, computedFrom, bindable, BindingEngine, noView, Container } from 'aurelia-framework';
+import { bindingMode, computedFrom, bindable, BindingEngine, Container, View, inlineView } from 'aurelia-framework';
 import { JsonPointer } from 'jsonpointerx';
 
-import { FormTemplateRegistry, FormContext, ViewProvider } from '../services';
+import { FormTemplateRegistry, FormContext, ViewProvider, Enhancer } from '../services';
 import { JsonSchema, UISchema, ValueChangedEventDict, ErrorSchema } from '../models';
 import utils from '../utils';
 import { BindingSignaler } from 'aurelia-templating-resources';
 import { ViewBase } from './view-base';
 
-@noView
+@inlineView(`<template></template>`)
 export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any>
   extends ViewBase {
   protected abstract _logger: Logger;
@@ -47,6 +47,14 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any>
 
   @bindable
   public errors: ErrorSchema = {};
+
+  protected owningView?: View;
+  protected myView?: View;
+
+  public created(owningView: View, myView: View): void {
+    this.owningView = owningView;
+    this.myView = myView;
+  }
 
   @computedFrom('parentReadonly', 'schema')
   public get readonly(): boolean {
@@ -126,7 +134,7 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any>
     const viewName = this.uiSchema['ui:view'] || 'hidden';
 
     if (viewName === 'unknown' || !this._templateRegistry.has(viewName)) {
-      this.view = this.context.enhancer.error({
+      this.view = this._container.get(Enhancer).error({
         message: `the ui:view '${viewName}' was not found`,
         element: this._element,
       });
@@ -136,10 +144,10 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any>
 
     const template = this._templateRegistry.get(viewName);
 
-    this.view = this.context.enhancer.enhanceTemplate({
+    this.view = this._container.get(Enhancer).enhanceTemplate({
       element: this._element,
       bindingContext: this,
-      container: this._container,
+      container: this.myView!.container,
       template,
       attributes: this.uiSchema['ui:view-class']
         ? [['class', this.uiSchema['ui:view-class']]]

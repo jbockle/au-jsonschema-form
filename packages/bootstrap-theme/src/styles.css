@@ -1,30 +1,123 @@
-json-schema-form {
+
+bs4-json-schema-form {
   display: block;
 }
 
-json-schema-form label, json-schema-form legend {
+bs4-json-schema-form label, bs4-json-schema-form legend {
   user-select: none;
 }
 
-json-schema-form label:hover, json-schema-form legend:hover {
+bs4-json-schema-form label:hover, bs4-json-schema-form legend:hover {
   font-weight: bolder;
 }
 
-json-schema-form fieldset {
+bs4-json-schema-form fieldset {
   margin: 4px 0;
 }
 
-json-schema-form fieldset legend .fieldset-description {
+bs4-json-schema-form fieldset legend .fieldset-description {
   margin: 0;
   margin-bottom: 4px;
   font-size: 65%;
 }
 
-json-schema-form fieldset:hover {
+bs4-json-schema-form fieldset:hover {
   border-color: var(--light) !important;
 }
 
-json-schema-form fieldset fieldset {
+bs4-json-schema-form fieldset fieldset {
   border-left: 1px solid var(--secondary);
   padding-left: 4px;
+}
+
+bs4-json-schema-form textarea.form-control {
+  height: auto !important;
+}
+
+/* small controls with .form-small */
+
+bs4-json-schema-form.form-small legend {
+  font-size: 1rem;
+}
+
+bs4-json-schema-form.form-small label:not(.form-check-label) {
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+bs4-json-schema-form.form-small .form-check-label {
+  font-size: 0.75rem;
+}
+
+bs4-json-schema-form.form-small .invalid-feedback {
+  font-size: 70%;
+}
+
+bs4-json-schema-form.form-small .form-group {
+  margin-bottom: .5rem;
+}
+
+bs4-json-schema-form.form-small .form-control {
+  height: calc(1.5em + 0.5rem + 2px);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+
+bs4-json-schema-form.form-small .custom-select {
+  height: calc(1.5em + 0.5rem + 2px);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+bs4-json-schema-form.form-small .btn:not(.btn-sm) {
+  padding: 0.05rem 0.3rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+
+/* extra small controls with .form-extra-small */
+
+bs4-json-schema-form.form-extra-small legend {
+  font-size: 0.875rem;
+}
+
+bs4-json-schema-form.form-extra-small label:not(.form-check-label) {
+  font-size: 0.65rem;
+  margin-bottom: 0.25rem;
+}
+
+bs4-json-schema-form.form-extra-small .form-check-label {
+  font-size: 0.65rem;
+}
+
+bs4-json-schema-form.form-extra-small .invalid-feedback {
+  font-size: 65%;
+}
+
+bs4-json-schema-form.form-extra-small .form-group {
+  margin-bottom: .175rem;
+}
+
+bs4-json-schema-form.form-extra-small .form-control {
+  height: calc(1em + .375rem + 2px);
+  padding: 0.125rem 0.25rem;
+  font-size: 0.65rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+
+bs4-json-schema-form.form-extra-small .custom-select {
+  height: calc(1em + .375rem + 2px);
+  padding: 0.125rem 0.25rem;
+  font-size: 0.65rem;
+}
+
+bs4-json-schema-form.form-extra-small .btn:not(.btn-sm) {
+  padding: 0.05rem 0.3rem;
+  font-size: 0.65rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
 }
