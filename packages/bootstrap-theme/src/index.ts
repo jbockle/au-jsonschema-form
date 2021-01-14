@@ -31,3 +31,5 @@ export function configure(framework: FrameworkConfiguration): void {
     PLATFORM.moduleName('@aujsf/bootstrap-theme/bs4-json-schema-form'),
   ]);
 }
+
+export * from './bootstrap-json-schema-form-base';
