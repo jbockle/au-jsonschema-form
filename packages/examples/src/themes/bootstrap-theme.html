@@ -3,12 +3,22 @@
 
     <h5 class="font-italic text-underline">Form Options</h5>
 
-    <div class="form-check form-check-inline" repeat.for="size of options.sizes">
-      <input class="form-check-input" type="radio"
-             name="sizeOption" id.bind="'size'+size.name"
-             model.bind="size"
-             checked.bind="selectedSize">
-      <label class="form-check-label" for.bind="'size'+size.name" style="user-select: none;">${size.name}</label>
+    <fieldset>
+      <legend style="font-size: 1.2em;margin-bottom: 0.2rem;">Size</legend>
+      <div class="form-check form-check-inline" repeat.for="size of options.sizes">
+        <input class="form-check-input" type="radio"
+               name="sizeOption" id.bind="'size'+size.name"
+               model.bind="size"
+               checked.bind="selectedSize">
+        <label class="form-check-label" for.bind="'size'+size.name" style="user-select: none;">${size.name}</label>
+      </div>
+    </fieldset>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox"
+             name="sizeOption" id="readonly"
+             checked.bind="readonly">
+      <label class="form-check-label" for="readonly" style="user-select: none;">Read Only</label>
     </div>
   </div>
 
@@ -17,5 +27,6 @@
                         ui-schema.bind="example.uiSchema"
                         value.bind="example.value"
                         errors.bind="example.errors"
+                        readonly.bind="readonly"
                         value-changed.trigger="onValueUpdated()"></bs4-json-schema-form>
 </template>

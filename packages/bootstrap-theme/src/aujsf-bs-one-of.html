@@ -5,7 +5,8 @@
     <aujsf-bs-label id.bind="id + '_oneof'" title.bind="title" required.bind="required">
     </aujsf-bs-label>
 
-    <select id.bind="id + '_oneof'" class="custom-select" value.bind="selectedOption" matcher.bind="optionMatcher">
+    <select id.bind="id + '_oneof'" class="custom-select" value.bind="selectedOption" matcher.bind="optionMatcher"
+            disabled.bind="readonly">
       <option model.bind="null">Choose...</option>
       <option repeat.for="option of options" model.bind="option">
         ${option.title}

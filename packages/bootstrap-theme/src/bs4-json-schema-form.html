@@ -9,11 +9,14 @@
                 ui-schema.bind="context.uiSchema"
                 value.bind="value"
                 errors.bind="validationResult.errorSchema"
+                parent-readonly.bind="readonly"
                 root.bind="true"></aujsf-slot>
 
-    <button type="submit" class="btn btn-primary">
-      Submit
-    </button>
+    <slot>
+      <button type="submit" class="btn btn-primary" show.bind="!readonly">
+        Submit
+      </button>
+    </slot>
   </form>
   <div class="m-1 text-dark text-center" else>
     <div class="spinner-border spinner-border-sm" role="status">

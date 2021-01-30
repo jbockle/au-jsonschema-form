@@ -31,17 +31,17 @@
           </legend>
           <div class="ml-auto btn-group btn-group-sm text-monospace font-weight-bolder">
             <button type="button" class="btn btn-outline-info" click.delegate="moveUp($index)" title="Move item up"
-                    if.bind="!uiSchema['ui:no-reorder'] && !definition.uiSchema['ui:no-reorder'] && !$first">
+                    if.bind="!readonly && !uiSchema['ui:no-reorder'] && !definition.uiSchema['ui:no-reorder'] && !$first">
               &uarr;
             </button>
 
             <button type="button" class="btn btn-outline-info" click.delegate="moveDown($index)" title="Move item down"
-                    if.bind="!uiSchema['ui:no-reorder'] && !definition.uiSchema['ui:no-reorder'] && !$last">
+                    if.bind="!readonly && !uiSchema['ui:no-reorder'] && !definition.uiSchema['ui:no-reorder'] && !$last">
               &darr;
             </button>
 
             <button type="button" class="btn btn-outline-danger" click.delegate="delete($index)" title="Delete item"
-                    if.bind="!uiSchema['ui:no-remove'] && !definition.uiSchema['ui:no-remove']">
+                    if.bind="!readonly && !uiSchema['ui:no-remove'] && !definition.uiSchema['ui:no-remove']">
               &times;
             </button>
           </div>

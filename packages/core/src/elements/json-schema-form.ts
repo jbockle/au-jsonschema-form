@@ -72,6 +72,9 @@ export abstract class JsonSchemaForm {
   @bindable({ defaultBindingMode: bindingMode.toView })
   public options?: FormOptions;
 
+  @bindable({ defaultBindingMode: bindingMode.toView })
+  public readonly = false;
+
   /**
    * the validation result from AJV
    * @bindable output
