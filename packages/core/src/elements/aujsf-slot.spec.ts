@@ -168,7 +168,7 @@ describe('aujsf-slot', () => {
       .boundTo({ schema: schema.properties!.foo, uiSchema: {} })
       .create(bootstrap);
 
-    component.viewModel.context.schema = schema;
+    (<any>component.viewModel)._context.schema = schema;
     component.viewModel.schemaChanged();
 
     expect(component.element.innerHTML)
