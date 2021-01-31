@@ -7,10 +7,6 @@ bs4-json-schema-form label, bs4-json-schema-form legend {
   user-select: none;
 }
 
-bs4-json-schema-form label:hover, bs4-json-schema-form legend:hover {
-  font-weight: bolder;
-}
-
 bs4-json-schema-form fieldset legend .fieldset-description {
   margin: 0;
   margin-bottom: 4px;
