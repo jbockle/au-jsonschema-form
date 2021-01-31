@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](http://???/compare/v0.3.2...v0.4.0) (2021-01-31)
+
+
+### Features
+
+* **readonly:** toggle whole form to be readonly ([567aa55](http://???/commits/567aa557507b241b7e1ac430e4cd400ba51934f7))
+* themable form ([5d2e362](http://???/commits/5d2e36266af813767d62503bb6a727a91466fbc4))
+
+
+
+
+
 ## [0.3.2](http://???/compare/v0.3.1...v0.3.2) (2020-11-03)
 
 **Note:** Version bump only for package examples

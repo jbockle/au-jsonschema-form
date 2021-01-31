@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/jbockle/au-jsonschema-form/compare/v0.3.2...v0.4.0) (2021-01-31)
+
+
+### Features
+
+* **readonly:** toggle whole form to be readonly ([567aa55](https://github.com/jbockle/au-jsonschema-form/commit/567aa557507b241b7e1ac430e4cd400ba51934f7))
+* add support for ajv customization ([3509cc9](https://github.com/jbockle/au-jsonschema-form/commit/3509cc9c1efb8ff73f875e103f6e3d30af2127a2))
+* themable form ([5d2e362](https://github.com/jbockle/au-jsonschema-form/commit/5d2e36266af813767d62503bb6a727a91466fbc4))
+
+
+
+
+
 ## [0.3.2](https://github.com/jbockle/au-jsonschema-form/compare/v0.3.1...v0.3.2) (2020-11-03)
 
 
