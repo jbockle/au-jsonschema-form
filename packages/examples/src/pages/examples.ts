@@ -1,16 +1,34 @@
-import { observable, inject, TaskQueue } from 'aurelia-framework';
+import { observable, inject } from 'aurelia-framework';
 import { activationStrategy, NavigationInstruction, RouteConfig, Router } from 'aurelia-router';
-import { EventAggregator } from 'aurelia-event-aggregator';
 
 import { examples } from '../examples';
 import { Example, ExampleCtor } from '../examples/example';
+import { JsonSchema } from '@aujsf/core';
 
+const FORM_OPTIONS_SCHEMA: JsonSchema = {
+  'x-ui-schema': {
+    'ui:title': 'Form Options',
+  },
+  type: 'object',
+  properties: {
+    size: {
+      title: 'Control Sizing',
+      type: 'string',
+      default: 'default',
+      enum: ['default', 'small', 'extra-small'],
+    },
+    readOnly: { type: 'boolean' },
+  },
+};
 
-@inject(TaskQueue, EventAggregator, Router)
+export interface ExampleFormOptions {
+  size?: 'default' | 'small' | 'extra-small';
+  readOnly?: boolean;
+}
+
+@inject(Router)
 export class Examples {
   public constructor(
-    private _tasks: TaskQueue,
-    private _events: EventAggregator,
     private _router: Router,
   ) { }
 
@@ -25,23 +43,13 @@ export class Examples {
   @observable
   public example?: Example | null;
 
+  public optionsSchema = { ...FORM_OPTIONS_SCHEMA };
+
+  public options: ExampleFormOptions = {};
+
   public activate(params: { id?: string }, _routeConfig: RouteConfig, _navigationInstruction: NavigationInstruction): void {
-    if (params.id && this.selectedExample?.id !== params.id) {
-      this.selectedExample = this.examples.find(e => e.id === params.id);
-
-      if (this.selectedExample) {
-        const example = new this.selectedExample();
-        this._tasks.queueMicroTask(() => {
-          this.example = example;
-        });
-      }
-    }
-  }
-
-  public bind(): void {
-    this._events.subscribe('value-updated', () => {
-      this.valueTrigger++;
-    });
+    this.selectedExample = this.examples.find(e => e.id === params.id);
+    this.example = this.selectedExample && new this.selectedExample();
   }
 
   public selectedExampleChanged(example?: ExampleCtor): void {
@@ -56,6 +64,10 @@ export class Examples {
   }
 
   public determineActivationStrategy(): string {
-    return activationStrategy.replace;
+    return activationStrategy.invokeLifecycle;
+  }
+
+  public onValueUpdated(): void {
+    this.valueTrigger++;
   }
 }

@@ -1,52 +1,57 @@
 <template>
-  <require from="./examples.scss"></require>
   <require from="../resources/elements/monaco-editor"></require>
   <require from="../resources/converters/json"></require>
-  <require from="../themes/bootstrap-theme"></require>
 
-  <div class="examples-layout flex-fill">
-    <div class="empty"></div>
-    <div class="form-group">
-      <label></label>
+  <div class="d-flex flex-column" style="width: 30%;max-height: 93vh;">
+    <div class="card flex-fill">
+      <div class="card-header">JSON Schema</div>
+      <monaco-editor language="json" class="flex-fill"
+                     value.bind="example.schema | json:2">
+      </monaco-editor>
+    </div>
+    <div class="card flex-fill">
+      <div class="card-header">UI Schema</div>
+      <monaco-editor language="json" class="flex-fill"
+                     value.bind="example.uiSchema | json:2">
+      </monaco-editor>
+    </div>
+  </div>
+
+  <div class="d-flex flex-column pl-1" style="width: 30%;max-height: 93vh;">
+    <div class="card mb-1" style="height: 200px;">
+      <bs4-json-schema-form class="options border border-info px-2 py-1 rounded-lg w-100"
+                            schema.bind="optionsSchema"
+                            ui-schema.bind="{}"
+                            value.bind="options">
+        <null></null>
+      </bs4-json-schema-form>
+    </div>
+    <div class="card flex-fill">
+      <div class="card-header">Form Data</div>
+      <monaco-editor language="json" class="flex-fill"
+                     readonly.bind="true"
+                     value.bind="example.value | json:2:valueTrigger"></monaco-editor>
+    </div>
+  </div>
+
+  <div class="d-flex flex-column px-1 flex-fill" style="max-height: 94vh;overflow: auto;">
+    <div class="form-group border-bottom border-light pb-2 mb-2">
+      <label>Select an example:</label>
       <select value.bind="selectedExample"
               class="form-control ml-auto">
-        <option model.bind="null">Select an example...</option>
         <option model.bind="example"
                 repeat.for="example of examples">
           ${example.displayName}
         </option>
       </select>
     </div>
-
-    <div class="monaco-grid mr-2">
-      <template if.bind="example">
-        <div class="monaco-editor-layout">
-          <h4>JSON Schema</h4>
-          <monaco-editor language="json"
-                         value.bind="example.schema | json:2">
-          </monaco-editor>
-        </div>
-
-        <div class="monaco-editor-layout">
-          <h4>UI Schema</h4>
-          <monaco-editor language="json"
-                         value.bind="example.uiSchema | json:2">
-          </monaco-editor>
-        </div>
-
-        <div class="monaco-editor-layout">
-          <h4>Value</h4>
-          <monaco-editor language="json"
-                         readonly.bind="true"
-                         value.bind="example.value | json:2:valueTrigger">
-          </monaco-editor>
-        </div>
-      </template>
-    </div>
-
-    <bootstrap-theme if.bind="example" class="overflow-auto"
-                     example.bind="example"></bootstrap-theme>
-    <placeholder else></placeholder>
-
+    <bs4-json-schema-form if="condition.bind: example;cache:false;"
+                          class="${options.size !== 'default' ? `form-${options.size}` : ''}"
+                          schema.bind="example.schema"
+                          ui-schema.bind="example.uiSchema"
+                          value.bind="example.value"
+                          errors.bind="example.errors"
+                          readonly.bind="options.readOnly"
+                          value-changed.trigger="onValueUpdated()"></bs4-json-schema-form>
   </div>
 </template>

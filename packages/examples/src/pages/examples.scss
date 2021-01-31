@@ -6,19 +6,16 @@
     "empty header"
     "editor form";
   grid-template-rows: min-content auto;
-  grid-template-columns: auto 400px;
+  grid-template-columns: auto auto;
 
-  .form-group {
+  .select-example {
     grid-area: header;
   }
 
   .monaco-grid {
     grid-area: editor;
     display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 1fr 1fr 1fr;
-    margin-bottom: 40px;
-    gap: 4px;
+    grid-template-columns: 1fr 1fr 1fr;
 
     .monaco-editor-layout {
       border: 1px solid $secondary;
@@ -31,7 +28,9 @@
     }
   }
 
-  bootstrap-theme, placeholder {
+  form-section {
     grid-area: form;
+    display: flex;
+    flex-direction: column;
   }
 }

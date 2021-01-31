@@ -48,6 +48,22 @@ export class SimpleExample extends Example {
         type: 'string',
         format: 'email',
       },
+      address: {
+        type: 'object',
+        properties: {
+          street: { type: 'string' },
+          city: { type: 'string' },
+          state: {
+            'x-ui-schema': {
+              'ui:placeholder': 'Select State...',
+            },
+            type: 'string', enum: ['AK', 'AZ', 'DC', 'MD', 'TX', 'VA'],
+          },
+          country: { type: 'string', const: 'USA' },
+          zip: { title: 'Zip Code', type: 'string', pattern: '^\\d{5}(-\\d+)?$' },
+        },
+        required: ['street', 'city', 'state', 'country', 'zip'],
+      },
       agree: {
         type: 'boolean',
       },
@@ -56,7 +72,7 @@ export class SimpleExample extends Example {
   };
 
   public uiSchema: UISchema = {
-    'ui:view-class': 'd-block border border-info px-2 mb-1',
+    'ui:view-class': 'd-block border border-secondary px-2 mb-1',
     givenName: {
       'ui:title': 'First Name',
     },

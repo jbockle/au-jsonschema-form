@@ -1,10 +1,13 @@
 import * as monaco from 'monaco-editor';
-import { bindable, inject, bindingMode, noView, DOM } from 'aurelia-framework';
+import { bindable, inject, bindingMode, noView } from 'aurelia-framework';
+
+import './monaco-editor.scss';
 
 @inject(Element)
 @noView()
 export class MonacoEditor {
   private _editor?: monaco.editor.IStandaloneCodeEditor;
+  private _resizeCallback?: () => void;
 
   public constructor(private _element: HTMLElement) { }
 
@@ -36,9 +39,17 @@ export class MonacoEditor {
         value: this.value ?? '',
         minimap: { enabled: false, maxColumn: 0 },
         readOnly: this.readonly,
+        scrollBeyondLastLine: false,
+        automaticLayout: true,
       }, this.options ?? {}));
 
-    DOM.addEventListener('resize', () => this.editor?.layout(), false);
+    function onResizeCallback(editor: monaco.editor.IStandaloneCodeEditor): () => void {
+      return (): void => editor.layout();
+    }
+
+    this._resizeCallback = onResizeCallback(this.editor);
+
+    window.addEventListener('resize', this._resizeCallback);
 
     this.editor.onDidChangeModelContent(this.onDidChangeModelContent.bind(this));
   }
@@ -50,6 +61,7 @@ export class MonacoEditor {
   }
 
   public detached(): void {
+    this._resizeCallback && window.removeEventListener('resize', this._resizeCallback);
     this.editor = undefined;
   }
 
