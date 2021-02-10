@@ -15,7 +15,7 @@ export class JsonSchemaUtils {
   }
 
   public static isJsonSchemaNumber(schema: JsonSchema): schema is JsonSchemaNumber {
-    return this.isSchemaType<JsonSchemaNumber>(schema, 'number');
+    return this.isSchemaType<JsonSchemaNumber>(schema, 'number') || this.isSchemaType<JsonSchemaNumber>(schema, 'integer');
   }
 
   public static isJsonSchemaString(schema: JsonSchema): schema is JsonSchemaString {
