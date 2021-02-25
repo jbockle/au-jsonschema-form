@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/jbockle/au-jsonschema-form/compare/v0.4.1...v0.4.2) (2021-02-25)
+
+
+### Features
+
+* **schema-defaults:** better defaults handling ([110d76b](https://github.com/jbockle/au-jsonschema-form/commit/110d76b84967ba99f4867e23b3ed7b4dd394915c))
+
+
+
+
+
+
 ## [0.4.1](https://github.com/jbockle/au-jsonschema-form/compare/v0.4.0...v0.4.1) (2021-02-10)
 
 
