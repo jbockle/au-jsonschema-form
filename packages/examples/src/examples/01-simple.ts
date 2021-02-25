@@ -9,6 +9,9 @@ export class SimpleExample extends Example {
   public value: any = {
     givenName: 'John',
     surName: 'Smith',
+    address: {
+      state: 'VA',
+    },
   };
 
   public schema: JsonSchema = {
@@ -57,7 +60,9 @@ export class SimpleExample extends Example {
             'x-ui-schema': {
               'ui:placeholder': 'Select State...',
             },
-            type: 'string', enum: ['AK', 'AZ', 'DC', 'MD', 'TX', 'VA'],
+            type: 'string',
+            enum: ['AK', 'AZ', 'DC', 'MD', 'TX', 'VA'],
+            default: 'TX',
           },
           country: { type: 'string', const: 'USA' },
           zip: { title: 'Zip Code', type: 'string', pattern: '^\\d{5}(-\\d+)?$' },

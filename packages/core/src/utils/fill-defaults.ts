@@ -4,12 +4,16 @@ import {
   JsonSchema,
   JsonSchemaObject, JsonSchemaArray, JsonSchemaString, JsonSchemaNumber, JsonSchemaBoolean,
 } from '../models';
+import { JsonSchemaDefaultResolver } from './json-schema-default-resolver';
 import { JsonSchemaUtils } from './json-schema-utils';
 
 export class FillDefaults {
+  private defaultResolver: JsonSchemaDefaultResolver;
+
   public constructor(
     public value: any,
     private rootSchema: JsonSchema) {
+    this.defaultResolver = JsonSchemaUtils.getDefaultResolver(rootSchema);
     this.fill(rootSchema);
   }
 
@@ -71,18 +75,14 @@ export class FillDefaults {
 
 
   private getArrayValue(pathValue: any, schema: JsonSchemaArray): any[] {
-    pathValue = (Array.isArray(pathValue) && pathValue) || this.getDefault(schema, []);
-
-    while (schema.minItems && pathValue.length < schema.minItems) {
-      pathValue.push(null);
-    }
+    pathValue = (Array.isArray(pathValue) && pathValue) || this.defaultResolver.getArrayDefaults(schema);
 
     return pathValue;
   }
 
 
   private getObjectValue(pathValue: any, schema: JsonSchemaObject): any {
-    pathValue = (pathValue instanceof Object && pathValue) || this.getDefault(schema, {});
+    pathValue = (pathValue instanceof Object && pathValue) || this.defaultResolver.getObjectDefaults(schema);
 
     return pathValue;
   }
@@ -93,16 +93,16 @@ export class FillDefaults {
       return pathValue;
     }
 
-    return this.getDefault(schema, undefined);
+    return this.defaultResolver.getDefault(schema);
   }
 
 
   private getNumberValue(pathValue: any, schema: JsonSchemaNumber): number | bigint | undefined {
-    if (typeof pathValue === 'number' || typeof pathValue === 'bigint') {
+    if (typeof pathValue === 'number') {
       return pathValue;
     }
 
-    return this.getDefault(schema, undefined);
+    return this.defaultResolver.getDefault(schema);
   }
 
 
@@ -111,7 +111,7 @@ export class FillDefaults {
       return pathValue;
     }
 
-    return this.getDefault(schema, false);
+    return this.defaultResolver.getDefault(schema);
   }
 
 
@@ -161,10 +161,5 @@ export class FillDefaults {
         this.fill(itemSchema, [...segments, index.toString()]);
       }
     });
-  }
-
-
-  private getDefault(schema: JsonSchema, fallback: any): any {
-    return schema.default ?? fallback;
   }
 }

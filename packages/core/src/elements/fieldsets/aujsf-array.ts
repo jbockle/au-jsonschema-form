@@ -28,7 +28,8 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
   }
 
   public add(): void {
-    this.value.push(null);
+    const newItemValue = this.context.schemaDefaults?.getArrayItemDefaults(this.value.length, this.schema) ?? null;
+    this.value.push(newItemValue);
     this.updateDefinitions();
   }
 

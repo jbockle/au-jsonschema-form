@@ -1,6 +1,8 @@
 import { getLogger } from 'aurelia-logging';
-import { Validator } from '../utils/validator';
 
+import utils from '../utils';
+import { JsonSchemaDefaultResolver } from '../utils/json-schema-default-resolver';
+import { Validator } from '../utils/validator';
 import { FormOptions, JsonSchema, UISchema } from '../models';
 
 export class FormContext {
@@ -14,6 +16,8 @@ export class FormContext {
 
   public value: any;
 
+  public schemaDefaults?: JsonSchemaDefaultResolver;
+
   public get schema(): JsonSchema {
     return this._schema;
   }
@@ -21,6 +25,7 @@ export class FormContext {
   public set schema(schema: JsonSchema) {
     this._logger.debug('setting schema', { new: schema, previous: this._schema });
     this._schema = schema;
+    this.schemaDefaults = utils.jsonSchema.getDefaultResolver(schema);
 
     this.validator = new Validator(this.schema, this.formOptions.validatorOptions);
   }

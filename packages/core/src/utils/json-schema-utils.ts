@@ -7,6 +7,7 @@ import {
 } from '../models';
 import utils from '.';
 import { FillDefaults } from './fill-defaults';
+import { JsonSchemaDefaultResolver } from './json-schema-default-resolver';
 
 export class JsonSchemaUtils {
 
@@ -46,12 +47,29 @@ export class JsonSchemaUtils {
     return 'type' in schema && schema.type === type;
   }
 
+  public static getSchemaType(schema: JsonSchema): JsonSchemaType | undefined {
+    if (Array.isArray(schema.type)) {
+      if (schema.type.length === 1) {
+        return schema.type[0];
+      }
+
+      if (this.isNullable(schema.type)) {
+        return schema.type.filter(t => t !== 'null')[0];
+      }
+    } else {
+      return schema.type;
+    }
+  }
+
   public static getItemJsonSchema(index: number, schema: JsonSchemaArray, root: JsonSchema): JsonSchema | undefined {
     if (schema.items) {
       if (Array.isArray(schema.items)) {
         schema.items = this.resolveSchemas(schema.items, root);
         if (index in schema.items) {
           return schema.items[index];
+        }
+        else if (!schema.additionalItems) {
+          return utils.array.last(schema.items);
         }
       } else if (schema.items) {
         return this.resolveSchema(schema.items, root);
@@ -69,15 +87,15 @@ export class JsonSchemaUtils {
     return schemas.map(schema => this.resolveSchema(schema, root));
   }
 
-  public static resolveSchema(schemaOrSchemas: JsonSchema, root: JsonSchema): JsonSchema {
-    if ('$ref' in schemaOrSchemas) {
-      return this.resolveSchema(JsonPointer.compile(schemaOrSchemas.$ref).get(root), root);
+  public static resolveSchema(schema: JsonSchema, root: JsonSchema): JsonSchema {
+    if ('$ref' in schema) {
+      return this.resolveSchema(JsonPointer.compile(schema.$ref).get(root), root);
     }
-    else if (this.isJsonSchemaAllOf(schemaOrSchemas)) {
-      return this.mergeAllOf(schemaOrSchemas, root);
+    else if (this.isJsonSchemaAllOf(schema)) {
+      return this.mergeAllOf(schema, root);
     }
     else {
-      return schemaOrSchemas;
+      return schema;
     }
   }
 
@@ -92,4 +110,8 @@ export class JsonSchemaUtils {
   }
 
   public static fillDefaults = (value: any, schema: JsonSchema): void => { new FillDefaults(value, schema); };
+
+  public static getDefaultResolver(rootSchema: JsonSchema): JsonSchemaDefaultResolver {
+    return new JsonSchemaDefaultResolver(rootSchema);
+  }
 }
