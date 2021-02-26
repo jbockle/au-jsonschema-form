@@ -27,10 +27,8 @@ export class AujsfConditional extends AujsfBase<JsonSchema & JsonSchemaCondition
   }
 
   public valueChanged(newValue: any, oldValue: any): void {
-    if (this.adapter) {
-      super.valueChanged(newValue, oldValue);
-      this.adapter.valueChanged();
-    }
+    super.valueChanged(newValue, oldValue);
+    this.adapter?.valueChanged();
   }
 
   protected resolveUISchemaDefaults(): void {

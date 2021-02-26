@@ -2,9 +2,12 @@ import utils from '../utils';
 import { AujsfConditional } from '../elements/form-elements/aujsf-conditional';
 import { JsonSchema, JsonSchemaConditional } from './json-schema';
 import { Validator } from '../utils/validator';
+import { observable } from 'aurelia-framework';
+import { getLogger } from 'aurelia-logging';
 
 export class ConditionalAdapter {
   private viewModel: AujsfConditional;
+  private logger = getLogger('aujsf:conditional-adapter');
 
   public constructor(
     viewModel: AujsfConditional,
@@ -25,7 +28,16 @@ export class ConditionalAdapter {
 
   public elseSchema: JsonSchema;
 
+  @observable
   public ifValid = false;
+
+  public ifValidChanged(valid?: boolean, wasValid?: boolean): void {
+    this.logger.debug('valid changed', { valid, wasValid });
+    if (this.viewModel) {
+      this.viewModel.value = this.viewModel.context.schemaDefaults
+        ?.mergeDefaults(this.viewModel.value, valid ? this.thenSchema : this.elseSchema);
+    }
+  }
 
   private getIfSchema(viewModel: AujsfConditional): JsonSchema {
     return utils.common.clone(viewModel.schema.if);
@@ -63,6 +75,6 @@ export class ConditionalAdapter {
     this._ifValidHandler = setTimeout(async () => {
       const result = await this.ifValidator.validate(this.viewModel.value);
       this.ifValid = result.valid;
-    }, 50);
+    }, 0);
   }
 }
