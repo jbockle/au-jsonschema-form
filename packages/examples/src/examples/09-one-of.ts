@@ -6,26 +6,79 @@ export class OneOfExample extends Example {
 
   public static displayName = 'One Of';
 
-  public value: any = ['Bananas'];
+  public value: any = { favorite: ['Bananas'] };
 
   public schema: JsonSchema = {
-    type: 'array',
-    items: {
-      title: 'Favorite...',
-      oneOf: [
-        {
-          title: 'Fruit',
-          type: 'string',
-          enum: ['Apples', 'Bananas'],
+    type: 'object',
+    properties: {
+      favorite: {
+        type: 'array',
+        items: {
+          title: 'Favorite...',
+          oneOf: [
+            {
+              title: 'Fruit',
+              type: 'string',
+              enum: ['Apples', 'Bananas'],
+            },
+            {
+              title: 'Drink',
+              type: 'string',
+              enum: ['Juice', 'Soda'],
+            },
+          ],
         },
-        {
-          title: 'Drink',
-          type: 'string',
-          enum: ['Juice', 'Soda'],
+      },
+      httpRequests: {
+        type: 'array',
+        minItems: 2,
+        items: {
+          title: 'Choose method...',
+          oneOf: [
+            {
+              title: 'Get',
+              type: 'object',
+              properties: {
+                kind: {
+                  'x-ui-schema': { 'ui:view': false },
+                  type: 'string', const: 'get',
+                },
+                url: { type: 'string', format: 'uri' },
+              },
+            },
+            {
+              title: 'Post',
+              type: 'object',
+              properties: {
+                kind: {
+                  'x-ui-schema': { 'ui:view': false },
+                  type: 'string', const: 'post',
+                },
+                url: { type: 'string' },
+                body: { type: 'string' },
+                contentType: { type: 'string' },
+              },
+            },
+            {
+              title: 'Delete',
+              type: 'object',
+              properties: {
+                kind: {
+                  'x-ui-schema': { 'ui:view': false },
+                  type: 'string', const: 'post',
+                },
+                url: { type: 'string' },
+              },
+            },
+          ],
         },
-      ],
+      },
     },
   }
 
-  public uiSchema: UISchema = {};
+  public uiSchema: UISchema = {
+    favorite: {
+      'ui:view': 'array-tabs',
+    },
+  };
 }

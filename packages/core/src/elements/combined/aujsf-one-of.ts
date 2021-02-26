@@ -45,7 +45,7 @@ export class AujsfOneOf extends AujsfBase<JsonSchemaOneOf, any> {
     const result = await newValue.validator.validate(this.value);
 
     if (!result.valid) {
-      this.value = undefined;
+      this.value = this.context.schemaDefaults?.getDefault(newValue.schema) ?? null;
     }
   }
 
