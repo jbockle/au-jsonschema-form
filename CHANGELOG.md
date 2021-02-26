@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/jbockle/au-jsonschema-form/compare/v0.4.2...v0.5.0) (2021-02-26)
+
+
+### Bug Fixes
+
+* **tabs:** init selectedTab ([b5aca9c](https://github.com/jbockle/au-jsonschema-form/commit/b5aca9c2312f36233a675865200440008737a1da))
+
+
+### Features
+
+* fill defaults on conditional validity change ([7092e82](https://github.com/jbockle/au-jsonschema-form/commit/7092e82c7fc62dd077e7f34d64665787cae9329f))
+* **oneOf:** support defaults ([ca1ea42](https://github.com/jbockle/au-jsonschema-form/commit/ca1ea4232cba6f90e6d7cf82b270bc5599962c85))
+
+
+
+
+
 ## [0.4.2](https://github.com/jbockle/au-jsonschema-form/compare/v0.4.1...v0.4.2) (2021-02-25)
 
 
