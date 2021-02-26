@@ -6,7 +6,6 @@ import {
   JsonSchemaObject, JsonSchemaArray, JsonSchemaString, JsonSchemaNumber, JsonSchemaBoolean, JsonSchemaAllOf,
 } from '../models';
 import utils from '.';
-import { FillDefaults } from './fill-defaults';
 import { JsonSchemaDefaultResolver } from './json-schema-default-resolver';
 
 export class JsonSchemaUtils {
@@ -108,8 +107,6 @@ export class JsonSchemaUtils {
 
     return combined;
   }
-
-  public static fillDefaults = (value: any, schema: JsonSchema): void => { new FillDefaults(value, schema); };
 
   public static getDefaultResolver(rootSchema: JsonSchema): JsonSchemaDefaultResolver {
     return new JsonSchemaDefaultResolver(rootSchema);

@@ -108,7 +108,7 @@ export abstract class JsonSchemaForm {
 
     if (newSchema && newSchema !== oldSchema) {
       this.context.schema = utils.common.clone(newSchema);
-      utils.jsonSchema.fillDefaults(this.value, this.context.schema);
+      this.value = this.context.schemaDefaults?.mergeDefaults(this.value, newSchema);
       this.tryValidate();
     }
   }
@@ -123,7 +123,7 @@ export abstract class JsonSchemaForm {
     this.logger.debug('value changed', { newValue, oldValue });
 
     if (this.context.schema) {
-      utils.jsonSchema.fillDefaults(newValue, this.context.schema);
+      newValue = this.context.schemaDefaults?.mergeDefaults(newValue, this.context.schema);
       this.tryValidate();
     }
 
