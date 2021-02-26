@@ -11,12 +11,9 @@
 
     <small class="form-text text-muted mt-0 mb-1" if.bind="description">${description}</small>
 
-    <template repeat.for="error of errorMessages">
-      <span class="badge badge-danger mr-1" if.bind="hasErrors">
-        ${error}
-      </span>
-      <br if.bind="$last">
-    </template>
+    <span class="d-block invalid-feedback" if.bind="hasErrors" repeat.for="error of errorMessages">
+      ${error}
+    </span>
 
     <div class="form-check" repeat.for="option of schema.enum">
       <input id.bind="id + '__' + option" class="form-check-input"
