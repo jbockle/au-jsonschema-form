@@ -28,7 +28,12 @@ export class SimpleExample extends Example {
         minimum: 0,
       },
       gender: {
+        'x-ui-schema': {
+          'ui:view': 'string-select',
+          'ui:placeholder': 'choose...',
+        },
         type: 'string',
+        default: 'female',
         enum: ['male', 'female'],
       },
       title: {
