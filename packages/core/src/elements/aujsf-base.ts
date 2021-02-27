@@ -172,8 +172,16 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any>
   }
 
   public valueChanged(newValue: any, oldValue: any): void {
-    const detail: ValueChangedEventDict = { newValue, oldValue, pointer: this.pointer };
-    this.dispatchEvent('value-changed', detail);
+    const event: ValueChangedEventDict = {
+      newValue,
+      oldValue,
+      pointer: this.pointer,
+      pointerString: this.pointer.toString() || '/',
+      uiSchema: this.uiSchema,
+      schema: this.schema,
+    };
+    this.dispatchEvent('value-changed', event);
+    this.context.events.emitPointerChange(event);
   }
 
   public schemaChanged(...args: any[]): void {

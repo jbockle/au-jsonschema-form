@@ -1,6 +1,7 @@
 <template>
   <require from="../resources/elements/monaco-editor"></require>
   <require from="../resources/converters/json"></require>
+  <require from="./examples.scss"></require>
 
   <div class="d-flex flex-column" style="width: 30%;max-height: 93vh;">
     <div class="card flex-fill">
@@ -35,6 +36,8 @@
   </div>
 
   <div class="d-flex flex-column px-1 flex-fill" style="max-height: 94vh;overflow: auto;">
+    <button class="btn btn-outline-info close-events" type="button" click.delegate="viewEvents = true">Show
+      Events</button>
     <div class="form-group border-bottom border-light pb-2 mb-2">
       <label>Select an example:</label>
       <select value.bind="selectedExample"
@@ -54,4 +57,36 @@
                           readonly.bind="options.readOnly"
                           value-changed.trigger="onValueUpdated()"></bs4-json-schema-form>
   </div>
+
+  <events-modal if.bind="viewEvents">
+    <modal-content>
+      <span class="close close-events" click.delegate="viewEvents = false">&times;</span>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>
+              Pointer
+            </th>
+            <th>
+              New Value
+            </th>
+            <th>
+              Old Value
+            </th>
+            <th>
+              Timestamp
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr repeat.for="event of valueChangedEvents">
+            <td title.one-time="event.pointerString | json">${event.pointerString}</td>
+            <td title.one-time="event.newValue | json">${event.newValue | json & oneTime}</td>
+            <td title.one-time="event.oldValue | json">${event.oldValue | json}</td>
+            <td>${event.timestamp}</td>
+          </tr>
+        </tbody>
+      </table>
+    </modal-content>
+  </events-modal>
 </template>

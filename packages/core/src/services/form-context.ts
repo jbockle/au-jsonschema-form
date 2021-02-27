@@ -4,11 +4,16 @@ import utils from '../utils';
 import { JsonSchemaDefaultResolver } from '../utils/json-schema-default-resolver';
 import { Validator } from '../utils/validator';
 import { FormOptions, JsonSchema, UISchema } from '../models';
+import { inject } from 'aurelia-framework';
+import { SchemaFormEvents } from './schema-form-events';
 
+@inject(SchemaFormEvents)
 export class FormContext {
   private _logger = getLogger('aujsf:form-context');
   private _schema: JsonSchema = <any>{};
   private _formOptions: FormOptions = {};
+
+  public constructor(public events: SchemaFormEvents) { }
 
   public validator?: Validator;
 

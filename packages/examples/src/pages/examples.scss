@@ -1,36 +1,45 @@
 @import "~bootswatch/dist/sandstone/variables";
 
-.examples-layout {
-  display: grid;
-  grid-template-areas:
-    "empty header"
-    "editor form";
-  grid-template-rows: min-content auto;
-  grid-template-columns: auto auto;
+events-modal {
+  display: block;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: rgba(#000, 50%);
 
-  .select-example {
-    grid-area: header;
-  }
+  modal-content {
+    display: block;
+    background-color: var(--gray-dark);
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: 55vh;
+    overflow: auto;
+    border: 1px solid var(--info);
+    border-radius: 5px;
 
-  .monaco-grid {
-    grid-area: editor;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    td {
+      max-width: 20vw;
+      overflow: hidden;
+      white-space: nowrap;
 
-    .monaco-editor-layout {
-      border: 1px solid $secondary;
-      display: grid;
-      grid-template-rows: min-content auto;
+      span {
+        text-overflow: ellipsis;
+      }
 
-      h4 {
-        margin: 4px;
+      &:last-child {
+        width: 140px;
       }
     }
-  }
 
-  form-section {
-    grid-area: form;
-    display: flex;
-    flex-direction: column;
+    .close-events {
+      cursor: pointer;
+      position: absolute;
+      top: 2px;
+      right: 5px;
+    }
   }
 }
