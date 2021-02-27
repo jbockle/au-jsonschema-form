@@ -43,7 +43,7 @@ export class JsonSchemaDefaultResolver {
     else {
       for (let index = 0; index < currentValue.length; index++) {
         const itemSchema = JsonSchemaUtils.getItemJsonSchema(index, schema, this.rootSchema);
-        itemSchema && this.mergeDefaults(currentValue[index], itemSchema);
+        currentValue[index] = itemSchema && this.mergeDefaults(currentValue[index], itemSchema);
       }
     }
 
@@ -59,7 +59,7 @@ export class JsonSchemaDefaultResolver {
       const props = Object.keys(schema.properties);
 
       props.forEach(prop => {
-        currentValue[prop] ??= this.getDefault(schema.properties![prop]);
+        currentValue[prop] = this.mergeDefaults(currentValue[prop], schema.properties![prop]);
       });
     }
 
