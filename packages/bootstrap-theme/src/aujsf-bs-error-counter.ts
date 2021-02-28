@@ -9,7 +9,7 @@ export class AujsfBsErrorCounter {
 
   @computedFrom('errors')
   public get hasDeepErrors(): boolean {
-    return this.errors?.['es:hasErrors'] || this.errors?._hasChildErrors() || false;
+    return this.errors?.['es:hasErrors'] || this.errors?.['es:hasChildErrors']() || false;
   }
 
   public tooltip = 'This item contains errors';

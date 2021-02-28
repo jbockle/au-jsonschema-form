@@ -96,7 +96,7 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any>
 
   @computedFrom('errors')
   public get errorMessages(): string[] {
-    return this.errors._errorMessages();
+    return this.errors['es:getErrorMessages']();
   }
 
   public bind(bctx: any, obctx: any): void {

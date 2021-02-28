@@ -32,12 +32,12 @@ export class ErrorSchema {
     return this['es:error-objects'].length > 0;
   }
 
-  public _errorMessages(): string[] {
+  public ['es:getErrorMessages'](): string[] {
     return this['es:error-objects'].map(error => error.message!)
       .filter((message, index, array) => !!message && array.indexOf(message) === index);
   }
 
-  public _hasChildErrors(): boolean {
+  public ['es:hasChildErrors'](): boolean {
     const keys = Object.getOwnPropertyNames(this);
     return keys
       .filter(isNotErrorSchemaProp)
@@ -45,7 +45,7 @@ export class ErrorSchema {
         const keyValue = this[key];
         return typeof keyValue === 'object'
           && isErrorSchema(keyValue)
-          && (keyValue['es:hasErrors'] || keyValue._hasChildErrors());
+          && (keyValue['es:hasErrors'] || keyValue['es:hasChildErrors']());
       });
   }
 
