@@ -50,8 +50,11 @@ export class ErrorSchema {
   }
 
   public static create(thisKey?: string): ErrorSchema {
-    return new Proxy(new ErrorSchema(thisKey), {
+    const proxy = new Proxy(new ErrorSchema(thisKey), {
       get(target, prop, _receiver): ErrorSchemaIndex {
+        if (prop === 'toJSON') {
+          return (): any => target;
+        }
         if (prop === '__observers__') {
           return Reflect.get(target, prop);
         }
@@ -73,6 +76,10 @@ export class ErrorSchema {
         return Reflect.ownKeys(target);
       },
     });
+
+
+
+    return proxy;
   }
 }
 

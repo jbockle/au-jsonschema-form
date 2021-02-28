@@ -100,7 +100,12 @@ export abstract class JsonSchemaForm {
   }
 
   protected onsubmit(): void {
-    this.submit({ value: this.value, validationResult: this.validationResult });
+    try {
+      this.submit({ value: this.value, validationResult: this.validationResult });
+    }
+    catch (error) {
+      this.logger.error('an error occurred while submitting', error);
+    }
   }
 
   protected schemaChanged(newSchema?: JsonSchema, oldSchema?: JsonSchema): void {
