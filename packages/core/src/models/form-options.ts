@@ -4,4 +4,6 @@ export interface FormOptions {
   validatorOptions?: ValidatorOptions;
 
   renderErrors?: boolean;
+
+  preventEmptyStringsWhenRequired?: boolean;
 }

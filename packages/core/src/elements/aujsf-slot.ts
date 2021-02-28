@@ -59,7 +59,7 @@ export class AujsfSlot extends ViewBase {
   public parentReadonly?: boolean;
 
   @bindable
-  public errors: ErrorSchema = {}
+  public errors = ErrorSchema.create()
 
   @bindable
   public root = false;

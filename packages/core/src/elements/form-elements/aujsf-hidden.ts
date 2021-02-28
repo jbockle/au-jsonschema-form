@@ -25,5 +25,5 @@ export class AujsfHidden {
   public parentReadonly?: boolean;
 
   @bindable
-  public errors: ErrorSchema = {};
+  public errors!: ErrorSchema;
 }

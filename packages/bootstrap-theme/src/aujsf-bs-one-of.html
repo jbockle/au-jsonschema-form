@@ -12,6 +12,10 @@
         ${option.title}
       </option>
     </select>
+
+    <span class="d-block invalid-feedback ${hasErrors ? '' : 'text-warning'}" if.bind="!selectedOption">
+      select an option
+    </span>
   </div>
 
   <aujsf-slot if.bind="selectedOption.schema"

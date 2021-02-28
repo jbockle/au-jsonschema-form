@@ -62,9 +62,7 @@ export class Validator {
   }
 
   private createErrorSchema(errors: Ajv.ErrorObject[]): ErrorSchema {
-    const errorSchema: ErrorSchema = {
-      _errors_: [],
-    };
+    const errorSchema = ErrorSchema.create();
 
     errors.forEach(error => {
       let pointer = JsonPointer.compile(error.dataPath);
@@ -74,17 +72,9 @@ export class Validator {
         pointer = new JsonPointer([...pointer.segments, error.params['missingProperty']]);
       }
 
-      let childErrorSchema: ErrorSchema = pointer.get(errorSchema);
+      const childErrorSchema: ErrorSchema = pointer.get(errorSchema);
 
-      if (!pointer.get(errorSchema)) {
-        childErrorSchema = {
-          _errors_: [],
-        };
-
-        pointer.set(errorSchema, childErrorSchema);
-      }
-
-      childErrorSchema._errors_?.push(error.message!);
+      childErrorSchema['es:error-objects'].push(error);
     });
 
     return errorSchema;

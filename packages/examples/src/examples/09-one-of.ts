@@ -6,7 +6,14 @@ export class OneOfExample extends Example {
 
   public static displayName = 'One Of';
 
-  public value: any = { favorite: ['Bananas'] };
+  public value: any = {
+    favorite: [
+      {
+        kind: 'fruit',
+        fruit: 'Bananas',
+      },
+    ],
+  };
 
   public schema: JsonSchema = {
     type: 'object',
@@ -18,13 +25,39 @@ export class OneOfExample extends Example {
           oneOf: [
             {
               title: 'Fruit',
-              type: 'string',
-              enum: ['Apples', 'Bananas'],
+              type: 'object',
+              properties: {
+                kind: { type: 'string', const: 'fruit' },
+                fruit: {
+                  type: 'string',
+                  enum: ['Apples', 'Bananas'],
+                },
+              },
+              required: ['fruit'],
             },
             {
               title: 'Drink',
-              type: 'string',
-              enum: ['Juice', 'Soda'],
+              type: 'object',
+              properties: {
+                kind: { type: 'string', const: 'drink' },
+                drink: {
+                  type: 'string',
+                  enum: ['Juice', 'Soda'],
+                },
+              },
+              required: ['drink'],
+            },
+            {
+              title: 'None',
+              type: 'object',
+              properties: {
+                kind: { type: 'string', const: 'none' },
+                reason: {
+                  type: 'string',
+                  description: 'Why not?',
+                },
+              },
+              required: ['reason'],
             },
           ],
         },
@@ -77,8 +110,11 @@ export class OneOfExample extends Example {
   }
 
   public uiSchema: UISchema = {
-    favorite: {
+    favorite: <UISchema>{
       'ui:view': 'array-tabs',
+      'ui:items': {
+        kind: <UISchema>{ 'ui:view': false },
+      },
     },
   };
 }

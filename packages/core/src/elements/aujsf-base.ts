@@ -46,7 +46,7 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any>
   public parentReadonly?: boolean;
 
   @bindable
-  public errors: ErrorSchema = {};
+  public errors!: ErrorSchema;
 
   protected owningView?: View;
   protected myView?: View;
@@ -91,12 +91,12 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any>
 
   @computedFrom('errors')
   public get hasErrors(): boolean {
-    return (this.errors?._errors_ ?? []).length > 0;
+    return this.errors['es:hasErrors'];
   }
 
   @computedFrom('errors')
   public get errorMessages(): string[] {
-    return this.hasErrors ? this.errors._errors_! : [];
+    return this.errors._errorMessages();
   }
 
   public bind(bctx: any, obctx: any): void {
