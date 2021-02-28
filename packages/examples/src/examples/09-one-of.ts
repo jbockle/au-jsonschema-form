@@ -59,8 +59,10 @@ export class OneOfExample extends Example {
                 url: { type: 'string', format: 'uri' },
                 parameters: {
                   type: 'object',
-                  additionalProperties: {
-                    type: 'string',
+                  patternProperties: {
+                    '^[\\w]+$': {
+                      type: 'string',
+                    },
                   },
                 },
               },
@@ -73,8 +75,10 @@ export class OneOfExample extends Example {
                 url: { type: 'string' },
                 parameters: {
                   type: 'object',
-                  additionalProperties: {
-                    type: 'string',
+                  patternProperties: {
+                    '^[\\w]+$': {
+                      type: 'string',
+                    },
                   },
                 },
                 body: { type: 'string' },
