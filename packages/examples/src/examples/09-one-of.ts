@@ -8,10 +8,8 @@ export class OneOfExample extends Example {
 
   public value: any = {
     favorite: [
-      {
-        kind: 'fruit',
-        fruit: 'Bananas',
-      },
+      'Bananas',
+      'Soda',
     ],
   };
 
@@ -25,33 +23,18 @@ export class OneOfExample extends Example {
           oneOf: [
             {
               title: 'Fruit',
-              type: 'object',
-              properties: {
-                kind: { type: 'string', const: 'fruit' },
-                fruit: {
-                  type: 'string',
-                  enum: ['Apples', 'Bananas'],
-                },
-              },
-              required: ['fruit'],
+              type: 'string',
+              enum: ['Apples', 'Bananas'],
             },
             {
               title: 'Drink',
-              type: 'object',
-              properties: {
-                kind: { type: 'string', const: 'drink' },
-                drink: {
-                  type: 'string',
-                  enum: ['Juice', 'Soda'],
-                },
-              },
-              required: ['drink'],
+              type: 'string',
+              enum: ['Juice', 'Soda'],
             },
             {
               title: 'None',
               type: 'object',
               properties: {
-                kind: { type: 'string', const: 'none' },
                 reason: {
                   type: 'string',
                   description: 'Why not?',
@@ -69,38 +52,33 @@ export class OneOfExample extends Example {
           title: 'Choose method...',
           oneOf: [
             {
-              title: 'Get',
+              title: 'Get/Delete',
               type: 'object',
               properties: {
-                kind: {
-                  'x-ui-schema': { 'ui:view': false },
-                  type: 'string', const: 'get',
-                },
+                method: { type: 'string', enum: ['get', 'delete'] },
                 url: { type: 'string', format: 'uri' },
+                parameters: {
+                  type: 'object',
+                  additionalProperties: {
+                    type: 'string',
+                  },
+                },
               },
             },
             {
-              title: 'Post',
+              title: 'Post/Put',
               type: 'object',
               properties: {
-                kind: {
-                  'x-ui-schema': { 'ui:view': false },
-                  type: 'string', const: 'post',
-                },
+                method: { type: 'string', enum: ['post', 'put'] },
                 url: { type: 'string' },
+                parameters: {
+                  type: 'object',
+                  additionalProperties: {
+                    type: 'string',
+                  },
+                },
                 body: { type: 'string' },
                 contentType: { type: 'string' },
-              },
-            },
-            {
-              title: 'Delete',
-              type: 'object',
-              properties: {
-                kind: {
-                  'x-ui-schema': { 'ui:view': false },
-                  type: 'string', const: 'post',
-                },
-                url: { type: 'string' },
               },
             },
           ],

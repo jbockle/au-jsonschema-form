@@ -33,7 +33,7 @@ export class AujsfOneOf extends AujsfBase<JsonSchemaOneOf, any> {
   }
 
   @observable
-  public selectedOption: OneOfOption | null = null;
+  public selectedOption: OneOfOption | undefined;
 
   public options: OneOfOption[] = [];
 
@@ -64,15 +64,19 @@ export class AujsfOneOf extends AujsfBase<JsonSchemaOneOf, any> {
 
     if (this.value) {
       // if there is already a value present on bind, determine which, if any, oneOf schema is currently selected
-      this.options.some(async option => {
-        const result = await option.validator.validate(this.value);
-
-        if (result.valid) {
-          this.selectedOption = option;
-        }
-
-        return result.valid;
+      this.resolveCurrentOption().then(option => {
+        this.selectedOption = option;
       });
+    }
+  }
+
+  private async resolveCurrentOption(): Promise<OneOfOption | undefined> {
+    for (const option of this.options) {
+      const result = await option.validator.validate(this.value);
+
+      if (result.valid) {
+        return option;
+      }
     }
   }
 
