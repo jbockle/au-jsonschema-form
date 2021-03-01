@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/jbockle/au-jsonschema-form/compare/v0.5.0...v0.6.0) (2021-03-01)
+
+
+### Bug Fixes
+
+* **defaults:** reassign value on merge defaults ([e6ebb61](https://github.com/jbockle/au-jsonschema-form/commit/e6ebb61ea020377521999e6aaa41ba042ffaf3e9))
+* **error-schema:** prevent name conflicts with es: prefix ([2afb31a](https://github.com/jbockle/au-jsonschema-form/commit/2afb31a35416980f276133e8fedabbebe8bdca32))
+* **example:** one-of should use patternProperties ([528a608](https://github.com/jbockle/au-jsonschema-form/commit/528a60804b4a5f1e3aa76c084b5c88bbede961c9))
+* **one-of:** correctly resolve current option ([5087996](https://github.com/jbockle/au-jsonschema-form/commit/5087996f7e23d1fe3f923af4d2b7d19242291da4))
+* **submit:** unwrap results in TypeError ([3367c1c](https://github.com/jbockle/au-jsonschema-form/commit/3367c1c285a3359ba02a2469f5df29e3ab5519e8))
+
+
+### Features
+
+* **error-message:** global custom error messages ([dd7cea3](https://github.com/jbockle/au-jsonschema-form/commit/dd7cea3e36ee8b6f23a012717f738f112852f555))
+* **errors:** support overriding error message ([e5d14a5](https://github.com/jbockle/au-jsonschema-form/commit/e5d14a53bbddc1acf12317698f7ce79ad0b2718c))
+* **schema-form-events:** emit event on  value change ([f6e0cf5](https://github.com/jbockle/au-jsonschema-form/commit/f6e0cf5e23ca629bc5d8c895cbf8538d55b458d8))
+
+
+
+
+
 # [0.5.0](https://github.com/jbockle/au-jsonschema-form/compare/v0.4.2...v0.5.0) (2021-02-26)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/jbockle/au-jsonschema-form/compare/v0.5.0...v0.6.0) (2021-03-01)
+
+
+### Bug Fixes
+
+* **error-schema:** prevent name conflicts with es: prefix ([2afb31a](https://github.com/jbockle/au-jsonschema-form/commit/2afb31a35416980f276133e8fedabbebe8bdca32))
+
+
+
+
+
 # [0.5.0](https://github.com/jbockle/au-jsonschema-form/compare/v0.4.2...v0.5.0) (2021-02-26)
 
 

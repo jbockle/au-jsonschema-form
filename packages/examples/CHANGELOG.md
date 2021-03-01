@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](http://???/compare/v0.5.0...v0.6.0) (2021-03-01)
+
+
+### Bug Fixes
+
+* **example:** one-of should use patternProperties ([528a608](http://???/commits/528a60804b4a5f1e3aa76c084b5c88bbede961c9))
+* **one-of:** correctly resolve current option ([5087996](http://???/commits/5087996f7e23d1fe3f923af4d2b7d19242291da4))
+
+
+### Features
+
+* **errors:** support overriding error message ([e5d14a5](http://???/commits/e5d14a53bbddc1acf12317698f7ce79ad0b2718c))
+* **schema-form-events:** emit event on  value change ([f6e0cf5](http://???/commits/f6e0cf5e23ca629bc5d8c895cbf8538d55b458d8))
+
+
+
+
+
 # [0.5.0](http://???/compare/v0.4.2...v0.5.0) (2021-02-26)
 
 
