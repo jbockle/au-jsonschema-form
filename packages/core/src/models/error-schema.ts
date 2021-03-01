@@ -1,5 +1,6 @@
 import { ErrorObject } from 'ajv';
-import { computedFrom } from 'aurelia-framework';
+import { computedFrom, Container } from 'aurelia-framework';
+import { CustomErrors } from '../services';
 import { UISchema } from './ui-schema';
 
 export { ErrorObject };
@@ -13,6 +14,7 @@ export interface ValidationResult {
 type ErrorSchemaIndex = ErrorSchema | ErrorObject[] | string | string[] | undefined | Function | boolean | Symbol;
 
 const IS_ERROR_SCHEMA = Symbol('is-error-schema');
+const CUSTOM_ERRORS = Symbol('custom-errors');
 
 export interface ErrorSchema {
   [key: string]: ErrorSchemaIndex;
@@ -21,6 +23,7 @@ export interface ErrorSchema {
 
 export class ErrorSchema {
   public [IS_ERROR_SCHEMA] = true;
+  public [CUSTOM_ERRORS] = Container.instance.get(CustomErrors);
   public ['es:key']?: string;
   public ['es:error-objects']: ErrorObject[] = [];
 
@@ -36,7 +39,7 @@ export class ErrorSchema {
   public ['es:getErrorMessages'](uiSchema?: UISchema): string[] {
     return typeof uiSchema?.['ui:error-message'] === 'string'
       ? [uiSchema['ui:error-message']]
-      : this['es:error-objects'].map(error => error.message!)
+      : this['es:error-objects'].map(this[CUSTOM_ERRORS].getErrorMessage)
         .filter((message, index, array) => !!message && array.indexOf(message) === index);
   }
 

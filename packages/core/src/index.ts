@@ -15,8 +15,10 @@ import { AujsfConditional } from './elements/form-elements/aujsf-conditional';
 import { AujsfSortDefinitions } from './converters/aujsf-sort-definitions';
 import { AujsfValue } from './converters/aujsf-value';
 import { AujsfItemTitle } from './converters/aujsf-item-title';
+import { CustomErrors, DefaultCustomErrors } from './services';
 
 export function configure(framework: FrameworkConfiguration): void {
+  framework.container.registerInstance(CustomErrors, framework.container.get(DefaultCustomErrors));
   framework.globalResources([
     // fieldset
     AujsfSlot,
