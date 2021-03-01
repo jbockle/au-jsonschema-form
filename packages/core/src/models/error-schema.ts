@@ -1,5 +1,6 @@
 import { ErrorObject } from 'ajv';
 import { computedFrom } from 'aurelia-framework';
+import { UISchema } from './ui-schema';
 
 export { ErrorObject };
 
@@ -32,9 +33,11 @@ export class ErrorSchema {
     return this['es:error-objects'].length > 0;
   }
 
-  public ['es:getErrorMessages'](): string[] {
-    return this['es:error-objects'].map(error => error.message!)
-      .filter((message, index, array) => !!message && array.indexOf(message) === index);
+  public ['es:getErrorMessages'](uiSchema?: UISchema): string[] {
+    return typeof uiSchema?.['ui:error-message'] === 'string'
+      ? [uiSchema['ui:error-message']]
+      : this['es:error-objects'].map(error => error.message!)
+        .filter((message, index, array) => !!message && array.indexOf(message) === index);
   }
 
   public ['es:hasChildErrors'](): boolean {

@@ -79,4 +79,9 @@ export interface UISchema {
    * override schema's readOnly
    */
   'ui:read-only'?: boolean;
+
+  /**
+   * override to display a custom error message
+   */
+  'ui:error-message'?: string;
 }

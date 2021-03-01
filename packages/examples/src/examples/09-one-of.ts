@@ -95,7 +95,7 @@ export class OneOfExample extends Example {
     favorite: <UISchema>{
       'ui:view': 'array-tabs',
       'ui:items': {
-        kind: <UISchema>{ 'ui:view': false },
+        'ui:error-message': `I'm a custom error message`,
       },
     },
   };

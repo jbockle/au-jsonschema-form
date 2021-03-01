@@ -94,9 +94,9 @@ export abstract class AujsfBase<TSchema extends JsonSchema, TValue = any>
     return this.errors['es:hasErrors'];
   }
 
-  @computedFrom('errors')
+  @computedFrom('errors', 'uiSchema')
   public get errorMessages(): string[] {
-    return this.errors['es:getErrorMessages']();
+    return this.errors['es:getErrorMessages'](this.uiSchema);
   }
 
   public bind(bctx: any, obctx: any): void {
