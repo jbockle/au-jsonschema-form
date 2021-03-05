@@ -21,7 +21,9 @@ export class JsonSchemaDefaultResolver {
       case 'array':
         return this.mergeArrayDefaults(currentValue, schema as JsonSchemaArray);
       case 'boolean':
-        return false;
+        return typeof currentValue === 'boolean'
+          ? currentValue
+          : false;
       case 'integer':
       case 'number':
         return typeof currentValue === 'number'

@@ -13,14 +13,17 @@ export class ConditionalExample extends Example {
         'x-ui-schema': { 'ui:order': 0 },
         type: 'boolean',
       },
-      value: { type: 'string', readOnly: true },
     },
     required: ['override'],
     if: {
       properties: { override: { const: true } },
     },
     then: {
-      properties: { value: { readOnly: false } },
+      properties: {
+        value: {
+          type: 'string',
+        },
+      },
     },
   };
 }

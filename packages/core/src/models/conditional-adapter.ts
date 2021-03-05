@@ -33,9 +33,10 @@ export class ConditionalAdapter {
 
   public ifValidChanged(valid?: boolean, wasValid?: boolean): void {
     this.logger.debug('valid changed', { valid, wasValid });
-    if (this.viewModel) {
-      this.viewModel.value = this.viewModel.context.schemaDefaults
-        ?.mergeDefaults(this.viewModel.value, valid ? this.thenSchema : this.elseSchema);
+
+    if (this.viewModel?.context?.schemaDefaults) {
+      const schema = valid ? this.thenSchema : this.elseSchema;
+      this.viewModel.value = this.viewModel.context.schemaDefaults.mergeDefaults(this.viewModel.value, schema);
     }
   }
 
@@ -46,7 +47,7 @@ export class ConditionalAdapter {
   private getThenSchema(viewModel: AujsfConditional): JsonSchema {
     const thenSchema = utils.common.clone(viewModel.schema) as JsonSchema & Partial<JsonSchemaConditional>;
 
-    utils.common.merge(thenSchema, thenSchema.then, { arrayStrategy: 'union' });
+    utils.common.merge(thenSchema, thenSchema.then, { arrayStrategy: 'replace' });
 
     delete thenSchema.if;
     delete thenSchema.then;

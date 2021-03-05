@@ -17,19 +17,18 @@ export class AujsfConditional extends AujsfBase<JsonSchema & JsonSchemaCondition
   public adapter?: ConditionalAdapter;
 
   public bound(): void {
-    this._element.addEventListener('value-changed', () => {
-      this.adapter?.valueChanged();
-    });
+    this._element.addEventListener('value-changed', this.valueChangedHandler);
 
     if (this.schema) {
       this.adapter = new ConditionalAdapter(this);
     }
   }
 
-  public valueChanged(newValue: any, oldValue: any): void {
-    super.valueChanged(newValue, oldValue);
-    this.adapter?.valueChanged();
+  public unbind(): void {
+    this._element.removeEventListener('value-changed', this.valueChangedHandler);
   }
+
+  protected valueChangedHandler = ((): void => this.adapter?.valueChanged()).bind(this);
 
   protected resolveUISchemaDefaults(): void {
     this.uiSchema = this.uiSchema ?? {};
