@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](http://???/compare/v0.6.0...v0.6.1) (2021-03-05)
+
+
+### Bug Fixes
+
+* **defaults:** booleans are overridden to false ([4c73765](http://???/commits/4c73765b471b130fef48c68648b6184bd554d46f))
+
+
+
+
+
 # [0.6.0](http://???/compare/v0.5.0...v0.6.0) (2021-03-01)
 
 
