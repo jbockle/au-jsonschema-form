@@ -59,7 +59,7 @@ export class AujsfSlot extends ViewBase {
   public parentReadonly?: boolean;
 
   @bindable
-  public errors = ErrorSchema.create()
+  public errors!: ErrorSchema;
 
   @bindable
   public root = false;
@@ -80,7 +80,6 @@ export class AujsfSlot extends ViewBase {
   public schemaChanged(): void {
     try {
       delete this.error;
-      this.errors = this.errors ?? {};
       this.resolveUISchemaDefaults();
       this.type = this.uiSchema['ui:view'] === false
         ? 'hidden'

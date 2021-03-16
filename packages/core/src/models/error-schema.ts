@@ -57,7 +57,7 @@ export class ErrorSchema {
 
   public static create(thisKey?: string): ErrorSchema {
     const proxy = new Proxy(new ErrorSchema(thisKey), {
-      get(target, prop, _receiver): ErrorSchemaIndex {
+      get(target, prop: string | symbol | number, _receiver): ErrorSchemaIndex {
         if (prop === 'toJSON') {
           return (): any => target;
         }

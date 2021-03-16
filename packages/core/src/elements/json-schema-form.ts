@@ -2,7 +2,7 @@ import { TaskQueue, bindable, bindingMode, signalBindings, View, NewInstance } f
 import { getLogger } from 'aurelia-logging';
 
 import { FormTemplateRegistry, FormContext } from '../services';
-import { ValidationResult, SubmitArguments, FormTheme, UISchema, JsonSchema, FormOptions } from '../models';
+import { ValidationResult, SubmitArguments, FormTheme, UISchema, JsonSchema, FormOptions, ErrorSchema } from '../models';
 import utils from '../utils';
 
 /**
@@ -80,7 +80,7 @@ export abstract class JsonSchemaForm {
    * @bindable output
    */
   @bindable({ defaultBindingMode: bindingMode.fromView })
-  public validationResult?: ValidationResult;
+  public validationResult: ValidationResult = this.getDefaultValidatoinResult()
 
   /**
    * action to call when submit is triggered
@@ -92,9 +92,17 @@ export abstract class JsonSchemaForm {
     alert('submit triggered:\n' + JSON.stringify(args, null, 2));
   }
 
+  private getDefaultValidatoinResult(): ValidationResult {
+    return {
+      errorSchema: ErrorSchema.create(),
+      errors: [],
+      valid: true,
+    };
+  }
+
   public tryValidate(): void {
     this.taskQueue?.queueMicroTask(async () => {
-      this.validationResult = await this.context.validator?.validate(this.value);
+      this.validationResult = await this.context.validator?.validate(this.value) ?? this.getDefaultValidatoinResult();
       signalBindings('aujsf:ValueChanged');
     });
   }
