@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.2](http://???/compare/v0.6.1...v0.6.2) (2021-03-16)
+
+**Note:** Version bump only for package examples
+
+
+
+
+
 ## [0.6.1](http://???/compare/v0.6.0...v0.6.1) (2021-03-05)
 
 
