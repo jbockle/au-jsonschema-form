@@ -50,6 +50,7 @@ export class OneOfExample extends Example {
         minItems: 2,
         items: {
           title: 'Choose method...',
+          default: {},
           oneOf: [
             {
               title: 'Get/Delete',

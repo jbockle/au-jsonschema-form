@@ -11,7 +11,7 @@ export class JsonSchemaDefaultResolver {
       return schema.const;
     }
 
-    if (schema.default !== undefined) {
+    if (schema.default !== undefined && currentValue === undefined) {
       return schema.default;
     }
 
