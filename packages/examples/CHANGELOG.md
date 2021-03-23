@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.3](http://???/compare/v0.6.2...v0.6.3) (2021-03-23)
+
+
+### Bug Fixes
+
+* merge defaults overriding value ([063d716](http://???/commits/063d7163c2993283d128a9ff9234b520ecf5a147))
+
+
+
+
+
 ## [0.6.2](http://???/compare/v0.6.1...v0.6.2) (2021-03-16)
 
 **Note:** Version bump only for package examples
