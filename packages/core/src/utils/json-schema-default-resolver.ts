@@ -53,7 +53,7 @@ export class JsonSchemaDefaultResolver {
   }
 
   public mergeObjectDefaults(currentValue: any, schema: JsonSchemaObject): any {
-    if (typeof currentValue !== 'object' || Array.isArray(currentValue)) {
+    if (!currentValue || typeof currentValue !== 'object' || Array.isArray(currentValue)) {
       currentValue = this.getDefault(schema);
     }
     else {
