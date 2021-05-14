@@ -85,3 +85,7 @@ export interface UISchema {
    */
   'ui:error-message'?: string;
 }
+
+export type UISchemaFor<T> = UISchema & Partial<{
+  [P in keyof T]: T[P] extends string | number | boolean | null ? UISchema : UISchemaFor<T[P]>;
+}>;
