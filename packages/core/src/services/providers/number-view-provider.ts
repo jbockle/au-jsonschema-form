@@ -6,7 +6,8 @@ export class NumberViewProvider extends ViewProvider<JsonSchemaNumber, number> {
     super('number-input', {
       view: 'number-range',
       predicate: model => (typeof model.schema.minimum === 'number' || typeof model.schema.exclusiveMinimum === 'number')
-        && (typeof model.schema.maximum === 'number' || typeof model.schema.exclusiveMaximum === 'number'),
+        && (typeof model.schema.maximum === 'number' || typeof model.schema.exclusiveMaximum === 'number')
+        && model.schema.maximum! - model.schema.minimum! < 100,
       priority: 2,
     });
   }
