@@ -17,10 +17,12 @@
       ${error}
     </span>
 
-    <div class="form-check" repeat.for="option of schema.items.enum">
+    <div class="form-check ${uiSchema['ui:inline'] ? 'form-check-inline' : ''}"
+         repeat.for="option of schema.items.enum">
 
       <input id.bind="`${id}__${option}`" type="checkbox" class="form-check-input"
              checked.bind="value"
+             disabled.bind="readonly"
              value.bind="option">
       <label for.bind="`${id}__${option}`" class="form-check-label">${option}</label>
 
