@@ -1,0 +1,43 @@
+<template>
+  <require from="@aujsf/bootstrap-theme/aujsf-bs-label.html"></require>
+
+  <div class="form-group">
+
+    <aujsf-bs-label id.bind="id"
+                    title.bind="title"
+                    required.bind="required"
+                    class="${uiSchema['ui:inline'] ? 'd-block' : ''} ${!description ? 'mb-1' : 'mb-0'}">
+    </aujsf-bs-label>
+
+    <small class="form-text text-muted mt-0 mb-1" if.bind="description">${description}</small>
+
+    <span class="d-block invalid-feedback" if.bind="hasErrors" repeat.for="error of errorMessages">
+      ${error}
+    </span>
+
+    <div class="form-check ${uiSchema['ui:inline'] ? 'form-check-inline' : ''}">
+      <input id.bind="id + '__true'" class="form-check-input"
+             type="radio"
+             disabled.bind="readonly"
+             name.bind="id"
+             model.bind="true"
+             checked.bind="value">
+      <label for.bind="id + '__true'" class="form-check-label small">
+        ${uiSchema['ui:true-label'] || 'Yes'}
+      </label>
+    </div>
+
+    <div class="form-check ${uiSchema['ui:inline'] ? 'form-check-inline' : ''}">
+      <input id.bind="id + '__false'" class="form-check-input"
+             type="radio"
+             disabled.bind="readonly"
+             name.bind="id"
+             model.bind="false"
+             checked.bind="value">
+      <label for.bind="id + '__false'" class="form-check-label small">
+        ${uiSchema['ui:false-label'] || 'No'}
+      </label>
+    </div>
+
+  </div>
+</template>

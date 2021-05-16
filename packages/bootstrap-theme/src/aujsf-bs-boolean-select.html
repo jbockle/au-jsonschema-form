@@ -1,0 +1,30 @@
+<template>
+  <require from="@aujsf/bootstrap-theme/aujsf-bs-label.html"></require>
+
+  <div class="form-group">
+
+    <aujsf-bs-label id.bind="id" title.bind="title" required.bind="required">
+    </aujsf-bs-label>
+
+    <select id.bind="id" value.bind="value"
+            disabled.bind="readonly"
+            class="custom-select ${hasErrors ? 'is-invalid' : value !== undefined ? 'is-valid' : ''}">
+
+      <option model.bind="true">
+        ${uiSchema['ui:true-label'] || 'Yes'}
+      </option>
+
+      <option model.bind="false">
+        ${uiSchema['ui:false-label'] || 'No'}
+      </option>
+
+    </select>
+
+    <small class="form-text text-muted" if.bind="description">${description}</small>
+
+    <div class="invalid-feedback" repeat.for="error of errorMessages">
+      ${error}
+    </div>
+
+  </div>
+</template>

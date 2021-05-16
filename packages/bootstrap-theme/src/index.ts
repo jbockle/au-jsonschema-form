@@ -22,6 +22,8 @@ const theme: FormTheme = {
   'all-of': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-all-of.html'),
   'one-of': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-one-of.html'),
   'conditional': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-conditional.html'),
+  'boolean-select': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-boolean-select.html'),
+  'boolean-radio': PLATFORM.moduleName('@aujsf/bootstrap-theme/aujsf-bs-boolean-radio.html'),
 };
 
 export const BS4_THEME = Object.freeze(theme);
