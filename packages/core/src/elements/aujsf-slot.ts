@@ -23,6 +23,8 @@ export const ATTRIBUTES: [string, string][] = [
   ['class.bind', 'class'],
 ];
 
+const RESOLVED = Symbol('resolved');
+
 @inlineView(`<template></template>`)
 @inject(Element, Enhancer, FormContext)
 @customElement('aujsf-slot')
@@ -46,7 +48,7 @@ export class AujsfSlot extends ViewBase {
   @bindable({ defaultBindingMode: bindingMode.toView })
   public schema!: JsonSchema;
 
-  @bindable
+  @bindable({ name: 'foo', defaultBindingMode: bindingMode.toView })
   public uiSchema: UISchema = {};
 
   @bindable
@@ -77,47 +79,61 @@ export class AujsfSlot extends ViewBase {
     this.myView = myView;
   }
 
-  public schemaChanged(): void {
-    try {
-      delete this.error;
-      this.resolveUISchemaDefaults();
-      this.type = this.uiSchema['ui:view'] === false
-        ? 'hidden'
-        : this.resolveSlotType(this.schema);
-      this.pointer = this.pointer ?? new JsonPointer([]);
-
-      this.view = this._enhancer.enhanceSlot({
-        tagName: `aujsf-${this.type}`,
-        attributes: ATTRIBUTES,
-        appendTo: this._element,
-        bindingContext: this,
-        container: this.myView!.container,
-      });
-
-      this._logger.debug('bound', this.pointer.toString());
-    } catch (error) {
-      this.error = error;
-      this._logger.error('an error occurred while building the sf-slot', { error, viewModel: this });
-      this.view = this._enhancer.error({
-        message: 'an error occurred loading the form element',
-        element: this._element,
-      });
-    }
+  public schemaChanged(schema?: JsonSchema): void {
+    this._logger.debug('schemaChanged');
+    schema && this.tryCompile(schema);
   }
 
-  protected bind(_ctx: any, _octx: any): void {
-    this.schemaChanged();
+  public uiSchemaChanged(uiSchema?: UISchema): void {
+    if (uiSchema && (<any>uiSchema)[RESOLVED]) {
+      return;
+    }
+
+    this._logger.debug('uiSchemaChanged', uiSchema);
+
+    uiSchema && this.schema && this.tryCompile(this.schema);
+  }
+
+  private _compileHandle: any = 0;
+  protected tryCompile(schema: JsonSchema): void {
+    clearTimeout(this._compileHandle);
+    this._compileHandle = setTimeout(() => {
+      try {
+        delete this.error;
+        this.resolveUISchemaDefaults();
+        this.type = this.uiSchema['ui:view'] === false
+          ? 'hidden'
+          : this.resolveSlotType(schema);
+        this.pointer = this.pointer ?? new JsonPointer([]);
+
+        this.view = this._enhancer.enhanceSlot({
+          tagName: `aujsf-${this.type}`,
+          attributes: ATTRIBUTES,
+          appendTo: this._element,
+          bindingContext: this,
+          container: this.myView!.container,
+        });
+
+        this._logger.debug('bound', this.pointer.toString());
+      } catch (error) {
+        this.error = error;
+        this._logger.error('an error occurred while building the sf-slot', { error, viewModel: this });
+        this.view = this._enhancer.error({
+          message: 'an error occurred loading the form element',
+          element: this._element,
+        });
+      }
+    }, 100);
   }
 
   private resolveUISchemaDefaults(): void {
-    this.uiSchema = Object.assign(
-      {},
-      this.schema['x-ui-schema'] ?? {},
-      this.uiSchema ?? {});
+    const uiSchema: UISchema = { ...(this.schema['x-ui-schema'] ?? {}), ...this.uiSchema, [RESOLVED]: true };
 
-    if (this.root && this.uiSchema['ui:title'] === undefined) {
-      this.uiSchema['ui:title'] = false;
+    if (this.root && uiSchema['ui:title'] === undefined) {
+      uiSchema['ui:title'] = false;
     }
+
+    this.uiSchema = uiSchema;
   }
 
   // TODO this needs to be simplified
