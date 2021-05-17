@@ -121,6 +121,7 @@ export abstract class JsonSchemaForm {
 
     if (newSchema && newSchema !== oldSchema) {
       this.context.schema = utils.common.clone(newSchema);
+      this.context.uiSchema = utils.common.clone(this.uiSchema ?? {});
       this.value = this.context.schemaDefaults?.mergeDefaults(this.value, newSchema);
       this.tryValidate();
     }
