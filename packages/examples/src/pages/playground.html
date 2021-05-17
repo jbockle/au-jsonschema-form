@@ -1,0 +1,28 @@
+<template>
+  <require from="./playground.scss"></require>
+  <require from="../resources/converters/json"></require>
+  <require from="../resources/elements/monaco-editor"></require>
+
+  <editors>
+    <h5>JSON Schema</h5>
+    <monaco-editor id="schemaJson"
+                   language="json"
+                   value.bind="schemaJson"></monaco-editor>
+    <h5>UI Schema</h5>
+    <monaco-editor id="uiSchemaJson"
+                   language="json"
+                   value.bind="uiSchemaJson"></monaco-editor>
+    <h5>Model</h5>
+    <monaco-editor id="valueJson"
+                   language="json"
+                   readonly.bind="true"
+                   value.to-view="modelJson"></monaco-editor>
+  </editors>
+
+  <bs4-json-schema-form schema.bind="schema"
+                        ui-schema.bind="uiSchema"
+                        value.bind="model"
+                        errors.bind="errors"
+                        value-changed.trigger="valueTrigger = valueTrigger + 1"></bs4-json-schema-form>
+
+</template>

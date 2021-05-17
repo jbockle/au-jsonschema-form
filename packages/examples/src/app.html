@@ -4,5 +4,5 @@
 
   <navigation routes.bind="router.navigation"></navigation>
 
-  <router-view class="d-flex flex-fill px-3"></router-view>
+  <router-view class="d-flex flex-fill px-3 ${router.currentInstruction.config.name}"></router-view>
 </template>

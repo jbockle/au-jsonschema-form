@@ -23,6 +23,11 @@ export class App {
         route: 'examples', nav: true,
         moduleId: PLATFORM.moduleName('./pages/examples'),
       },
+      {
+        name: 'playground', title: 'Playground',
+        route: 'playground', nav: true,
+        moduleId: PLATFORM.moduleName('./pages/playground'),
+      },
     ]);
   }
 }

@@ -1,0 +1,23 @@
+router-view.playground {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 5px;
+
+  > * {
+    width: 100%;
+    height: 100%;
+  }
+
+  > editors {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, min-content 1fr);
+    gap: 2px;
+
+    > * {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

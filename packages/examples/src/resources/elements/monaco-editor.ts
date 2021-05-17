@@ -41,10 +41,16 @@ export class MonacoEditor {
         readOnly: this.readonly,
         scrollBeyondLastLine: false,
         automaticLayout: true,
+        formatOnPaste: true,
+        formatOnType: true,
+        tabSize: 2,
+        renderWhitespace: 'all',
       }, this.options ?? {}));
 
     function onResizeCallback(editor: monaco.editor.IStandaloneCodeEditor): () => void {
-      return (): void => editor.layout();
+      return (): void => {
+        editor.layout();
+      };
     }
 
     this._resizeCallback = onResizeCallback(this.editor);
@@ -68,10 +74,15 @@ export class MonacoEditor {
   private onDidChangeModelContent(_event: monaco.editor.IModelContentChangedEvent): void {
     const value = this.editor?.getValue() ?? '';
 
-    if (this.language === 'json') {
-      JSON.parse(value);
-    }
+    try {
+      if (this.language === 'json') {
+        JSON.parse(value);
+      }
 
-    this.value = value;
+      this.value = value;
+    }
+    catch {
+      //
+    }
   }
 }
