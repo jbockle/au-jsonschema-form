@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/jbockle/au-jsonschema-form/compare/v0.6.4...v0.7.0) (2021-05-17)
+
+
+### Bug Fixes
+
+* checkboxes should be disabled when readonly ([53c13b1](https://github.com/jbockle/au-jsonschema-form/commit/53c13b156286a13a5ef926da2a6bd75ed20697b9))
+
+
+### Features
+
+* add select & radio boolean views ([13dc080](https://github.com/jbockle/au-jsonschema-form/commit/13dc08074590144e4f59a4a81f370f1775601dff))
+
+
+
+
+
 ## [0.6.4](https://github.com/jbockle/au-jsonschema-form/compare/v0.6.3...v0.6.4) (2021-03-24)
 
 **Note:** Version bump only for package @aujsf/bootstrap-theme

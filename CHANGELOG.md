@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/jbockle/au-jsonschema-form/compare/v0.6.4...v0.7.0) (2021-05-17)
+
+
+### Bug Fixes
+
+* checkboxes should be disabled when readonly ([53c13b1](https://github.com/jbockle/au-jsonschema-form/commit/53c13b156286a13a5ef926da2a6bd75ed20697b9))
+* number range only when range less than 100 ([6381a8a](https://github.com/jbockle/au-jsonschema-form/commit/6381a8a3f1ee95964c6db538296676c9ce468ff3))
+* reset uiSchema context on schema change ([3d7cd68](https://github.com/jbockle/au-jsonschema-form/commit/3d7cd688bd78bd21984eab0a04088a28c0260448))
+
+
+### Features
+
+* add playground ([05f5368](https://github.com/jbockle/au-jsonschema-form/commit/05f53681d259d0a73ca046de30c85fc8911223f5))
+* add select & radio boolean views ([13dc080](https://github.com/jbockle/au-jsonschema-form/commit/13dc08074590144e4f59a4a81f370f1775601dff))
+* add UISchemaFor<T> ([9f048a4](https://github.com/jbockle/au-jsonschema-form/commit/9f048a4fbff3fc4fc3d5717ceb40ed15120ffe0d))
+* react to uiSchema changes ([7d4f471](https://github.com/jbockle/au-jsonschema-form/commit/7d4f471204aa0f98985fa766ada1dfa6b98c0caa))
+
+
+
+
+
 ## [0.6.4](https://github.com/jbockle/au-jsonschema-form/compare/v0.6.3...v0.6.4) (2021-03-24)
 
 
