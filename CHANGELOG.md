@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/jbockle/au-jsonschema-form/compare/v0.7.0...v0.7.1) (2021-05-18)
+
+
+### Bug Fixes
+
+* slots reset view when schema changes ([1215a0e](https://github.com/jbockle/au-jsonschema-form/commit/1215a0e5952cb4ec0ff318243ea3a8776b099e52))
+
+
+
+
+
 # [0.7.0](https://github.com/jbockle/au-jsonschema-form/compare/v0.6.4...v0.7.0) (2021-05-17)
 
 

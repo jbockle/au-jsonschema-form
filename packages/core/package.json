@@ -2,7 +2,7 @@
   "name": "@aujsf/core",
   "description": "Create forms based on JSON Schema!",
   "author": "jbockle",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
