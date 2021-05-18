@@ -1,4 +1,4 @@
-import { observable, bindable, bindingMode, inject, customElement, inlineView, View } from 'aurelia-framework';
+import { observable, bindable, bindingMode, inject, customElement, inlineView, View, TaskQueue } from 'aurelia-framework';
 import { getLogger } from 'aurelia-logging';
 import { JsonPointer } from 'jsonpointerx';
 
@@ -26,7 +26,7 @@ export const ATTRIBUTES: [string, string][] = [
 const RESOLVED = Symbol('resolved');
 
 @inlineView(`<template></template>`)
-@inject(Element, Enhancer, FormContext)
+@inject(Element, Enhancer, FormContext, TaskQueue)
 @customElement('aujsf-slot')
 export class AujsfSlot extends ViewBase {
   protected _logger = getLogger('aujsf:sf-slot');
@@ -35,6 +35,7 @@ export class AujsfSlot extends ViewBase {
     protected _element: Element,
     protected _enhancer: Enhancer,
     protected _context: FormContext,
+    protected _taskQueue: TaskQueue,
   ) {
     super();
   }
@@ -96,34 +97,40 @@ export class AujsfSlot extends ViewBase {
 
   private _compileHandle: any = 0;
   protected tryCompile(schema: JsonSchema): void {
-    clearTimeout(this._compileHandle);
-    this._compileHandle = setTimeout(() => {
-      try {
-        delete this.error;
-        this.resolveUISchemaDefaults();
-        this.type = this.uiSchema['ui:view'] === false
-          ? 'hidden'
-          : this.resolveSlotType(schema);
-        this.pointer = this.pointer ?? new JsonPointer([]);
+    this._taskQueue.queueTask(() => {
+      clearTimeout(this._compileHandle);
+      this._compileHandle = setTimeout(() => {
+        try {
+          delete this.error;
+          this.resolveUISchemaDefaults();
+          this.type = this.uiSchema['ui:view'] === false
+            ? 'hidden'
+            : this.resolveSlotType(schema);
+          this.pointer = this.pointer ?? new JsonPointer([]);
 
-        this.view = this._enhancer.enhanceSlot({
-          tagName: `aujsf-${this.type}`,
-          attributes: ATTRIBUTES,
-          appendTo: this._element,
-          bindingContext: this,
-          container: this.myView!.container,
-        });
+          this.view = undefined;
 
-        this._logger.debug('bound', this.pointer.toString());
-      } catch (error) {
-        this.error = error;
-        this._logger.error('an error occurred while building the sf-slot', { error, viewModel: this });
-        this.view = this._enhancer.error({
-          message: 'an error occurred loading the form element',
-          element: this._element,
-        });
-      }
-    }, 100);
+          this._taskQueue.queueMicroTask(() => {
+            this.view = this._enhancer.enhanceSlot({
+              tagName: `aujsf-${this.type}`,
+              attributes: ATTRIBUTES,
+              appendTo: this._element,
+              bindingContext: this,
+              container: this.myView!.container,
+            });
+          });
+
+          this._logger.debug('enhanced', this.pointer.toString());
+        } catch (error) {
+          this.error = error;
+          this._logger.error('an error occurred while building the sf-slot', { error, viewModel: this });
+          this.view = this._enhancer.error({
+            message: 'an error occurred loading the form element',
+            element: this._element,
+          });
+        }
+      }, 100);
+    });
   }
 
   private resolveUISchemaDefaults(): void {
