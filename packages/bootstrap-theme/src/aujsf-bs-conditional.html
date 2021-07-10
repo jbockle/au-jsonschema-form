@@ -1,23 +1,23 @@
 <template>
+  <template if.bind="adapter">
+    <aujsf-slot show.bind="adapter.ifValid" class="then-schema"
+                schema.bind="adapter.thenSchema"
+                ui-schema.bind="uiSchema"
+                value.bind="value"
+                pointer.bind="pointer"
+                required.bind="required"
+                parent-readonly.bind="parentReadonly"
+                errors.bind="errors" ref="slot">
+    </aujsf-slot>
 
-  <aujsf-slot if.bind="adapter && adapter.ifValid" class="then-schema"
-              schema.bind="adapter.thenSchema"
-              ui-schema.bind="uiSchema"
-              value.bind="value"
-              pointer.bind="pointer"
-              required.bind="required"
-              parent-readonly.bind="parentReadonly"
-              errors.bind="errors" ref="slot">
-  </aujsf-slot>
-
-  <aujsf-slot if.bind="adapter && !adapter.ifValid" class="else-schema"
-              schema.bind="adapter.elseSchema"
-              ui-schema.bind="uiSchema"
-              value.bind="value"
-              pointer.bind="pointer"
-              required.bind="required"
-              parent-readonly.bind="parentReadonly"
-              errors.bind="errors" ref="slot">
-  </aujsf-slot>
-
+    <aujsf-slot show.bind="!adapter.ifValid" class="else-schema"
+                schema.bind="adapter.elseSchema"
+                ui-schema.bind="uiSchema"
+                value.bind="value"
+                pointer.bind="pointer"
+                required.bind="required"
+                parent-readonly.bind="parentReadonly"
+                errors.bind="errors" ref="slot">
+    </aujsf-slot>
+  </template>
 </template>

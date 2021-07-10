@@ -35,7 +35,7 @@ export class AujsfConditional extends AujsfBase<JsonSchema & JsonSchemaCondition
   }
 
   protected enhance(): void {
-    this.adapter?.valueChanged();
+    this.adapter!.valueChanged();
     // TODO should try/catch exception
     const template = this._templateRegistry.get(this.viewProvider.getTemplate(this));
 
