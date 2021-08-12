@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/jbockle/au-jsonschema-form/compare/v0.7.2...v0.7.3) (2021-08-12)
+
+
+### Features
+
+* **contexts:** inject additional context ([5e48014](https://github.com/jbockle/au-jsonschema-form/commit/5e48014e12d8a47758d6d00249dd4682ed119686))
+
+
+
+
+
 ## [0.7.2](https://github.com/jbockle/au-jsonschema-form/compare/v0.7.1...v0.7.2) (2021-07-13)
 
 
