@@ -23,6 +23,8 @@ export class FormContext {
 
   public schemaDefaults?: JsonSchemaDefaultResolver;
 
+  public contexts: Record<string, any> = {};
+
   public get schema(): JsonSchema {
     return this._schema;
   }

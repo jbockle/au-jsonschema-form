@@ -75,12 +75,15 @@ export abstract class JsonSchemaForm {
   @bindable({ defaultBindingMode: bindingMode.toView })
   public readonly = false;
 
+  @bindable
+  public contexts?: Record<string, any>;
+
   /**
    * the validation result from AJV
    * @bindable output
    */
   @bindable({ defaultBindingMode: bindingMode.fromView })
-  public validationResult: ValidationResult = this.getDefaultValidatoinResult()
+  public validationResult: ValidationResult = this.getDefaultValidatoinResult();
 
   /**
    * action to call when submit is triggered
@@ -147,11 +150,12 @@ export abstract class JsonSchemaForm {
   protected optionsChanged(newValue?: FormOptions, oldValue?: FormOptions): void {
     this.logger.debug('options changed', { newValue, oldValue });
 
-    if (newValue) {
-      this.context.formOptions = newValue;
-    }
-    else {
-      this.context.formOptions = {};
-    }
+    this.context.formOptions = newValue ?? {};
+  }
+
+  protected contextsChanged(newValue?: Record<string, any>): void {
+    this.logger.debug('contexts changed', { newValue });
+
+    this.context.contexts = newValue ?? {};
   }
 }
