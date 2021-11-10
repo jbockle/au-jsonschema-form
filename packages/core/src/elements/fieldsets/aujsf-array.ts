@@ -36,6 +36,7 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
   public delete(index: number): void {
     if (index in this.value) {
       this.value.splice(index, 1);
+      this.definitions.splice(index, 1);
       this.updateDefinitions();
     }
   }
