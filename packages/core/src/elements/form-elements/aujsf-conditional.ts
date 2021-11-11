@@ -44,9 +44,6 @@ export class AujsfConditional extends AujsfBase<JsonSchema & JsonSchemaCondition
       bindingContext: this,
       container: this._container,
       template,
-      attributes: this.uiSchema['ui:view-class']
-        ? [['class', this.uiSchema['ui:view-class']]]
-        : undefined,
     });
   }
 }
