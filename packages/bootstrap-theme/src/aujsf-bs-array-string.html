@@ -1,0 +1,48 @@
+<template>
+  <fieldset>
+    <div>
+      <legend>
+
+        <span if.bind="title">
+          ${title}
+        </span>
+
+        <span class="form-text text-muted fieldset-description" if.bind="description">${description}</span>
+
+        <div class="input-group input-group-sm mb-1">
+          <input type="text" class="form-control"
+                 value.bind="newString"
+                 disabled.bind="readonly"
+                 placeholder.bind="placeholder"
+                 keydown.delegate="$event.keyCode === 13 ? newString && !readonly && (newString = add(newString)) : true">
+          <div class="input-group-append">
+            <button class="btn btn-outline-success" type="button" click.delegate="newString = add(newString)"
+                    disabled.bind="!newString || readonly"><strong class="mr-1">&plus;</strong>Add</button>
+          </div>
+        </div>
+
+      </legend>
+    </div>
+
+    <span class="d-block invalid-feedback" if.bind="hasErrors" repeat.for="error of errorMessages">
+      ${error}
+    </span>
+
+    <div class="mb-2">
+      <template repeat.for="item of value">
+        <div class="d-inline-flex rounded bg-info text-white mb-1 px-2">
+          ${item}
+          <button type="button" class="close ml-1" click.delegate="delete($index)"
+                  if.bind="!readonly && !uiSchema['ui:no-remove'] && !definition.uiSchema['ui:no-remove']">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </template>
+      <template if.bind="!value || value.length === 0">
+        <small class="d-inline-flex rounded bg-secondary text-muted font-italic mb-1 px-2">
+          nothing here...
+        </small>
+      </template>
+    </div>
+  </fieldset>
+</template>

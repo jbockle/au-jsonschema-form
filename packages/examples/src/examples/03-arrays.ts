@@ -6,20 +6,38 @@ export class ArraysExample extends Example {
 
   public static displayName = 'Arrays';
 
-  public value: any = ['Apples'];
+  public value: any = {
+    fruits: ['Apples'],
+    tags: ['foo', 'bar', 'baz', 'qux'],
+  };
 
   public schema: JsonSchema = {
-    type: 'array',
-    items: {
-      type: 'string',
+    type: 'object',
+    properties: {
+      fruits: {
+        type: 'array',
+        items: {
+          type: 'string',
+        },
+        minItems: 1,
+        maxItems: 3,
+      },
+      tags: {
+        type: 'array',
+        items: {
+          type: 'string',
+        },
+      },
     },
-    minItems: 1,
-    maxItems: 3,
   }
 
   public uiSchema: UISchema = {
-    'ui:title': 'Fruits',
-    'ui:item-title': '${key + 1}:${value || \'Enter Item\'}',
-    'ui:items': { 'ui:title': false },
+    fruits: {
+      'ui:item-title': '${key + 1}:${value || \'Enter Item\'}',
+      'ui:items': { 'ui:title': false },
+    },
+    tags: {
+      'ui:view': 'array-string',
+    },
   };
 }
