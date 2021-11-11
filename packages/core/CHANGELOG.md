@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.4](https://github.com/jbockle/au-jsonschema-form/compare/v0.7.3...v0.7.4) (2021-11-11)
+
+
+### Bug Fixes
+
+* only init definitions when bound ([ad8051f](https://github.com/jbockle/au-jsonschema-form/commit/ad8051f26a281b638a76e6781fb474fdbf4c01db))
+* **conditional:** ui:view-class applied twice ([a77b1cb](https://github.com/jbockle/au-jsonschema-form/commit/a77b1cb813c5681129a0d205374433882ff55268))
+
+
+
+
+
 ## [0.7.3](https://github.com/jbockle/au-jsonschema-form/compare/v0.7.2...v0.7.3) (2021-08-12)
 
 

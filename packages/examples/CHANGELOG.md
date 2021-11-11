@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.4](http://???/compare/v0.7.3...v0.7.4) (2021-11-11)
+
+
+### Features
+
+* **array:** add string array view ([1a7cfd8](http://???/commits/1a7cfd83d980dfd43fbc2343b60f10690e449b8a))
+
+
+
+
+
 ## [0.7.3](http://???/compare/v0.7.2...v0.7.3) (2021-08-12)
 
 **Note:** Version bump only for package examples
