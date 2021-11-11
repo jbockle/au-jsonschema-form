@@ -20,23 +20,25 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
     this._observer = this.engine?.collectionObserver(this.value).subscribe(changeRecords => {
       this.valueChanged(this.value, changeRecords);
     });
-    this.updateDefinitions();
+    this.initDefinitions();
   }
 
   public unbind(): void {
     this._observer?.dispose();
   }
 
-  public add(): void {
-    const newItemValue = this.context.schemaDefaults?.getArrayItemDefaults(this.value.length, this.schema) ?? null;
+  public add(): void;
+  public add(value: any): void;
+  public add(value: any = undefined): void {
+    const newItemValue = value ?? this.context.schemaDefaults?.getArrayItemDefaults(this.value.length, this.schema) ?? null;
+    this.definitions.push(this.getIndexDefinition(this.definitions.length));
     this.value.push(newItemValue);
-    this.updateDefinitions();
   }
 
   public delete(index: number): void {
     if (index in this.value) {
+      this.definitions.splice(index, 1);
       this.value.splice(index, 1);
-      this.updateDefinitions();
     }
   }
 
@@ -56,7 +58,7 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
 
   public definitions: ArrayKeyDefinition[] = [];
 
-  private updateDefinitions(): void {
+  private initDefinitions(): void {
     const length = this.value?.length ?? 0;
 
     if (length === 0) {
@@ -69,21 +71,25 @@ export class AujsfArray extends AujsfBase<JsonSchemaArray, any[]> {
     }
 
     for (let index = 0; index < (length); index++) {
-      const schema = this.getItemJsonSchema(index, this.schema, this.context.schema!);
-      const uiSchema = this.getItemUiSchema(index, this.uiSchema, schema);
-
-      const definition = {
-        key: index,
-        schema,
-        uiSchema,
-        pointer: new JsonPointer([...this.pointer.segments, index.toString()]),
-      };
+      const definition = this.getIndexDefinition(index);
 
       this.definitions[index] || this.definitions.push(definition);
       if (this.definitions[index].key !== definition.key) {
         this.definitions.splice(index, 1, definition);
       }
     }
+  }
+
+  private getIndexDefinition(index: number): ArrayKeyDefinition {
+    const schema = this.getItemJsonSchema(index, this.schema, this.context.schema!);
+    const uiSchema = this.getItemUiSchema(index, this.uiSchema, schema);
+
+    return {
+      key: index,
+      schema,
+      uiSchema,
+      pointer: new JsonPointer([...this.pointer.segments, index.toString()]),
+    };
   }
 
   private getItemJsonSchema(index: number, schema: JsonSchemaArray, root: JsonSchema): JsonSchema {
