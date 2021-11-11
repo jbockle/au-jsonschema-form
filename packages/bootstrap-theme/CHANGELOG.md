@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.5](https://github.com/jbockle/au-jsonschema-form/compare/v0.7.4...v0.7.5) (2021-11-11)
+
+
+### Features
+
+* **enum:** custom enum labels ([f18ef73](https://github.com/jbockle/au-jsonschema-form/commit/f18ef735eea8fd42f41cdf3f1f47c28b0dc6956d))
+
+
+
+
+
 ## [0.7.4](https://github.com/jbockle/au-jsonschema-form/compare/v0.7.3...v0.7.4) (2021-11-11)
 
 

@@ -1,7 +1,7 @@
 {
   "name": "examples",
   "description": "An Aurelia client application.",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "repository": {
     "type": "???",
     "url": "???"
@@ -18,8 +18,8 @@
     "test:watch": "npm run test -- --watch"
   },
   "dependencies": {
-    "@aujsf/bootstrap-theme": "^0.7.4",
-    "@aujsf/core": "^0.7.4",
+    "@aujsf/bootstrap-theme": "^0.7.5",
+    "@aujsf/core": "^0.7.5",
     "aurelia-animator-css": "^1.0.4",
     "aurelia-bootstrapper": "^2.3.3",
     "aurelia-fetch-client": "^1.8.2",
