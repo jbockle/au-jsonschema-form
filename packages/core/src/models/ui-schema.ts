@@ -84,6 +84,11 @@ export interface UISchema {
    * override to display a custom error message
    */
   'ui:error-message'?: string;
+
+  /**
+   * a model/display value for string enums
+   */
+  'ui:enum-labels'?: { [value: string]: string };
 }
 
 export type UISchemaFor<T> = UISchema & Partial<{

@@ -1,6 +1,8 @@
 <template>
   <require from="@aujsf/bootstrap-theme/aujsf-bs-label.html"></require>
 
+  <let enum-labels.bind="uiSchema['ui:enum-labels'] || {}"></let>
+
   <div class="form-group">
 
     <aujsf-bs-label id.bind="id" title.bind="title" required.bind="required">
@@ -17,7 +19,7 @@
       </option>
 
       <option repeat.for="option of schema.enum" model.bind="option">
-        ${option}
+        ${enumLabels[option] || option}
       </option>
 
     </select>

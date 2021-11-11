@@ -49,12 +49,41 @@ export class EnumsExample extends Example {
           'echo',
         ],
       },
+      customLabels: {
+        type: 'string',
+        enum: [
+          'cat',
+          'dog',
+          'none',
+        ],
+      },
+      customLabelsSelect: {
+        type: 'string',
+        enum: [
+          'a',
+          'b',
+          'c',
+        ],
+      },
     },
   };
 
   public uiSchema: UISchema = {
     language: {
       'ui:placeholder': 'Choose...',
+    },
+    customLabels: {
+      'ui:enum-labels': {
+        'dog': '🐕‍🦺',
+        'cat': '🐈',
+      },
+    },
+    customLabelsSelect: {
+      'ui:view': 'string-select',
+      'ui:enum-labels': {
+        'a': 'Letter A',
+        'c': 'Letter C',
+      },
     },
   };
 }
